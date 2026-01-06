@@ -1,0 +1,8 @@
+{
+  "name": "ebt-web-dev",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "ebt-web",
+  "workspaceFolder": "/app",
+  "forwardPorts": [5173],
+  "postCreateCommand": "npm install"
+}
