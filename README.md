@@ -14,7 +14,7 @@
 | ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-✔-teal?logo=tailwindcss) | 유틸리티 퍼스트 프레임워크를 이용한 스타일링 |
 | ![Docker](https://img.shields.io/badge/Docker-✔-blue?logo=docker) | 일관된 개발 및 배포 환경 제공 |
 | ![Node.js](https://img.shields.io/badge/Node.js-22.21.1-green?logo=node.js) | 런타임 환경 |
-| ![npm](https://img.shields.io/badge/npm-11.7.0-red?logo=npm) | 패키지 매니저 |
+| ![npm](https://img.shields.io/badge/npm-10.9.4-red?logo=npm) | 패키지 매니저 |
 
 
 ## 📂 Project Structure
@@ -60,9 +60,25 @@ Accessing the Web
 🔗 http://localhost:5173
 
 Stop Server
-서버를 중단하려면 터미널에서 Ctrl + C를 입력하세요.
+```sh
+docker-compose down
+```
+### 🧩 VSCode Dev Container (권장)
 
+Docker 환경에서 TypeScript / ESLint / JSX 오류 없이 개발하기 위해 VSCode Dev Container 사용을 권장합니다.
 
+#### 사용 방법
+
+1. VSCode Extension 설치
+```
+Dev Containers (Microsoft)
+```
+2. 컨테이너 실행 상태에서 VSCode 명령 실행
+
+```
+Ctrl + Shift + P
+Dev Containers: Reopen in Container
+```
 ## 💻 Local Development (Without Docker)
 Docker 없이 로컬 환경에서 직접 실행하는 방법입니다. (Node.js 22.12.0 이상 권장)
 
