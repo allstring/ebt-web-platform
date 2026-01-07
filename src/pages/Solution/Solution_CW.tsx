@@ -3,34 +3,48 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { ProductGrid } from "@/components/product-card"
+import categoryCpxImg from "@/assets/images/category-cpx.jpg"
+import categoryNcmImg from "@/assets/images/category-ncm.jpg"
 
 // const threatScenarios = [
-//   "Surveillance and reconnaissance drones",
-//   "Payload delivery threats",
-//   "Swarm attack scenarios",
-//   "GPS-denied operations",
+//   "Persistent agent release in urban terrain",
+//   "Industrial toxic chemical spill near base",
+//   "Improvised dispersal devices in transit hubs",
+//   "Cross-border smuggling of chemical precursors",
 // ]
 
-const responseCapabilities = [
+const chemicalDefenseChain = [
   {
-    name: "Detection",
-    description: "Multi-sensor fusion combining radar, RF, and optical systems for early threat identification.",
+    name: "Early Detection",
+    description: "Multi-sensor detection for nerve, blister, choking agents with continuous air and surface sampling.",
   },
   {
-    name: "Tracking",
-    description: "Continuous target monitoring with predictive trajectory analysis.",
+    name: "Threat Identification",
+    description: "Agent library correlation and automatic alerting for known/unknown chemical signatures.",
   },
   {
-    name: "Identification",
-    description: "Threat classification and friend-or-foe determination protocols.",
+    name: "Containment & Isolation",
+    description: "Hot/warm/cold zone establishment, ventilation isolation, and personnel routing to reduce exposure.",
   },
   {
-    name: "Neutralization",
-    description: "Scalable response options from soft-kill jamming to kinetic defeat.",
+    name: "Decontamination & Recovery",
+    description: "Guided decon workflows, neutralization tracking, and clearance criteria for safe re-entry.",
   },
 ]
 
-export default function CounterUASPage() {
+const cwProducts = [{
+  title: "CHEMPRO-X",
+  subtitle: "HANDHELD CHEMICAL DETECTOR",
+  imageSrc: categoryCpxImg,
+},{
+  title: "NC MONITORING SYSTEM",
+  subtitle: "DETECTION SYSTEM COMPATIBLE CHEMICAL DETECTOR",
+  imageSrc: categoryNcmImg,
+},
+]
+
+export default function ChemicalWarfarePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -49,15 +63,25 @@ export default function CounterUASPage() {
 
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Solution</p>
-              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">Counter-UAS</h1>
+              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">Chemical Warfare Defense</h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Comprehensive protection against unmanned aerial systems through detection, tracking, and scalable
-                response capabilities.
+                End-to-end protection against chemical threats with rapid detection, agent identification, containment,
+                and coordinated decontamination for force and civilian safety.
               </p>
             </div>
           </div>
         </section>
+{/* EW Products */}
+        <section className="py-24 lg:py-32 bg-card border-t border-border">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Product Lineup</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Product Lineup</h2>
+            </div>
 
+            <ProductGrid items={cwProducts} />
+          </div>
+        </section>
         {/* Threat Scenarios */}
         {/* <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -84,16 +108,18 @@ export default function CounterUASPage() {
           </div>
         </section> */}
 
-        {/* Response Concept */}
+        {/* Protection Concept */}
         <section className="py-24 lg:py-32 border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl mb-16">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Response Concept</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Integrated Defense Chain</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Protection Concept</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
+                Integrated Chemical Defense Chain
+              </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {responseCapabilities.map((capability, index) => (
+              {chemicalDefenseChain.map((capability, index) => (
                 <div key={capability.name} className="p-8 bg-card border border-border">
                   <span className="text-4xl font-light text-muted-foreground/50">
                     {String(index + 1).padStart(2, "0")}
@@ -112,10 +138,10 @@ export default function CounterUASPage() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Related Product</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">RESOLVE Platform</h2>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Chemical Defense Suite</h2>
                 <p className="mt-4 text-muted-foreground max-w-xl">
-                  Integrated counter-UAS capabilities with real-time threat assessment and coordinated response
-                  management.
+                  Integrated chemical detection, identification, and decontamination support with real-time incident
+                  management and guidance for responders.
                 </p>
               </div>
               <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent w-fit">
