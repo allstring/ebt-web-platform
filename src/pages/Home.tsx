@@ -10,19 +10,21 @@ import dark_defense_room from "@/assets/images/dark_defense_room.jpg"
 const solutions = [
   {
     title: "Electronic Warfare",
-    description: "Advanced signal processing and spectrum management systems for complex operational environments.",
+    description:
+      "Advanced signal processing and spectrum management systems for complex operational environments.",
     href: "/solution/electronic-warfare",
   },
   {
-    title: "Counter-UAS",
-    description: "Comprehensive detection and response systems for unmanned aerial threats.",
-    href: "/solution/counter-uas",
+    title: "Chemical Warfare",
+    description:
+      "Advanced detection, identification, and monitoring systems for chemical agents in contested and hazardous environments.",
+    href: "/solution/chemical-warfare",
   },
   {
-    title: "CBRN Detection",
+    title: "Biological Warfare",
     description:
-      "Reliable detection and monitoring systems for chemical, biological, radiological, and nuclear threats.",
-    href: "/solution/cbrn",
+      "High-sensitivity detection and analysis systems designed to identify biological threats and support rapid response operations.",
+    href: "/solution/biological-warfare",
   },
 ]
 
