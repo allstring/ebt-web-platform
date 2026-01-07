@@ -23,12 +23,12 @@ const systemComponents = [
   },
 ]
 
-const environments = [
-  "Ground-based installations",
-  "Vehicle-mounted platforms",
-  "Airborne systems",
-  "Maritime operations",
-]
+// const environments = [
+//   "Ground-based installations",
+//   "Vehicle-mounted platforms",
+//   "Airborne systems",
+//   "Maritime operations",
+// ]
 
 export default function ElectronicWarfarePage() {
   return (
@@ -59,7 +59,7 @@ export default function ElectronicWarfarePage() {
         </section>
 
         {/* Operational Environment */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
+        {/* <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
@@ -84,7 +84,7 @@ export default function ElectronicWarfarePage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* System Components */}
         <section className="py-24 lg:py-32 border-t border-border">
