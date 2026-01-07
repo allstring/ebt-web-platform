@@ -3,6 +3,12 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { ProductGrid } from "@/components/product-card"
+import categoryEwsImg from "@/assets/images/category-ews.jpg"
+import categoryMesImg from "@/assets/images/category-mes.png"
+import categoryPerceiveImg from "@/assets/images/category-perceive.jpg"
+import categoryResolveImg from "@/assets/images/category-resolve.jpg"
+import categoryLocateTImg from "@/assets/images/category-locate.jpg"
 
 const systemComponents = [
   {
@@ -22,6 +28,30 @@ const systemComponents = [
     description: "Dynamic allocation and coordination of electromagnetic resources.",
   },
 ]
+
+const ewProducts = [{
+  title: "GoldenBat-EWS",
+  subtitle: "Mobile Electronic Warfare Solution",
+  imageSrc: categoryEwsImg,
+},{
+  title: "eBT-MES",
+  subtitle: "Drone detection and tracking system",
+  imageSrc: categoryMesImg,
+},{
+  title: "PERCEIVE",
+  subtitle: "INTEGRATED WIDEBAND SENSOR",
+  imageSrc: categoryPerceiveImg,
+},{
+  title: "RESOLVE",
+  subtitle: "TACTICAL ELECTRONIC SUPPORT SYSTEM",
+  imageSrc: categoryResolveImg,
+},{
+  title: "LOCATE-T",
+  subtitle: "Strategic HF Monitoring & Direction Finding",
+  imageSrc: categoryLocateTImg,
+},
+]
+
 
 // const environments = [
 //   "Ground-based installations",
@@ -57,7 +87,7 @@ export default function ElectronicWarfarePage() {
             </div>
           </div>
         </section>
-
+        
         {/* Operational Environment */}
         {/* <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -86,6 +116,19 @@ export default function ElectronicWarfarePage() {
           </div>
         </section> */}
 
+        {/* EW Products */}
+        <section className="py-24 lg:py-32 bg-card border-t border-border">
+          <div className="mx-auto max-w-8xl px-6 lg:px-8">
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Product Lineup</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Product Lineup</h2>
+            </div>
+
+            <ProductGrid items={ewProducts} />
+          </div>
+        </section>
+
+
         {/* System Components */}
         <section className="py-24 lg:py-32 border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -109,6 +152,8 @@ export default function ElectronicWarfarePage() {
             </div>
           </div>
         </section>
+
+        
 
         {/* Related Product */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
