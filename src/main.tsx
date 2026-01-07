@@ -9,8 +9,8 @@ import Contact from './pages/Contact'
 // import News from './pages/News'
 import Rnd from './pages/Rnd'
 import Solution from './pages/Solution/Solution'
-import Solution_Cbrn from './pages/Solution/Solution_Cbrn'
-import Solution_CUAS from './pages/Solution/Solution_CUAS'
+import Solution_BW from './pages/Solution/Solution_BW.tsx'
+import Solution_CW from './pages/Solution/Solution_CW.tsx'
 import Solution_EW from './pages/Solution/Solution_EW'
 import Layout from './layout'
 
@@ -28,8 +28,8 @@ createRoot(document.getElementById('root')!).render(
             <Route path="rnd" element={<Rnd />} />
             <Route path="solution" element={<Solution />} />
             <Route path="solution/electronic-warfare" element={<Solution_EW />} />
-            <Route path="solution/counter-uas" element={<Solution_CUAS />} />
-            <Route path="solution/cbrn" element={<Solution_Cbrn />} />
+            <Route path="solution/chemical-warfare" element={<Solution_CW />} />
+            <Route path="solution/biological-warfare" element={<Solution_BW />} />
             <Route path="*" element={<Home />} />
           </Route>
         </Routes>
