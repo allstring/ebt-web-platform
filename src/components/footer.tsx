@@ -11,8 +11,7 @@ export function Footer() {
           <p>
             R&amp;D Center : #B703, 43, Changeop-ro, Sujeong-gu, Seongnam-si, Gyeonggi-do, Republic of Korea
           </p>
-          <p>Phone : +82-31-721-6375&nbsp;&nbsp;&nbsp;FAX : +82-31-721-6376</p>
-          <p>E-Mail : info@ebtech.kr</p>
+          <p>Phone : +82-31-721-6375&nbsp;&nbsp;&nbsp;FAX : +82-31-721-6376&nbsp;&nbsp;&nbsp;E-Mail : info@ebtech.kr</p>
         </div>
 
         <div className="pt-6 border-t border-border">
