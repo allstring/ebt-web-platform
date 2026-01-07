@@ -1,6 +1,9 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
+import icoHan from "@/assets/images/ico_han.png"
+import icoPdf from "@/assets/images/ico_pdf.png"
+import icoWord from "@/assets/images/ico_word.png"
 
 const inquiryTypes = [
   {
@@ -20,30 +23,27 @@ const inquiryTypes = [
   },
 ]
 
-const openPositions = [
+const applicationDocs = [
   {
-    title: "RF Systems Engineer",
-    department: "Engineering",
-    location: "Seoul, Korea",
-    type: "Full-time",
+    title: "Application Form (HWP)",
+    description: "Korean HWP file",
+    href: "files/ebt-recruit.hwp",
+    icon: icoHan,
+    alt: "HWP icon",
   },
   {
-    title: "Signal Processing Engineer",
-    department: "R&D",
-    location: "Seoul, Korea",
-    type: "Full-time",
+    title: "Application Form (WORD)",
+    description: "Word file",
+    href: "files/ebt-recruit.docx",
+    icon: icoWord,
+    alt: "Word icon",
   },
   {
-    title: "Systems Integration Specialist",
-    department: "Engineering",
-    location: "Seoul, Korea",
-    type: "Full-time",
-  },
-  {
-    title: "Field Support Engineer",
-    department: "Operations",
-    location: "Flexible",
-    type: "Full-time",
+    title: "Application Form (PDF)",
+    description: "PDF file",
+    href: "files/ebt-recruit.pdf",
+    icon: icoPdf,
+    alt: "PDF icon",
   },
 ]
 
@@ -110,47 +110,43 @@ export default function ContactPage() {
         {/* Career */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Career</p>
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Join EBTech</h2>
               </div>
               <div>
                 <p className="text-muted-foreground leading-relaxed">
-                  We are building advanced defense technology with a team of dedicated engineers and specialists. If you
-                  are committed to technical excellence and mission-critical systems, explore our open positions.
+                  We are waiting for the talent to grow into a global leader.
                 </p>
               </div>
             </div>
 
-            <div className="max-w-2xl mb-8">
-              <h3 className="text-lg font-medium text-foreground">Open Positions</h3>
-            </div>
-
-            <div className="divide-y divide-border border-t border-b border-border">
-              {openPositions.map((position, index) => (
-                <div key={index} className="py-6">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                      <h4 className="font-medium text-foreground">{position.title}</h4>
-                      <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-                        <span>{position.department}</span>
-                        <span>·</span>
-                        <span>{position.location}</span>
-                        <span>·</span>
-                        <span>{position.type}</span>
+            <div className="mb-12">
+              <h3 className="text-lg font-medium text-foreground">Application Documents</h3>
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+                {applicationDocs.map(({ title, description, href, icon, alt }) => (
+                  <a
+                    key={title}
+                    href={href}
+                    download
+                    className="group flex flex-col gap-3 rounded-lg border border-border bg-background p-5 transition hover:-translate-y-0.5 hover:border-accent hover:shadow-sm"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-full bg-muted p-3 text-muted-foreground group-hover:text-foreground">
+                        <img src={icon} alt={alt ?? title} className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground">{title}</p>
+                        <p className="text-sm text-muted-foreground">{description}</p>
                       </div>
                     </div>
-                    <a
-                      href="mailto:careers@ebtech.com"
-                      className="text-sm text-accent hover:text-foreground transition-colors"
-                    >
-                      Apply via Email
-                    </a>
-                  </div>
-                </div>
-              ))}
+                    <span className="text-sm text-accent group-hover:text-foreground transition-colors">Download</span>
+                  </a>
+                ))}
+              </div>
             </div>
+
 
             <p className="mt-8 text-sm text-muted-foreground">
               Send your resume to{" "}

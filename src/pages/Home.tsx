@@ -5,22 +5,26 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import dark_raider from "@/assets/images/dark_raider.jpg"
 import dark_defense_room from "@/assets/images/dark_defense_room.jpg"
+// import technologyEarthVideo from "@/assets/videos/technology_earth_video.mp4"
+
 const solutions = [
   {
     title: "Electronic Warfare",
-    description: "Advanced signal processing and spectrum management systems for complex operational environments.",
+    description:
+      "Advanced signal processing and spectrum management systems for complex operational environments.",
     href: "/solution/electronic-warfare",
   },
   {
-    title: "Counter-UAS",
-    description: "Comprehensive detection and response systems for unmanned aerial threats.",
-    href: "/solution/counter-uas",
+    title: "Chemical Warfare",
+    description:
+      "Advanced detection, identification, and monitoring systems for chemical agents in contested and hazardous environments.",
+    href: "/solution/chemical-warfare",
   },
   {
-    title: "CBRN Detection",
+    title: "Biological Warfare",
     description:
-      "Reliable detection and monitoring systems for chemical, biological, radiological, and nuclear threats.",
-    href: "/solution/cbrn",
+      "High-sensitivity detection and analysis systems designed to identify biological threats and support rapid response operations.",
+    href: "/solution/biological-warfare",
   },
 ]
 
@@ -38,12 +42,18 @@ export default function HomePage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center pt-16">
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url('${dark_raider}')`,
-            }}
-          />
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            // src={technologyEarthVideo}
+            poster={dark_raider}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          >
+            <source src="src/assets/videos/technology_earth_video.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-background/85" />
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
@@ -80,7 +90,7 @@ export default function HomePage() {
                 <Link
                   key={solution.title}
                   to={solution.href}
-                  className="group relative p-8 bg-card border border-border hover:border-muted-foreground/30 transition-colors"
+                  className="group preserve-text-rendering relative p-8 bg-card border border-border transition-transform transition-colors duration-300 ease-out transform-gpu hover:-translate-y-1 hover:scale-105 hover:shadow-xl rounded-lg overflow-hidden"
                 >
                   <div className="flex items-center gap-4 mb-6">
                     <span className="text-5xl font-light text-muted-foreground/50">
@@ -92,8 +102,10 @@ export default function HomePage() {
                   </h3>
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{solution.description}</p>
                   <div className="mt-6 flex items-center text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                    Learn more
-                    <ArrowRight className="ml-2 h-3 w-3" />
+                    <span className="mr-2">Learn more</span>
+                    <span className="ml-2 inline-block transform transition-all duration-200 translate-x-0 opacity-0 group-hover:translate-x-1 group-hover:opacity-100">
+                      <ArrowRight className="h-3 w-3" />
+                    </span>
                   </div>
                 </Link>
               ))}

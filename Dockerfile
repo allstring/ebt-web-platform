@@ -1,5 +1,10 @@
+
+
 # 1. Node.js 공식 이미지 사용
 FROM node:22-alpine
+
+RUN apk add --no-cache bash
+
 
 # 2. 컨테이너 내부 작업 디렉토리 설정
 WORKDIR /app

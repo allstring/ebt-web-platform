@@ -10,7 +10,7 @@ const navigation = [
   { name: "About Us", href: "/about" },
   { name: "Solution", href: "/solution" },
   { name: "R&D with Technology", href: "/rnd" },
-  { name: "News & Media", href: "/news" },
+  // { name: "News & Media", href: "/news" },
   { name: "Contact & Career", href: "/contact" },
 ]
 
@@ -21,10 +21,11 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <nav className="mx-auto max-w-7xl px-6 lg:px-8">
+      <nav className="mx-auto max-w-7xl px-6 lg:px-8 py-4">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-xl font-semibold tracking-tight text-foreground">EBTech</span>
+            <img src="/EBT_logo.svg" alt="EBTech" className="h-6 w-auto object-contain" />
+            <span className="sr-only">EBTech</span>
           </Link>
 
           {/* Desktop navigation */}
