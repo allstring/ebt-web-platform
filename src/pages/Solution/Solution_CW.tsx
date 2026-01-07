@@ -4,12 +4,12 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 
-const threatScenarios = [
-  "Surveillance and reconnaissance drones",
-  "Payload delivery threats",
-  "Swarm attack scenarios",
-  "GPS-denied operations",
-]
+// const threatScenarios = [
+//   "Surveillance and reconnaissance drones",
+//   "Payload delivery threats",
+//   "Swarm attack scenarios",
+//   "GPS-denied operations",
+// ]
 
 const responseCapabilities = [
   {
@@ -59,7 +59,7 @@ export default function CounterUASPage() {
         </section>
 
         {/* Threat Scenarios */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
+        {/* <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
@@ -82,7 +82,7 @@ export default function CounterUASPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Response Concept */}
         <section className="py-24 lg:py-32 border-t border-border">
