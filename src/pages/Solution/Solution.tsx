@@ -8,22 +8,25 @@ const solutions = [
     id: "electronic-warfare",
     number: "01",
     title: "Electronic Warfare",
-    summary: "Signal processing and spectrum management for complex electromagnetic environments.",
+    summary:
+      "Signal processing and spectrum management for complex electromagnetic environments.",
     href: "/solution/electronic-warfare",
   },
   {
-    id: "counter-uas",
+    id: "chemical-warfare",
     number: "02",
-    title: "Counter-UAS",
-    summary: "Detection, tracking, and neutralization systems for unmanned aerial threats.",
-    href: "/solution/counter-uas",
+    title: "Chemical Warfare",
+    summary:
+      "Detection, identification, and monitoring systems for chemical agents in hazardous operational environments.",
+    href: "/solution/chemical-warfare",
   },
   {
-    id: "cbrn",
+    id: "biological-warfare",
     number: "03",
-    title: "CBRN Detection",
-    summary: "Monitoring and detection systems for chemical, biological, radiological, and nuclear threats.",
-    href: "/solution/cbrn",
+    title: "Biological Warfare",
+    summary:
+      "High-sensitivity detection and analysis systems for early identification of biological threats.",
+    href: "/solution/biological-warfare",
   },
 ]
 
