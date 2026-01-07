@@ -10,7 +10,7 @@ const navigation = [
   { name: "About Us", href: "/about" },
   { name: "Solution", href: "/solution" },
   { name: "R&D with Technology", href: "/rnd" },
-  { name: "News & Media", href: "/news" },
+  // { name: "News & Media", href: "/news" },
   { name: "Contact & Career", href: "/contact" },
 ]
 
