@@ -3,35 +3,43 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { ProductGrid } from "@/components/product-card"
+import categoryBbatsImg from "@/assets/images/category-bbats.png"
 
-const applications = [
-  "Critical infrastructure protection",
-  "Military installation security",
-  "Border and checkpoint monitoring",
-  "Event and venue protection",
-  "First responder support",
+
+// const applications = [
+//   "Forward base biological threat monitoring",
+//   "Urban outbreak early warning and perimeter screening",
+//   "Border, port, and airport biosurveillance",
+//   "Field laboratory support for deployed forces",
+//   "Critical infrastructure continuity during bio incidents",
+// ]
+const bwProducts = [{
+  title: "BIOBATS",
+  subtitle: "Smart Biological Detection & Early Warning System",
+  imageSrc: categoryBbatsImg,
+},
+]
+const bioSystemFeatures = [
+  {
+    name: "Bio-Surveillance",
+    description: "Aerosol and air sampling with continuous monitoring for bio-aerosols and biological toxins.",
+  },
+  {
+    name: "Rapid Identification",
+    description: "PCR/IMS-based identification pipelines with automated alerting and confidence scoring.",
+  },
+  {
+    name: "Epidemiological Analytics",
+    description: "Geospatial spread modeling, contact clustering, and trend visualization for command decisions.",
+  },
+  {
+    name: "Containment & Response Orchestration",
+    description: "Workflow guidance for isolation, PPE posture, and decontamination paired with comms to teams.",
+  },
 ]
 
-const systemFeatures = [
-  {
-    name: "Multi-Agent Detection",
-    description: "Simultaneous monitoring for chemical, biological, radiological, and nuclear threats.",
-  },
-  {
-    name: "Real-Time Analysis",
-    description: "Rapid agent identification with automated alert generation.",
-  },
-  {
-    name: "Network Integration",
-    description: "Distributed sensor architecture with centralized command coordination.",
-  },
-  {
-    name: "Environmental Mapping",
-    description: "Contamination modeling and dispersion prediction capabilities.",
-  },
-]
-
-export default function CBRNPage() {
+export default function BiologicalWarfarePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -50,24 +58,35 @@ export default function CBRNPage() {
 
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Solution</p>
-              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">CBRN Detection</h1>
+              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">Biological Warfare Defense</h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Advanced detection and monitoring systems for chemical, biological, radiological, and nuclear threat
-                identification.
+                Integrated detection, identification, and containment for biological threats with decision-ready
+                analytics and guided response for forces and civilians.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Applications */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Product Lineup</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Product Lineup</h2>
+            </div>
+
+            <ProductGrid items={bwProducts} />
+          </div>
+        </section>
+
+        {/* Applications */}
+        {/* <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Applications</p>
                 <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Deployment Contexts</h2>
                 <p className="mt-6 text-muted-foreground leading-relaxed">
-                  CBRN detection systems protect personnel and assets across diverse operational environments.
+                  Biological defense systems protect personnel, operations, and populations across diverse scenarios.
                 </p>
               </div>
               <div className="space-y-4">
@@ -82,7 +101,7 @@ export default function CBRNPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* System Features */}
         <section className="py-24 lg:py-32 border-t border-border">
@@ -93,7 +112,7 @@ export default function CBRNPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {systemFeatures.map((feature, index) => (
+              {bioSystemFeatures.map((feature, index) => (
                 <div key={feature.name} className="p-8 bg-card border border-border">
                   <span className="text-4xl font-light text-muted-foreground/50">
                     {String(index + 1).padStart(2, "0")}
@@ -112,9 +131,10 @@ export default function CBRNPage() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Related Product</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">RESOLVE Platform</h2>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Biological Defense Suite</h2>
                 <p className="mt-4 text-muted-foreground max-w-xl">
-                  Integrated CBRN monitoring with real-time environmental analysis and emergency response coordination.
+                  Integrated biological detection, analytics, and guided response orchestration with secure coordination
+                  across teams.
                 </p>
               </div>
               <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent w-fit">
