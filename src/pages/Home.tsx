@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Settings, Shield, Zap, Target, Users, Wrench } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -29,9 +29,36 @@ const solutions = [
 ]
 
 const capabilities = [
-  "End-to-end system design and integration",
-  "Field-proven deployment and support",
-  "Continuous R&D for emerging threats",
+  {
+    title: "End-to-End System Design",
+    description: "Comprehensive system design and integration services that ensure seamless operation across all components and platforms.",
+    icon: Settings,
+  },
+  {
+    title: "Field-Proven Deployment",
+    description: "Battle-tested solutions with extensive field deployment experience and reliable support infrastructure.",
+    icon: Shield,
+  },
+  {
+    title: "Continuous R&D",
+    description: "Ongoing research and development to stay ahead of emerging threats and evolving operational requirements.",
+    icon: Zap,
+  },
+  {
+    title: "Mission-Critical Reliability",
+    description: "Engineered for the highest standards of reliability and performance in demanding operational environments.",
+    icon: Target,
+  },
+  {
+    title: "Expert Engineering Team",
+    description: "Dedicated team of engineers with deep expertise in defense technologies and system integration.",
+    icon: Users,
+  },
+  {
+    title: "Custom Solutions",
+    description: "Tailored solutions designed to meet specific operational needs and integration requirements.",
+    icon: Wrench,
+  },
 ]
 
 export default function HomePage() {
@@ -159,23 +186,62 @@ export default function HomePage() {
         </section>
 
         {/* Why EBTech */}
-        <section className="py-24 lg:py-32 border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Why EBTech</p>
-                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Engineering Excellence</h2>
-              </div>
-              <div className="space-y-6">
-                {capabilities.map((capability, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <span className="text-sm font-mono text-muted-foreground">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <p className="text-foreground">{capability}</p>
+        <section className="py-24 lg:py-32 border-t border-border relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/30 pointer-events-none" />
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-3xl space-y-4 mb-20 text-center mx-auto">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Why EBTech</p>
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">Engineering Excellence</h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                We combine cutting-edge technology with proven engineering practices to deliver mission-critical solutions 
+                that exceed expectations. Our commitment to excellence drives everything we do.
+              </p>
+            </div>
+
+            <div className="space-y-8 lg:space-y-12">
+              {capabilities.map((capability, index) => {
+                const Icon = capability.icon
+                const isEven = index % 2 === 0
+                
+                return (
+                  <div
+                    key={capability.title}
+                    className={`group flex flex-col lg:flex-row gap-8 lg:gap-12 items-center ${
+                      isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                    }`}
+                  >
+                    {/* Icon & Number Section */}
+                    <div className="flex-shrink-0 w-full lg:w-1/3">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
+                        <div className="relative p-8 lg:p-12 bg-card border border-border rounded-2xl group-hover:border-accent/50 transition-all duration-300">
+                          <div className="flex items-center justify-between mb-6">
+                            <div className="p-4 bg-accent/10 rounded-xl group-hover:bg-accent/20 transition-colors">
+                              <Icon className="w-8 h-8 text-accent" />
+                            </div>
+                            <span className="text-6xl lg:text-7xl font-light text-muted-foreground/30 group-hover:text-accent/30 transition-colors">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Content Section */}
+                    <div className="flex-1 w-full lg:w-2/3">
+                      <div className="h-full flex flex-col justify-center">
+                        <h3 className="text-2xl lg:text-3xl font-semibold text-foreground mb-4 group-hover:text-accent transition-colors">
+                          {capability.title}
+                        </h3>
+                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                          {capability.description}
+                        </p>
+                        <div className="mt-6 h-1 w-20 bg-gradient-to-r from-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
+                )
+              })}
             </div>
           </div>
         </section>
