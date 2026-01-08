@@ -9,9 +9,10 @@ import Contact from './pages/Contact'
 // import News from './pages/News'
 import Rnd from './pages/Rnd'
 import Solution from './pages/Solution/Solution'
-import Solution_BW from './pages/Solution/Solution_BW.tsx'
-import Solution_CW from './pages/Solution/Solution_CW.tsx'
-import Solution_EW from './pages/Solution/Solution_EW'
+import Solution_BW from './pages/Solution/BW/Solution_BW.tsx'
+import Solution_CW from './pages/Solution/CW/Solution_CW.tsx'
+import Solution_EW from './pages/Solution/EW/Solution_EW.tsx'
+import Detail_EWS from './pages/Solution/EW/line_up/Detail_ews.tsx'
 import Layout from './layout'
 
 createRoot(document.getElementById('root')!).render(
@@ -30,6 +31,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="solution/electronic-warfare" element={<Solution_EW />} />
             <Route path="solution/chemical-warfare" element={<Solution_CW />} />
             <Route path="solution/biological-warfare" element={<Solution_BW />} />
+            <Route path="solution/electronic-warfare/GoldenBat-EWS" element={<Detail_EWS/>} />
             <Route path="*" element={<Home />} />
           </Route>
         </Routes>
