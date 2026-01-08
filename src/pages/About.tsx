@@ -53,11 +53,11 @@ export default function AboutPage() {
 
       <main className="flex-1 pt-16">
         {/* Company Overview */}
-        <section className="relative overflow-hidden py-24 lg:py-32">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-          {/* 배경 이미지 사용 시 아래 주석 클래스를 참고해서 섹션에 적용하면 됩니다.
-              예: <section className="relative overflow-hidden py-24 lg:py-32 bg-[url('/about-hero.jpg')] bg-cover bg-center">
-          */}
+        <section
+          className="relative overflow-hidden py-24 lg:py-32 bg-cover bg-center"
+          style={{ backgroundImage: `url(${aboutBg})` }}
+        >
+          <div className="absolute inset-0 bg-background/80" />
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
               <div className="max-w-xl">
@@ -80,7 +80,7 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-6">
-                <div className="p-6 bg-card border border-border shadow-sm">
+                <div className="p-6 bg-card border border-border shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md">
                   <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     Why Choose EBT
                   </p>
@@ -93,7 +93,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2">
-                  <div className="p-6 bg-card border border-border">
+                  <div className="p-6 bg-card border border-border transition hover:-translate-y-0.5 hover:border-accent hover:shadow-sm">
                     <h3 className="text-sm font-semibold tracking-wide text-muted-foreground">Comprehensive Solutions</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                       We understand that every client has unique needs. We offer a diverse range of products and
@@ -101,7 +101,7 @@ export default function AboutPage() {
                       commercial domains.
                     </p>
                   </div>
-                  <div className="p-6 bg-card border border-border">
+                  <div className="p-6 bg-card border border-border transition hover:-translate-y-0.5 hover:border-accent hover:shadow-sm">
                     <h3 className="text-sm font-semibold tracking-wide text-muted-foreground">Proven Excellence</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                       With a strong track record of success, we have a history of developing and delivering
@@ -115,11 +115,7 @@ export default function AboutPage() {
         </section>
 
         {/* Vision & Mission */}
-        <section
-          className="relative overflow-hidden py-20 lg:py-28 border-t border-border bg-cover bg-center"
-          style={{ backgroundImage: `url(${aboutBg})` }}
-        >
-          <div className="absolute inset-0 bg-background/80" />
+        <section className="relative overflow-hidden py-20 lg:py-28 border-t border-border">
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-2">
               <div>

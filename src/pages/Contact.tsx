@@ -5,23 +5,6 @@ import icoHan from "@/assets/images/ico_han.png"
 import icoPdf from "@/assets/images/ico_pdf.png"
 import icoWord from "@/assets/images/ico_word.png"
 
-const inquiryTypes = [
-  {
-    title: "General Inquiry",
-    description: "Questions about EBTech and our capabilities",
-    email: "info@ebtech.com",
-  },
-  {
-    title: "Business & Partnership",
-    description: "Collaboration and business development",
-    email: "business@ebtech.com",
-  },
-  {
-    title: "Request Demo",
-    description: "Schedule a product demonstration",
-    email: "demo@ebtech.com",
-  },
-]
 
 const applicationDocs = [
   {
@@ -66,33 +49,8 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Inquiry Types */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl mb-12">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Contact</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Inquiry Channels</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {inquiryTypes.map((type) => (
-                <div key={type.title} className="p-6 bg-background border border-border">
-                  <h3 className="font-medium text-foreground">{type.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{type.description}</p>
-                  <a
-                    href={`mailto:${type.email}`}
-                    className="mt-4 inline-block text-sm text-accent hover:text-foreground transition-colors"
-                  >
-                    {type.email}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Contact Form */}
-        <section className="py-24 lg:py-32 border-t border-border">
+        {/* <section className="py-24 lg:py-32 border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
@@ -105,6 +63,78 @@ export default function ContactPage() {
               <ContactForm />
             </div>
           </div>
+        </section> */}
+
+        {/* Location Map */}
+        <section className="py-24 lg:py-32 border-t border-border">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Location</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Find Us</h2>
+              <p className="mt-4 text-muted-foreground">
+                Visit our office or get directions to our location.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              {/* Company Information */}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-4">EBT Corporation</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">Address</p>
+                      <p className="text-foreground leading-relaxed text-sm">
+                        #504, 54, Changeop-ro, Sujeong-gu, Seongnam-si, Gyeonggi-do, Republic of Korea
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">Phone</p>
+                      <a
+                        href="tel:+82-31-721-6375"
+                        className="text-foreground hover:text-accent transition-colors"
+                      >
+                        +82-31-721-6375
+                      </a>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">Email</p>
+                      <div className="space-y-2">
+                        <div>
+                          <p className="text-sm text-muted-foreground mb-1">
+                            General Inquiry - Questions about EBTech and our capabilities
+                          </p>
+
+                        </div>
+                        <div>
+                          <a
+                            href="mailto:info@ebtech.kr"
+                            className="text-foreground hover:text-accent transition-colors"
+                          >
+                            info@ebtech.kr
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Map */}
+              <div className="rounded-lg overflow-hidden shadow-lg border border-border bg-background">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1584.5348376758109!2d127.09348!3d37.411828!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca7c7e7677691%3A0x2c4282e124e93f95!2zTEgg7YyQ6rWQ7KCcMu2FjO2BrOuFuOuwuOumrCDquLDsl4XshLHsnqXshLzthLA!5e0!3m2!1sko!2skr!4v1767849458960!5m2!1sko!2skr"
+                  width="100%"
+                  height="450"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Career */}
@@ -113,12 +143,10 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Career</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Join EBTech</h2>
-              </div>
-              <div>
-                <p className="text-muted-foreground leading-relaxed">
-                  We are waiting for the talent to grow into a global leader.
-                </p>
+                <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">Join EBT</h1>
+              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+                We are waiting for the talent to grow into a global leader.
+              </p>
               </div>
             </div>
 
@@ -150,8 +178,8 @@ export default function ContactPage() {
 
             <p className="mt-8 text-sm text-muted-foreground">
               Send your resume to{" "}
-              <a href="mailto:careers@ebtech.com" className="text-accent hover:text-foreground transition-colors">
-                careers@ebtech.com
+              <a href="mailto:careers@ebtech.kr" className="text-accent hover:text-foreground transition-colors">
+                info@ebtech.kr
               </a>
             </p>
           </div>
