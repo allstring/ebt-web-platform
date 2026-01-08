@@ -81,14 +81,17 @@ export default function HomePage() {
           >
             <source src="src/assets/videos/technology_earth_video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-background/85" />
+          <div className="absolute inset-0 bg-background/40" />
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-balance max-w-4xl mx-auto">
               Defense Technology for Mission-Critical Operations
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              System integration and precision engineering for electronic warfare, counter-UAS, and CBRN detection.
+              System integration and precision engineering for electronic warfare,
+            </p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            chemical warfare, and biological warfare.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90">
