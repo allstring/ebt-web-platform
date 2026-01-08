@@ -33,6 +33,7 @@ const ewProducts = [{
   title: "GoldenBat-EWS",
   subtitle: "Mobile Electronic Warfare Solution",
   imageSrc: categoryEwsImg,
+  href: "GoldenBat-EWS"
 },{
   title: "eBT-MES",
   subtitle: "Drone detection and tracking system",
