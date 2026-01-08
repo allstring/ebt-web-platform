@@ -190,22 +190,29 @@ export default function RnDPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {developmentProcess.map((step, index) => (
-                <div key={step.phase} className="relative">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-sm font-mono text-muted-foreground">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    {index < developmentProcess.length - 1 && (
-                      <div className="hidden lg:block flex-1 h-px bg-border" />
-                    )}
-                  </div>
-                  <h3 className="text-lg font-medium text-foreground">{step.phase}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 group">
+            {developmentProcess.map((step, index) => (
+              <div 
+                key={step.phase} 
+                className="relative transition-all duration-300 ease-out
+                          group-hover:opacity-40 group-hover:scale-95
+                          hover:!opacity-100 hover:!scale-105 hover:z-10"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-sm font-mono text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {index < developmentProcess.length - 1 && (
+                    <div className="hidden lg:block flex-1 h-px bg-border" />
+                  )}
                 </div>
-              ))}
-            </div>
+                <h3 className="text-lg font-medium text-foreground">{step.phase}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
           </div>
         </section>
 
