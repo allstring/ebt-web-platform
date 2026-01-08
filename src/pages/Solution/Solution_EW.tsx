@@ -118,7 +118,7 @@ export default function ElectronicWarfarePage() {
 
         {/* EW Products */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-8xl px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl mb-12">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Product Lineup</p>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Product Lineup</h2>
