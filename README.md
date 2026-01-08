@@ -100,8 +100,23 @@ npx shadcn@latest add button
 ```
 
 ## 📝 Notes
-```
-Docker 파일이 추가 될 에정입니다.
-개발자 페이지가 계획에 추가 될 예정입니다.
-```
+
+- ~~Docker 파일이 추가 될 에정입니다.~~
+- 개발자 페이지가 계획에 추가 될 예정입니다.
+- Docker 서버와 Local 서버에서 Git을 확인 했을 때 차이 있었음
+
+![Error1](./MdImg/Error1_1.png)
+![Error2](./MdImg/Error1_2.png)
+상황
+- VS Code에서 Docker 컨테이너 안의 프로젝트를 열었더니 **모든 파일이 변경됨(Changes)으로 표시됨**.
+- 터미널에서 확인해도 파일 내용은 실제로 변하지 않음.
+- 컨테이너 시간은 정상이고, Git 커밋 시간과 차이 없음.
+
+원인
+- **줄바꿈(LF vs CRLF) 문제**
+  - Windows 호스트: CRLF (`\r\n`)  
+  - Linux 컨테이너: LF (`\n`)  
+- Git/VS Code가 줄바꿈 차이 때문에 “변경됨”으로 표시.
+
+
 © EBTech. All rights reserved.

@@ -33,22 +33,27 @@ const ewProducts = [{
   title: "GoldenBat-EWS",
   subtitle: "Mobile Electronic Warfare Solution",
   imageSrc: categoryEwsImg,
+  href: "GoldenBat-EWS"
 },{
   title: "eBT-MES",
   subtitle: "Drone detection and tracking system",
   imageSrc: categoryMesImg,
+  href: "eBT-MES",
 },{
   title: "PERCEIVE",
   subtitle: "INTEGRATED WIDEBAND SENSOR",
   imageSrc: categoryPerceiveImg,
+  href: "PERCEIVE",
 },{
   title: "RESOLVE",
   subtitle: "TACTICAL ELECTRONIC SUPPORT SYSTEM",
   imageSrc: categoryResolveImg,
+  href: "RESOLVE",
 },{
   title: "LOCATE-T",
   subtitle: "Strategic HF Monitoring & Direction Finding",
   imageSrc: categoryLocateTImg,
+  href: "LOCATE-T",
 },
 ]
 
@@ -118,7 +123,7 @@ export default function ElectronicWarfarePage() {
 
         {/* EW Products */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-8xl px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl mb-12">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Product Lineup</p>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Product Lineup</h2>

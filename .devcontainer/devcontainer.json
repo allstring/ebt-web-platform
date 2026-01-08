@@ -4,5 +4,8 @@
   "service": "ebt-web",
   "workspaceFolder": "/app",
   "forwardPorts": [5173],
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "npm install",
+  "features": { 
+    "ghcr.io/devcontainers/features/git:1": {} 
+  },
 }

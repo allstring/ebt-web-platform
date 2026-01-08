@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { cn } from "@/lib/utils"
 
 export type ProductCardItem = {
@@ -5,20 +6,16 @@ export type ProductCardItem = {
   subtitle: string
   imageSrc: string
   imageAlt?: string
+  href?: string
 }
 
 type ProductCardProps = ProductCardItem & {
   className?: string
 }
 
-export function ProductCard({ title, subtitle, imageSrc, imageAlt, className }: ProductCardProps) {
-  return (
-    <article
-      className={cn(
-        "group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md m-4",
-        className,
-      )}
-    >
+export function ProductCard({ title, subtitle, imageSrc, imageAlt, href, className }: ProductCardProps) {
+  const content = (
+    <>
       <div className="relative aspect-[4/3] bg-muted/40">
         <img
           src={imageSrc}
@@ -31,6 +28,31 @@ export function ProductCard({ title, subtitle, imageSrc, imageAlt, className }: 
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{subtitle}</p>
         <h3 className="text-lg font-semibold leading-snug text-foreground">{title}</h3>
       </div>
+    </>
+  )
+
+  if (href) {
+    return (
+      <Link
+        to={title}
+        className={cn(
+          "group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md m-4 block",
+          className,
+        )}
+      >
+        {content}
+      </Link>
+    )
+  }
+
+  return (
+    <article
+      className={cn(
+        "group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md m-4",
+        className,
+      )}
+    >
+      {content}
     </article>
   )
 }
