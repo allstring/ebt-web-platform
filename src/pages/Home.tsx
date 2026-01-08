@@ -3,7 +3,7 @@ import { ArrowRight, Settings, Shield, Zap, Target, Users, Wrench } from "lucide
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import dark_raider from "@/assets/images/dark_raider.jpg"
+import video_poster from "@/assets/images/video_poster.jpg"
 import dark_defense_room from "@/assets/images/dark_defense_room.jpg"
 // import technologyEarthVideo from "@/assets/videos/technology_earth_video.mp4"
 
@@ -72,7 +72,7 @@ export default function HomePage() {
           <video
             className="absolute inset-0 w-full h-full object-cover"
             // src={technologyEarthVideo}
-            poster={dark_raider}
+            poster={video_poster}
             autoPlay
             muted
             loop
