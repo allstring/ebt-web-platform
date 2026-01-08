@@ -38,18 +38,22 @@ const ewProducts = [{
   title: "eBT-MES",
   subtitle: "Drone detection and tracking system",
   imageSrc: categoryMesImg,
+  href: "eBT-MES",
 },{
   title: "PERCEIVE",
   subtitle: "INTEGRATED WIDEBAND SENSOR",
   imageSrc: categoryPerceiveImg,
+  href: "PERCEIVE",
 },{
   title: "RESOLVE",
   subtitle: "TACTICAL ELECTRONIC SUPPORT SYSTEM",
   imageSrc: categoryResolveImg,
+  href: "RESOLVE",
 },{
   title: "LOCATE-T",
   subtitle: "Strategic HF Monitoring & Direction Finding",
   imageSrc: categoryLocateTImg,
+  href: "LOCATE-T",
 },
 ]
 

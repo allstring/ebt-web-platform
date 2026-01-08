@@ -18,6 +18,7 @@ const bwProducts = [{
   title: "BIOBATS",
   subtitle: "Smart Biological Detection & Early Warning System",
   imageSrc: categoryBbatsImg,
+  href: "BIOBATS"
 },
 ]
 const bioSystemFeatures = [

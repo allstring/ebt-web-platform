@@ -37,10 +37,12 @@ const cwProducts = [{
   title: "CHEMPRO-X",
   subtitle: "HANDHELD CHEMICAL DETECTOR",
   imageSrc: categoryCpxImg,
+  href: "CHEMPRO-X",
 },{
   title: "NC MONITORING SYSTEM",
   subtitle: "DETECTION SYSTEM COMPATIBLE CHEMICAL DETECTOR",
   imageSrc: categoryNcmImg,
+  href: "NC MONITORING SYSTEM",
 },
 ]
 
