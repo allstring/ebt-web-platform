@@ -112,7 +112,50 @@ export default function HomePage() {
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Integrated Defense Systems</h2>
             </div>
 
-            <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {/* Featured Product - RESOLVE */}
+            <div className="mt-16 mb-20">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center p-8 lg:p-12 bg-card border border-border rounded-lg">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Featured Product</p>
+                  <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">RESOLVE</h2>
+                  <p className="mt-6 text-muted-foreground leading-relaxed">
+                    Our flagship integrated defense platform, combining advanced sensor fusion with real-time threat
+                    analysis and response coordination.
+                  </p>
+                  <ul className="mt-8 space-y-3">
+                    <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-1.5 h-1.5 bg-accent rounded-full" />
+                      Multi-domain threat detection
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-1.5 h-1.5 bg-accent rounded-full" />
+                      Real-time data integration
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-1.5 h-1.5 bg-accent rounded-full" />
+                      Scalable architecture
+                    </li>
+                  </ul>
+                  <div className="mt-10">
+                    <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent">
+                      <Link to="/solution">
+                        View Specifications
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+                <div className="relative aspect-[4/3] bg-secondary/50 border border-border rounded-lg overflow-hidden">
+                  <img
+                    src={dark_defense_room}
+                    alt="RESOLVE defense platform interface"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {solutions.map((solution, index) => (
                 <Link
                   key={solution.title}
@@ -136,51 +179,6 @@ export default function HomePage() {
                   </div>
                 </Link>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Product - RESOLVE */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Featured Product</p>
-                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">RESOLVE</h2>
-                <p className="mt-6 text-muted-foreground leading-relaxed">
-                  Our flagship integrated defense platform, combining advanced sensor fusion with real-time threat
-                  analysis and response coordination.
-                </p>
-                <ul className="mt-8 space-y-3">
-                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                    Multi-domain threat detection
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                    Real-time data integration
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                    Scalable architecture
-                  </li>
-                </ul>
-                <div className="mt-10">
-                  <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent">
-                    <Link to="/solution">
-                      View Specifications
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-              <div className="relative aspect-[4/3] bg-secondary/50 border border-border">
-                <img
-                  src={dark_defense_room}
-                  alt="RESOLVE defense platform interface"
-                  className="object-cover w-full h-full"
-                />
-              </div>
             </div>
           </div>
         </section>
