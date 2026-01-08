@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import aboutBg from "@/assets/images/about-bg.jpg"
-
+import aboutDeliver from "@/assets/images/about_delivery.jpg"
 // const history = [
 //   { year: "2015", event: "Company founded with focus on defense electronics" },
 //   { year: "2017", event: "First electronic warfare system deployed" },
@@ -168,8 +168,12 @@ export default function AboutPage() {
         </section> */}
 
         {/* Core Capabilities */}
-        <section className="py-24 lg:py-32 border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section
+          className="relative overflow-hidden py-24 lg:py-32 bg-cover bg-center"
+          style={{ backgroundImage: `url(${aboutDeliver})` }}
+        >
+          <div className="absolute inset-0 bg-background/85" />
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl space-y-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Core Capabilities</p>
               <h2 className="text-3xl font-semibold tracking-tight text-foreground">What We Deliver</h2>
