@@ -57,7 +57,7 @@ export default function AboutPage() {
           className="relative overflow-hidden py-24 lg:pt-48 lg:pb-18 bg-cover bg-center"
           style={{ backgroundImage: `url(${aboutBg})` }}
         >
-          <div className="absolute inset-0 bg-background/80" />
+          <div className="absolute inset-0 bg-background/80 light:bg-background/90" />
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
               <div className="max-w-xl">
@@ -172,7 +172,7 @@ export default function AboutPage() {
           className="relative overflow-hidden py-24 lg:py-32 bg-cover bg-center"
           style={{ backgroundImage: `url(${aboutDeliver})` }}
         >
-          <div className="absolute inset-0 bg-background/85" />
+          <div className="absolute inset-0 bg-background/85 light:bg-background/90" />
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl space-y-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Core Capabilities</p>
