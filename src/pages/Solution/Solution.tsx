@@ -2,9 +2,16 @@ import {Link} from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+
+import { useState, useRef } from 'react';
 import SolutionEwImg from "@/assets/images/solution_EW.jpg"
 import SolutionCwImg from "@/assets/images/solution_CW.jpg"
 import SolutionBwImg from "@/assets/images/solution_BW.jpg"
+
+import SolutionEwVideo from "@/assets/videos/solution_EW.mp4"
+import SolutionCwVideo from "@/assets/videos/solution_CW2.mp4"
+import SolutionBwVideo from "@/assets/videos/solution_BW.mp4"
+
 const solutions = [
   {
     id: "electronic-warfare",
@@ -14,6 +21,7 @@ const solutions = [
       "Signal processing and spectrum management for complex electromagnetic environments.",
     href: "/solution/electronic-warfare",
     image: SolutionEwImg,
+    video: SolutionEwVideo,
   },
   {
     id: "chemical-warfare",
@@ -23,6 +31,7 @@ const solutions = [
       "Detection, identification, and monitoring systems for chemical agents in hazardous operational environments.",
     href: "/solution/chemical-warfare",
     image: SolutionCwImg,
+    video: SolutionCwVideo,
   },
   {
     id: "biological-warfare",
@@ -32,10 +41,13 @@ const solutions = [
       "High-sensitivity detection and analysis systems for early identification of biological threats.",
     href: "/solution/biological-warfare",
     image: SolutionBwImg,
+    video: SolutionBwVideo,
   },
 ]
 
 export default function SolutionPage() {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const videoRefs = useRef([]);
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -58,49 +70,132 @@ export default function SolutionPage() {
         </section>
 
         {/* Solutions List */}
-        <section className="pb-24 lg:pb-32">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="divide-y divide-border border-t border-b border-border">
-              {solutions.map((solution) => (
-                <Link
-                key={solution.id}
-                to={solution.href}
-                className="group relative flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-16 py-12 
-                           hover:bg-card/50 transition-all duration-500 -mx-6 px-6 overflow-hidden"
-              >
-                {/* 배경 이미지 - 오른쪽에 배치, 왼쪽으로 페이드 */}
-                <div 
-                  className="absolute right-0 top-0 bottom-0 w-1/2 lg:w-2/5
-                             opacity-25 group-hover:opacity-80
-                             grayscale group-hover:grayscale-0
-                             transition-all duration-700"
-                  style={{ 
-                    backgroundImage: `url(${solution.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 100%)',
-                    WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 100%)'
+        <section className="pb-24 lg:pb-32 hidden lg:block">
+        <div className="mx-auto  px-6 lg:px-8">
+          <div className="flex gap-6 h-[520px]">
+            {solutions.map((solution, index) => {
+              const isHovered = hoveredIndex === index;
+              const isAnyHovered = hoveredIndex !== null;
+              
+              return (
+                <a
+                  key={solution.id}
+                  href={solution.href}
+                  onMouseEnter={() => {
+                    setHoveredIndex(index);
+                    videoRefs.current[index]?.play();
                   }}
-                />
-                
-                {/* 컨텐츠 */}
-                <span className="relative z-10 text-6xl lg:text-8xl font-mono font-bold text-muted-foreground/60 group-hover:text-primary/90 transition-colors">
-                  {solution.number}
-                </span>
-                <div className="relative z-10 flex-1">
-                  <h2 className="text-2xl font-medium text-foreground group-hover:text-accent transition-colors">
-                    {solution.title}
-                  </h2>
-                  <p className="mt-2 text-muted-foreground max-w-xl">
-                    {solution.summary}
-                  </p>
-                </div>
-                <ArrowRight className="relative z-10 h-5 w-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all" />
-              </Link>
-              ))}
-            </div>
+                  onMouseLeave={() => {
+                    setHoveredIndex(null);
+                    const video = videoRefs.current[index];
+                    if (video) {
+                      video.pause();
+                    }
+                  }}
+                  className="relative overflow-hidden border border-white/10 bg-white/5 backdrop-blur transition-all duration-1500 ease-[cubic-bezier(0.32,1,0.3,1)] cursor-pointer group"
+                  style={{
+                    flexBasis: isHovered ? '60%' : isAnyHovered ? '20%' : '33.333%',
+                  }}
+                >
+                  {/* Background Video */}
+                  <video
+                    ref={(el) => (videoRefs.current[index] = el)}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    muted
+                    playsInline
+                    loop
+                    preload="metadata"
+                    poster={solution.poster}
+                  >
+                    <source src={solution.video} type="video/mp4" />
+                  </video>
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+                  {/* Content */}
+                  <div className="relative h-full p-8 flex flex-col justify-between">
+                    {/* Number */}
+                    <span className="text-6xl font-mono font-bold text-white/20 group-hover:text-white/40 transition-colors duration-500">
+                      {solution.number}
+                    </span>
+
+                    {/* Bottom Content */}
+                    <div>
+                      <h2 className="text-2xl font-semibold text-white mb-2 transition-transform duration-500 group-hover:translate-y-[-4px]">
+                        {solution.title}
+                      </h2>
+                      <p 
+                        className="text-gray-300 transition-all duration-500 overflow-hidden"
+                        style={{
+                          maxHeight: isHovered ? '100px' : '0px',
+                          opacity: isHovered ? 1 : 0
+                        }}
+                      >
+                        {solution.summary}
+                      </p>
+                      <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
+                        <span className="text-sm font-medium">Learn more</span>
+                        <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
           </div>
-        </section>
+        </div>
+      </section>
+
+      {/* Mobile/Tablet Solutions List */}
+      <section className="pb-24 lg:hidden">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col gap-6">
+            {solutions.map((solution) => (
+              <a
+                key={solution.id}
+                href={solution.href}
+                className="relative h-[400px] overflow-hidden border border-white/10 bg-white/5 backdrop-blur group"
+              >
+                {/* Background Video */}
+                <video
+                  className="absolute inset-0 w-full h-full object-cover"
+                  muted
+                  playsInline
+                  loop
+                  autoPlay
+                  poster={solution.poster}
+                >
+                  <source src={solution.video} type="video/mp4" />
+                </video>
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+                {/* Content */}
+                <div className="relative h-full p-6 flex flex-col justify-between">
+                  <span className="text-5xl font-mono font-bold text-white/20">
+                    {solution.number}
+                  </span>
+
+                  <div>
+                    <h2 className="text-2xl font-semibold text-white mb-2">
+                      {solution.title}
+                    </h2>
+                    <p className="text-gray-300 mb-4">
+                      {solution.summary}
+                    </p>
+                    <div className="flex items-center gap-2 text-white/80">
+                      <span className="text-sm font-medium">Learn more</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
       </main>
 
       <Footer />
