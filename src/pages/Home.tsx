@@ -81,7 +81,7 @@ export default function HomePage() {
           >
             <source src="src/assets/videos/technology_earth_video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-background/40" />
+          <div className="absolute inset-0 bg-background/40 light:bg-background/80" />
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-balance max-w-4xl mx-auto">
