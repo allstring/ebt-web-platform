@@ -51,10 +51,10 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <Navigation />
 
-      <main className="flex-1 pt-16">
+      <main className="flex-1">
         {/* Company Overview */}
         <section
-          className="relative overflow-hidden py-24 lg:py-32 bg-cover bg-center"
+          className="relative overflow-hidden py-24 lg:pt-48 lg:pb-18 bg-cover bg-center"
           style={{ backgroundImage: `url(${aboutBg})` }}
         >
           <div className="absolute inset-0 bg-background/80" />
