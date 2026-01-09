@@ -147,7 +147,7 @@ export default function RnDPage() {
           className="relative overflow-hidden py-24 lg:py-32 border-t border-border bg-cover bg-center"
           style={{ backgroundImage: `url(${rndResearchImg})` }}
         >
-          <div className="absolute inset-0 bg-background/20 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-background/20 light:bg-background/75 backdrop-blur-sm" />
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl mb-16">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Research Areas</p>
