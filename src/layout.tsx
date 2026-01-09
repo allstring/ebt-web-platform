@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
-import '@/styles/global.css'
+import "@/styles/global.css"
+import { BackToTopButton } from "@/components/back-to-top-button"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -23,5 +24,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  return <>{children}</>
+  return (
+    <>
+      {children}
+      <BackToTopButton />
+    </>
+  )
 }
