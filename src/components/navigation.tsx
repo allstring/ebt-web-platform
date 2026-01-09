@@ -53,6 +53,15 @@ export function Navigation() {
     setIsLight(nextIsLight)
   }
 
+  const handleNavClick = (href: string) => {
+    if (typeof window === "undefined") return
+
+    // 같은 페이지로 이동할 때는 맨 위로 스크롤만
+    if (pathname === href) {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+  }
+
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300",
@@ -60,8 +69,16 @@ export function Navigation() {
     )}>
       <nav className="mx-auto max-w-7xl px-6 lg:px-8 py-4">
         <div className="flex h-16 items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-2">
-            <img src="/EBT_logo.svg" alt="EBTech" className="h-6 w-auto object-contain" />
+          <Link
+            to="/"
+            onClick={() => handleNavClick("/")}
+            className="flex items-center gap-2"
+          >
+            <img
+              src={isLight ? "/EBT_logo_white.svg" : "/EBT_logo.svg"}
+              alt="EBTech"
+              className="h-6 w-auto object-contain"
+            />
             <span className="sr-only">EBTech</span>
           </Link>
 
@@ -71,6 +88,7 @@ export function Navigation() {
               <Link
                 key={item.name}
                 to={item.href}
+                onClick={() => handleNavClick(item.href)}
                 className={cn(
                   "text-lg font-semibold transition-colors hover:text-foreground",
                   pathname === item.href ? "text-foreground" : "text-foreground/70",
@@ -112,6 +130,10 @@ export function Navigation() {
                 <Link
                   key={item.name}
                   to={item.href}
+                  onClick={() => {
+                    handleNavClick(item.href)
+                    setMobileMenuOpen(false)
+                  }}
                   className={cn(
                     "text-base font-semibold transition-colors hover:text-foreground py-2",
                     pathname === item.href ? "text-foreground" : "text-foreground/70",
