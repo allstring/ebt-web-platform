@@ -130,7 +130,7 @@ export default function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full"
+                  className="w-full map-iframe"
                 />
               </div>
             </div>
