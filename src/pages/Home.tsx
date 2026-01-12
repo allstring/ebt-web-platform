@@ -5,61 +5,15 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import video_poster from "@/assets/images/video_poster.jpg"
 import dark_defense_room from "@/assets/images/dark_defense_room.jpg"
-// import technologyEarthVideo from "@/assets/videos/technology_earth_video.mp4"
+import { t } from "@/lib/i18n"
 
-const solutions = [
-  {
-    title: "Electronic Warfare",
-    description:
-      "Advanced signal processing and spectrum management systems for complex operational environments.",
-    href: "/solution/electronic-warfare",
-  },
-  {
-    title: "Chemical Warfare",
-    description:
-      "Advanced detection, identification, and monitoring systems for chemical agents in contested and hazardous environments.",
-    href: "/solution/chemical-warfare",
-  },
-  {
-    title: "Biological Warfare",
-    description:
-      "High-sensitivity detection and analysis systems designed to identify biological threats and support rapid response operations.",
-    href: "/solution/biological-warfare",
-  },
+const solutionHrefs = [
+  "/solution/electronic-warfare",
+  "/solution/chemical-warfare",
+  "/solution/biological-warfare",
 ]
 
-const capabilities = [
-  {
-    title: "End-to-End System Design",
-    description: "Comprehensive system design and integration services that ensure seamless operation across all components and platforms.",
-    icon: Settings,
-  },
-  {
-    title: "Field-Proven Deployment",
-    description: "Battle-tested solutions with extensive field deployment experience and reliable support infrastructure.",
-    icon: Shield,
-  },
-  {
-    title: "Continuous R&D",
-    description: "Ongoing research and development to stay ahead of emerging threats and evolving operational requirements.",
-    icon: Zap,
-  },
-  {
-    title: "Mission-Critical Reliability",
-    description: "Engineered for the highest standards of reliability and performance in demanding operational environments.",
-    icon: Target,
-  },
-  {
-    title: "Expert Engineering Team",
-    description: "Dedicated team of engineers with deep expertise in defense technologies and system integration.",
-    icon: Users,
-  },
-  {
-    title: "Custom Solutions",
-    description: "Tailored solutions designed to meet specific operational needs and integration requirements.",
-    icon: Wrench,
-  },
-]
+const capabilityIcons = [Settings, Shield, Zap, Target, Users, Wrench]
 
 export default function HomePage() {
   return (
@@ -71,7 +25,6 @@ export default function HomePage() {
         <section className="relative min-h-screen flex items-center justify-center pt-16">
           <video
             className="absolute inset-0 w-full h-full object-cover"
-            // src={technologyEarthVideo}
             poster={video_poster}
             autoPlay
             muted
@@ -85,23 +38,23 @@ export default function HomePage() {
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-balance max-w-4xl mx-auto">
-              Defense Technology for Mission-Critical Operations
+              {t.home.hero.title}
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              System integration and precision engineering for electronic warfare,
+              {t.home.hero.description1}
             </p>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            chemical warfare, and biological warfare.
+              {t.home.hero.description2}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90">
                 <Link to="/solution">
-                  Explore Solutions
+                  {t.home.hero.exploreSolutions}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-border hover:bg-secondary bg-transparent">
-                <Link to="/contact">Contact Us</Link>
+                <Link to="/contact">{t.home.hero.contactUs}</Link>
               </Button>
             </div>
           </div>
@@ -111,38 +64,31 @@ export default function HomePage() {
         <section className="py-24 lg:py-32 border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Solutions</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Integrated Defense Systems</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.home.solutions.sectionLabel}</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{t.home.solutions.sectionTitle}</h2>
             </div>
 
             {/* Featured Product - RESOLVE */}
             <div className="mt-16 mb-20">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center p-8 lg:p-12 bg-card border border-border rounded-lg">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Featured Product</p>
-                  <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">RESOLVE</h2>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.home.featured.label}</p>
+                  <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{t.home.featured.title}</h2>
                   <p className="mt-6 text-muted-foreground leading-relaxed">
-                    Our flagship integrated defense platform, combining advanced sensor fusion with real-time threat
-                    analysis and response coordination.
+                    {t.home.featured.description}
                   </p>
                   <ul className="mt-8 space-y-3">
-                    <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                      Multi-domain threat detection
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                      Real-time data integration
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                      Scalable architecture
-                    </li>
+                    {t.home.featured.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-3 text-sm text-muted-foreground">
+                        <span className="w-1.5 h-1.5 bg-accent rounded-full" />
+                        {feature}
+                      </li>
+                    ))}
                   </ul>
                   <div className="mt-10">
                     <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent">
                       <Link to="/solution">
-                        View Specifications
+                        {t.home.featured.viewSpecs}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
@@ -151,7 +97,7 @@ export default function HomePage() {
                 <div className="relative aspect-[4/3] bg-secondary/50 border border-border rounded-lg overflow-hidden">
                   <img
                     src={dark_defense_room}
-                    alt="RESOLVE defense platform interface"
+                    alt={t.home.featured.imageAlt}
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -159,10 +105,10 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-              {solutions.map((solution, index) => (
+              {t.home.solutions.items.map((solution, index) => (
                 <Link
                   key={solution.title}
-                  to={solution.href}
+                  to={solutionHrefs[index]}
                   className="group preserve-text-rendering relative p-8 bg-card border border-border transition-transform transition-colors duration-300 ease-out transform-gpu hover:-translate-y-1 hover:scale-105 hover:shadow-xl rounded-lg overflow-hidden"
                 >
                   <div className="flex items-center gap-4 mb-6">
@@ -175,7 +121,7 @@ export default function HomePage() {
                   </h3>
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{solution.description}</p>
                   <div className="mt-6 flex items-center text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                    <span className="mr-2">Learn more</span>
+                    <span className="mr-2">{t.home.solutions.learnMore}</span>
                     <span className="ml-2 inline-block transform transition-all duration-200 translate-x-0 opacity-0 group-hover:translate-x-1 group-hover:opacity-100">
                       <ArrowRight className="h-3 w-3" />
                     </span>
@@ -191,19 +137,18 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/30 pointer-events-none" />
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl space-y-4 mb-20 text-center mx-auto">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Why EBTech</p>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">Engineering Excellence</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.home.capabilities.sectionLabel}</p>
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">{t.home.capabilities.sectionTitle}</h2>
               <p className="text-base text-muted-foreground leading-relaxed">
-                We combine cutting-edge technology with proven engineering practices to deliver mission-critical solutions 
-                that exceed expectations. Our commitment to excellence drives everything we do.
+                {t.home.capabilities.sectionDescription}
               </p>
             </div>
 
             <div className="space-y-8 lg:space-y-12">
-              {capabilities.map((capability, index) => {
-                const Icon = capability.icon
+              {t.home.capabilities.items.map((capability, index) => {
+                const Icon = capabilityIcons[index]
                 const isEven = index % 2 === 0
-                
+
                 return (
                   <div
                     key={capability.title}
@@ -251,13 +196,13 @@ export default function HomePage() {
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Ready to discuss your requirements?
+              {t.home.cta.title}
             </h2>
-            <p className="mt-4 text-muted-foreground">Connect with our engineering team.</p>
+            <p className="mt-4 text-muted-foreground">{t.home.cta.description}</p>
             <div className="mt-8">
               <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90">
                 <Link to="/contact">
-                  Contact Us
+                  {t.home.cta.contactUs}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
