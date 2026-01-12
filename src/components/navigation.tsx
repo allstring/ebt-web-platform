@@ -16,8 +16,8 @@ const localeLabels: Record<Locale, string> = {
 const localeNames: Record<Locale, string> = {
   en: "English",
   ko: "한국어",
-  ja: "日本語",
-  fr: "Français",
+  // ja: "日本語",
+  // fr: "Français",
 }
 
 const navItems = [
