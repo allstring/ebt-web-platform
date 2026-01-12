@@ -1,122 +1,233 @@
-# 🚀 ebt-web-platform
+<div align="center">
 
-**EBTech 기업 홈페이지 프론트엔드 프로젝트** 본 저장소는 EBTech의 핵심 기술 역량인 **드론 전장 시스템(Drone Warfare)** 및 **전자전(Electronic Warfare, EW) 기술**을 대외적으로 소개하기 위한 웹 플랫폼 프론트엔드 소스 코드를 포함합니다.
+# EBT Web Platform
+
+### EBTech 기업 홈페이지 프론트엔드
+
+[![React](https://img.shields.io/badge/React-19.2.3-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-4.1-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+
+EBTech의 핵심 기술 역량인 **드론 전장 시스템(Drone Warfare)** 및 **전자전(Electronic Warfare, EW) 기술**을 소개하는 웹 플랫폼입니다.
+
+[Getting Started](#-getting-started) · [Features](#-features) · [Project Structure](#-project-structure) · [Scripts](#-scripts)
+
+</div>
+
+---
+
+## ✨ Features
+
+| 기능 | 설명 |
+|:---:|:---|
+| **다국어 지원** | 한국어, 영어, 일본어, 프랑스어 지원 (i18n) |
+| **반응형 디자인** | 모바일/태블릿/데스크톱 대응 |
+| **솔루션 소개** | EW, CW, BW 솔루션 및 제품 라인업 |
+| **기업 정보** | 회사 소개, R&D, 뉴스, 문의 페이지 |
 
 ---
 
 ## 🛠 Tech Stack
 
-| 기술 | 설명 |
-|------|------|
-| ![React](https://img.shields.io/badge/React-19.2.3-blue?logo=react) | Vite 기반의 React 19 |
-| ![TypeScript](https://img.shields.io/badge/TypeScript-✔-blue?logo=typescript) | 정적 타입 시스템을 통한 안정성 확보 |
-| ![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-✔-purple?logo=redux) | 효율적인 전역 상태 관리 |
-| ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-✔-teal?logo=tailwindcss) | 유틸리티 퍼스트 프레임워크를 이용한 스타일링 |
-| ![Docker](https://img.shields.io/badge/Docker-✔-blue?logo=docker) | 일관된 개발 및 배포 환경 제공 |
-| ![Node.js](https://img.shields.io/badge/Node.js-22.21.1-green?logo=node.js) | 런타임 환경 |
-| ![npm](https://img.shields.io/badge/npm-10.9.4-red?logo=npm) | 패키지 매니저 |
+### Core
+| 기술 | 버전 | 설명 |
+|:---:|:---:|:---|
+| **React** | 19.2.3 | Vite 기반의 최신 React |
+| **TypeScript** | 5.5 | 정적 타입으로 안정성 확보 |
+| **Vite** | 7.3 | 빠른 개발 서버 및 빌드 |
+| **React Router** | 6.26 | SPA 라우팅 |
 
+### Styling & UI
+| 기술 | 설명 |
+|:---:|:---|
+| **Tailwind CSS 4** | 유틸리티 퍼스트 스타일링 |
+| **shadcn/ui** | Radix UI 기반 컴포넌트 라이브러리 |
+| **Lucide React** | 아이콘 라이브러리 |
+
+### DevOps
+| 기술 | 설명 |
+|:---:|:---|
+| **Docker** | 일관된 개발 환경 |
+| **Vercel** | 배포 플랫폼 |
+| **ESLint** | 코드 품질 관리 |
+
+---
 
 ## 📂 Project Structure
-```
-📦 프로젝트 루트
-├── 📂 src
-│   ├── 📂 assets         # 🎨 정적 파일 (이미지, 폰트 등)
-│   ├── 📂 components     # 🧩 재사용 가능한 UI 컴포넌트
-│   ├── 📂 pages          # 📄 주요 페이지 컴포넌트
-│   ├── 📂 store          # 🗄 Redux 상태 관리 관련 파일
-│   ├── 📂 hooks          # 🔗 커스텀 훅
-│   ├── 📂 utils          # 🛠 유틸리티 함수 모음
-│   ├── 📂 styles         # 🎨 Tailwind 관련 스타일 파일
-│   ├── 📂 api            # 🔗 백엔드 API 요청 관련 함수
-│   ├── 📂 router         # 🚦 React Router 관련 파일
-│   ├── 📜 main.tsx       # 🚀 애플리케이션 진입점
-│   ├── 📜 App.tsx        # 🏠 루트 컴포넌트
-├── 📜 index.html         # 📝 기본 HTML 파일
-├── 📜 package.json       # 📦 패키지 정보 및 스크립트
-├── 📜 tsconfig.json      # ⚙ TypeScript 설정 파일
-├── 📜 vite.config.ts     # ⚡ Vite 설정 파일
-├── 📜 eslint.config.js   # 🛠 ESLint 설정 파일
-└── ... 기타 설정 파일
-```
-
-
-## 🐳 Development Environment (Docker)
-
-본 프로젝트는 개발자 간의 개발 환경 일관성을 유지하기 위해 **Docker** 기반의 개발 환경을 지원합니다.
-
-### Requirements
-- [Docker](https://www.docker.com/) 설치
-- [Docker Compose](https://docs.docker.com/compose/) 설치
-
-### Run Development Server
-Docker 컨테이너를 빌드하고 실행합니다.
-```sh
-docker-compose up --build
-```
-Accessing the Web
-브라우저를 열고 아래 주소로 접속하세요:
-
-🔗 http://localhost:5173
-
-Stop Server
-```sh
-docker-compose down
-```
-### 🧩 VSCode Dev Container (권장)
-
-Docker 환경에서 TypeScript / ESLint / JSX 오류 없이 개발하기 위해 VSCode Dev Container 사용을 권장합니다.
-
-#### 사용 방법
-
-1. VSCode Extension 설치
-```
-Dev Containers (Microsoft)
-```
-2. 컨테이너 실행 상태에서 VSCode 명령 실행
 
 ```
-Ctrl + Shift + P
-Dev Containers: Reopen in Container
+ebt-web-platform/
+│
+├── 📂 src/
+│   ├── 📂 assets/              # 정적 리소스
+│   │   ├── 📂 images/          # 이미지 파일
+│   │   └── 📂 videos/          # 비디오 파일
+│   │
+│   ├── 📂 components/          # 재사용 컴포넌트
+│   │   ├── 📂 ui/              # shadcn/ui 기본 컴포넌트
+│   │   ├── navigation.tsx      # 네비게이션 바
+│   │   ├── footer.tsx          # 푸터
+│   │   ├── contact-form.tsx    # 문의 폼
+│   │   └── ...
+│   │
+│   ├── 📂 pages/               # 페이지 컴포넌트
+│   │   ├── Home.tsx            # 메인 페이지
+│   │   ├── About.tsx           # 회사 소개
+│   │   ├── Rnd.tsx             # R&D 페이지
+│   │   ├── News.tsx            # 뉴스 페이지
+│   │   ├── Contact.tsx         # 문의 페이지
+│   │   └── 📂 Solution/        # 솔루션 페이지
+│   │       ├── Solution.tsx    # 솔루션 메인
+│   │       ├── 📂 EW/          # Electronic Warfare
+│   │       ├── 📂 CW/          # Cyber Warfare
+│   │       └── 📂 BW/          # Bio Warfare
+│   │
+│   ├── 📂 localize/            # 다국어 번역 파일
+│   │   ├── 📂 ko/              # 한국어
+│   │   ├── 📂 en/              # 영어
+│   │   ├── 📂 ja/              # 일본어
+│   │   └── 📂 fr/              # 프랑스어
+│   │
+│   ├── 📂 hooks/               # 커스텀 훅
+│   ├── 📂 lib/                 # 유틸리티 & 설정
+│   │   ├── utils.ts            # 유틸리티 함수
+│   │   ├── i18n.ts             # 다국어 설정
+│   │   └── fetcher.ts          # API 요청 함수
+│   │
+│   ├── 📂 styles/              # 스타일 파일
+│   │   └── global.css          # 전역 스타일 (Tailwind)
+│   │
+│   ├── App.tsx                 # 루트 컴포넌트
+│   ├── layout.tsx              # 레이아웃 컴포넌트
+│   └── main.tsx                # 앱 진입점
+│
+├── 📂 public/                  # 정적 파일 (favicon 등)
+├── 📂 .devcontainer/           # VS Code Dev Container 설정
+│
+├── index.html                  # HTML 템플릿
+├── package.json                # 의존성 & 스크립트
+├── vite.config.ts              # Vite 설정
+├── tsconfig.json               # TypeScript 설정
+├── eslint.config.js            # ESLint 설정
+├── postcss.config.js           # PostCSS 설정
+├── Dockerfile                  # Docker 이미지 설정
+├── docker-compose.yml          # Docker Compose 설정
+└── vercel.json                 # Vercel 배포 설정
 ```
-## 💻 Local Development (Without Docker)
-Docker 없이 로컬 환경에서 직접 실행하는 방법입니다. (Node.js 22.12.0 이상 권장)
 
-1. 패키지 설치
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** 22.12.0 이상
+- **npm** 10.9.4 이상
+- (선택) **Docker** & **Docker Compose**
+
+### 방법 1: 로컬 개발
+
 ```bash
+# 1. 의존성 설치
 npm install
-```
-2. 개발 서버 실행
 
-```bash
+# 2. 개발 서버 실행
 npm run dev
 ```
-## shadcn UI 컴포넌트 사용
 
-`shadcn`로 컴포넌트 추가 하는 방법입니다. 필요의 경우 사용하세요.
+> 브라우저에서 http://localhost:5173 접속
+
+### 방법 2: Docker 개발 환경
 
 ```bash
-npx shadcn@latest add button
+# 컨테이너 빌드 및 실행
+docker-compose up --build
+
+# 종료
+docker-compose down
 ```
 
-## 📝 Notes
+### 방법 3: VS Code Dev Container (권장)
 
-- ~~Docker 파일이 추가 될 에정입니다.~~
-- 개발자 페이지가 계획에 추가 될 예정입니다.
-- Docker 서버와 Local 서버에서 Git을 확인 했을 때 차이 있었음
+Docker 환경에서 TypeScript / ESLint 오류 없이 개발하려면 Dev Container 사용을 권장합니다.
 
-![Error1](./MdImg/Error1_1.png)
-![Error2](./MdImg/Error1_2.png)
-상황
-- VS Code에서 Docker 컨테이너 안의 프로젝트를 열었더니 **모든 파일이 변경됨(Changes)으로 표시됨**.
-- 터미널에서 확인해도 파일 내용은 실제로 변하지 않음.
-- 컨테이너 시간은 정상이고, Git 커밋 시간과 차이 없음.
+1. **Extension 설치**: `Dev Containers` (Microsoft)
+2. **컨테이너 열기**: `Ctrl + Shift + P` → `Dev Containers: Reopen in Container`
 
-원인
-- **줄바꿈(LF vs CRLF) 문제**
-  - Windows 호스트: CRLF (`\r\n`)  
-  - Linux 컨테이너: LF (`\n`)  
-- Git/VS Code가 줄바꿈 차이 때문에 “변경됨”으로 표시.
+---
 
+## 📜 Scripts
 
-© EBTech. All rights reserved.
+| 명령어 | 설명 |
+|:---|:---|
+| `npm run dev` | 개발 서버 실행 (HMR 지원) |
+| `npm run build` | 프로덕션 빌드 |
+| `npm run preview` | 빌드 결과물 미리보기 |
+| `npm run lint` | ESLint 코드 검사 |
+
+---
+
+## 🎨 UI 컴포넌트 추가 (shadcn/ui)
+
+새로운 UI 컴포넌트가 필요할 때 shadcn/ui CLI를 사용합니다.
+
+```bash
+# 예시: Button 컴포넌트 추가
+npx shadcn@latest add button
+
+# 예시: Dialog 컴포넌트 추가
+npx shadcn@latest add dialog
+```
+
+> 추가된 컴포넌트는 `src/components/ui/` 폴더에 생성됩니다.
+
+---
+
+## 🌐 다국어 지원
+
+프로젝트는 4개 언어를 지원합니다. 번역 파일은 `src/localize/` 폴더에 있습니다.
+
+| 언어 | 폴더 |
+|:---:|:---:|
+| 한국어 | `localize/ko/` |
+| English | `localize/en/` |
+| 日本語 | `localize/ja/` |
+| Français | `localize/fr/` |
+
+---
+
+## ⚠️ Troubleshooting
+
+### Docker 환경에서 Git 파일 변경 표시 문제
+
+<details>
+<summary>클릭하여 펼치기</summary>
+
+**증상**: Docker 컨테이너에서 VS Code로 열면 모든 파일이 "변경됨"으로 표시됨
+
+**원인**: Windows(CRLF)와 Linux(LF) 간 줄바꿈 문자 차이
+
+**해결**: `.gitattributes` 파일로 줄바꿈 설정 통일
+```
+* text=auto eol=lf
+```
+
+</details>
+
+---
+
+## 📋 Roadmap
+
+- [x] Docker 개발 환경 구축
+- [x] 다국어 지원 (i18n)
+
+- [ ] 테스트 코드 작성
+
+---
+
+<div align="center">
+
+**© EBTech. All rights reserved.**
+
+</div>
