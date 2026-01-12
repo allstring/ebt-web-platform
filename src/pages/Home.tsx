@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import video_poster from "@/assets/images/video_poster.jpg"
 import dark_defense_room from "@/assets/images/dark_defense_room.jpg"
-import { t } from "@/lib/i18n"
+import { useLocale } from "@/lib/i18n"
 
 const solutionHrefs = [
   "/solution/electronic-warfare",
@@ -16,6 +16,7 @@ const solutionHrefs = [
 const capabilityIcons = [Settings, Shield, Zap, Target, Users, Wrench]
 
 export default function HomePage() {
+  const { t } = useLocale()
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -159,8 +160,8 @@ export default function HomePage() {
                     {/* Icon & Number Section */}
                     <div className="flex-shrink-0 w-full lg:w-1/3">
                       <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
-                        <div className="relative p-8 lg:p-12 bg-card border border-border rounded-2xl group-hover:border-accent/50 transition-all duration-300">
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl blur-2xl group-hover:blur-3xl transition-[filter] duration-500" />
+                        <div className="relative p-8 lg:p-12 bg-card border border-border rounded-2xl group-hover:border-accent/50 transition-[border-color] duration-300">
                           <div className="flex items-center justify-between mb-6">
                             <div className="p-4 bg-accent/10 rounded-xl group-hover:bg-accent/20 transition-colors">
                               <Icon className="w-8 h-8 text-accent" />

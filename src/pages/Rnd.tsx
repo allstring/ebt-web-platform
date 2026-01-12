@@ -4,11 +4,12 @@ import { Zap, Target, Settings } from "lucide-react"
 import rndChipImg from "@/assets/images/rnd_chip.jpg"
 import rndResearchImg from "@/assets/images/rnd_research.jpg"
 import rndTeamImg from "@/assets/images/rnd_team.jpg"
-import { t } from "@/lib/i18n"
+import { useLocale } from "@/lib/i18n"
 
 const coreTechIcons = [Zap, Settings, Target]
 
 export default function RnDPage() {
+  const { t } = useLocale()
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />

@@ -1,3 +1,5 @@
+import { createContext, useContext, useState, useCallback, createElement, type ReactNode } from "react"
+
 import { home as homeEn } from "@/localize/en/home"
 import { home as homeKo } from "@/localize/ko/home"
 // import { home as homeJa } from "@/localize/ja/home"
@@ -33,6 +35,11 @@ import { footer as footerKo } from "@/localize/ko/footer"
 // import { footer as footerJa } from "@/localize/ja/footer"
 // import { footer as footerFr } from "@/localize/fr/footer"
 
+import { notFound as notFoundEn } from "@/localize/en/notFound"
+import { notFound as notFoundKo } from "@/localize/ko/notFound"
+// import { notFound as notFoundJa } from "@/localize/ja/notFound"
+// import { notFound as notFoundFr } from "@/localize/fr/notFound"
+
 // export type Locale = "en" | "ko" 
 // export type Locale = "en" | "ko" | "ja" | "fr"
 
@@ -50,6 +57,7 @@ const RESOURCES = {
     nav: navEn,
     solution: solutionEn,
     footer: footerEn,
+    notFound: notFoundEn,
   },
   ko: {
     home: homeKo,
@@ -59,6 +67,7 @@ const RESOURCES = {
     nav: navKo,
     solution: solutionKo,
     footer: footerKo,
+    notFound: notFoundKo,
   },
   // ja: { ... },
   // fr: { ... },
@@ -119,3 +128,46 @@ export const t = new Proxy({} as typeof RESOURCES[typeof DEFAULT_LOCALE], {
     return localeResources[namespace] ?? RESOURCES[DEFAULT_LOCALE][namespace]
   },
 })
+
+// --- React Context for reactive locale switching ---
+
+type TranslationResources = typeof RESOURCES[Locale]
+
+type LocaleContextType = {
+  locale: Locale
+  setLocale: (locale: Locale) => void
+  t: TranslationResources
+}
+
+const LocaleContext = createContext<LocaleContextType | null>(null)
+
+export function LocaleProvider({ children }: { children: ReactNode }): ReactNode {
+  const [locale, setLocaleState] = useState<Locale>(getInitialLocale)
+
+  const handleSetLocale = useCallback((newLocale: Locale) => {
+    currentLocale = newLocale
+    setLocaleState(newLocale)
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(LOCALE_KEY, newLocale)
+      updateHtmlLang(newLocale)
+    }
+  }, [])
+
+  const translations = RESOURCES[locale] || RESOURCES[DEFAULT_LOCALE]
+
+  const contextValue: LocaleContextType = {
+    locale,
+    setLocale: handleSetLocale,
+    t: translations,
+  }
+
+  return createElement(LocaleContext.Provider, { value: contextValue }, children)
+}
+
+export function useLocale() {
+  const context = useContext(LocaleContext)
+  if (!context) {
+    throw new Error("useLocale must be used within a LocaleProvider")
+  }
+  return context
+}

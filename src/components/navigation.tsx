@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Menu, Sun, Moon, X, Globe } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Link, useLocation } from 'react-router-dom'
-import { getLocale, setLocale, t, type Locale } from "@/lib/i18n"
+import { useLocale, type Locale } from "@/lib/i18n"
 
 const localeLabels: Record<Locale, string> = {
   en: "EN",
@@ -34,7 +34,7 @@ export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isLight, setIsLight] = useState(false)
-  const [currentLocale, setCurrentLocale] = useState<Locale>(getLocale())
+  const { locale: currentLocale, setLocale, t } = useLocale()
   const [localeMenuOpen, setLocaleMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -78,11 +78,9 @@ export function Navigation() {
     }
   }
 
-  const handleLocaleChange = (locale: Locale) => {
-    setLocale(locale)
-    setCurrentLocale(locale)
+  const handleLocaleChange = (newLocale: Locale) => {
+    setLocale(newLocale)
     setLocaleMenuOpen(false)
-    window.location.reload()
   }
 
   return (
