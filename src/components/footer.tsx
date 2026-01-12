@@ -1,6 +1,7 @@
-import { t } from "@/lib/i18n"
+import { useLocale } from "@/lib/i18n"
 
 export function Footer() {
+  const { t } = useLocale()
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto max-w-5xl px-6 py-4 lg:px-8">

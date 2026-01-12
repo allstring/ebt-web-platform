@@ -2,7 +2,7 @@
 import { ArrowRight } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { t } from "@/lib/i18n"
+import { useLocale } from "@/lib/i18n"
 import React from "react"
 import { useState } from 'react';
 import SolutionEwImg from "@/assets/images/solution_EW_poster.jpg"
@@ -41,6 +41,7 @@ const solutionData = [
 ]
 
 export default function SolutionPage() {
+  const { t } = useLocale()
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const videoRefs = React.useRef<(HTMLVideoElement | null)[]>([]);
   return (

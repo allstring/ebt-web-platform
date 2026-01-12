@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer"
 import icoHan from "@/assets/images/ico_han.png"
 import icoPdf from "@/assets/images/ico_pdf.png"
 import icoWord from "@/assets/images/ico_word.png"
-import { t } from "@/lib/i18n"
+import { useLocale } from "@/lib/i18n"
 
 const applicationDocFiles = [
   { href: "files/ebt-recruit.hwp", icon: icoHan, alt: "HWP icon" },
@@ -12,6 +12,7 @@ const applicationDocFiles = [
 ]
 
 export default function ContactPage() {
+  const { t } = useLocale()
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />

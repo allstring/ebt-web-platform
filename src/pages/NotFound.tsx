@@ -3,9 +3,10 @@ import { ArrowLeft, Home } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { t } from "@/lib/i18n"
+import { useLocale } from "@/lib/i18n"
 
 export default function NotFound() {
+  const { t } = useLocale()
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />

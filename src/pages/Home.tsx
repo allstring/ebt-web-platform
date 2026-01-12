@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import video_poster from "@/assets/images/video_poster.jpg"
 import dark_defense_room from "@/assets/images/dark_defense_room.jpg"
-import { t } from "@/lib/i18n"
+import { useLocale } from "@/lib/i18n"
 
 const solutionHrefs = [
   "/solution/electronic-warfare",
@@ -16,6 +16,7 @@ const solutionHrefs = [
 const capabilityIcons = [Settings, Shield, Zap, Target, Users, Wrench]
 
 export default function HomePage() {
+  const { t } = useLocale()
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
