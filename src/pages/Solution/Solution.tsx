@@ -2,6 +2,7 @@ import {Link} from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { t } from "@/lib/i18n"
 
 import { useState, useRef } from 'react';
 import SolutionEwImg from "@/assets/images/solution_EW.jpg"
@@ -12,13 +13,11 @@ import SolutionEwVideo from "@/assets/videos/solution_EW.mp4"
 import SolutionCwVideo from "@/assets/videos/solution_CW2.mp4"
 import SolutionBwVideo from "@/assets/videos/solution_BW.mp4"
 
-const solutions = [
+const solutionData = [
   {
     id: "electronic-warfare",
     number: "01",
-    title: "Electronic Warfare",
-    summary:
-      "Signal processing and spectrum management for complex electromagnetic environments.",
+    key: "electronicWarfare" as const,
     href: "/solution/electronic-warfare",
     image: SolutionEwImg,
     video: SolutionEwVideo,
@@ -26,9 +25,7 @@ const solutions = [
   {
     id: "chemical-warfare",
     number: "02",
-    title: "Chemical Warfare",
-    summary:
-      "Detection, identification, and monitoring systems for chemical agents in hazardous operational environments.",
+    key: "chemicalWarfare" as const,
     href: "/solution/chemical-warfare",
     image: SolutionCwImg,
     video: SolutionCwVideo,
@@ -36,9 +33,7 @@ const solutions = [
   {
     id: "biological-warfare",
     number: "03",
-    title: "Biological Warfare",
-    summary:
-      "High-sensitivity detection and analysis systems for early identification of biological threats.",
+    key: "biologicalWarfare" as const,
     href: "/solution/biological-warfare",
     image: SolutionBwImg,
     video: SolutionBwVideo,
@@ -57,13 +52,12 @@ export default function SolutionPage() {
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Solution</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.solution.label}</p>
               <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">
-                Problem-driven defense systems
+                {t.solution.title}
               </h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Each solution addresses specific operational challenges with integrated hardware and software designed
-                for real-world deployment.
+                {t.solution.description}
               </p>
             </div>
           </div>
@@ -73,7 +67,7 @@ export default function SolutionPage() {
         <section className="pb-24 lg:pb-32 hidden lg:block">
         <div className="mx-auto  px-6 lg:px-8">
           <div className="flex gap-6 h-[520px]">
-            {solutions.map((solution, index) => {
+            {solutionData.map((solution, index) => {
               const isHovered = hoveredIndex === index;
               const isAnyHovered = hoveredIndex !== null;
               
@@ -123,19 +117,19 @@ export default function SolutionPage() {
                     {/* Bottom Content */}
                     <div>
                       <h2 className="text-2xl font-semibold text-white mb-2 transition-transform duration-500 group-hover:translate-y-[-4px]">
-                        {solution.title}
+                        {t.solution[solution.key].title}
                       </h2>
-                      <p 
+                      <p
                         className="text-gray-300 transition-all duration-500 overflow-hidden"
                         style={{
                           maxHeight: isHovered ? '100px' : '0px',
                           opacity: isHovered ? 1 : 0
                         }}
                       >
-                        {solution.summary}
+                        {t.solution[solution.key].summary}
                       </p>
                       <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
-                        <span className="text-sm font-medium">Learn more</span>
+                        <span className="text-sm font-medium">{t.solution.learnMore}</span>
                         <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
                       </div>
                     </div>
@@ -151,7 +145,7 @@ export default function SolutionPage() {
       <section className="pb-24 lg:hidden">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col gap-6">
-            {solutions.map((solution) => (
+            {solutionData.map((solution) => (
               <a
                 key={solution.id}
                 href={solution.href}
@@ -164,7 +158,7 @@ export default function SolutionPage() {
                   playsInline
                   loop
                   autoPlay
-                  poster={solution.poster}
+                  poster={solution.image}
                 >
                   <source src={solution.video} type="video/mp4" />
                 </video>
@@ -180,13 +174,13 @@ export default function SolutionPage() {
 
                   <div>
                     <h2 className="text-2xl font-semibold text-white mb-2">
-                      {solution.title}
+                      {t.solution[solution.key].title}
                     </h2>
                     <p className="text-gray-300 mb-4">
-                      {solution.summary}
+                      {t.solution[solution.key].summary}
                     </p>
                     <div className="flex items-center gap-2 text-white/80">
-                      <span className="text-sm font-medium">Learn more</span>
+                      <span className="text-sm font-medium">{t.solution.learnMore}</span>
                       <ArrowRight className="h-4 w-4" />
                     </div>
                   </div>
