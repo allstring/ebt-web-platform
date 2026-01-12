@@ -22,7 +22,8 @@ import Detail_LOCATE from './pages/Solution/EW/line_up/Detail_locate.tsx'
 import Detail_CPX from './pages/Solution/CW/line_up/Detail_cpx.tsx'
 import Detail_NCM from './pages/Solution/CW/line_up/Detail_ncm.tsx'
 
-import Deatil_BBATS from './pages/Solution/BW/line_up/Detail_bbats.tsx'
+import Detail_BBATS from './pages/Solution/BW/line_up/Detail_bbats.tsx'
+import NotFound from './pages/NotFound'
 
 import Layout from './layout'
 
@@ -52,8 +53,8 @@ createRoot(document.getElementById('root')!).render(
             <Route path="solution/chemical-warfare/CHEMPRO-X" element={<Detail_CPX/>} />
             <Route path="solution/chemical-warfare/NC MONITORING SYSTEM" element={<Detail_NCM/>} />
 
-            <Route path="solution/biological-warfare/BIOBATS" element={<Deatil_BBATS/> } />
-            <Route path="*" element={<Home />} />
+            <Route path="solution/biological-warfare/BIOBATS" element={<Detail_BBATS/> } />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
