@@ -33,6 +33,11 @@ import { footer as footerKo } from "@/localize/ko/footer"
 // import { footer as footerJa } from "@/localize/ja/footer"
 // import { footer as footerFr } from "@/localize/fr/footer"
 
+import { notFound as notFoundEn } from "@/localize/en/notFound"
+import { notFound as notFoundKo } from "@/localize/ko/notFound"
+// import { notFound as notFoundJa } from "@/localize/ja/notFound"
+// import { notFound as notFoundFr } from "@/localize/fr/notFound"
+
 // export type Locale = "en" | "ko" 
 // export type Locale = "en" | "ko" | "ja" | "fr"
 
@@ -50,6 +55,7 @@ const RESOURCES = {
     nav: navEn,
     solution: solutionEn,
     footer: footerEn,
+    notFound: notFoundEn,
   },
   ko: {
     home: homeKo,
@@ -59,6 +65,7 @@ const RESOURCES = {
     nav: navKo,
     solution: solutionKo,
     footer: footerKo,
+    notFound: notFoundKo,
   },
   // ja: { ... },
   // fr: { ... },
