@@ -8,7 +8,15 @@
  * - 기본: 다크 버전 (예전 느낌 유지)
  * - html에 .light 클래스를 붙이면 화이트 버전으로 전환
  */
+
+html:lang(ko),
+html:lang(ko) * {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 :root {
+  /* word-break: keep-all !important; */
   /* 기존 다크 톤 (예전 코드 값) */
   --background: oklch(0.13 0.01 250);
   --foreground: oklch(0.95 0 0);
