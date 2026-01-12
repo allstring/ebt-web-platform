@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import '@/lib/i18n' // Initialize locale and set html lang attribute
+import { LocaleProvider } from '@/lib/i18n'
 import App from './App.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ScrollToTop from './lib/ScrollToTop'
@@ -29,8 +29,9 @@ import Layout from './layout'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Layout>
-      <BrowserRouter>
+    <LocaleProvider>
+      <Layout>
+        <BrowserRouter>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<App />}>
@@ -58,6 +59,7 @@ createRoot(document.getElementById('root')!).render(
           </Route>
         </Routes>
       </BrowserRouter>
-    </Layout>
+      </Layout>
+    </LocaleProvider>
   </StrictMode>,
 )
