@@ -183,10 +183,17 @@ export function Navigation() {
         </div>
 
         {/* Mobile navigation */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
-            <div className="flex flex-col gap-5">
-              {navItems.map((item) => (
+        <div
+          className={cn(
+            "lg:hidden overflow-hidden transition-all duration-300 ease-out",
+            mobileMenuOpen
+              ? "max-h-96 opacity-100"
+              : "max-h-0 opacity-0"
+          )}
+        >
+          <div className="py-4 mt-2 rounded-xl bg-background/95 backdrop-blur-lg border border-border shadow-lg">
+            <div className="flex flex-col gap-1 px-2">
+              {navItems.map((item, index) => (
                 <Link
                   key={item.key}
                   to={item.href}
@@ -195,16 +202,22 @@ export function Navigation() {
                     setMobileMenuOpen(false)
                   }}
                   className={cn(
-                    "text-base font-semibold transition-colors hover:text-foreground py-2",
-                    pathname === item.href ? "text-foreground" : "text-foreground/70",
+                    "text-base font-semibold transition-all duration-200 py-3 px-4 rounded-lg",
+                    "hover:bg-accent/50 hover:translate-x-1",
+                    pathname === item.href
+                      ? "text-foreground bg-accent/30"
+                      : "text-foreground/70",
                   )}
+                  style={{
+                    transitionDelay: mobileMenuOpen ? `${index * 50}ms` : "0ms",
+                  }}
                 >
                   {t.nav[item.key]}
                 </Link>
               ))}
             </div>
           </div>
-        )}
+        </div>
       </nav>
     </header>
   )
