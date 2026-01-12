@@ -1,50 +1,14 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ContactForm } from "@/components/contact-form"
+import icoHan from "@/assets/images/ico_han.png"
+import icoPdf from "@/assets/images/ico_pdf.png"
+import icoWord from "@/assets/images/ico_word.png"
+import { t } from "@/lib/i18n"
 
-const inquiryTypes = [
-  {
-    title: "General Inquiry",
-    description: "Questions about EBTech and our capabilities",
-    email: "info@ebtech.com",
-  },
-  {
-    title: "Business & Partnership",
-    description: "Collaboration and business development",
-    email: "business@ebtech.com",
-  },
-  {
-    title: "Request Demo",
-    description: "Schedule a product demonstration",
-    email: "demo@ebtech.com",
-  },
-]
-
-const openPositions = [
-  {
-    title: "RF Systems Engineer",
-    department: "Engineering",
-    location: "Seoul, Korea",
-    type: "Full-time",
-  },
-  {
-    title: "Signal Processing Engineer",
-    department: "R&D",
-    location: "Seoul, Korea",
-    type: "Full-time",
-  },
-  {
-    title: "Systems Integration Specialist",
-    department: "Engineering",
-    location: "Seoul, Korea",
-    type: "Full-time",
-  },
-  {
-    title: "Field Support Engineer",
-    department: "Operations",
-    location: "Flexible",
-    type: "Full-time",
-  },
+const applicationDocFiles = [
+  { href: "files/ebt-recruit.hwp", icon: icoHan, alt: "HWP icon" },
+  { href: "files/ebt-recruit.docx", icon: icoWord, alt: "Word icon" },
+  { href: "files/ebt-recruit.pdf", icon: icoPdf, alt: "PDF icon" },
 ]
 
 export default function ContactPage() {
@@ -57,52 +21,83 @@ export default function ContactPage() {
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Contact & Career</p>
-              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">Get in touch</h1>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.contact.hero.sectionLabel}</p>
+              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">{t.contact.hero.title}</h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Connect with our team for inquiries, partnerships, or career opportunities.
+                {t.contact.hero.description}
               </p>
             </div>
           </div>
         </section>
 
-        {/* Inquiry Types */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl mb-12">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Contact</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Inquiry Channels</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {inquiryTypes.map((type) => (
-                <div key={type.title} className="p-6 bg-background border border-border">
-                  <h3 className="font-medium text-foreground">{type.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{type.description}</p>
-                  <a
-                    href={`mailto:${type.email}`}
-                    className="mt-4 inline-block text-sm text-accent hover:text-foreground transition-colors"
-                  >
-                    {type.email}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Form */}
+        {/* Location Map */}
         <section className="py-24 lg:py-32 border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Contact Form</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Send a Message</h2>
-                <p className="mt-4 text-muted-foreground">
-                  Complete the form and our team will respond within 2 business days.
-                </p>
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.contact.location.sectionLabel}</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">{t.contact.location.title}</h2>
+              <p className="mt-4 text-muted-foreground">
+                {t.contact.location.description}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              {/* Company Information */}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-4">{t.contact.location.companyName}</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">{t.contact.location.addressLabel}</p>
+                      <p className="text-foreground leading-relaxed text-sm">
+                        {t.contact.location.address}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">{t.contact.location.phoneLabel}</p>
+                      <a
+                        href={`tel:${t.contact.location.phone}`}
+                        className="text-foreground hover:text-accent transition-colors"
+                      >
+                        {t.contact.location.phone}
+                      </a>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">{t.contact.location.emailLabel}</p>
+                      <div className="space-y-2">
+                        <div>
+                          <p className="text-sm text-muted-foreground mb-1">
+                            {t.contact.location.emailDescription}
+                          </p>
+
+                        </div>
+                        <div>
+                          <a
+                            href={`mailto:${t.contact.location.email}`}
+                            className="text-foreground hover:text-accent transition-colors"
+                          >
+                            {t.contact.location.email}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <ContactForm />
+
+              {/* Map */}
+              <div className="rounded-lg overflow-hidden shadow-lg border border-border bg-background">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1584.5348376758109!2d127.09348!3d37.411828!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca7c7e7677691%3A0x2c4282e124e93f95!2zTEgg7YyQ6rWQ7KCcMu2FjO2BrOuFuOuwuOumrCDquLDsl4XshLHsnqXshLzthLA!5e0!3m2!1sko!2skr!4v1767849458960!5m2!1sko!2skr"
+                  width="100%"
+                  height="450"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full map-iframe"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -110,52 +105,49 @@ export default function ContactPage() {
         {/* Career */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+            <div className=" gap-10 mb-12">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Career</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Join EBTech</h2>
-              </div>
-              <div>
-                <p className="text-muted-foreground leading-relaxed">
-                  We are building advanced defense technology with a team of dedicated engineers and specialists. If you
-                  are committed to technical excellence and mission-critical systems, explore our open positions.
-                </p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.contact.career.sectionLabel}</p>
+                <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">{t.contact.career.title}</h1>
+              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+                {t.contact.career.description}
+              </p>
               </div>
             </div>
 
-            <div className="max-w-2xl mb-8">
-              <h3 className="text-lg font-medium text-foreground">Open Positions</h3>
-            </div>
-
-            <div className="divide-y divide-border border-t border-b border-border">
-              {openPositions.map((position, index) => (
-                <div key={index} className="py-6">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                      <h4 className="font-medium text-foreground">{position.title}</h4>
-                      <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-                        <span>{position.department}</span>
-                        <span>·</span>
-                        <span>{position.location}</span>
-                        <span>·</span>
-                        <span>{position.type}</span>
-                      </div>
-                    </div>
+            <div className="mb-12">
+              <h3 className="text-lg font-medium text-foreground">{t.contact.career.applicationDocs}</h3>
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+                {t.contact.career.docs.map((doc, index) => {
+                  const file = applicationDocFiles[index]
+                  return (
                     <a
-                      href="mailto:careers@ebtech.com"
-                      className="text-sm text-accent hover:text-foreground transition-colors"
+                      key={doc.title}
+                      href={file.href}
+                      download
+                      className="group flex flex-col gap-3 rounded-lg border border-border bg-background p-5 transition hover:-translate-y-0.5 hover:border-accent hover:shadow-sm"
                     >
-                      Apply via Email
+                      <div className="flex items-center gap-3">
+                        <div className="rounded-full bg-muted p-3 text-muted-foreground group-hover:text-foreground">
+                          <img src={file.icon} alt={file.alt} className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground">{doc.title}</p>
+                          <p className="text-sm text-muted-foreground">{doc.description}</p>
+                        </div>
+                      </div>
+                      <span className="text-sm text-accent group-hover:text-foreground transition-colors">{t.contact.career.download}</span>
                     </a>
-                  </div>
-                </div>
-              ))}
+                  )
+                })}
+              </div>
             </div>
+
 
             <p className="mt-8 text-sm text-muted-foreground">
-              Send your resume to{" "}
-              <a href="mailto:careers@ebtech.com" className="text-accent hover:text-foreground transition-colors">
-                careers@ebtech.com
+              {t.contact.career.resumeText}{" "}
+              <a href="mailto:info@ebtech.kr" className="text-accent hover:text-foreground transition-colors">
+                info@ebtech.kr
               </a>
             </p>
           </div>

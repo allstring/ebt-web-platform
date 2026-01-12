@@ -1,113 +1,109 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-
-const history = [
-  { year: "2015", event: "Company founded with focus on defense electronics" },
-  { year: "2017", event: "First electronic warfare system deployed" },
-  { year: "2019", event: "Counter-UAS division established" },
-  { year: "2021", event: "CBRN detection systems added to portfolio" },
-  { year: "2022", event: "RESOLVE platform development initiated" },
-  { year: "2024", event: "International partnership expansion" },
-]
-
-const capabilities = [
-  {
-    title: "System Design",
-    description: "End-to-end architecture and engineering for complex defense systems.",
-  },
-  {
-    title: "Integration",
-    description: "Seamless integration of hardware, software, and operational workflows.",
-  },
-  {
-    title: "Field Support",
-    description: "Deployment, training, and continuous operational support.",
-  },
-]
-
-const certifications = [
-  "ISO 9001:2015",
-  "ISO 27001",
-  "ITAR Registered",
-  "MIL-STD-810G Compliant",
-  "NATO STANAG Compatible",
-]
+import aboutBg from "@/assets/images/about-bg.jpg"
+import aboutDeliver from "@/assets/images/about_delivery.jpg"
+import { t } from "@/lib/i18n"
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
 
-      <main className="flex-1 pt-16">
+      <main className="flex-1">
         {/* Company Overview */}
-        <section className="py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">About Us</p>
-              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">
-                Defense technology through precision engineering
-              </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                EBTech specializes in the design, integration, and deployment of mission-critical defense systems.
-              </p>
-            </div>
+        <section
+          className="relative overflow-hidden py-24 lg:pt-48 lg:pb-18 bg-cover bg-center"
+          style={{ backgroundImage: `url(${aboutBg})` }}
+        >
+          <div className="absolute inset-0 bg-background/80 light:bg-background/90" />
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+              <div className="max-w-xl">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.about.hero.sectionLabel}</p>
+                <h1 className="mt-2 text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
+                  {t.about.hero.title1}
+                  <br className="hidden md:block" /> {t.about.hero.title2}
+                </h1>
+                <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+                  {t.about.hero.description1}
+                </p>
+                <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+                  {t.about.hero.description2}
+                </p>
+              </div>
 
-            <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="p-6 bg-card border border-border">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Focus</p>
-                <p className="mt-4 text-foreground">Electronic Warfare</p>
-                <p className="text-foreground">Counter-UAS Systems</p>
-                <p className="text-foreground">CBRN Detection</p>
-              </div>
-              <div className="p-6 bg-card border border-border">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Approach</p>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  Technology internalization and in-house development for operational reliability.
-                </p>
-              </div>
-              <div className="p-6 bg-card border border-border">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Commitment</p>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  Field-proven solutions with continuous support and evolution.
-                </p>
+              <div className="space-y-6">
+                <div className="p-6 bg-card border border-border shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {t.about.whyChoose.sectionLabel}
+                  </p>
+                  <h2 className="mt-3 text-xl font-medium text-foreground">{t.about.whyChoose.title}</h2>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    {t.about.whyChoose.description}
+                  </p>
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-2">
+                  {t.about.whyChoose.cards.map((card) => (
+                    <div key={card.title} className="p-6 bg-card border border-border transition hover:-translate-y-0.5 hover:border-accent hover:shadow-sm">
+                      <h3 className="text-sm font-semibold tracking-wide text-muted-foreground">{card.title}</h3>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                        {card.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* History */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">History</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Key Milestones</h2>
-            </div>
+        {/* Vision & Mission */}
+        <section className="relative overflow-hidden py-20 lg:py-28 border-t border-border">
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-12 lg:grid-cols-2">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.about.vision.sectionLabel}</p>
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+                  {t.about.vision.title}
+                </h2>
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                  {t.about.vision.description}
+                </p>
+              </div>
 
-            <div className="mt-16">
-              <div className="space-y-0">
-                {history.map((item) => (
-                  <div key={item.year} className="flex gap-8 py-6 border-t border-border first:border-t-0">
-                    <span className="text-sm font-mono text-muted-foreground w-16 shrink-0">{item.year}</span>
-                    <p className="text-foreground">{item.event}</p>
-                  </div>
-                ))}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.about.mission.sectionLabel}</p>
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+                  {t.about.mission.title}
+                </h2>
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                  {t.about.mission.description}
+                </p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Core Capabilities */}
-        <section className="py-24 lg:py-32 border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Core Capabilities</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">What We Deliver</h2>
+        <section
+          className="relative overflow-hidden py-24 lg:py-32 bg-cover bg-center"
+          style={{ backgroundImage: `url(${aboutDeliver})` }}
+        >
+          <div className="absolute inset-0 bg-background/85 light:bg-background/90" />
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-3xl space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.about.capabilities.sectionLabel}</p>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">{t.about.capabilities.title}</h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                {t.about.capabilities.description}
+              </p>
             </div>
 
-            <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
-              {capabilities.map((capability, index) => (
-                <div key={capability.title}>
-                  <span className="text-5xl font-light text-muted-foreground/50">
+            <div className="mt-14 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+              {t.about.capabilities.items.map((capability, index) => (
+                <div key={capability.title} className="p-6 bg-card border border-border hover:-translate-y-1 transition-transform">
+                  <span className="text-4xl font-light text-muted-foreground/50">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 text-lg font-medium text-foreground">{capability.title}</h3>
@@ -115,26 +111,8 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* Certifications */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Certifications & Compliance
-              </p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Standards We Meet</h2>
-            </div>
 
-            <div className="mt-16 flex flex-wrap gap-4">
-              {certifications.map((cert) => (
-                <div key={cert} className="px-4 py-2 bg-secondary border border-border text-sm text-foreground">
-                  {cert}
-                </div>
-              ))}
-            </div>
           </div>
         </section>
       </main>
