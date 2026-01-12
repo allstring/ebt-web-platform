@@ -97,16 +97,23 @@ export function Navigation() {
             onClick={() => handleNavClick("/")}
             className="flex items-center gap-2"
           >
+            {/* Dark theme logo - hidden in light mode */}
             <img
-              src={isLight ? "/EBT_logo_white.svg" : "/EBT_logo.svg"}
+              src="/EBT_logo.svg"
               alt="EBTech"
-              className="h-6 w-auto object-contain"
+              className="h-6 w-auto object-contain block light:hidden"
+            />
+            {/* Light theme logo - only shown in light mode */}
+            <img
+              src="/EBT_logo_white.svg"
+              alt="EBTech"
+              className="h-6 w-auto object-contain hidden light:block"
             />
             <span className="sr-only">EBTech</span>
           </Link>
 
           {/* Desktop navigation */}
-          <div className="hidden flex-1 items-center justify-center lg:flex lg:gap-x-16">
+          <div className="hidden flex-1 items-center justify-center lg:flex lg:gap-x-10">
             {navItems.map((item) => (
               <Link
                 key={item.key}
