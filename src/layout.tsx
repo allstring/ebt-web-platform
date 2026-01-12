@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
 import "@/styles/global.css"
 import { BackToTopButton } from "@/components/back-to-top-button"
+import { getLocale } from "@/lib/i18n"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    document.documentElement.lang = "en"
+    document.documentElement.lang = getLocale()
     document.body.classList.add("font-sans", "antialiased")
 
     // 초기 테마 설정: localStorage > 시스템 설정 > 기본 다크

@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import '@/lib/i18n' // Initialize locale and set html lang attribute
 import App from './App.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ScrollToTop from './lib/ScrollToTop'
