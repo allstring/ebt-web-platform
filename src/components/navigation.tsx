@@ -142,21 +142,27 @@ export function Navigation() {
                 <span className="text-sm font-medium">{localeLabels[currentLocale]}</span>
               </button>
               {localeMenuOpen && (
-                <div className="absolute right-0 mt-2 w-32 rounded-lg border border-border bg-background shadow-lg">
-                  {(Object.keys(localeLabels) as Locale[]).map((locale) => (
-                    <button
-                      key={locale}
-                      type="button"
-                      onClick={() => handleLocaleChange(locale)}
-                      className={cn(
-                        "w-full px-4 py-2 text-left text-sm transition-colors hover:bg-accent/30",
-                        currentLocale === locale ? "text-foreground font-medium" : "text-muted-foreground"
-                      )}
-                    >
-                      {localeNames[locale]}
-                    </button>
-                  ))}
-                </div>
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setLocaleMenuOpen(false)}
+                  />
+                  <div className="absolute right-0 mt-2 w-32 rounded-lg border border-border bg-background shadow-lg z-50">
+                    {(Object.keys(localeLabels) as Locale[]).map((locale) => (
+                      <button
+                        key={locale}
+                        type="button"
+                        onClick={() => handleLocaleChange(locale)}
+                        className={cn(
+                          "w-full px-4 py-2 text-left text-sm transition-colors hover:bg-accent/30",
+                          currentLocale === locale ? "text-foreground font-medium" : "text-muted-foreground"
+                        )}
+                      >
+                        {localeNames[locale]}
+                      </button>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
 
@@ -182,10 +188,18 @@ export function Navigation() {
           </div>
         </div>
 
+        {/* Mobile menu backdrop */}
+        {mobileMenuOpen && (
+          <div
+            className="fixed inset-0 z-40 lg:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+
         {/* Mobile navigation */}
         <div
           className={cn(
-            "lg:hidden overflow-hidden transition-all duration-300 ease-out",
+            "lg:hidden overflow-hidden transition-all duration-300 ease-out relative z-50",
             mobileMenuOpen
               ? "max-h-96 opacity-100"
               : "max-h-0 opacity-0"
