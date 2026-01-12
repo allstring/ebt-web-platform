@@ -1,13 +1,13 @@
-import {Link} from "react-router-dom"
+// import {Link} from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { t } from "@/lib/i18n"
-
-import { useState, useRef } from 'react';
-import SolutionEwImg from "@/assets/images/solution_EW.jpg"
-import SolutionCwImg from "@/assets/images/solution_CW.jpg"
-import SolutionBwImg from "@/assets/images/solution_BW.jpg"
+import React from "react"
+import { useState } from 'react';
+import SolutionEwImg from "@/assets/images/solution_EW_poster.jpg"
+import SolutionCwImg from "@/assets/images/solution_CW2_poster.jpg"
+import SolutionBwImg from "@/assets/images/solution_BW_poster.jpg"
 
 import SolutionEwVideo from "@/assets/videos/solution_EW.mp4"
 import SolutionCwVideo from "@/assets/videos/solution_CW2.mp4"
@@ -19,7 +19,7 @@ const solutionData = [
     number: "01",
     key: "electronicWarfare" as const,
     href: "/solution/electronic-warfare",
-    image: SolutionEwImg,
+    poster: SolutionEwImg,
     video: SolutionEwVideo,
   },
   {
@@ -27,7 +27,7 @@ const solutionData = [
     number: "02",
     key: "chemicalWarfare" as const,
     href: "/solution/chemical-warfare",
-    image: SolutionCwImg,
+    poster: SolutionCwImg,
     video: SolutionCwVideo,
   },
   {
@@ -35,14 +35,14 @@ const solutionData = [
     number: "03",
     key: "biologicalWarfare" as const,
     href: "/solution/biological-warfare",
-    image: SolutionBwImg,
+    poster: SolutionBwImg,
     video: SolutionBwVideo,
   },
 ]
 
 export default function SolutionPage() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const videoRefs = useRef([]);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const videoRefs = React.useRef<(HTMLVideoElement | null)[]>([]);
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -93,7 +93,7 @@ export default function SolutionPage() {
                 >
                   {/* Background Video */}
                   <video
-                    ref={(el) => (videoRefs.current[index] = el)}
+                    ref={(el) => {videoRefs.current[index] = el}}
                     className="absolute inset-0 w-full h-full object-cover"
                     muted
                     playsInline
@@ -158,7 +158,7 @@ export default function SolutionPage() {
                   playsInline
                   loop
                   autoPlay
-                  poster={solution.image}
+                  poster={solution.poster}
                 >
                   <source src={solution.video} type="video/mp4" />
                 </video>
