@@ -96,7 +96,6 @@ export default function ContactPage() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full map-iframe"
-                  language="en"
                 />
               </div>
             </div>
@@ -106,7 +105,7 @@ export default function ContactPage() {
         {/* Career */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+            <div className=" gap-10 mb-12">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.contact.career.sectionLabel}</p>
                 <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">{t.contact.career.title}</h1>
