@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap");
+
 @custom-variant dark (&:is(.dark *));
 @custom-variant light (&:is(.light *));
 
@@ -8,11 +10,31 @@
  * - 기본: 다크 버전 (예전 느낌 유지)
  * - html에 .light 클래스를 붙이면 화이트 버전으로 전환
  */
+ html[lang="ko"] body {
+  font-family:
+    "Noto Sans KR",
+    "Pretendard",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
 
-html:lang(ko),
-html:lang(ko) * {
+html:lang(ko) body {
+  font-family:
+    "Noto Sans KR",
+    "Pretendard",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+
   word-break: keep-all;
   overflow-wrap: break-word;
+}
+html:lang(ko) h1,
+html:lang(ko) h2 {
+  line-height: 1.25;
 }
 
 :root {
