@@ -33,7 +33,7 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-6">
-                <div className="p-6 bg-card border border-border shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md">
+                <div className="p-6 bg-card border border-border shadow-sm transition-[transform,border-color,box-shadow] hover:-translate-y-0.5 hover:border-accent hover:shadow-md">
                   <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     {t.about.whyChoose.sectionLabel}
                   </p>
@@ -45,7 +45,7 @@ export default function AboutPage() {
 
                 <div className="grid gap-6 md:grid-cols-2">
                   {t.about.whyChoose.cards.map((card) => (
-                    <div key={card.title} className="p-6 bg-card border border-border transition hover:-translate-y-0.5 hover:border-accent hover:shadow-sm">
+                    <div key={card.title} className="p-6 bg-card border border-border transition-[transform,border-color,box-shadow] hover:-translate-y-0.5 hover:border-accent hover:shadow-sm">
                       <h3 className="text-sm font-semibold tracking-wide text-muted-foreground">{card.title}</h3>
                       <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                         {card.description}
