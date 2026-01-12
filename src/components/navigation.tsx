@@ -9,8 +9,8 @@ import { getLocale, setLocale, t, type Locale } from "@/lib/i18n"
 const localeLabels: Record<Locale, string> = {
   en: "EN",
   ko: "KO",
-  ja: "JA",
-  fr: "FR",
+  // ja: "JA",
+  // fr: "FR",
 }
 
 const localeNames: Record<Locale, string> = {
