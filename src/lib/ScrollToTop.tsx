@@ -1,12 +1,12 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
+import { scrollToTop } from "./utils"
 
 export default function ScrollToTop() {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    // Instantly scroll to top on route change
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    scrollToTop("auto")
   }, [pathname])
 
   return null

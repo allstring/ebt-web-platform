@@ -1,13 +1,8 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import categoryPerceiveImg from "@/assets/images/perceive_bg2.jpg"
 import eseaRecImg from "@/assets/images/perceive2.jpg"
 export default function DetailEwsPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
-
-      <main className="flex-1 pt-16">
+    <div className="pt-16">
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* 제목 */}
@@ -216,9 +211,6 @@ export default function DetailEwsPage() {
             </div>
           </div>
         </section>
-      </main>
-
-      <Footer />
     </div>
   )
 }

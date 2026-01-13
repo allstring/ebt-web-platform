@@ -1,23 +1,26 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { Menu, Sun, Moon, X, Globe } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from "react-router-dom"
+
+import { cn, scrollToTop } from "@/lib/utils"
 import { useLocale, type Locale } from "@/lib/i18n"
+import { useIsMobile } from "@/hooks/use-mobile"
+
+
+import LogoLight from "@/assets/images/navigation/EBT-logo.svg?react"
+import LogoDark from "@/assets/images/navigation/EBT-logo--dark.svg?react"
+/* ==========================================================================
+   Constants
+   ========================================================================== */
 
 const localeLabels: Record<Locale, string> = {
   en: "EN",
   ko: "KO",
-  // ja: "JA",
-  // fr: "FR",
 }
 
 const localeNames: Record<Locale, string> = {
   en: "English",
   ko: "한국어",
-  // ja: "日本語",
-  // fr: "Français",
 }
 
 const navItems = [
@@ -28,35 +31,44 @@ const navItems = [
   { key: "contact" as const, href: "/contact" },
 ]
 
+/* ==========================================================================
+   Navigation Component
+   ========================================================================== */
+
 export function Navigation() {
   const location = useLocation()
   const pathname = location.pathname
+  const isMobile = useIsMobile()
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isLight, setIsLight] = useState(false)
-  const { locale: currentLocale, setLocale, t } = useLocale()
+  const [isLight, setIsLight] = useState(
+    () => document.documentElement.classList.contains("light")
+  )
   const [localeMenuOpen, setLocaleMenuOpen] = useState(false)
 
+  const { locale: currentLocale, setLocale, t } = useLocale()
+
+  // Close mobile menu when switching to desktop
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+    if (!isMobile) {
+      setMobileMenuOpen(false)
     }
+  }, [isMobile])
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // 현재 html의 .light 클래스 상태를 읽어서 버튼 UI와 동기화
+  // Scroll detection
   useEffect(() => {
-    if (typeof document === "undefined") return
-    setIsLight(document.documentElement.classList.contains("light"))
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const toggleTheme = () => {
-    if (typeof document === "undefined") return
-
     const html = document.documentElement
     const nextIsLight = !html.classList.contains("light")
+
+    // 테마 전환 전 transition 클래스 추가
+    html.classList.add("theme-transition")
 
     if (nextIsLight) {
       html.classList.add("light")
@@ -67,14 +79,16 @@ export function Navigation() {
     }
 
     setIsLight(nextIsLight)
+
+    // transition 완료 후 클래스 제거 (global.css의 duration과 동일하게)
+    setTimeout(() => {
+      html.classList.remove("theme-transition")
+    }, 1500)
   }
 
   const handleNavClick = (href: string) => {
-    if (typeof window === "undefined") return
-
-    // 같은 페이지로 이동할 때는 맨 위로 스크롤만
     if (pathname === href) {
-      window.scrollTo({ top: 0, behavior: "smooth" })
+      scrollToTop()
     }
   }
 
@@ -84,33 +98,29 @@ export function Navigation() {
   }
 
   return (
-    <header className={cn(
-      "fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300",
-      isScrolled ? "bg-background/80 backdrop-blur-md" : "bg-background/20"
-    )}>
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300",
+        isScrolled ? "bg-background/80 backdrop-blur-md" : "bg-background/20"
+      )}
+    >
       <nav className="mx-auto max-w-7xl px-6 lg:px-8 py-4">
         <div className="flex h-16 items-center justify-between gap-4">
+          {/* Logo */}
           <Link
             to="/"
             onClick={() => handleNavClick("/")}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 mx-6"
           >
-            {/* Dark theme logo - hidden in light mode */}
-            <img
-              src="/EBT_logo.svg"
-              alt="EBTech"
-              className="h-6 w-auto object-contain block light:hidden"
-            />
-            {/* Light theme logo - only shown in light mode */}
-            <img
-              src="/EBT_logo_white.svg"
-              alt="EBTech"
-              className="h-6 w-auto object-contain hidden light:block"
-            />
+            {isLight ? (
+              <LogoDark className="h-6 w-auto object-contain" />
+            ) : (
+              <LogoLight className="h-6 w-auto object-contain" />
+            )}
             <span className="sr-only">EBTech</span>
           </Link>
 
-          {/* Desktop navigation */}
+          {/* Desktop Navigation */}
           <div className="hidden flex-1 items-center justify-center lg:flex lg:gap-x-10">
             {navItems.map((item) => (
               <Link
@@ -119,7 +129,9 @@ export function Navigation() {
                 onClick={() => handleNavClick(item.href)}
                 className={cn(
                   "text-lg font-semibold transition-colors hover:text-foreground",
-                  pathname === item.href ? "text-foreground" : "text-foreground/70",
+                  pathname === item.href
+                    ? "text-foreground"
+                    : "text-foreground/70"
                 )}
               >
                 {t.nav[item.key]}
@@ -127,8 +139,9 @@ export function Navigation() {
             ))}
           </div>
 
+          {/* Actions */}
           <div className="flex items-center gap-2">
-            {/* Language selector */}
+            {/* Language Selector */}
             <div className="relative">
               <button
                 type="button"
@@ -137,8 +150,11 @@ export function Navigation() {
                 aria-label={t.nav.selectLanguage}
               >
                 <Globe className="h-4 w-4" />
-                <span className="text-sm font-medium">{localeLabels[currentLocale]}</span>
+                <span className="text-sm font-medium">
+                  {localeLabels[currentLocale]}
+                </span>
               </button>
+
               {localeMenuOpen && (
                 <>
                   <div
@@ -153,7 +169,9 @@ export function Navigation() {
                         onClick={() => handleLocaleChange(locale)}
                         className={cn(
                           "w-full px-4 py-2 text-left text-sm transition-colors hover:bg-accent/30",
-                          currentLocale === locale ? "text-foreground font-medium" : "text-muted-foreground"
+                          currentLocale === locale
+                            ? "text-foreground font-medium"
+                            : "text-muted-foreground"
                         )}
                       >
                         {localeNames[locale]}
@@ -164,29 +182,37 @@ export function Navigation() {
               )}
             </div>
 
-            {/* Theme toggle button */}
+            {/* Theme Toggle */}
             <button
               type="button"
               onClick={toggleTheme}
               className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/60 text-foreground shadow-sm transition-colors hover:bg-accent/30"
               aria-label={isLight ? t.nav.switchToDark : t.nav.switchToLight}
             >
-              {isLight ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+              {isLight ? (
+                <Moon className="h-4 w-4" />
+              ) : (
+                <Sun className="h-4 w-4" />
+              )}
             </button>
 
-            {/* Mobile menu button */}
+            {/* Mobile Menu Toggle */}
             <button
               type="button"
               className="lg:hidden p-2 text-muted-foreground hover:text-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">{t.nav.openMenu}</span>
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
 
-        {/* Mobile menu backdrop */}
+        {/* Mobile Menu Backdrop */}
         {mobileMenuOpen && (
           <div
             className="fixed inset-0 z-40 lg:hidden"
@@ -194,13 +220,11 @@ export function Navigation() {
           />
         )}
 
-        {/* Mobile navigation */}
+        {/* Mobile Navigation */}
         <div
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-300 ease-out relative z-50",
-            mobileMenuOpen
-              ? "max-h-96 opacity-100"
-              : "max-h-0 opacity-0"
+            mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           )}
         >
           <div className="py-4 mt-2 rounded-xl bg-background/95 backdrop-blur-lg border border-border shadow-lg">
@@ -218,7 +242,7 @@ export function Navigation() {
                     "hover:bg-accent/50 hover:translate-x-1",
                     pathname === item.href
                       ? "text-foreground bg-accent/30"
-                      : "text-foreground/70",
+                      : "text-foreground/70"
                   )}
                   style={{
                     transitionDelay: mobileMenuOpen ? `${index * 50}ms` : "0ms",

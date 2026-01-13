@@ -1,5 +1,3 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Check } from "lucide-react"
 
 import { ApplicationItem } from "@/components/application-item"
@@ -17,10 +15,7 @@ import networkImg from "@/assets/images/ncm_network.png"
 
 export default function DetailEwsPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
-
-      <main className="flex-1 pt-16">
+    <div className="pt-16">
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* 제목 */}
@@ -396,9 +391,6 @@ export default function DetailEwsPage() {
             </div>
           </div>
         </section>
-      </main>
-
-      <Footer />
     </div>
   )
 }

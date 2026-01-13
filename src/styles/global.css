@@ -6,40 +6,31 @@
 @custom-variant dark (&:is(.dark *));
 @custom-variant light (&:is(.light *));
 
-/* EBTech theme
- * - 기본: 다크 버전 (예전 느낌 유지)
- * - html에 .light 클래스를 붙이면 화이트 버전으로 전환
- */
- html[lang="ko"] body {
-  font-family:
-    "Noto Sans KR",
-    "Pretendard",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-}
+/* ==========================================================================
+   EBTech Theme
+   - 기본: 다크 버전
+   - html에 .light 클래스를 붙이면 라이트 버전으로 전환
+   ========================================================================== */
+
+/* Korean Typography
+   ========================================================================== */
 
 html:lang(ko) body {
-  font-family:
-    "Noto Sans KR",
-    "Pretendard",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-
+  font-family: "Noto Sans KR", "Pretendard", system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
+
 html:lang(ko) h1,
 html:lang(ko) h2 {
   line-height: 1.25;
 }
 
+/* Theme Variables - Dark (Default)
+   ========================================================================== */
+
 :root {
-  /* word-break: keep-all !important; */
-  /* 기존 다크 톤 (예전 코드 값) */
   --background: oklch(0.13 0.01 250);
   --foreground: oklch(0.95 0 0);
   --card: oklch(0.16 0.01 250);
@@ -75,22 +66,22 @@ html:lang(ko) h2 {
   --sidebar-ring: oklch(0.65 0.12 200);
 }
 
+/* Theme Variables - Light
+   ========================================================================== */
+
 .light {
-  /* Light theme (white version) */
   --background: oklch(0.985 0 0);
   --foreground: oklch(0.2 0.03 250);
   --card: oklch(0.97 0 0);
   --card-foreground: oklch(0.18 0 260);
   --popover: oklch(0.99 0 0);
   --popover-foreground: oklch(0.18 0 260);
-  /* 조금 더 눈에 띄는 블루톤 */
   --primary: oklch(0.72 0.16 250);
   --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.95 0 0);
   --secondary-foreground: oklch(0.32 0 260);
   --muted: oklch(0.94 0 0);
   --muted-foreground: oklch(0.47 0.02 250);
-  /* 하늘색이 더 잘 보이게 채도/명도 조정 */
   --accent: oklch(0.78 0.15 240);
   --accent-foreground: oklch(0.22 0.03 250);
   --destructive: oklch(0.6 0.245 27.325);
@@ -113,6 +104,9 @@ html:lang(ko) h2 {
   --sidebar-border: oklch(0.9 0 0);
   --sidebar-ring: oklch(0.72 0.12 200);
 }
+
+/* Tailwind Theme Configuration
+   ========================================================================== */
 
 @theme inline {
   --font-sans: "Inter", "Geist", "Geist Fallback", system-ui, sans-serif;
@@ -155,6 +149,9 @@ html:lang(ko) h2 {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Base Styles
+   ========================================================================== */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -164,7 +161,24 @@ html:lang(ko) h2 {
   }
 }
 
-/* Map iframe - 기본(다크)에서는 반전 + 콘트라스트, 라이트 모드에서는 원본 */
+/* Theme Transition
+   ========================================================================== */
+
+@layer base {
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition-property: color, background-color, border-color, fill, stroke, filter;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+  }
+}
+
+/* Utilities
+   ========================================================================== */
+
+/* Map iframe: 다크 모드에서 반전, 라이트 모드에서 원본 */
 .map-iframe {
   filter: invert(90%) contrast(90%);
 }
@@ -173,7 +187,7 @@ html:lang(ko) h2 {
   filter: none;
 }
 
-/* Reduce text jank during transform animations */
+/* 애니메이션 중 텍스트 렌더링 최적화 */
 .preserve-text-rendering {
   will-change: transform, opacity;
   -webkit-font-smoothing: antialiased;
@@ -182,3 +196,30 @@ html:lang(ko) h2 {
   transform: translateZ(0);
 }
 
+/* Hero Section Fade-in Animations
+   ========================================================================== */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-fade-in-delay-1 {
+  opacity: 0;
+  animation: fade-in 0.8s ease-out 0.2s forwards;
+}
+
+.animate-fade-in-delay-2 {
+  opacity: 0;
+  animation: fade-in 0.8s ease-out 0.4s forwards;
+}

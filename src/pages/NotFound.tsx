@@ -1,17 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 import { ArrowLeft, Home } from "lucide-react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { useLocale } from "@/lib/i18n"
 
 export default function NotFound() {
   const { t } = useLocale()
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
-
-      <main className="flex-1 flex items-center justify-center pt-16">
+    <div className="flex-1 flex items-center justify-center pt-16">
         <div className="mx-auto max-w-2xl px-6 lg:px-8 text-center">
           <p className="text-9xl font-bold text-muted-foreground/30">404</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
@@ -35,9 +30,6 @@ export default function NotFound() {
             </Button>
           </div>
         </div>
-      </main>
-
-      <Footer />
     </div>
   )
 }

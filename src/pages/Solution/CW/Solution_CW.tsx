@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { ProductGrid } from "@/components/product-card"
 import categoryCpxImg from "@/assets/images/category-cpx.jpg"
@@ -48,10 +46,7 @@ const cwProducts = [{
 
 export default function ChemicalWarfarePage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
-
-      <main className="flex-1 pt-16">
+    <div className="pt-16">
         {/* Header */}
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -155,9 +150,6 @@ export default function ChemicalWarfarePage() {
             </div>
           </div>
         </section>
-      </main>
-
-      <Footer />
     </div>
   )
 }

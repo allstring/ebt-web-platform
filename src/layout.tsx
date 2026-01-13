@@ -1,19 +1,35 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
+
 import "@/styles/global.css"
 import { BackToTopButton } from "@/components/back-to-top-button"
 import { getLocale } from "@/lib/i18n"
+
+// Preload critical images
+const PRELOAD_IMAGES = ["/EBT_logo.svg", "/EBT_logo_white.svg"]
+
+function preloadImages(urls: string[]) {
+  urls.forEach((url) => {
+    const img = new Image()
+    img.src = url
+  })
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = getLocale()
     document.body.classList.add("font-sans", "antialiased")
 
-    // 초기 테마 설정: localStorage > 시스템 설정 > 기본 다크
+    // Preload images on mount
+    preloadImages(PRELOAD_IMAGES)
+
+    // Theme: localStorage > system preference > dark (default)
     try {
       const storedTheme = window.localStorage.getItem("theme")
-      const systemPrefersLight = window.matchMedia?.("(prefers-color-scheme: light)").matches
-      // 기본은 다크, light일 때만 .light 클래스 사용
-      const isLight = storedTheme === "light" || (!storedTheme && systemPrefersLight)
+      const systemPrefersLight = window.matchMedia?.(
+        "(prefers-color-scheme: light)"
+      ).matches
+      const isLight =
+        storedTheme === "light" || (!storedTheme && systemPrefersLight)
 
       if (isLight) {
         document.documentElement.classList.add("light")
@@ -21,7 +37,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         document.documentElement.classList.remove("light")
       }
     } catch {
-      // 실패해도 렌더링에는 영향 없도록 무시
+      // Ignore - doesn't affect rendering
     }
   }, [])
 

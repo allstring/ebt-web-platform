@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { ArrowUp } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, scrollToTop } from "@/lib/utils"
 
 export function BackToTopButton() {
   const [visible, setVisible] = useState(false)
@@ -16,15 +16,10 @@ export function BackToTopButton() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToTop = () => {
-    if (typeof window === "undefined") return
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
   return (
     <button
       type="button"
-      onClick={scrollToTop}
+      onClick={() => scrollToTop()}
       aria-label="Back to top"
       className={cn(
         "fixed right-4 bottom-4 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-lg backdrop-blur-md transition-all duration-300",
