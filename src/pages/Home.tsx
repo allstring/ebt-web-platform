@@ -1,10 +1,13 @@
 // ============================================================================
 // Home Page
-// 메인 랜딩 페이지 - 회사 소개 및 솔루션 개요
+// 메인 랜딩 페이지 - 회사 소개 및 솔루션 개요 (GSAP 애니메이션)
 // ============================================================================
 
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Settings, Shield, Zap, Target, Users, Wrench } from "lucide-react"
+import { gsap } from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger"
 
 import { Button } from "@/components/ui/button"
 import { useLocale } from "@/lib/i18n"
@@ -12,6 +15,8 @@ import { useLocale } from "@/lib/i18n"
 // Assets
 import videoPosterImg from "@/assets/images/home/hero-video-poster.webp"
 import heroMainImg from "@/assets/images/home/hero-main.webp"
+
+gsap.registerPlugin(ScrollTrigger)
 
 // ============================================================================
 // 상수 정의
@@ -33,9 +38,41 @@ const CAPABILITY_ICONS = [Settings, Shield, Zap, Target, Users, Wrench] as const
 
 function HeroSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const desc1Ref = useRef<HTMLParagraphElement>(null)
+  const desc2Ref = useRef<HTMLParagraphElement>(null)
+  const ctaRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 타이틀 애니메이션
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
+      )
+
+      // 설명 텍스트 순차 등장
+      gsap.fromTo(
+        [desc1Ref.current, desc2Ref.current],
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.15, delay: 0.4 }
+      )
+
+      // CTA 버튼 등장
+      gsap.fromTo(
+        ctaRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.8 }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center pt-16">
       {/* 배경 비디오 */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -54,19 +91,28 @@ function HeroSection() {
 
       {/* 콘텐츠 */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-balance max-w-4xl mx-auto animate-fade-in">
+        <h1
+          ref={titleRef}
+          className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-balance max-w-4xl mx-auto"
+        >
           {t.home.hero.title}
         </h1>
 
-        <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in-delay-1">
+        <p
+          ref={desc1Ref}
+          className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+        >
           {t.home.hero.description1}
         </p>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in-delay-1">
+        <p
+          ref={desc2Ref}
+          className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+        >
           {t.home.hero.description2}
         </p>
 
         {/* CTA 버튼 */}
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2">
+        <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
           <Button
             asChild
             size="lg"
@@ -98,12 +144,55 @@ function HeroSection() {
 
 function FeaturedProductSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 텍스트 영역 등장
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, x: -60 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      )
+
+      // 이미지 영역 등장
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, x: 60 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <div className="mt-16 mb-20">
+    <div ref={sectionRef} className="mt-16 mb-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center p-8 lg:p-12 bg-card border border-border rounded-lg hover:border-accent/30 transition-colors duration-300">
         {/* 텍스트 영역 */}
-        <div>
+        <div ref={textRef}>
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.home.featured.label}
           </p>
@@ -142,7 +231,10 @@ function FeaturedProductSection() {
         </div>
 
         {/* 이미지 영역 */}
-        <div className="relative aspect-[4/3] bg-secondary/50 border border-border rounded-lg overflow-hidden group">
+        <div
+          ref={imageRef}
+          className="relative aspect-[4/3] bg-secondary/50 border border-border rounded-lg overflow-hidden group"
+        >
           <img
             src={heroMainImg}
             alt={t.home.featured.imageAlt}
@@ -170,7 +262,7 @@ function SolutionCard({ title, description, href, index, learnMoreText }: Soluti
   return (
     <Link
       to={href}
-      className="group preserve-text-rendering relative p-8 bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 ease-out transform-gpu hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl hover:border-accent/30"
+      className="solution-card group preserve-text-rendering relative p-8 bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 ease-out transform-gpu hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl hover:border-accent/30"
     >
       {/* 인덱스 번호 */}
       <div className="flex items-center gap-4 mb-6">
@@ -204,12 +296,56 @@ function SolutionCard({ title, description, href, index, learnMoreText }: Soluti
 
 function SolutionsSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 섹션 헤더 등장
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      )
+
+      // 솔루션 카드 순차 등장
+      gsap.fromTo(
+        ".solution-card",
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 85%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32 border-t border-border">
+    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
-        <div className="max-w-2xl">
+        <div ref={headerRef} className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.home.solutions.sectionLabel}
           </p>
@@ -222,7 +358,7 @@ function SolutionsSection() {
         <FeaturedProductSection />
 
         {/* 솔루션 카드 그리드 */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div ref={cardsRef} className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {t.home.solutions.items.map((solution, index) => (
             <SolutionCard
               key={solution.title}
@@ -252,9 +388,33 @@ interface CapabilityCardProps {
 
 function CapabilityCard({ title, description, index, isEven }: CapabilityCardProps) {
   const Icon = CAPABILITY_ICONS[index]
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, x: isEven ? -80 : 80 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: "top 85%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      )
+    }, cardRef)
+
+    return () => ctx.revert()
+  }, [isEven])
 
   return (
     <div
+      ref={cardRef}
       className={`group flex flex-col lg:flex-row gap-8 lg:gap-12 items-center ${
         isEven ? "lg:flex-row" : "lg:flex-row-reverse"
       }`}
@@ -305,12 +465,35 @@ function CapabilityCard({ title, description, index, isEven }: CapabilityCardPro
 
 function CapabilitiesSection() {
   const { t } = useLocale()
+  const headerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      )
+    }, headerRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
     <section className="py-24 lg:py-32 border-t border-border relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
-        <div className="max-w-3xl space-y-4 mb-20 text-center mx-auto">
+        <div ref={headerRef} className="max-w-3xl space-y-4 mb-20 text-center mx-auto">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.home.capabilities.sectionLabel}
           </p>
@@ -345,10 +528,34 @@ function CapabilitiesSection() {
 
 function CTASection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32 bg-card border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-card border-t border-border">
+      <div ref={contentRef} className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">
           {t.home.cta.title}
         </h2>
