@@ -13,7 +13,8 @@ import { Button } from "@/components/ui/button"
 import { useLocale } from "@/lib/i18n"
 
 // Assets
-import videoPosterImg from "@/assets/images/home/hero-video-poster.webp"
+import heroVideo from "@/assets/videos/home/hero-video.webm"
+import heroVideoPosterImg from "@/assets/images/home/hero-video-poster.webp"
 import heroMainImg from "@/assets/images/home/hero-main.webp"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -76,14 +77,14 @@ function HeroSection() {
       {/* 배경 비디오 */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        poster={videoPosterImg}
+        poster={heroVideoPosterImg}
         autoPlay
         muted
         loop
         playsInline
         aria-hidden="true"
       >
-        <source src="src/assets/videos/home/hero-video.webm" type="video/mp4" />
+        <source src={heroVideo} type="video/webm" />
       </video>
 
       {/* 오버레이 */}
