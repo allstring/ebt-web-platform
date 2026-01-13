@@ -209,7 +209,7 @@ export default function PESPage() {
 
       // 두 번째 섹션 문장 애니메이션 (줄 단위 순차 페이드인)
       const lines = gsap.utils.toArray<HTMLElement>(".fade-line")
-      lines.forEach((lineEl, i) => {
+      lines.forEach((lineEl) => {
         const split = new SplitText(lineEl, {
           type: "words",
           wordsClass: "inline-block",
