@@ -7,7 +7,7 @@ import categoryMesImg from "@/assets/images/category-mes.png"
 import categoryPerceiveImg from "@/assets/images/category-perceive.jpg"
 import categoryResolveImg from "@/assets/images/category-resolve.jpg"
 import categoryLocateTImg from "@/assets/images/category-locate.jpg"
-
+import categoryPesImg from "@/assets/images/category-pes.png"
 const systemComponents = [
   {
     name: "Signal Intelligence",
@@ -37,6 +37,11 @@ const ewProducts = [{
   subtitle: "Drone detection and tracking system",
   imageSrc: categoryMesImg,
   href: "eBT-MES",
+},{
+  title: "eBT-PES",
+  subtitle: "Portable RF Scanner",
+  imageSrc: categoryPesImg,
+  href: "eBT-PES",
 },{
   title: "PERCEIVE",
   subtitle: "INTEGRATED WIDEBAND SENSOR",

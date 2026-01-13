@@ -14,6 +14,7 @@ import Solution_BW from "./pages/Solution/BW/Solution_BW"
 
 import Detail_EWS from "./pages/Solution/EW/line_up/Detail_ews"
 import Detail_MES from "./pages/Solution/EW/line_up/Detail_mes"
+import Detail_PES from "./pages/Solution/EW/line_up/PESPage"
 import Detail_PERCEIVE from "./pages/Solution/EW/line_up/Detail_perceive"
 import Detail_RESOLVE from "./pages/Solution/EW/line_up/Detail_resolve"
 import Detail_LOCATE from "./pages/Solution/EW/line_up/Detail_locate"
@@ -40,6 +41,7 @@ export default function AppRoutes() {
         <Route path="solution/electronic-warfare" element={<Solution_EW />} />
         <Route path="solution/electronic-warfare/GoldenBat-EWS" element={<Detail_EWS />} />
         <Route path="solution/electronic-warfare/eBT-MES" element={<Detail_MES />} />
+        <Route path="solution/electronic-warfare/eBT-PES" element={<Detail_PES />} />
         <Route path="solution/electronic-warfare/PERCEIVE" element={<Detail_PERCEIVE />} />
         <Route path="solution/electronic-warfare/RESOLVE" element={<Detail_RESOLVE />} />
         <Route path="solution/electronic-warfare/LOCATE-T" element={<Detail_LOCATE />} />
