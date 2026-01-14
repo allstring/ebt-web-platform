@@ -1,9 +1,16 @@
 // ============================================================================
 // Contact Page
-// 연락처 페이지 - 회사 위치, 연락처, 채용 정보
+// 연락처 페이지 - 회사 위치, 연락처, 채용 정보 (GSAP 애니메이션)
 // ============================================================================
 
+import { useEffect, useRef } from "react"
+import { MapPin, Phone, Mail } from "lucide-react"
+import { gsap } from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger"
+
 import { useLocale } from "@/lib/i18n"
+
+gsap.registerPlugin(ScrollTrigger)
 
 // Assets
 import icoHan from "@/assets/images/contact/ico_han.png"
@@ -27,18 +34,55 @@ const APPLICATION_DOC_FILES = [
 
 function HeroSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const labelRef = useRef<HTMLParagraphElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const descRef = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        labelRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }
+      )
+
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "expo.out", delay: 0.15 }
+      )
+
+      gsap.fromTo(
+        descRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "expo.out", delay: 0.3 }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32">
+    <section ref={sectionRef} className="py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <p
+            ref={labelRef}
+            className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+          >
             {t.contact.hero.sectionLabel}
           </p>
-          <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">
+          <h1
+            ref={titleRef}
+            className="mt-2 text-4xl md:text-5xl font-semibold tracking-tight text-foreground"
+          >
             {t.contact.hero.title}
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+          <p
+            ref={descRef}
+            className="mt-6 text-lg text-muted-foreground leading-relaxed"
+          >
             {t.contact.hero.description}
           </p>
         </div>
@@ -53,40 +97,101 @@ function HeroSection() {
 
 function LocationSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const infoRef = useRef<HTMLDivElement>(null)
+  const mapRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      gsap.fromTo(
+        infoRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: infoRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      gsap.fromTo(
+        mapRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: mapRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32 border-t border-border">
+    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
-        <div className="max-w-2xl mb-12">
+        <div ref={headerRef} className="max-w-2xl mb-12">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.contact.location.sectionLabel}
           </p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
             {t.contact.location.title}
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-4 text-muted-foreground leading-relaxed">
             {t.contact.location.description}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* 회사 정보 */}
+        {/* 연락처 정보 - 가로 3열 */}
+        <div ref={infoRef} className="mb-10">
           <CompanyInfo />
+        </div>
 
-          {/* 지도 */}
-          <div className="rounded-lg overflow-hidden shadow-lg border border-border bg-background">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1584.5348376758109!2d127.09348!3d37.411828!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca7c7e7677691%3A0x2c4282e124e93f95!2zTEgg7YyQ6rWQ7KCcMu2FjO2BrOuFuOuwuOumrCDquLDsl4XshLHsnqXshLzthLA!5e0!3m2!1sko!2skr!4v1767849458960!5m2!1sko!2skr"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full map-iframe"
-            />
-          </div>
+        {/* 지도 */}
+        <div
+          ref={mapRef}
+          className="rounded-xl overflow-hidden border border-border bg-background hover:border-accent/30 transition-colors duration-300"
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1584.5348376758109!2d127.09348!3d37.411828!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca7c7e7677691%3A0x2c4282e124e93f95!2zTEgg7YyQ6rWQ7KCcMu2FjO2BrOuFuOuwuOumrCDquLDsl4XshLHsnqXshLzthLA!5e0!3m2!1sko!2skr!4v1767849458960!5m2!1sko!2skr"
+            width="100%"
+            height="400"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full map-iframe"
+          />
         </div>
       </div>
     </section>
@@ -101,54 +206,68 @@ function CompanyInfo() {
   const { t } = useLocale()
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-xl font-semibold text-foreground mb-4">
-          {t.contact.location.companyName}
-        </h3>
-        <div className="space-y-4">
-          {/* 주소 */}
-          <div>
-            <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* 주소 */}
+      <a
+        href="https://maps.google.com/?q=경기도+성남시+분당구+판교로228번길+15"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative overflow-hidden rounded-xl bg-card p-6 border border-border hover:border-accent/50 hover:-translate-y-0.5 transition-all duration-300"
+      >
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+            <MapPin className="w-5 h-5 text-accent" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
               {t.contact.location.addressLabel}
             </p>
             <p className="text-foreground leading-relaxed text-sm">
               {t.contact.location.address}
             </p>
           </div>
+        </div>
+      </a>
 
-          {/* 전화번호 */}
-          <div>
-            <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">
+      {/* 전화번호 */}
+      <a
+        href={`tel:${t.contact.location.phone}`}
+        className="group relative overflow-hidden rounded-xl bg-card p-6 border border-border hover:border-accent/50 hover:-translate-y-0.5 transition-all duration-300"
+      >
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+            <Phone className="w-5 h-5 text-accent" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
               {t.contact.location.phoneLabel}
             </p>
-            <a
-              href={`tel:${t.contact.location.phone}`}
-              className="text-foreground hover:text-accent transition-colors"
-            >
+            <p className="text-foreground text-sm font-medium">
               {t.contact.location.phone}
-            </a>
-          </div>
-
-          {/* 이메일 */}
-          <div>
-            <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">
-              {t.contact.location.emailLabel}
             </p>
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground mb-1">
-                {t.contact.location.emailDescription}
-              </p>
-              <a
-                href={`mailto:${t.contact.location.email}`}
-                className="text-foreground hover:text-accent transition-colors"
-              >
-                {t.contact.location.email}
-              </a>
-            </div>
           </div>
         </div>
-      </div>
+      </a>
+
+      {/* 이메일 */}
+      <a
+        href={`mailto:${t.contact.location.email}`}
+        className="group relative overflow-hidden rounded-xl bg-card p-6 border border-border hover:border-accent/50 hover:-translate-y-0.5 transition-all duration-300"
+      >
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+            <Mail className="w-5 h-5 text-accent" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+              {t.contact.location.emailLabel}
+            </p>
+            <p className="text-foreground text-sm font-medium">
+              {t.contact.location.email}
+            </p>
+          </div>
+        </div>
+      </a>
     </div>
   )
 }
