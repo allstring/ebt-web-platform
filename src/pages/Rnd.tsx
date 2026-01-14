@@ -1,10 +1,16 @@
 // ============================================================================
 // R&D Page
-// 연구개발 페이지 - 핵심 기술, 연구 분야, 개발 프로세스
+// 연구개발 페이지 - 핵심 기술, 연구 분야, 개발 프로세스 (GSAP 애니메이션)
 // ============================================================================
 
+import { useEffect, useRef } from "react"
 import { Zap, Target, Settings } from "lucide-react"
+import { gsap } from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger"
+
 import { useLocale } from "@/lib/i18n"
+
+gsap.registerPlugin(ScrollTrigger)
 
 // Assets
 import heroMainImg from "@/assets/images/rnd/hero-main.webp"
@@ -24,11 +30,34 @@ const CORE_TECH_ICONS = [Zap, Settings, Target] as const
 
 function HeroSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 텍스트 영역 등장
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+      )
+
+      // 이미지 영역 등장
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 0.3 }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32">
+    <section ref={sectionRef} className="py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="max-w-3xl">
+        <div ref={textRef} className="max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.rnd.hero.sectionLabel}
           </p>
@@ -42,7 +71,10 @@ function HeroSection() {
         </div>
 
         {/* Hero Image */}
-        <div className="mt-16 aspect-video w-full bg-secondary/50 border border-border rounded-lg overflow-hidden">
+        <div
+          ref={imageRef}
+          className="mt-16 aspect-video w-full bg-secondary/50 border border-border rounded-lg overflow-hidden"
+        >
           <img
             src={heroMainImg}
             alt={t.rnd.hero.imageAlt}
@@ -68,7 +100,7 @@ function CoreTechCard({ name, description, index }: CoreTechCardProps) {
   const Icon = CORE_TECH_ICONS[index]
 
   return (
-    <div className="p-8 bg-background border border-border hover:-translate-y-1 transition-transform">
+    <div className="core-tech-card p-8 bg-background border border-border hover:-translate-y-1 transition-transform">
       <div className="flex items-center justify-between mb-6">
         <div className="p-3 bg-accent/10 rounded-lg">
           <Icon className="w-6 h-6 text-accent" />
@@ -91,11 +123,53 @@ function CoreTechCard({ name, description, index }: CoreTechCardProps) {
 
 function CoreTechnologiesSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      gsap.fromTo(
+        ".core-tech-card",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32 bg-card border-t border-border">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="max-w-2xl mb-16">
+        <div ref={headerRef} className="max-w-2xl mb-16">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.rnd.coreTechnologies.sectionLabel}
           </p>
@@ -107,7 +181,7 @@ function CoreTechnologiesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {t.rnd.coreTechnologies.items.map((tech, index) => (
             <CoreTechCard
               key={tech.name}
@@ -134,7 +208,7 @@ interface ResearchAreaCardProps {
 
 function ResearchAreaCard({ title, description, index }: ResearchAreaCardProps) {
   return (
-    <div className="p-6 bg-card/80 backdrop-blur-sm border border-border hover:-translate-y-1 transition-transform">
+    <div className="research-area-card p-6 bg-card/80 backdrop-blur-sm border border-border hover:-translate-y-1 transition-transform">
       <span className="text-4xl font-light text-muted-foreground/50">
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -152,15 +226,58 @@ function ResearchAreaCard({ title, description, index }: ResearchAreaCardProps) 
 
 function ResearchAreasSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      gsap.fromTo(
+        ".research-area-card",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
     <section
+      ref={sectionRef}
       className="relative overflow-hidden py-24 lg:py-32 border-t border-border bg-cover bg-center"
       style={{ backgroundImage: `url(${researchBgImg})` }}
     >
       <div className="absolute inset-0 bg-background/20 light:bg-background/75 backdrop-blur-sm" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="max-w-2xl mb-16">
+        <div ref={headerRef} className="max-w-2xl mb-16">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.rnd.researchAreas.sectionLabel}
           </p>
@@ -172,7 +289,7 @@ function ResearchAreasSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {t.rnd.researchAreas.items.map((area, index) => (
             <ResearchAreaCard
               key={area.title}
@@ -201,7 +318,7 @@ interface ProcessStepCardProps {
 function ProcessStepCard({ phase, description, index, isLast }: ProcessStepCardProps) {
   return (
     <div
-      className="relative transition-all duration-300 ease-out
+      className="process-step-card relative transition-all duration-300 ease-out
                 group-hover:opacity-40 group-hover:scale-95
                 hover:!opacity-100 hover:!scale-105 hover:z-10"
     >
@@ -228,11 +345,53 @@ function ProcessStepCard({ phase, description, index, isLast }: ProcessStepCardP
 function DevelopmentProcessSection() {
   const { t } = useLocale()
   const items = t.rnd.developmentProcess.items
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const stepsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      gsap.fromTo(
+        ".process-step-card",
+        { opacity: 0, x: -20 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: stepsRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32 bg-card border-t border-border">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="max-w-2xl mb-16">
+        <div ref={headerRef} className="max-w-2xl mb-16">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.rnd.developmentProcess.sectionLabel}
           </p>
@@ -244,7 +403,7 @@ function DevelopmentProcessSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 group">
+        <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 group">
           {items.map((step, index) => (
             <ProcessStepCard
               key={step.phase}
@@ -266,12 +425,53 @@ function DevelopmentProcessSection() {
 
 function TeamSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, x: -40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, x: 40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32 border-t border-border">
+    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div>
+          <div ref={textRef}>
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               {t.rnd.team.sectionLabel}
             </p>
@@ -287,7 +487,10 @@ function TeamSection() {
           </div>
 
           {/* Team Image */}
-          <div className="aspect-[4/3] w-full bg-secondary/50 border border-border rounded-lg overflow-hidden">
+          <div
+            ref={imageRef}
+            className="aspect-[4/3] w-full bg-secondary/50 border border-border rounded-lg overflow-hidden"
+          >
             <img
               src={teamMainImg}
               alt={t.rnd.team.imageAlt}
@@ -306,11 +509,35 @@ function TeamSection() {
 
 function CommitmentSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 lg:py-32 border-t border-border">
+    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+        <div ref={contentRef} className="max-w-4xl mx-auto text-center">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.rnd.commitment.sectionLabel}
           </p>
