@@ -6,7 +6,7 @@ import { LocaleProvider } from "@/lib/i18n"
 import ScrollToTop from "@/lib/ScrollToTop"
 import Layout from "./layout"
 import AppRoutes from "./routes"
-
+import { Analytics } from "@vercel/analytics/react"
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <LocaleProvider>
@@ -16,6 +16,7 @@ createRoot(document.getElementById("root")!).render(
           <AppRoutes />
         </BrowserRouter>
       </Layout>
+      <Analytics/>
     </LocaleProvider>
   </StrictMode>
 )
