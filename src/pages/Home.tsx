@@ -3,7 +3,7 @@
 // 메인 랜딩 페이지 - 회사 소개 및 솔루션 개요 (GSAP 애니메이션)
 // ============================================================================
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useMemo } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Settings, Shield, Zap, Target, Users, Wrench } from "lucide-react"
 import { gsap } from "gsap"
@@ -11,10 +11,10 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 
 import { Button } from "@/components/ui/button"
 import { useLocale } from "@/lib/i18n"
+import DefenseRadarHero from "@/components/DefenseRadarHero"
 
 // Assets
 import heroVideo from "@/assets/videos/home/hero-video.webm"
-import heroVideoPosterImg from "@/assets/images/home/hero-video-poster.webp"
 import heroMainImg from "@/assets/images/home/hero-main.webp"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -34,108 +34,59 @@ const SOLUTION_HREFS = [
 const CAPABILITY_ICONS = [Settings, Shield, Zap, Target, Users, Wrench] as const
 
 // ============================================================================
-// Hero Section - 메인 비주얼 영역
+// Hero Section - DefenseRadarHero를 활용한 메인 비주얼 영역
 // ============================================================================
+
+/** 레이더 타겟 기본 설정 (링크, 각도, 거리) */
+const RADAR_TARGET_CONFIG = [
+  { link: "/solution/electronic-warfare", angle: 45, distance: 32, threat: "high" },
+  { link: "/solution/chemical-warfare", angle: 135, distance: 28, threat: "medium" },
+  { link: "/solution/biological-warfare", angle: 225, distance: 35, threat: "high" },
+  { link: "/solution", angle: 315, distance: 30, threat: "low" },
+] as const
+
+/** 레이더 타겟 라벨 */
+const RADAR_TARGET_LABELS = [
+  "ELECTRONIC WARFARE",
+  "CHEMICAL DEFENSE",
+  "BIO DEFENSE",
+  "RESOLVE",
+] as const
 
 function HeroSection() {
   const { t } = useLocale()
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const desc1Ref = useRef<HTMLParagraphElement>(null)
-  const desc2Ref = useRef<HTMLParagraphElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 타이틀 애니메이션
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
-      )
-
-      // 설명 텍스트 순차 등장
-      gsap.fromTo(
-        [desc1Ref.current, desc2Ref.current],
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.15, delay: 0.4 }
-      )
-
-      // CTA 버튼 등장
-      gsap.fromTo(
-        ctaRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.8 }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  // 솔루션과 연결된 레이더 타겟 생성
+  const radarTargets = useMemo(
+    () =>
+      RADAR_TARGET_CONFIG.map((config, index) => ({
+        id: index + 1,
+        label: RADAR_TARGET_LABELS[index],
+        description:
+          index < 3
+            ? t.home.solutions.items[index].description
+            : t.home.featured.description,
+        angle: config.angle,
+        distance: config.distance,
+        link: config.link,
+        threat: config.threat,
+      })),
+    [t]
+  )
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center pt-16">
-      {/* 배경 비디오 */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        poster={heroVideoPosterImg}
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden="true"
-      >
-        <source src={heroVideo} type="video/webm" />
-      </video>
-
-      {/* 오버레이 */}
-      <div className="absolute inset-0 bg-background/40 light:bg-background/80" />
-
-      {/* 콘텐츠 */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
-        <h1
-          ref={titleRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-balance max-w-4xl mx-auto"
-        >
-          {t.home.hero.title}
-        </h1>
-
-        <p
-          ref={desc1Ref}
-          className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-        >
-          {t.home.hero.description1}
-        </p>
-        <p
-          ref={desc2Ref}
-          className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-        >
-          {t.home.hero.description2}
-        </p>
-
-        {/* CTA 버튼 */}
-        <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            asChild
-            size="lg"
-            className="bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 hover:scale-105"
-          >
-            <Link to="/solution">
-              {t.home.hero.exploreSolutions}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="border-border hover:bg-secondary bg-transparent transition-all duration-300 hover:scale-105"
-          >
-            <Link to="/contact">{t.home.hero.contactUs}</Link>
-          </Button>
-        </div>
-      </div>
-    </section>
+    <DefenseRadarHero
+      targets={radarTargets}
+      videoSrc={heroVideo}
+      showVideo
+      showCard
+      rotationSpeed={2}
+      autoRotateInterval={4000}
+      title="ADVANCED"
+      titleAccent="DEFENSE"
+      subtitle={`${t.home.hero.description1} ${t.home.hero.description2}`}
+      statusText="TACTICAL RADAR ACTIVE"
+    />
   )
 }
 
