@@ -78,14 +78,9 @@ function HeroSection() {
     <DefenseRadarHero
       targets={radarTargets}
       videoSrc={heroVideo}
-      showVideo
-      showCard
-      rotationSpeed={2}
-      autoRotateInterval={4000}
       title="ADVANCED"
       titleAccent="DEFENSE"
       subtitle={`${t.home.hero.description1} ${t.home.hero.description2}`}
-      statusText="TACTICAL RADAR ACTIVE"
     />
   )
 }

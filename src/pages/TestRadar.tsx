@@ -12,8 +12,6 @@ export default function TestRadarPage() {
   return (
     <DefenseRadarHero
       targets={TARGETS}
-      rotationSpeed={7.0}
-      autoRotateInterval={3000}
     />
   );
 }

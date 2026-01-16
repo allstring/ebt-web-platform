@@ -2,7 +2,7 @@
 // Defense Radar Hero Refactored
 // ============================================================================
 
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Target, Activity } from "lucide-react"
 
