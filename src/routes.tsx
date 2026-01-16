@@ -24,6 +24,8 @@ import Detail_NCM from "./pages/Solution/CW/line_up/Detail_ncm"
 
 import Detail_BBATS from "./pages/Solution/BW/line_up/Detail_bbats"
 
+import Test_Radar from "./pages/TestRadar"
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -54,6 +56,9 @@ export default function AppRoutes() {
         {/* Biological Warfare */}
         <Route path="solution/biological-warfare" element={<Solution_BW />} />
         <Route path="solution/biological-warfare/BIOBATS" element={<Detail_BBATS />} />
+
+        {/* For Debug */}
+        <Route path="test" element={<Test_Radar/>} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
