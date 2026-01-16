@@ -1,288 +1,301 @@
 // ============================================================================
-// Defense Radar Hero - 전술 레이더 히어로 컴포넌트
+// Defense Radar Hero Refactored
 // ============================================================================
 
-import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react"
+import { Link } from "react-router-dom"
+import { ArrowRight, Target, Activity } from "lucide-react"
 
-// --- Types ---
-interface Target {
-  id: number;
-  label: string;
-  description: string;
-  angle: number;
-  distance: number;
-  link: string;
-  threat: 'low' | 'medium' | 'high';
+// ============================================================================
+// 1. 설정 및 타입 (Configuration & Types)
+// ============================================================================
+
+export interface RadarTarget {
+  id: number
+  label: string
+  description: string
+  angle: number
+  distance: number // 0 ~ 45 (SVG radius 기준)
+  link: string
+  threat: "low" | "medium" | "high"
 }
 
 interface DefenseRadarHeroProps {
-  targets?: Target[];
-  rotationSpeed?: number;
-  autoRotateInterval?: number;
-  showCard?: boolean;
-  className?: string;
+  targets?: RadarTarget[]
+  className?: string
+  videoSrc?: string
+  title?: string
+  titleAccent?: string
+  subtitle?: string
 }
 
-// --- Constants ---
-const DEFAULT_TARGETS: Target[] = [
-  { id: 1, label: 'INTEGRATED DEFENSE', description: '지능형 통합 방어 시스템', angle: 45, distance: 32, link: '/defense', threat: 'low' },
-  { id: 2, label: 'AI SURVEILLANCE', description: '자율형 감시 정찰 솔루션', angle: 135, distance: 26, link: '/ai', threat: 'medium' },
-  { id: 3, label: 'PRECISION STRIKE', description: '초정밀 타격 유도 기술', angle: 225, distance: 38, link: '/precision', threat: 'high' },
-  { id: 4, label: 'NETWORK C4I', description: '차세대 지휘 통제 네트워크', angle: 315, distance: 30, link: '/network', threat: 'medium' },
-];
+const THEME = {
+  primary: "#22d3ee", // Cyan-400
+  secondary: "#0891b2", // Cyan-600
+  grid: "rgba(34,211,238,0.2)",
+  text: "rgba(34,211,238,0.7)",
+}
 
-const DIRECTIONS = [
-  { angle: 0, label: 'N' }, { angle: 90, label: 'E' },
-  { angle: 180, label: 'S' }, { angle: 270, label: 'W' },
-];
-
-// --- Utility ---
-const toXY = (angle: number, dist: number) => {
-  const rad = (angle - 90) * (Math.PI / 180);
-  return { x: 50 + dist * Math.cos(rad), y: 50 + dist * Math.sin(rad) };
-};
+const DEFAULT_TARGETS: RadarTarget[] = [
+  { id: 1, label: "INTEGRATED DEFENSE", description: "지능형 통합 방어 시스템", angle: 45, distance: 32, link: "/defense", threat: "low" },
+  { id: 2, label: "AI SURVEILLANCE", description: "자율형 감시 정찰 솔루션", angle: 135, distance: 26, link: "/ai", threat: "medium" },
+  { id: 3, label: "PRECISION STRIKE", description: "초정밀 타격 유도 기술", angle: 225, distance: 38, link: "/precision", threat: "high" },
+  { id: 4, label: "NETWORK C4I", description: "차세대 지휘 통제 네트워크", angle: 315, distance: 30, link: "/network", threat: "medium" },
+]
 
 // ============================================================================
-// Main Component
+// 2. 유틸리티 (Utilities)
+// ============================================================================
+
+const polarToCartesian = (angle: number, distance: number) => {
+  const rad = (angle - 90) * (Math.PI / 180)
+  return {
+    x: 50 + distance * Math.cos(rad),
+    y: 50 + distance * Math.sin(rad),
+  }
+}
+
+// ============================================================================
+// 3. 서브 컴포넌트 (Sub Components)
+// ============================================================================
+
+/** SVG 필터 및 그라디언트 정의 */
+const RadarDefinitions = () => (
+  <defs>
+    <radialGradient id="radarBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stopColor={THEME.primary} stopOpacity="0.12" />
+      <stop offset="70%" stopColor={THEME.primary} stopOpacity="0.03" />
+      <stop offset="100%" stopColor="transparent" />
+    </radialGradient>
+    <linearGradient id="sweepGradient" gradientUnits="userSpaceOnUse" x1="50" y1="50" x2="50" y2="4">
+      <stop offset="0%" stopColor={THEME.primary} stopOpacity="0" />
+      <stop offset="100%" stopColor={THEME.primary} stopOpacity="0.5" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="0.8" />
+      <feComposite in="SourceGraphic" operator="over" />
+    </filter>
+  </defs>
+)
+
+/** 레이더 배경 그리드 */
+const RadarGrid = React.memo(() => (
+  <>
+    {/* Main Circles */}
+    <circle cx="50" cy="50" r="46" fill="url(#radarBg)" stroke={THEME.grid} strokeWidth="0.4" />
+    {[11.5, 23, 34.5].map((r, i) => (
+      <circle key={i} cx="50" cy="50" r={r} fill="none" stroke={THEME.grid} strokeWidth="0.2" strokeDasharray="1.5 2.5" />
+    ))}
+    
+    {/* Cross Lines */}
+    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+      const p = polarToCartesian(angle, 46)
+      return <line key={angle} x1="50" y1="50" x2={p.x} y2={p.y} stroke={THEME.primary} strokeOpacity="0.15" strokeWidth="0.15" />
+    })}
+
+    {/* Labels */}
+    {["N", "E", "S", "W"].map((label, i) => {
+      const p = polarToCartesian(i * 90, 40)
+      return (
+        <text key={label} x={p.x} y={p.y} fill={THEME.text} fontSize="3.5" fontWeight="bold" textAnchor="middle" dominantBaseline="middle" fontFamily="monospace">
+          {label}
+        </text>
+      )
+    })}
+    
+    {/* Center Point */}
+    <circle cx="50" cy="50" r="1.2" fill={THEME.primary} filter="url(#glow)" />
+  </>
+))
+RadarGrid.displayName = "RadarGrid"
+
+/** 타겟 포인트 */
+const TargetPoint = ({ target, isActive, onHover }: { target: RadarTarget; isActive: boolean; onHover: (id: number | null) => void }) => {
+  const { x, y } = polarToCartesian(target.angle, target.distance)
+  
+  return (
+    <g
+      className="cursor-pointer transition-all duration-500"
+      style={{ opacity: isActive ? 1 : 0.4 }}
+      onMouseEnter={() => onHover(target.id)}
+      onMouseLeave={() => onHover(null)}
+      onClick={() => window.location.href = target.link}
+    >
+      <circle cx={x} cy={y} r="6" fill="transparent" /> {/* Hit Area */}
+      {isActive && (
+        <circle cx={x} cy={y} r="4" fill="none" stroke={THEME.primary} strokeWidth="0.2" className="animate-ping" style={{ transformOrigin: `${x}px ${y}px` }} />
+      )}
+      <circle cx={x} cy={y} r={isActive ? 1.8 : 1.2} fill={isActive ? THEME.primary : THEME.secondary} filter={isActive ? "url(#glow)" : "none"} />
+      <text x={x} y={y - 4} fill={isActive ? THEME.primary : THEME.text} fontSize={isActive ? 2.5 : 2} fontWeight={isActive ? "600" : "400"} textAnchor="middle" className="pointer-events-none transition-all duration-300">
+        {target.label}
+      </text>
+    </g>
+  )
+}
+
+/** 정보 패널 (좌측/상단) */
+const InfoPanel = ({ 
+  title, titleAccent, subtitle, activeTarget, isHovered 
+}: { 
+  title: string, titleAccent: string, subtitle: string, activeTarget: RadarTarget | null, isHovered: boolean 
+}) => {
+  return (
+    <div className="w-full lg:flex-1 lg:max-w-md space-y-8 order-2 lg:order-1 z-10">
+      <div className="space-y-4 text-center lg:text-left">
+        <div className="flex items-center justify-center lg:justify-start gap-2 text-xs font-mono text-cyan-500/80 tracking-widest">
+          <Activity className="w-3 h-3 animate-pulse" />
+          SYSTEM ACTIVE
+        </div>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+          {title} <br />
+          <span className="text-cyan-400">{titleAccent}</span>
+        </h1>
+        <p className="text-slate-400 leading-relaxed max-w-md mx-auto lg:mx-0">
+          {subtitle}
+        </p>
+      </div>
+
+      <Link
+        to={activeTarget?.link ?? "#"}
+        className={`hidden lg:block group relative overflow-hidden p-6 rounded-xl border bg-slate-900/50 backdrop-blur-sm transition-all duration-300 ${
+          isHovered ? "border-cyan-500/50 shadow-[0_0_20px_rgba(34,211,238,0.1)]" : "border-slate-800 hover:border-cyan-500/30"
+        }`}
+      >
+        <div className="flex justify-between items-start mb-4">
+          <span className="text-[10px] font-mono text-cyan-600 uppercase tracking-widest flex items-center gap-1">
+            <Target className="w-3 h-3" /> TRACKING
+          </span>
+          <span className="font-mono text-xs text-cyan-400">
+            ID: {activeTarget?.id.toString().padStart(3, "0")}
+          </span>
+        </div>
+        <h2 className={`text-xl font-bold mb-2 transition-colors ${isHovered ? "text-cyan-300" : "text-white group-hover:text-cyan-300"}`}>
+          {activeTarget?.label ?? "SCANNING..."}
+        </h2>
+        <p className="text-sm text-slate-400 mb-6 line-clamp-2">
+          {activeTarget?.description}
+        </p>
+        <div className="flex items-center gap-2 text-sm text-cyan-500 font-medium">
+          <span>View Details</span>
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </div>
+      </Link>
+    </div>
+  )
+}
+
+// ============================================================================
+// 4. 메인 컴포넌트 (Main Component)
 // ============================================================================
 
 export default function DefenseRadarHero({
   targets = DEFAULT_TARGETS,
-  rotationSpeed = 2.5,
-  autoRotateInterval = 3000,
-  showCard = true,
-  className = '',
+  className = "",
+  videoSrc,
+  title = "DEFENSE",
+  titleAccent = "SYSTEM",
+  subtitle = "최첨단 레이더 기술과 독보적인 통합 설계 역량으로 대한민국 방위 산업의 새로운 표준을 제시합니다.",
 }: DefenseRadarHeroProps) {
-  const [scanAngle, setScanAngle] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [scanAngle, setScanAngle] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [hoveredId, setHoveredId] = useState<number | null>(null)
+  
+  const requestRef = useRef<number>()
+  const startTimeRef = useRef<number | null>(null)
 
-  // 스캔 애니메이션
+  // 부드러운 회전 애니메이션 (requestAnimationFrame 사용)
+  const animate = useCallback((time: number) => {
+    if (!startTimeRef.current) startTimeRef.current = time
+    const progress = time - startTimeRef.current
+    // 3초(3000ms)에 한 바퀴(360도) -> 속도 조절 가능
+    setScanAngle((progress * 0.12) % 360) 
+    requestRef.current = requestAnimationFrame(animate)
+  }, [])
+
   useEffect(() => {
-    const id = setInterval(() => setScanAngle(p => (p + rotationSpeed) % 360), 30);
-    return () => clearInterval(id);
-  }, [rotationSpeed]);
+    requestRef.current = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(requestRef.current!)
+  }, [animate])
 
   // 타겟 자동 순환
   useEffect(() => {
-    const id = setInterval(() => setActiveIndex(p => (p + 1) % targets.length), autoRotateInterval);
-    return () => clearInterval(id);
-  }, [targets.length, autoRotateInterval]);
+    if (hoveredId !== null) return // 호버 중이면 자동 순환 중지
+    const id = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % targets.length)
+    }, 3000)
+    return () => clearInterval(id)
+  }, [targets.length, hoveredId])
 
-  const activeTarget = hoveredId
-    ? targets.find(t => t.id === hoveredId) || null
-    : targets[activeIndex];
-
-  const getVisibility = useCallback((id: number) => {
-    if (hoveredId === id) return { opacity: 1, active: true };
-    if (hoveredId !== null) return { opacity: 0.35, active: false };
-    if (targets[activeIndex]?.id === id) return { opacity: 1, active: true };
-    return { opacity: 0.35, active: false };
-  }, [hoveredId, activeIndex, targets]);
+  const activeTarget = hoveredId 
+    ? targets.find(t => t.id === hoveredId) ?? null 
+    : targets[activeIndex]
 
   return (
-    <section className={`relative min-h-screen w-full bg-background flex items-center justify-center overflow-hidden ${className}`}>
-      {/* Background Grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: 'linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
+    <section className={`relative min-h-screen w-full bg-slate-950 flex items-center justify-center overflow-hidden ${className}`}>
+      {/* Background Video/Image */}
+      {videoSrc && (
+        <div className="absolute inset-0 z-0 opacity-30">
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+            <source src={videoSrc} type="video/webm" />
+          </video>
+        </div>
+      )}
+      
+      {/* Grid Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] z-0 pointer-events-none" />
 
-      {/* Content */}
-      <div className={`container mx-auto px-4 sm:px-6 lg:px-12 z-10 flex flex-col items-center gap-6 lg:gap-12 ${showCard ? 'lg:flex-row lg:justify-between' : ''}`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 relative z-10">
+        
+        <InfoPanel 
+          title={title} 
+          titleAccent={titleAccent} 
+          subtitle={subtitle} 
+          activeTarget={activeTarget} 
+          isHovered={hoveredId !== null} 
+        />
 
-        {/* Info Panel */}
-        {showCard && (
-          <div className="w-full lg:flex-1 lg:max-w-md space-y-6 order-2 lg:order-1">
-            <div className="space-y-4 text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-2 font-mono text-xs tracking-widest text-muted-foreground">
-                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                SYSTEM ACTIVE
-              </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground leading-tight">
-                GLOBAL<br /><span className="text-accent">SECURITY</span>
-              </h1>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                최첨단 레이더 기술과 독보적인 통합 설계 역량으로
-                대한민국 방위 산업의 새로운 표준을 제시합니다.
-              </p>
-            </div>
+        {/* Radar Visual */}
+        <div className="relative order-1 lg:order-2 w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[500px] aspect-square">
+          {/* Decorative Rings */}
+          <div className="absolute inset-0 rounded-full border border-cyan-500/20 animate-[spin_10s_linear_infinite]" />
+          <div className="absolute inset-4 rounded-full border border-cyan-500/10 animate-[spin_15s_linear_infinite_reverse]" />
+          
+          <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_15px_rgba(34,211,238,0.3)] overflow-visible">
+            <RadarDefinitions />
+            <RadarGrid />
+            
+            {/* Sweep Beam */}
+            <g transform={`rotate(${scanAngle} 50 50)`}>
+              <path d="M 50 50 L 50 4 A 50 50 0 0 1 91.5 30 Z" fill="url(#sweepGradient)" />
+              <line x1="50" y1="50" x2="91.5" y2="30" stroke={THEME.primary} strokeWidth="0.5" />
+            </g>
 
-            {/* Desktop: Single Active Card */}
-            <Link
-              to={activeTarget?.link || '#'}
-              className={`hidden lg:block group p-6 rounded-lg border bg-card transition-all duration-300 ${
-                hoveredId ? 'border-accent/50 bg-accent/5' : 'border-border hover:border-accent/30'
-              }`}
-              onMouseEnter={() => activeTarget && setHoveredId(activeTarget.id)}
-              onMouseLeave={() => setHoveredId(null)}
-            >
-              <div className="flex justify-between items-start mb-3">
-                <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Identified Target</span>
-                <span className={`font-mono text-xs ${hoveredId ? 'text-accent' : 'text-muted-foreground'}`}>
-                  #{activeTarget?.id.toString().padStart(2, '0') || '--'}
-                </span>
-              </div>
-              <h2 className={`text-xl font-semibold mb-1 ${hoveredId ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>
-                {activeTarget?.label || 'SCANNING...'}
-              </h2>
-              <p className="text-sm text-muted-foreground mb-4">{activeTarget?.description || '타겟을 스캔 중입니다.'}</p>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground">
-                <span>View Details</span>
-                <ArrowRight className={`w-4 h-4 transition-transform ${hoveredId ? 'translate-x-1' : 'group-hover:translate-x-1'}`} />
-              </div>
-            </Link>
+            {/* Targets */}
+            {targets.map((target) => (
+              <TargetPoint
+                key={target.id}
+                target={target}
+                isActive={(hoveredId === target.id) || (hoveredId === null && activeTarget?.id === target.id)}
+                onHover={setHoveredId}
+              />
+            ))}
+          </svg>
 
-            {/* Mobile: Grid Cards */}
-            <div className="grid grid-cols-2 gap-2 lg:hidden">
-              {targets.map(t => {
-                const isActive = hoveredId === t.id || (!hoveredId && targets[activeIndex]?.id === t.id);
-                return (
-                  <Link
-                    key={t.id}
-                    to={t.link}
-                    className={`group p-3 rounded-lg border bg-card transition-all duration-300 ${
-                      isActive ? 'border-accent/50 bg-accent/5 scale-[1.02]' : 'border-border'
-                    }`}
-                    onTouchStart={() => setHoveredId(t.id)}
-                    onTouchEnd={() => setHoveredId(null)}
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <span className={`font-mono text-[10px] ${isActive ? 'text-accent' : 'text-muted-foreground'}`}>
-                        #{t.id.toString().padStart(2, '0')}
-                      </span>
-                    </div>
-                    <h3 className={`text-xs font-semibold mb-1 line-clamp-1 ${isActive ? 'text-accent' : 'text-foreground'}`}>
-                      {t.label}
-                    </h3>
-                    <p className="text-[10px] text-muted-foreground line-clamp-2">{t.description}</p>
-                  </Link>
-                );
-              })}
-            </div>
+          {/* HUD Overlay Elements */}
+          <div className="absolute top-0 right-0 font-mono text-[10px] text-cyan-500/60 text-right">
+            <div>SCAN: {Math.round(scanAngle).toString().padStart(3, "0")}°</div>
+            <div>TRK: {targets.length} OBJ</div>
           </div>
-        )}
-
-        {/* Radar */}
-        <div className={`relative order-1 lg:order-2 w-full ${showCard ? 'max-w-[320px] sm:max-w-[400px] lg:max-w-[480px]' : 'max-w-[500px]'}`}>
-          <div className="relative aspect-square">
-            {/* Decorative Rings */}
-            <div className="absolute -inset-2 sm:-inset-3 rounded-full border border-border opacity-50" />
-            <div className="absolute -inset-4 sm:-inset-6 rounded-full border border-border opacity-25" />
-
-            <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_30px_rgba(34,211,238,0.15)] overflow-visible">
-              <defs>
-                <radialGradient id="radarBg" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="rgba(34,211,238,0.12)" />
-                  <stop offset="70%" stopColor="rgba(34,211,238,0.03)" />
-                  <stop offset="100%" stopColor="transparent" />
-                </radialGradient>
-                <linearGradient id="sweep" gradientUnits="userSpaceOnUse" x1="50" y1="50" x2="50" y2="4">
-                  <stop offset="0%" stopColor="rgba(34,211,238,0)" />
-                  <stop offset="100%" stopColor="rgba(34,211,238,0.5)" />
-                </linearGradient>
-                <filter id="glow"><feGaussianBlur stdDeviation="0.8" /><feComposite in="SourceGraphic" operator="over" /></filter>
-              </defs>
-
-              {/* Background & Grid */}
-              <circle cx="50" cy="50" r="46" fill="url(#radarBg)" />
-              <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(34,211,238,0.4)" strokeWidth="0.4" />
-              {[11.5, 23, 34.5].map(r => (
-                <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="rgba(34,211,238,0.2)" strokeWidth="0.2" strokeDasharray="1.5 2.5" />
-              ))}
-              {[0, 45, 90, 135, 180, 225, 270, 315].map(a => {
-                const p = toXY(a, 46);
-                return <line key={a} x1="50" y1="50" x2={p.x} y2={p.y} stroke="rgba(34,211,238,0.15)" strokeWidth="0.15" />;
-              })}
-
-              {/* Labels */}
-              {DIRECTIONS.map(({ angle, label }) => {
-                const p = toXY(angle, 40);
-                return (
-                  <text key={angle} x={p.x} y={p.y} fill="rgba(34,211,238,0.7)" fontSize="3.5" fontFamily="monospace" fontWeight="bold" textAnchor="middle" dominantBaseline="middle">
-                    {label}
-                  </text>
-                );
-              })}
-
-              {/* Sweep */}
-              <g transform={`rotate(${scanAngle} 50 50)`}>
-                <path d="M 50 50 L 50 4 A 50 55 0 0 1 91.5 30 Z" fill="url(#sweep)" opacity="0.5" />
-                <line x1="50" y1="50" x2="91.5" y2="30" stroke="rgba(34,211,238,0.4)" strokeWidth="1.5" />
-                <circle cx="91.5" cy="30" r="0.8" fill="#67e8f9" filter="url(#glow)" />
-              </g>
-
-              {/* Targets */}
-              {targets.map(t => {
-                const p = toXY(t.angle, t.distance);
-                const { opacity, active } = getVisibility(t.id);
-                return (
-                  <g
-                    key={t.id}
-                    style={{ opacity }}
-                    className="cursor-pointer transition-opacity duration-500"
-                    onMouseEnter={() => setHoveredId(t.id)}
-                    onMouseLeave={() => setHoveredId(null)}
-                    onClick={() => (window.location.href = t.link)}
-                  >
-                    <circle cx={p.x} cy={p.y} r="5" fill="transparent" />
-                    {active && (
-                      <circle cx={p.x} cy={p.y} r="4" fill="none" stroke="#22d3ee" strokeWidth="0.2" className="animate-ping" style={{ transformOrigin: `${p.x}px ${p.y}px` }} />
-                    )}
-                    <circle cx={p.x} cy={p.y} r={active ? 1.8 : 1.2} fill={active ? '#22d3ee' : '#0891b2'} filter={active ? 'url(#glow)' : 'none'} />
-                    <text x={p.x} y={p.y - (active ? 5 : 4)} fill={active ? '#22d3ee' : 'rgba(34,211,238,0.4)'} fontSize={active ? 2.5 : 2} fontFamily="monospace" fontWeight={active ? '600' : '400'} textAnchor="middle" className="pointer-events-none">
-                      {t.label}
-                    </text>
-                  </g>
-                );
-              })}
-
-              {/* Center */}
-              <circle cx="50" cy="50" r="1.2" fill="#22d3ee" filter="url(#glow)" />
-              <circle cx="50" cy="50" r="2.5" fill="none" stroke="rgba(34,211,238,0.6)" strokeWidth="0.25" />
-            </svg>
-
-            {/* HUD Corners */}
-            <div className="absolute top-0 left-0 w-6 h-6 sm:w-10 sm:h-10 border-l-2 border-t-2 border-accent/40" />
-            <div className="absolute top-0 right-0 w-6 h-6 sm:w-10 sm:h-10 border-r-2 border-t-2 border-accent/40" />
-            <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-10 sm:h-10 border-l-2 border-b-2 border-accent/40" />
-            <div className="absolute bottom-0 right-0 w-6 h-6 sm:w-10 sm:h-10 border-r-2 border-b-2 border-accent/40" />
-
-            {/* HUD Labels */}
-            <div className="hidden sm:block absolute -top-8 left-0 font-mono text-[10px] text-accent/70 tracking-wider">
-              <div>MODE: PPI</div>
-              <div className="text-muted-foreground">RNG: 40km</div>
-            </div>
-            <div className="hidden sm:block absolute -top-8 right-0 font-mono text-[10px] text-right tracking-wider">
-              <div className="text-emerald-400 flex items-center justify-end gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />ACTIVE
-              </div>
-              <div className="text-muted-foreground">TRK: {targets.length}</div>
-            </div>
-            <div className="absolute -bottom-8 sm:-bottom-10 left-1/2 -translate-x-1/2 font-mono text-center">
-              <span className="text-accent text-lg sm:text-xl font-bold">{Math.round(scanAngle).toString().padStart(3, '0')}°</span>
-            </div>
+          
+          {/* HUD Corners */}
+          <div className="absolute inset-0 pointer-events-none">
+             {/* Left Top */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-cyan-500/30" />
+            {/* Right Bottom */}
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-cyan-500/30" />
           </div>
         </div>
       </div>
-
-      {/* Status Bar */}
-      <div className="absolute bottom-0 left-0 w-full py-3 sm:py-4 px-4 sm:px-6 flex justify-center sm:justify-between items-center border-t border-border bg-background/80 backdrop-blur-sm">
-        <div className="flex gap-4 sm:gap-8 font-mono text-[9px] sm:text-[10px] text-muted-foreground tracking-wider">
-          <span>LAT: 37.5665°N</span>
-          <span>LON: 126.9780°E</span>
-          <span className="hidden sm:inline text-accent/70">AES-256 ENCRYPTED</span>
-        </div>
-      </div>
-
-      {/* Overlays */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(34,211,238,0.1) 2px, rgba(34,211,238,0.1) 4px)' }} />
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_40%,var(--background)_100%)] opacity-60" />
     </section>
-  );
+  )
 }
