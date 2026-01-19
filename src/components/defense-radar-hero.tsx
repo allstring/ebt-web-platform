@@ -121,8 +121,8 @@ const TargetPoint = ({ target, isActive, onHover }: { target: Required<RadarTarg
 }
 
 /** 데스크탑 InfoPanel */
-const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent: string; subtitle: string; activeTarget: Required<RadarTarget> | null; isHovered: boolean; strings: RadarStrings }>(
-  ({ title, titleAccent, subtitle, activeTarget, isHovered, strings }, ref) => (
+const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent: string; subtitle: string; activeTarget: Required<RadarTarget> | null; isHovered: boolean; strings: RadarStrings; onHover: (id: number | null) => void }>(
+  ({ title, titleAccent, subtitle, activeTarget, isHovered, strings, onHover }, ref) => (
     <div ref={ref} className="w-full lg:flex-1 lg:max-w-md space-y-6 lg:space-y-8 order-2 lg:order-1 z-10">
       <div className="space-y-3 lg:space-y-4 text-center lg:text-left">
         <div className="hero-status flex items-center justify-center lg:justify-start gap-2 text-[10px] sm:text-xs text-accent tracking-widest">
@@ -136,10 +136,15 @@ const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent:
       </div>
 
       {/* 데스크탑 카드 */}
-      <Link to={activeTarget?.link ?? "#"} className={`opacity-0 hero-card hidden lg:block group p-6 rounded-xl border bg-card/80 backdrop-blur-sm transition-all duration-300 ${isHovered ? "border-accent/50 shadow-lg" : "border-border hover:border-accent/30"}`}>
+      <Link
+        to={activeTarget?.link ?? "#"}
+        className={`opacity-0 hero-card hidden lg:block group p-6 rounded-xl border bg-card/80 backdrop-blur-sm transition-all duration-300 ${isHovered ? "border-accent/50 shadow-lg" : "border-border hover:border-accent/30"}`}
+        onMouseEnter={() => activeTarget && onHover(activeTarget.id)}
+        onMouseLeave={() => onHover(null)}
+      >
         <div className="flex justify-between items-start mb-4">
           <span className="text-[10px] text-accent/80 uppercase tracking-widest flex items-center gap-1">
-            <Target className="w-3 h-3" /> {strings.tracking}
+            <Target className="w-3 h-3" /> {isHovered ? strings.tracking : strings.scanning}
           </span>
           <span className="text-xs text-accent">ID: {activeTarget?.id.toString().padStart(3, "0")}</span>
         </div>
@@ -218,11 +223,11 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
       // InfoPanel 요소들 순차 등장
       tl.fromTo(".hero-status", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.5")
       tl.fromTo(".hero-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.4")
-      tl.fromTo(".hero-subtitle", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.5")
-      tl.fromTo(".hero-card", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.3")
+      tl.fromTo(".hero-subtitle", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 }, "-=0.5")
+      tl.fromTo(".hero-card", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2 }, "-=0.3")
 
       // 모바일 타겟 카드 순차 등장
-      tl.fromTo(".mobile-target-card", { opacity: 0, y: 20, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1 }, "-=0.5")
+      tl.fromTo(".mobile-target-card", { opacity: 0, y: 20, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 5.0 }, "-=0.5")
     }, sectionRef)
 
     return () => ctx.revert()
@@ -274,7 +279,8 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
               <line x1="50" y1="50" x2="91.5" y2="30" stroke={THEME.primary} strokeWidth="0.5" />
             </g>
             {normalizedTargets.map((target) => (
-              <TargetPoint key={target.id} target={target} isActive={hoveredId === target.id || (hoveredId === null && activeTarget?.id === target.id)} onHover={setHoveredId} />
+              <TargetPoint key={target.id} target={target} isActive={hoveredId === target.id 
+                || (hoveredId === null && activeTarget?.id === target.id)} onHover={setHoveredId} />
             ))}
           </svg>
 
@@ -291,7 +297,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
 
         {/* Info */}
         <div className="order-2 lg:order-1 w-full lg:flex-1 lg:max-w-md">
-          <InfoPanel ref={infoPanelRef} title={title} titleAccent={titleAccent} subtitle={subtitle} activeTarget={activeTarget} isHovered={hoveredId !== null} strings={strings} />
+          <InfoPanel ref={infoPanelRef} title={title} titleAccent={titleAccent} subtitle={subtitle} activeTarget={activeTarget} isHovered={hoveredId !== null} strings={strings} onHover={setHoveredId} />
           <MobileTargetList ref={mobileListRef} targets={normalizedTargets} activeTarget={activeTarget} strings={strings} />
         </div>
       </div>
