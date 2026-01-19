@@ -11,7 +11,7 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 
 import { Button } from "@/components/ui/button"
 import { useLocale } from "@/lib/i18n"
-import DefenseRadarHero from "@/components/DefenseRadarHero"
+import DefenseRadarHero from "@/components/defense-radar-hero"
 
 // Assets
 import heroVideo from "@/assets/videos/home/hero-video.webm"
@@ -27,7 +27,7 @@ gsap.registerPlugin(ScrollTrigger)
 const SOLUTION_HREFS = [
   "/solution/electronic-warfare",
   "/solution/chemical-warfare",
-  "/solution/biological-warfare",
+  "/solution/counter-uas",
 ] as const
 
 /** Capabilities 섹션 아이콘 (capabilities.items 순서와 매칭) */
@@ -37,20 +37,12 @@ const CAPABILITY_ICONS = [Settings, Shield, Zap, Target, Users, Wrench] as const
 // Hero Section - DefenseRadarHero를 활용한 메인 비주얼 영역
 // ============================================================================
 
-/** 레이더 타겟 기본 설정 (링크, 각도, 거리) */
-const RADAR_TARGET_CONFIG = [
-  { link: "/solution/electronic-warfare", angle: 45, distance: 32, threat: "high" },
-  { link: "/solution/chemical-warfare", angle: 135, distance: 28, threat: "medium" },
-  { link: "/solution/biological-warfare", angle: 225, distance: 35, threat: "high" },
-  { link: "/solution", angle: 315, distance: 30, threat: "low" },
-] as const
-
-/** 레이더 타겟 라벨 */
-const RADAR_TARGET_LABELS = [
-  "ELECTRONIC WARFARE",
-  "CHEMICAL DEFENSE",
-  "BIO DEFENSE",
-  "RESOLVE",
+/** 레이더 타겟 설정 (link만 필수, angle/distance/threat은 자동 계산) */
+const RADAR_TARGETS = [
+  { label: "EW", link: "/solution/electronic-warfare" },
+  { label: "NC", link: "/solution/chemical-warfare" },
+  { label: "C-UAS", link: "/solution/counter-uas" },
+  { label: "RESOLVE", link: "/solution" },
 ] as const
 
 function HeroSection() {
@@ -59,17 +51,14 @@ function HeroSection() {
   // 솔루션과 연결된 레이더 타겟 생성
   const radarTargets = useMemo(
     () =>
-      RADAR_TARGET_CONFIG.map((config, index) => ({
+      RADAR_TARGETS.map((target, index) => ({
         id: index + 1,
-        label: RADAR_TARGET_LABELS[index],
+        label: target.label,
         description:
           index < 3
             ? t.home.solutions.items[index].description
             : t.home.featured.description,
-        angle: config.angle,
-        distance: config.distance,
-        link: config.link,
-        threat: config.threat,
+        link: target.link,
       })),
     [t]
   )
@@ -77,10 +66,11 @@ function HeroSection() {
   return (
     <DefenseRadarHero
       targets={radarTargets}
-      videoSrc={heroVideo}
-      title="ADVANCED"
-      titleAccent="DEFENSE"
+      strings={t.home.radar}
+      title="EBT"
+      titleAccent="TECHNOLOGY"
       subtitle={`${t.home.hero.description1} ${t.home.hero.description2}`}
+      videoSrc={heroVideo}
     />
   )
 }
