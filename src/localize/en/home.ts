@@ -2,9 +2,16 @@ export const home = {
   hero: {
     title: "Defense Technology for Mission-Critical Operations",
     description1: "System integration and precision engineering for electronic warfare,",
-    description2: "chemical warfare, and biological warfare.",
+    description2: "chemical warfare, and counter-UAS operations.",
     exploreSolutions: "Explore Solutions",
     contactUs: "Contact Us",
+  },
+
+  radar: {
+    systemActive: "SYSTEM ACTIVE",
+    tracking: "TRACKING",
+    scanning: "SCANNING...",
+    viewDetails: "View Details",
   },
 
   solutions: {
@@ -13,19 +20,19 @@ export const home = {
     learnMore: "Learn more",
     items: [
       {
-        title: "Electronic Warfare",
+        title: "EW (Electronic Warfare)",
         description:
           "Advanced signal processing and spectrum management systems for complex operational environments.",
       },
       {
-        title: "Chemical Warfare",
+        title: "NC (Chemical Warfare)",
         description:
           "Advanced detection, identification, and monitoring systems for chemical agents in contested and hazardous environments.",
       },
       {
-        title: "Biological Warfare",
+        title: "C-UAS (Counter-UAS)",
         description:
-          "High-sensitivity detection and analysis systems designed to identify biological threats and support rapid response operations.",
+          "Early detection, identification, and neutralization of unmanned aerial threats to protect critical assets and personnel.",
       },
     ],
   },
@@ -34,7 +41,7 @@ export const home = {
     label: "Featured Product",
     title: "RESOLVE",
     description:
-      "Our flagship integrated defense platform, combining advanced sensor fusion with real-time threat analysis and response coordination.",
+      "Combining advanced sensor fusion with real-time threat analysis and response coordination.",
     features: [
       "Multi-domain threat detection",
       "Real-time data integration",

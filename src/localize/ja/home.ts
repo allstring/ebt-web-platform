@@ -7,6 +7,13 @@ export const home = {
     contactUs: "お問い合わせ",
   },
 
+  radar: {
+    systemActive: "システム稼働中",
+    tracking: "追跡中",
+    scanning: "スキャン中...",
+    viewDetails: "詳細を見る",
+  },
+
   solutions: {
     sectionLabel: "ソリューション",
     sectionTitle: "統合防衛システム",
