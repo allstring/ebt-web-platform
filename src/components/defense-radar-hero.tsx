@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react"
+import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Target, Activity } from "lucide-react"
 import { gsap } from "gsap"
@@ -109,7 +109,7 @@ RadarGrid.displayName = "RadarGrid"
 const TargetPoint = ({ target, isActive, onHover }: { target: Required<RadarTarget>; isActive: boolean; onHover: (id: number | null) => void }) => {
   const { x, y } = polarToCartesian(target.angle, target.distance)
   return (
-    <g className="cursor-pointer transition-all duration-3000" style={{ opacity: isActive ? 1 : 0.4 }} onMouseEnter={() => onHover(target.id)} onMouseLeave={() => onHover(null)} onClick={() => (window.location.href = target.link)}>
+    <g className="cursor-pointer transition-all duration-1500" style={{ opacity: isActive ? 1 : 0.4 }} onMouseEnter={() => onHover(target.id)} onMouseLeave={() => onHover(null)} onClick={() => (window.location.href = target.link)}>
       <circle cx={x} cy={y} r="6" fill="transparent" />
       {isActive && <circle cx={x} cy={y} r="4" fill="none" stroke={THEME.primary} strokeWidth="0.2" className="animate-ping" style={{ transformOrigin: `${x}px ${y}px` }} />}
       <circle cx={x} cy={y} r={isActive ? 1.8 : 1.2} fill={THEME.primary} filter={isActive ? "url(#glow)" : "none"} />
@@ -136,7 +136,7 @@ const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent:
       </div>
 
       {/* 데스크탑 카드 */}
-      <Link to={activeTarget?.link ?? "#"} className={`hero-card hidden lg:block group p-6 rounded-xl border bg-card/80 backdrop-blur-sm transition-all duration-300 ${isHovered ? "border-accent/50 shadow-lg" : "border-border hover:border-accent/30"}`}>
+      <Link to={activeTarget?.link ?? "#"} className={`opacity-0 hero-card hidden lg:block group p-6 rounded-xl border bg-card/80 backdrop-blur-sm transition-all duration-300 ${isHovered ? "border-accent/50 shadow-lg" : "border-border hover:border-accent/30"}`}>
         <div className="flex justify-between items-start mb-4">
           <span className="text-[10px] text-accent/80 uppercase tracking-widest flex items-center gap-1">
             <Target className="w-3 h-3" /> {strings.tracking}
@@ -208,7 +208,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
   const normalizedTargets = normalizeTargets(targets)
 
   // GSAP 입장 애니메이션
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
 
@@ -243,7 +243,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
   // 타겟 자동 순환
   useEffect(() => {
     if (hoveredId !== null || normalizedTargets.length === 0) return
-    const id = setInterval(() => setActiveIndex((prev) => (prev + 1) % normalizedTargets.length), 2000)
+    const id = setInterval(() => setActiveIndex((prev) => (prev + 1) % normalizedTargets.length), 2500)
     return () => clearInterval(id)
   }, [normalizedTargets.length, hoveredId])
 
