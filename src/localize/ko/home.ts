@@ -20,25 +20,30 @@ export const home = {
     learnMore: "자세히 보기",
     items: [
       {
-        title: "EW (전자기전)",
+        label: "EW",
+        title: "전자기전",
         description:
           "복잡한 전장 환경에서도 우위를 점할 수 있는 첨단 신호 처리 및 주파수 관리 시스템을 구축합니다.",
       },
       {
-        title: "NC (화학전)",
+        label: "NC",
+        title: "화학전",
         description:
           "적대적 환경 및 위험 지역 내 화학 작용제를 실시간으로 탐지하고 정밀하게 식별합니다.",
       },
       {
-        title: "C-UAS (대드론전)",
+        label: "C-UAS",
+        title: "대드론전",
         description:
           "무인 항공기 위협을 조기에 탐지하고, 식별 및 무력화하여 핵심 자산과 인원을 보호합니다.",
       },
+      
     ],
   },
 
   featured: {
-    label: "대표 제품",
+    label: "RESOLVE",
+    sectionLabel: "대표 제품",
     title: "RESOLVE",
     description:
       "첨단 센서 융합 기술을 통해 위협을 실시간으로 분석하고 최적의 대응 전략을 수립합니다.",

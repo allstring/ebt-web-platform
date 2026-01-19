@@ -20,16 +20,19 @@ export const home = {
     learnMore: "Learn more",
     items: [
       {
+        label: "EW",
         title: "EW (Electronic Warfare)",
         description:
           "Advanced signal processing and spectrum management systems for complex operational environments.",
       },
       {
+        label: "NC",
         title: "NC (Chemical Warfare)",
         description:
           "Advanced detection, identification, and monitoring systems for chemical agents in contested and hazardous environments.",
       },
       {
+        label: "C-UAS",
         title: "C-UAS (Counter-UAS)",
         description:
           "Early detection, identification, and neutralization of unmanned aerial threats to protect critical assets and personnel.",
@@ -38,7 +41,8 @@ export const home = {
   },
 
   featured: {
-    label: "Featured Product",
+    label: "RESOLVE",
+    sectionLabel: "Featured Product",
     title: "RESOLVE",
     description:
       "Combining advanced sensor fusion with real-time threat analysis and response coordination.",
