@@ -7,6 +7,13 @@ export const home = {
     contactUs: "Nous contacter",
   },
 
+  radar: {
+    systemActive: "SYSTÈME ACTIF",
+    tracking: "SUIVI",
+    scanning: "BALAYAGE...",
+    viewDetails: "Voir les détails",
+  },
+
   solutions: {
     sectionLabel: "Solutions",
     sectionTitle: "Systèmes de défense intégrés",

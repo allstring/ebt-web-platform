@@ -7,25 +7,32 @@ export const home = {
     contactUs: "도입 문의",
   },
 
+  radar: {
+    systemActive: "시스템 활성",
+    tracking: "추적 중",
+    scanning: "스캔 중...",
+    viewDetails: "상세 보기",
+  },
+
   solutions: {
     sectionLabel: "솔루션",
     sectionTitle: "차세대 통합 국방 시스템",
     learnMore: "자세히 보기",
     items: [
       {
-        title: "전자전 (Electronic Warfare)",
+        title: "EW (전자기전)",
         description:
           "복잡한 전장 환경에서도 우위를 점할 수 있는 첨단 신호 처리 및 주파수 관리 시스템을 구축합니다.",
       },
       {
-        title: "화학전 대응",
+        title: "NC (화학전)",
         description:
           "적대적 환경 및 위험 지역 내 화학 작용제를 실시간으로 탐지하고 정밀하게 식별합니다.",
       },
       {
-        title: "생물학전 대응",
+        title: "C-UAS (대드론전)",
         description:
-          "고감도 분석 시스템을 통해 생물학적 위협을 조기에 발견하고 신속한 대응 체계 구축을 지원합니다.",
+          "무인 항공기 위협을 조기에 탐지하고, 식별 및 무력화하여 핵심 자산과 인원을 보호합니다.",
       },
     ],
   },
@@ -34,7 +41,7 @@ export const home = {
     label: "대표 제품",
     title: "RESOLVE",
     description:
-      "EBTech의 기술력이 집약된 통합 국방 플랫폼입니다. 첨단 센서 융합 기술을 통해 위협을 실시간으로 분석하고 최적의 대응 전략을 수립합니다.",
+      "첨단 센서 융합 기술을 통해 위협을 실시간으로 분석하고 최적의 대응 전략을 수립합니다.",
     features: [
       "전 영역 위협 탐지 및 식별",
       "실시간 데이터 통합 처리",
