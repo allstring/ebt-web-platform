@@ -37,31 +37,29 @@ const CAPABILITY_ICONS = [Settings, Shield, Zap, Target, Users, Wrench] as const
 // Hero Section - DefenseRadarHero를 활용한 메인 비주얼 영역
 // ============================================================================
 
-/** 레이더 타겟 설정 (link만 필수, angle/distance/threat은 자동 계산) */
-const RADAR_TARGETS = [
-  { label: "EW", link: "/solution/electronic-warfare" },
-  { label: "NC", link: "/solution/chemical-warfare" },
-  { label: "C-UAS", link: "/solution/counter-uas" },
-  { label: "RESOLVE", link: "/solution" },
-] as const
-
 function HeroSection() {
   const { t } = useLocale()
 
-  // 솔루션과 연결된 레이더 타겟 생성
-  const radarTargets = useMemo(
-    () =>
-      RADAR_TARGETS.map((target, index) => ({
-        id: index + 1,
-        label: target.label,
-        description:
-          index < 3
-            ? t.home.solutions.items[index].description
-            : t.home.featured.description,
-        link: target.link,
-      })),
-    [t]
-  )
+  // 솔루션과 연결된 레이더 타겟 생성 (로컬라이제이션 데이터 활용)
+  const radarTargets = useMemo(() => {
+    const solutionTargets = t.home.solutions.items.map((item, index) => ({
+      id: index + 1,
+      label: item.label,
+      description: item.description,
+      link: SOLUTION_HREFS[index] ?? "/solution",
+    }))
+
+    // 마지막에 RESOLVE (featured) 추가
+    return [
+      ...solutionTargets,
+      {
+        id: solutionTargets.length + 1,
+        label: t.home.featured.label,
+        description: t.home.featured.description,
+        link: "/solution",
+      },
+    ]
+  }, [t])
 
   return (
     <DefenseRadarHero
@@ -131,7 +129,7 @@ function FeaturedProductSection() {
         {/* 텍스트 영역 */}
         <div ref={textRef}>
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            {t.home.featured.label}
+            {t.home.featured.sectionLabel}
           </p>
           <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
             {t.home.featured.title}
@@ -157,7 +155,7 @@ function FeaturedProductSection() {
             <Button
               asChild
               variant="outline"
-              className="border-border hover:bg-secondary bg-transparent group"
+              className="border-border group"
             >
               <Link to="/solution">
                 {t.home.featured.viewSpecs}
