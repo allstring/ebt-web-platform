@@ -20,16 +20,19 @@ export const home = {
     learnMore: "詳細を見る",
     items: [
       {
+        label: "EW",
         title: "電子戦",
         description:
           "複雑な作戦環境向けの高度な信号処理およびスペクトラム管理システム。",
       },
       {
+        label: "NC",
         title: "化学戦",
         description:
           "紛争および危険環境における化学剤の高度な検知、識別、監視システム。",
       },
       {
+        label: "C-UAS",
         title: "生物戦",
         description:
           "生物学的脅威を特定し、迅速な対応作戦を支援するために設計された高感度検知・分析システム。",
@@ -38,7 +41,8 @@ export const home = {
   },
 
   featured: {
-    label: "主力製品",
+    label: "RESOLVE",
+    sectionLabel: "主力製品",
     title: "RESOLVE",
     description:
       "リアルタイムの脅威分析と対応調整を組み合わせた高度なセンサーフュージョンを提供する、当社の主力統合防衛プラットフォーム。",
