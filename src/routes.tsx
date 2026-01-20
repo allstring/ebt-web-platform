@@ -48,7 +48,7 @@ export default function AppRoutes() {
         {/* NC */}
         <Route path="solution/nc" element={<Solution_NC />} />
         <Route path="solution/nc/CHEMPRO-X" element={<Detail_CPX />} />
-        <Route path="solution/nc/NC-MONITORING-SYSTEM" element={<Detail_NCM />} />
+        <Route path="solution/nc/NC MONITORING SYSTEM" element={<Detail_NCM />} />
 
         {/* C-UAS */}
         <Route path="solution/c-uas" element={<Solution_CUAS />} />
