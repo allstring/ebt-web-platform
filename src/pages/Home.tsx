@@ -25,9 +25,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 /** 솔루션 카드 링크 (solutions.items 순서와 매칭) */
 const SOLUTION_HREFS = [
-  "/solution/electronic-warfare",
-  "/solution/chemical-warfare",
-  "/solution/counter-uas",
+  "/solution/ew",
+  "/solution/nc",
+  "/solution/c-uas",
 ] as const
 
 /** Capabilities 섹션 아이콘 (capabilities.items 순서와 매칭) */
