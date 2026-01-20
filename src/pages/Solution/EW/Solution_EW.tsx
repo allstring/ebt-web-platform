@@ -2,7 +2,15 @@ import { Link } from "react-router-dom"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ProductGrid } from "@/components/product-card"
-import categoryEwsImg from "@/assets/images/category-ews.jpg"
+import ComingSoon from "@/components/ComingSoon"
+
+
+// ============================================================================
+// 페이지 숨김 설정 - true로 변경시 "준비중" 페이지 표시
+// ============================================================================
+const HIDE_PAGE = false
+
+import categoryEwsImg from "@/assets/images/category-ews_censored.jpg"
 import categoryMesImg from "@/assets/images/category-mes.png"
 import categoryPerceiveImg from "@/assets/images/category-perceive.jpg"
 import categoryResolveImg from "@/assets/images/category-resolve.jpg"
@@ -31,13 +39,16 @@ const ewProducts = [{
   title: "GoldenBat-EWS",
   subtitle: "Mobile Electronic Warfare Solution",
   imageSrc: categoryEwsImg,
+  imageClassName: "blur-md",
   href: "GoldenBat-EWS"
-},{
-  title: "eBT-MES",
-  subtitle: "Drone detection and tracking system",
-  imageSrc: categoryMesImg,
-  href: "eBT-MES",
-},{
+},
+// {
+//   title: "eBT-MES",
+//   subtitle: "Drone detection and tracking system",
+//   imageSrc: categoryMesImg,
+//   href: "eBT-MES",
+// },
+{
   title: "eBT-PES",
   subtitle: "Portable RF Scanner",
   imageSrc: categoryPesImg,
@@ -69,6 +80,10 @@ const ewProducts = [{
 // ]
 
 export default function ElectronicWarfarePage() {
+  if (HIDE_PAGE) {
+    return <ComingSoon />
+  }
+
   return (
     <div className="pt-16">
         {/* Header */}
