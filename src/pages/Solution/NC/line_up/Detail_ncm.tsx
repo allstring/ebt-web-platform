@@ -1,6 +1,7 @@
 import { Check } from "lucide-react"
 
 import { ApplicationItem } from "@/components/application-item"
+import { useLocale } from "@/lib/i18n"
 import categoryNcmImg from "@/assets/images/ncm-bg.jpg"
 import eseaRecImg from "@/assets/images/ncm.jpg"
 
@@ -13,19 +14,24 @@ import app6Img from "@/assets/images/app-b6.png"
 
 import networkImg from "@/assets/images/ncm_network.png"
 
-export default function DetailEwsPage() {
+const applicationImages = [app1Img, app2Img, app3Img, app4Img, app5Img, app6Img]
+
+export default function DetailNcmPage() {
+  const { t } = useLocale()
+  const ncm = t.ncm
+
   return (
     <div className="pt-16">
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* 제목 */}
             <div className="mb-12 text-center">
-              <h1 className="text-5xl font-semibold tracking-tight text-foreground">NC MONITORING SYSTEM</h1>
+              <h1 className="text-5xl font-semibold tracking-tight text-foreground">{ncm.title}</h1>
             </div>
 
             {/* 소제목 */}
             <div className="mb-8 text-center">
-              <p className="text-s font-semibold uppercase tracking-wider text-muted-foreground">DETECTION SYSTEM COMPATIBLE CHEMICAL DETECTOR</p>
+              <p className="text-s font-semibold uppercase tracking-wider text-muted-foreground">{ncm.subtitle}</p>
             </div>
             </div>
             <div className="mx-auto max-w-10xl ">
@@ -33,7 +39,7 @@ export default function DetailEwsPage() {
             <div className="w-full mb-12">
               <img
                 src={categoryNcmImg}
-                alt="Product Lineup"
+                alt={ncm.title}
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -42,26 +48,22 @@ export default function DetailEwsPage() {
             {/* 한 줄짜리 큰 설명 */}
             <div className="max-w-4xl mx-auto text-center">
               <p className="text-5xl lg:text-3xl font-medium text-foreground leading-relaxed">
-              ONE DETECTOR TO BIND THEM ALL
+              {ncm.tagline}
               </p>
             </div>
           </div>
         </section>
 
-        {/* WHAT IS GoldenBat-EWS? */}
+        {/* WHAT IS NC MONITORING SYSTEM? */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-6">WHAT IS NC MONITORING SYSTEM?</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-              One detector to bind them all. NC MONITORING SYSTEM is a chemical detector for fixed installations, which allows for both independent usage and system integration, featuring a local display with full CBRN system status.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-              Designed and developed for being a resourceful instrument, NC MONITORING SYSTEM permanently monitors, detects and classifies CWA’s and TIC’s, while it can serve as a network melting pot for other system components communication.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-              NC MONITORING SYSTEM combines chemical detector performance and CBRN System Monitoring capabilities. All connected CBRN System network devices’ statuses can be checked in ChemProX-DS user interface. Featuring industry-leading sensitivity and false alarm rejection, NC MONITORING SYSTEM is the most user friendly and low-maintenance package of its class.
-              </p>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-6">{ncm.whatIs.title}</h2>
+              {ncm.whatIs.descriptions.map((desc, index) => (
+                <p key={index} className="text-lg text-muted-foreground leading-relaxed mb-4 last:mb-0">
+                  {desc}
+                </p>
+              ))}
             </div>
           </div>
         </section>
@@ -72,96 +74,49 @@ export default function DetailEwsPage() {
             <div className="w-full">
               <img
                 src={eseaRecImg}
-                alt="GoldenBat-EWS"
+                alt={ncm.title}
                 className="w-full h-auto object-cover rounded-lg"
-                // style={{
-                //   filter: "invert(1) brightness(2)", // 대충 검은색을 흰색처럼
-                //   mixBlendMode: "difference",
-                // }}
               />
             </div>
           </div>
         </section>
 
 
-        {/* KEY Benefits */}
+        {/* KEY FEATURES */}
         <section className="py-24 lg:py-32 border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground">KEY FEATURES</h2>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">{ncm.features.title}</h2>
             </div>
 
             <div className="">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3 py-3">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">24/7 chemical detection (CWA/TICs)</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">Gamma-ray and Neutron detection</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">Versatile communication and connectivity</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">Local display with full system status</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">Built-in maintenance & instruction tools for operator guidance</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">Robust design for indoor & outdoor applications</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">Integrate to 3rd party systems (Modbus interface)</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">Automatic relay control</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3 md:col-span-2">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">OCompatible with previous Environics systems</span>
-                </div>
-
-                <div className="flex items-start gap-3 py-3 md:col-span-2">
-                  <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-foreground">Online software updates available</span>
-                </div>
+                {ncm.features.items.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`flex items-start gap-3 py-3 ${index >= ncm.features.items.length - 2 ? "md:col-span-2" : ""}`}
+                  >
+                    <Check className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                    <span className="text-base text-foreground">{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
+        {/* System Configuration */}
         <section className="py-24 lg:py-32 border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl mb-16">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-6">System Configuration</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-6">{ncm.systemConfig.title}</h2>
             </div>
             <div>
             <div className="w-full flex justify-center">
               <img
                 src={networkImg}
-                alt="GoldenBat-EWS"
+                alt={ncm.systemConfig.title}
                 className="m-auto h-auto object-cover rounded-lg"
-                // style={{
-                //   filter: "invert(1) brightness(2)", // 대충 검은색을 흰색처럼
-                //   mixBlendMode: "difference",
-                // }}
               />
             </div>
             </div>
@@ -173,48 +128,49 @@ export default function DetailEwsPage() {
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground">Specifications</h2>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">{ncm.specs.title}</h2>
             </div>
 
             {/* ChemPro-X DS Specifications */}
             <div className="mb-12">
-              <h3 className="text-2xl font-semibold text-foreground mb-6">(ChemPro-X DS)</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-6">{ncm.specs.chemproDS.title}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 bg-background border border-border rounded-lg">
-                  <h4 className="text-lg font-medium text-foreground mb-3">Size</h4>
-                  <p className="text-sm text-muted-foreground">Approx. 240 x 230 x 78 mm (9.4"L x 9"W x 3"D)</p>
+                  <h4 className="text-lg font-medium text-foreground mb-3">{ncm.specs.chemproDS.size.label}</h4>
+                  <p className="text-sm text-muted-foreground">{ncm.specs.chemproDS.size.value}</p>
                 </div>
 
                 <div className="p-6 bg-background border border-border rounded-lg">
-                  <h4 className="text-lg font-medium text-foreground mb-3">Weight</h4>
-                  <p className="text-sm text-muted-foreground">Approx. 2.5 kg (88.9 oz)</p>
+                  <h4 className="text-lg font-medium text-foreground mb-3">{ncm.specs.chemproDS.weight.label}</h4>
+                  <p className="text-sm text-muted-foreground">{ncm.specs.chemproDS.weight.value}</p>
                 </div>
 
                 <div className="p-6 bg-background border border-border rounded-lg">
-                  <h4 className="text-lg font-medium text-foreground mb-3">Detection Technology</h4>
-                  <p className="text-sm text-muted-foreground mb-2">Orthogonal detection using:</p>
+                  <h4 className="text-lg font-medium text-foreground mb-3">{ncm.specs.chemproDS.detection.label}</h4>
+                  <p className="text-sm text-muted-foreground mb-2">{ncm.specs.chemproDS.detection.description}</p>
                   <ul className="space-y-1 text-sm text-muted-foreground ml-4 list-disc">
-                    <li>Open-loop (aspirated) IMS cell</li>
-                    <li>Multiple semiconductor sensors</li>
-                    <li>Under exemption limit Ni-63 (90MBq) radiation source</li>
+                    {ncm.specs.chemproDS.detection.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
 
                 <div className="p-6 bg-background border border-border rounded-lg">
-                  <h4 className="text-lg font-medium text-foreground mb-3">Detection Modes</h4>
-                  <p className="text-sm text-muted-foreground">CWA, TIC</p>
+                  <h4 className="text-lg font-medium text-foreground mb-3">{ncm.specs.chemproDS.modes.label}</h4>
+                  <p className="text-sm text-muted-foreground">{ncm.specs.chemproDS.modes.value}</p>
                 </div>
 
                 <div className="p-6 bg-background border border-border rounded-lg">
-                  <h4 className="text-lg font-medium text-foreground mb-3">Power</h4>
-                  <p className="text-sm text-muted-foreground">9-33 VDC (MIL-STD-1275)</p>
+                  <h4 className="text-lg font-medium text-foreground mb-3">{ncm.specs.chemproDS.power.label}</h4>
+                  <p className="text-sm text-muted-foreground">{ncm.specs.chemproDS.power.value}</p>
                 </div>
 
                 <div className="p-6 bg-background border border-border rounded-lg">
-                  <h4 className="text-lg font-medium text-foreground mb-3">Interface Protocol</h4>
+                  <h4 className="text-lg font-medium text-foreground mb-3">{ncm.specs.chemproDS.interface.label}</h4>
                   <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>Modbus TCP/IP (Ethernet)</li>
-                    <li>Modbus RTU (RS-485/RS-422)</li>
+                    {ncm.specs.chemproDS.interface.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -222,105 +178,105 @@ export default function DetailEwsPage() {
 
             {/* Radioactive detector Specifications */}
             <div>
-              <h3 className="text-2xl font-semibold text-foreground mb-6">(Radioactive detector)</h3>
-              
+              <h3 className="text-2xl font-semibold text-foreground mb-6">{ncm.specs.radioactive.title}</h3>
+
               {/* Sensor (Gamma-Ray) */}
               <div className="mb-8">
-                <h4 className="text-xl font-semibold text-foreground mb-4">Sensor (Gamma-Ray)</h4>
+                <h4 className="text-xl font-semibold text-foreground mb-4">{ncm.specs.radioactive.gamma.title}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Type</h5>
-                    <p className="text-sm text-muted-foreground">NaI(Tl) Scintillator(Low Range) Temperature Compensated 5 level Energy Compensated Semiconductor(High Range)</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.gamma.type.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.gamma.type.value}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Range</h5>
-                    <p className="text-sm text-muted-foreground">0.001 uSv/h ~ 4 Sv/h</p>
-                    <p className="text-sm text-muted-foreground">error &lt;15%</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.gamma.range.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.gamma.range.value}</p>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.gamma.range.error}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Sensitivity</h5>
-                    <p className="text-sm text-muted-foreground">&gt; 30000 cpm/uSv/h</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.gamma.sensitivity.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.gamma.sensitivity.value}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Energy Range</h5>
-                    <p className="text-sm text-muted-foreground">50 keV ~ 3000 keV</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.gamma.energyRange.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.gamma.energyRange.value}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Response Time</h5>
-                    <p className="text-sm text-muted-foreground">&lt; 2s</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.gamma.responseTime.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.gamma.responseTime.value}</p>
                   </div>
                 </div>
               </div>
 
               {/* Sensor (Neutron) */}
               <div className="mb-8">
-                <h4 className="text-xl font-semibold text-foreground mb-4">Sensor (Neutron)</h4>
+                <h4 className="text-xl font-semibold text-foreground mb-4">{ncm.specs.radioactive.neutron.title}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Type</h5>
-                    <p className="text-sm text-muted-foreground">6LiF + ZnS:Ag Scintillator</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.neutron.type.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.neutron.type.value}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Range</h5>
-                    <p className="text-sm text-muted-foreground">0~ 1,000,000 CPM</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.neutron.range.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.neutron.range.value}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Efficiency</h5>
-                    <p className="text-sm text-muted-foreground">Thermal N : &gt; 55%</p>
-                    <p className="text-sm text-muted-foreground">Fast N : &gt;1%</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.neutron.efficiency.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.neutron.efficiency.thermal}</p>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.neutron.efficiency.fast}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Range</h5>
-                    <p className="text-sm text-muted-foreground">1 uSv/h ~ 10 Sv/h</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.neutron.rangeAlt.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.neutron.rangeAlt.value}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Energy</h5>
-                    <p className="text-sm text-muted-foreground">0.025 eV ~ 10 Mev</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.neutron.energy.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.neutron.energy.value}</p>
                   </div>
                 </div>
               </div>
 
               {/* Other */}
               <div>
-                <h4 className="text-xl font-semibold text-foreground mb-4">Other</h4>
+                <h4 className="text-xl font-semibold text-foreground mb-4">{ncm.specs.radioactive.other.title}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Power</h5>
-                    <p className="text-sm text-muted-foreground">DC 9~ 18V Power &lt;3W</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.other.power.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.other.power.value}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Communication</h5>
-                    <p className="text-sm text-muted-foreground">RS485, RS232, 9600 bps, 8bit, 1stop, No</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.other.communication.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.other.communication.value}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Size</h5>
-                    <p className="text-sm text-muted-foreground">Body : dia 51mm X h 187 mm ~ 1200 g</p>
-                    <p className="text-sm text-muted-foreground">Stand : dia 150 mm x h 133mm ~150 g</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.other.size.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.other.size.body}</p>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.other.size.stand}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Material</h5>
-                    <p className="text-sm text-muted-foreground">Body : SUS304 (2mm thickness)</p>
-                    <p className="text-sm text-muted-foreground">Stand : ABS(black) - 3d printed</p>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.other.material.label}</h5>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.other.material.body}</p>
+                    <p className="text-sm text-muted-foreground">{ncm.specs.radioactive.other.material.stand}</p>
                   </div>
 
                   <div className="p-6 bg-background border border-border rounded-lg">
-                    <h5 className="text-lg font-medium text-foreground mb-3">Miscellaneous</h5>
+                    <h5 className="text-lg font-medium text-foreground mb-3">{ncm.specs.radioactive.other.misc.label}</h5>
                     <div className="space-y-1 text-sm text-muted-foreground">
-                      <p>Start Time : &lt; 30 sec</p>
-                      <p>Protection : IP67</p>
-                      <p>Operation Temp : -30 ~ 50 'C</p>
-                      <p>Shelf Temp : -40 ~70 'C</p>
+                      <p>{ncm.specs.radioactive.other.misc.startTime}</p>
+                      <p>{ncm.specs.radioactive.other.misc.protection}</p>
+                      <p>{ncm.specs.radioactive.other.misc.operationTemp}</p>
+                      <p>{ncm.specs.radioactive.other.misc.shelfTemp}</p>
                     </div>
                   </div>
                 </div>
@@ -329,64 +285,43 @@ export default function DetailEwsPage() {
           </div>
         </section>
 
+        {/* Application */}
         <section className="py-24 lg:py-32 border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl mb-16">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-6">Application</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-6">{ncm.application.title}</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-              NC Monitoring System is designed in a rugged housing to endure harsh and demanding environmental conditions, making it suitable for mobile and stationary detection systems. This includes platforms such as vessels, military vehicles, and critical infrastructures.
-
+                {ncm.application.description}
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <ApplicationItem
-                imageSrc={app1Img}
-                imageAlt="Application 1"
-                title="Naval & Maritime CBRN Monitoring"
-              />
-              <ApplicationItem
-                imageSrc={app2Img}
-                imageAlt="Application 2"
-                title="Armoured CBRN Reconnaissance"
-              />
-              <ApplicationItem
-                imageSrc={app3Img}
-                imageAlt="Application 3"
-                title="Armoured CBRN Monitoring"
-              />
-              <ApplicationItem
-                imageSrc={app4Img}
-                imageAlt="Application 4"
-                title="Light CBRN Reconnaissance"
-              />
-              <ApplicationItem
-                imageSrc={app5Img}
-                imageAlt="Application 5"
-                title="Building CBRN Monitoring"
-              />
-              <ApplicationItem
-                imageSrc={app6Img}
-                imageAlt="Application 6"
-                title="Shelter CBRN Monitoring"
-              />
+              {ncm.application.items.map((title, index) => (
+                <ApplicationItem
+                  key={index}
+                  imageSrc={applicationImages[index]}
+                  imageAlt={title}
+                  title={title}
+                />
+              ))}
             </div>
           </div>
         </section>
+
         {/* Contact Section */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                To learn more about CHEMPRO X and how it can benefit your organization,
-                please contact us at{" "}
+                {ncm.contact.text}{" "}
                 <a href="mailto:info@ebtech.kr" className="text-foreground hover:underline">
                   info@ebtech.kr
                 </a>{" "}
                 or{" "}
                 <a href="tel:+82317216380" className="text-foreground hover:underline">
                   +82 31 721 6380
-                </a>.
+                </a>
+                {ncm.contact.suffix}
               </p>
             </div>
           </div>
