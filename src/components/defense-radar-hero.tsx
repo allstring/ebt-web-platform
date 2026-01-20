@@ -227,7 +227,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
       tl.fromTo(".hero-card", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2 }, "-=0.3")
 
       // 모바일 타겟 카드 순차 등장
-      tl.fromTo(".mobile-target-card", { opacity: 0, y: 20, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 5.0 }, "-=0.5")
+      tl.fromTo(".mobile-target-card", { opacity: 0, y: 20, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.5 }, "-=0.5")
     }, sectionRef)
 
     return () => ctx.revert()

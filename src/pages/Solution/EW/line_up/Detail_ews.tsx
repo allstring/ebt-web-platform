@@ -16,13 +16,43 @@ export default function DetailEwsPage() {
             </div>
             </div>
             <div className="mx-auto max-w-10xl ">
-            {/* width 100% 사진 */}
-            <div className="w-full mb-12">
+            {/* width 100% 사진 - 보안 처리 스타일 */}
+            <div className="w-full mb-12 relative group overflow-hidden">
+              {/* 메인 이미지 */}
               <img
                 src={categoryBbatsImg}
                 alt="Product Lineup"
                 className="w-full h-auto object-cover"
               />
+
+              {/* 스캔라인 오버레이 */}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-30"
+                style={{
+                  background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)'
+                }}
+              />
+
+              {/* 그린 틴트 오버레이 */}
+              <div className="absolute inset-0 pointer-events-none bg-emerald-900/10 mix-blend-overlay" />
+
+              {/* 코너 브라켓 */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-emerald-500/60" />
+              <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-emerald-500/60" />
+              <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-emerald-500/60" />
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-emerald-500/60" />
+
+              {/* CLASSIFIED 라벨 */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-red-600/80 backdrop-blur-sm">
+                <span className="text-xs font-mono font-bold tracking-widest text-white">CLASSIFIED</span>
+              </div>
+
+              {/* 하단 HUD 정보 */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 text-[10px] font-mono text-emerald-400/80">
+                <span>SEC-LVL: RESTRICTED</span>
+                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                <span>EBT-GoldenBat-EWS</span>
+              </div>
             </div>
             </div>
             <div className="mx-auto max-w-7xl px-6 lg:px-8">

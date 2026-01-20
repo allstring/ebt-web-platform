@@ -1,7 +1,7 @@
 export const home = {
   hero: {
     title: "완벽한 작전 수행을 위한 최첨단 국방 기술",
-    description1: "전자전부터 화생방 위협까지, 정밀 공학 기반의",
+    description1: "전자기전부터 화생방 위협까지, 정밀 공학 기반의",
     description2: "완벽한 시스템 통합 솔루션을 제공합니다.",
     exploreSolutions: "솔루션 보기",
     contactUs: "도입 문의",
