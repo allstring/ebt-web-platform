@@ -7,7 +7,7 @@ export const solution = {
   backToSolutions: "전체 솔루션",
   electronicWarfare: {
     label: "EW",
-    title: "전자전 대응",
+    title: "전자기전 대응",
     summary:
       "복잡한 전자기 환경에서의 정밀한 신호 처리 및 효율적인 주파수 대역 관리 솔루션을 제공합니다.",
   },
