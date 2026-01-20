@@ -1,4 +1,4 @@
-import categoryBbatsImg from "@/assets/images/gbews-bg.jpg"
+import categoryBbatsImg from "@/assets/images/gbews-bg_censored.jpg"
 import eseaRecImg from "@/assets/images/esea_rec.png"
 export default function DetailEwsPage() {
   return (

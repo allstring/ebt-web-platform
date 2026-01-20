@@ -9,8 +9,8 @@ import NotFound from "./pages/NotFound"
 
 import Solution from "./pages/Solution/Solution"
 import Solution_EW from "./pages/Solution/EW/Solution_EW"
-import Solution_CW from "./pages/Solution/CW/Solution_CW"
-import Solution_BW from "./pages/Solution/BW/Solution_BW"
+import Solution_NC from "./pages/Solution/NC/Solution_NC"
+import Solution_CUAS from "./pages/Solution/C-UAS/Solution_CUAS"
 
 import Detail_EWS from "./pages/Solution/EW/line_up/Detail_ews"
 import Detail_MES from "./pages/Solution/EW/line_up/Detail_mes"
@@ -19,10 +19,9 @@ import Detail_PERCEIVE from "./pages/Solution/EW/line_up/Detail_perceive"
 import Detail_RESOLVE from "./pages/Solution/EW/line_up/Detail_resolve"
 import Detail_LOCATE from "./pages/Solution/EW/line_up/Detail_locate"
 
-import Detail_CPX from "./pages/Solution/CW/line_up/Detail_cpx"
-import Detail_NCM from "./pages/Solution/CW/line_up/Detail_ncm"
-
-import Detail_BBATS from "./pages/Solution/BW/line_up/Detail_bbats"
+import Detail_CPX from "./pages/Solution/NC/line_up/Detail_cpx"
+import Detail_NCM from "./pages/Solution/NC/line_up/Detail_ncm"
+import Detail_BBATS from "./pages/Solution/NC/line_up/Detail_bbats"
 
 export default function AppRoutes() {
   return (
@@ -38,22 +37,24 @@ export default function AppRoutes() {
         <Route path="solution" element={<Solution />} />
 
         {/* Electronic Warfare */}
-        <Route path="solution/electronic-warfare" element={<Solution_EW />} />
-        <Route path="solution/electronic-warfare/GoldenBat-EWS" element={<Detail_EWS />} />
-        <Route path="solution/electronic-warfare/eBT-MES" element={<Detail_MES />} />
-        <Route path="solution/electronic-warfare/eBT-PES" element={<Detail_PES />} />
-        <Route path="solution/electronic-warfare/PERCEIVE" element={<Detail_PERCEIVE />} />
-        <Route path="solution/electronic-warfare/RESOLVE" element={<Detail_RESOLVE />} />
-        <Route path="solution/electronic-warfare/LOCATE-T" element={<Detail_LOCATE />} />
+        <Route path="solution/ew" element={<Solution_EW />} />
+        <Route path="solution/ew/GoldenBat-EWS" element={<Detail_EWS />} />
+        <Route path="solution/ew/eBT-MES" element={<Detail_MES />} />
+        <Route path="solution/ew/eBT-PES" element={<Detail_PES />} />
+        <Route path="solution/ew/PERCEIVE" element={<Detail_PERCEIVE />} />
+        <Route path="solution/ew/RESOLVE" element={<Detail_RESOLVE />} />
+        <Route path="solution/ew/LOCATE-T" element={<Detail_LOCATE />} />
 
-        {/* Chemical Warfare */}
-        <Route path="solution/chemical-warfare" element={<Solution_CW />} />
-        <Route path="solution/chemical-warfare/CHEMPRO-X" element={<Detail_CPX />} />
-        <Route path="solution/chemical-warfare/NC MONITORING SYSTEM" element={<Detail_NCM />} />
+        {/* NC */}
+        <Route path="solution/nc" element={<Solution_NC />} />
+        <Route path="solution/nc/CHEMPRO-X" element={<Detail_CPX />} />
+        <Route path="solution/nc/NC MONITORING SYSTEM" element={<Detail_NCM />} />
 
-        {/* Biological Warfare */}
-        <Route path="solution/biological-warfare" element={<Solution_BW />} />
-        <Route path="solution/biological-warfare/BIOBATS" element={<Detail_BBATS />} />
+        {/* C-UAS */}
+        <Route path="solution/c-uas" element={<Solution_CUAS />} />
+
+        {/* NC - BIOBATS */}
+        <Route path="solution/nc/BIOBATS" element={<Detail_BBATS />} />
 
         {/* For Debug */}
         {/* <Route path="test" element={<Test_Radar/>} /> */}

@@ -6,6 +6,7 @@ export type ProductCardItem = {
   subtitle: string
   imageSrc: string
   imageAlt?: string
+  imageClassName?: string
   href?: string
 }
 
@@ -13,14 +14,14 @@ type ProductCardProps = ProductCardItem & {
   className?: string
 }
 
-export function ProductCard({ title, subtitle, imageSrc, imageAlt, href, className }: ProductCardProps) {
+export function ProductCard({ title, subtitle, imageSrc, imageAlt, imageClassName, href, className }: ProductCardProps) {
   const content = (
     <>
       <div className="relative aspect-[4/3] bg-muted/40">
         <img
           src={imageSrc}
           alt={imageAlt ?? title}
-          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+          className={cn("h-full w-full object-cover transition duration-300 group-hover:scale-105", imageClassName)}
           loading="lazy"
         />
       </div>
