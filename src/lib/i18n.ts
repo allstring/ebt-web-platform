@@ -42,6 +42,8 @@ import { solution as solutionEn } from "@/localize/en/solution"
 import { footer as footerEn } from "@/localize/en/footer"
 import { notFound as notFoundEn } from "@/localize/en/notFound"
 import { comingSoon as comingSoonEn } from "@/localize/en/comingSoon"
+import { cpx as cpxEn } from "@/localize/en/solution/nc/cpx"
+import { ncm as ncmEn } from "@/localize/en/solution/nc/ncm"
 
 // --- Korean (ko) ---
 import { home as homeKo } from "@/localize/ko/home"
@@ -53,6 +55,8 @@ import { solution as solutionKo } from "@/localize/ko/solution"
 import { footer as footerKo } from "@/localize/ko/footer"
 import { notFound as notFoundKo } from "@/localize/ko/notFound"
 import { comingSoon as comingSoonKo } from "@/localize/ko/comingSoon"
+import { cpx as cpxKo } from "@/localize/ko/solution/nc/cpx"
+import { ncm as ncmKo } from "@/localize/ko/solution/nc/ncm"
 
 // --- Japanese (ja) - 일본어 추가 시 주석 해제 ---
 // import { home as homeJa } from "@/localize/ja/home"
@@ -91,6 +95,8 @@ const RESOURCES = {
     footer: footerEn,
     notFound: notFoundEn,
     comingSoon: comingSoonEn,
+    cpx: cpxEn,
+    ncm: ncmEn,
   },
 
   // Korean
@@ -104,6 +110,8 @@ const RESOURCES = {
     footer: footerKo,
     notFound: notFoundKo,
     comingSoon: comingSoonKo,
+    cpx: cpxKo,
+    ncm: ncmKo,
   },
 
   // Japanese - 일본어 추가 시 주석 해제
