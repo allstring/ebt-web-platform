@@ -1,171 +1,272 @@
+import { useRef, useLayoutEffect } from "react"
 import { Link } from "react-router-dom"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ProductGrid } from "@/components/product-card"
 import ComingSoon from "@/components/ComingSoon"
+import { useLocale } from "@/lib/i18n"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import categoryCpxImg from "@/assets/images/category-cpx.jpg"
+import categoryNcmImg from "@/assets/images/category-ncm.jpg"
+// import categoryBbatsImg from "@/assets/images/category-bbats.png"
+import ncNetworkSchemaImg from "@/assets/images/nc_network_schema.png"
+
+gsap.registerPlugin(ScrollTrigger)
 
 // ============================================================================
 // 페이지 숨김 설정 - true로 변경시 "준비중" 페이지 표시
 // ============================================================================
 const HIDE_PAGE = false
-import categoryNcmImg from "@/assets/images/category-ncm.jpg"
-import categoryBbatsImg from "@/assets/images/category-bbats.png"
 
-// const threatScenarios = [
-//   "Persistent agent release in urban terrain",
-//   "Industrial toxic chemical spill near base",
-//   "Improvised dispersal devices in transit hubs",
-//   "Cross-border smuggling of chemical precursors",
-// ]
+// ============================================================================
+// Network Architecture Section - 시스템 구성도
+// ============================================================================
 
-const chemicalDefenseChain = [
-  {
-    name: "Early Detection",
-    description: "Multi-sensor detection for nerve, blister, choking agents with continuous air and surface sampling.",
-  },
-  {
-    name: "Threat Identification",
-    description: "Agent library correlation and automatic alerting for known/unknown chemical signatures.",
-  },
-  {
-    name: "Containment & Isolation",
-    description: "Hot/warm/cold zone establishment, ventilation isolation, and personnel routing to reduce exposure.",
-  },
-  {
-    name: "Decontamination & Recovery",
-    description: "Guided decon workflows, neutralization tracking, and clearance criteria for safe re-entry.",
-  },
+function NetworkArchitectureSection() {
+  const { t } = useLocale()
+  const nc = t.solution.ncPage
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, y: 60, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: imageRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div ref={headerRef} className="max-w-2xl mb-12">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {nc.architecture.label}
+          </p>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
+            {nc.architecture.title}
+          </h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            {nc.architecture.description}
+          </p>
+        </div>
+
+        <div
+          ref={imageRef}
+          className="relative group cursor-pointer max-w-4xl mx-auto"
+          onClick={() => {
+            document.getElementById("product-lineup")?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            })
+          }}
+        >
+          <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+          <div className="relative overflow-hidden rounded-xl md:rounded-2xl border border-border bg-white dark:bg-white/95 shadow-lg dark:shadow-2xl dark:shadow-black/20 transition-transform duration-300 group-hover:scale-[1.01]">
+            <div className="h-0.5 md:h-1 bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
+
+            <div className="relative">
+              <div className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <img
+                  src={ncNetworkSchemaImg}
+                  alt="NC Detection System Network Architecture"
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              </div>
+
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-center px-4">
+                  <div className="bg-white/95 dark:bg-white px-4 py-3 md:px-6 md:py-4 rounded-lg md:rounded-xl shadow-xl">
+                    <p className="text-xs md:text-sm font-medium text-gray-900">{nc.architecture.hoverTitle}</p>
+                    <p className="text-[10px] md:text-xs text-gray-500 mt-0.5 md:mt-1 hidden sm:block">{nc.architecture.hoverSubtitle}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-4 sm:px-6 md:px-8 lg:px-10 pb-4 md:pb-6 flex flex-wrap items-center justify-between gap-2 md:gap-4 border-t border-gray-100">
+              <div className="flex items-center gap-3 md:gap-6 pt-3 md:pt-4">
+                <div className="flex items-center gap-1.5 md:gap-2">
+                  <div className="w-2 md:w-3 h-0.5 bg-green-500 rounded-full" />
+                  <span className="text-[10px] md:text-xs text-gray-600">TCP/IP</span>
+                </div>
+                <div className="flex items-center gap-1.5 md:gap-2">
+                  <div className="w-2 md:w-3 h-0.5 bg-blue-500 rounded-full" />
+                  <span className="text-[10px] md:text-xs text-gray-600">RS485</span>
+                </div>
+                <div className="flex items-center gap-1.5 md:gap-2">
+                  <div className="w-2 md:w-3 h-0.5 bg-red-500 rounded-full" />
+                  <span className="text-[10px] md:text-xs text-gray-600">24 VDC</span>
+                </div>
+              </div>
+              <p className="text-[10px] md:text-xs text-gray-500 pt-3 md:pt-4">
+                {nc.architecture.footer}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default function NCDefensePage() {
+  const { t } = useLocale()
+  const nc = t.solution.ncPage
+
+  const cwProducts = [{
+    title: "CHEMPRO-X",
+    subtitle: nc.products.chemproX,
+    imageSrc: categoryCpxImg,
+    href: "CHEMPRO-X",
+  }, {
+    title: "NC MONITORING SYSTEM",
+    subtitle: nc.products.ncMonitoring,
+    imageSrc: categoryNcmImg,
+    href: "NC MONITORING SYSTEM",
+  }, 
+  // {
+  //   title: "BIOBATS",
+  //   subtitle: nc.products.biobats,
+  //   imageSrc: categoryBbatsImg,
+  //   href: "BIOBATS",
+  // }
 ]
 
-const cwProducts = [{
-  title: "CHEMPRO-X",
-  subtitle: "HANDHELD CHEMICAL DETECTOR",
-  imageSrc: categoryCpxImg,
-  href: "CHEMPRO-X",
-},{
-  title: "NC MONITORING SYSTEM",
-  subtitle: "DETECTION SYSTEM COMPATIBLE CHEMICAL DETECTOR",
-  imageSrc: categoryNcmImg,
-  href: "NC-MONITORING-SYSTEM",
-},{
-  title: "BIOBATS",
-  subtitle: "SMART BIOLOGICAL DETECTION & EARLY WARNING SYSTEM",
-  imageSrc: categoryBbatsImg,
-  href: "BIOBATS",
-},
-]
-
-export default function ChemicalWarfarePage() {
   if (HIDE_PAGE) {
     return <ComingSoon />
   }
 
   return (
     <div className="pt-16">
-        {/* Header */}
-        <section className="py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <Link
-              to="/solution"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              All Solutions
-            </Link>
+      {/* Header */}
+      <section className="py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Link
+            to="/solution"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            {t.solution.backToSolutions}
+          </Link>
 
-            <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Solution</p>
-              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">Chemical Warfare Defense</h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                End-to-end protection against chemical threats with rapid detection, agent identification, containment,
-                and coordinated decontamination for force and civilian safety.
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {nc.header.label}
+            </p>
+            <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">
+              {nc.header.title}
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+              {nc.header.description}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* System Architecture */}
+      <NetworkArchitectureSection />
+
+      {/* Product Lineup */}
+      <section id="product-lineup" className="py-24 lg:py-32 bg-card border-t border-border">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-2xl mb-12">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {nc.products.label}
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
+              {nc.products.title}
+            </h2>
+          </div>
+
+          <ProductGrid items={cwProducts} />
+        </div>
+      </section>
+
+      {/* Protection Concept */}
+      <section className="py-24 lg:py-32 border-t border-border">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-2xl mb-16">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {nc.protection.label}
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
+              {nc.protection.title}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {nc.protection.items.map((item, index) => (
+              <div key={item.name} className="p-8 bg-card border border-border">
+                <span className="text-4xl font-light text-muted-foreground/50">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 text-lg font-medium text-foreground">{item.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="py-24 lg:py-32 bg-card border-t border-border">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                {nc.contact.label}
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
+                {nc.contact.title}
+              </h2>
+              <p className="mt-4 text-muted-foreground max-w-xl">
+                {nc.contact.description}
               </p>
             </div>
+            <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent w-fit">
+              <Link to="/contact">
+                {nc.contact.button}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
-        </section>
-{/* EW Products */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl mb-12">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Product Lineup</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Product Lineup</h2>
-            </div>
-
-            <ProductGrid items={cwProducts} />
-          </div>
-        </section>
-        {/* Threat Scenarios */}
-        {/* <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Threat Landscape</p>
-                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Addressed Scenarios</h2>
-                <p className="mt-6 text-muted-foreground leading-relaxed">
-                  Modern UAS threats range from commercial drones to purpose-built military systems. Our solutions
-                  address the full spectrum.
-                </p>
-              </div>
-              <div className="space-y-4">
-                {threatScenarios.map((scenario, index) => (
-                  <div key={index} className="flex items-center gap-4 py-3 border-b border-border last:border-0">
-                    <span className="text-sm font-mono text-muted-foreground">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <p className="text-foreground">{scenario}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section> */}
-
-        {/* Protection Concept */}
-        <section className="py-24 lg:py-32 border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Protection Concept</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
-                Integrated Chemical Defense Chain
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {chemicalDefenseChain.map((capability, index) => (
-                <div key={capability.name} className="p-8 bg-card border border-border">
-                  <span className="text-4xl font-light text-muted-foreground/50">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 text-lg font-medium text-foreground">{capability.name}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{capability.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Related Product */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Related Product</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Chemical Defense Suite</h2>
-                <p className="mt-4 text-muted-foreground max-w-xl">
-                  Integrated chemical detection, identification, and decontamination support with real-time incident
-                  management and guidance for responders.
-                </p>
-              </div>
-              <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent w-fit">
-                <Link to="/contact">
-                  Request Information
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+        </div>
+      </section>
     </div>
   )
 }
