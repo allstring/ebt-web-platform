@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ProductGrid } from "@/components/product-card"
+// import { ProductGrid } from "@/components/product-card"
 import ComingSoon from "@/components/ComingSoon"
 
 // ============================================================================
@@ -13,13 +13,12 @@ const HIDE_PAGE = true
 // import categoryCuasImg from "@/assets/images/category-cuas.jpg"
 
 const cuasProducts = [
-  // TODO: C-UAS 제품 추가
-  // {
-  //   title: "제품명",
-  //   subtitle: "제품 설명",
-  //   imageSrc: categoryCuasImg,
-  //   href: "제품-경로",
-  // },
+  {
+    title: "제품명",
+    subtitle: "제품 설명",
+    // imageSrc: categoryCuasImg,
+    href: "제품-경로",
+  },
 ]
 
 const cuasCapabilities = [
@@ -79,7 +78,7 @@ export default function CounterUASPage() {
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Product Lineup</h2>
             </div>
 
-            <ProductGrid items={cuasProducts} />
+            {/* <ProductGrid items={cuasProducts} /> */}
           </div>
         </section>
       )}
