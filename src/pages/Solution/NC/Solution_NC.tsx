@@ -2,8 +2,15 @@ import { Link } from "react-router-dom"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ProductGrid } from "@/components/product-card"
+import ComingSoon from "@/components/ComingSoon"
 import categoryCpxImg from "@/assets/images/category-cpx.jpg"
+
+// ============================================================================
+// 페이지 숨김 설정 - true로 변경시 "준비중" 페이지 표시
+// ============================================================================
+const HIDE_PAGE = false
 import categoryNcmImg from "@/assets/images/category-ncm.jpg"
+import categoryBbatsImg from "@/assets/images/category-bbats.png"
 
 // const threatScenarios = [
 //   "Persistent agent release in urban terrain",
@@ -40,11 +47,20 @@ const cwProducts = [{
   title: "NC MONITORING SYSTEM",
   subtitle: "DETECTION SYSTEM COMPATIBLE CHEMICAL DETECTOR",
   imageSrc: categoryNcmImg,
-  href: "NC MONITORING SYSTEM",
+  href: "NC-MONITORING-SYSTEM",
+},{
+  title: "BIOBATS",
+  subtitle: "SMART BIOLOGICAL DETECTION & EARLY WARNING SYSTEM",
+  imageSrc: categoryBbatsImg,
+  href: "BIOBATS",
 },
 ]
 
 export default function ChemicalWarfarePage() {
+  if (HIDE_PAGE) {
+    return <ComingSoon />
+  }
+
   return (
     <div className="pt-16">
         {/* Header */}
