@@ -11,7 +11,7 @@ import ComingSoon from "@/components/ComingSoon"
 const HIDE_PAGE = false
 
 import categoryEwsImg from "@/assets/images/category-ews_censored.jpg"
-import categoryMesImg from "@/assets/images/category-mes.png"
+// import categoryMesImg from "@/assets/images/category-mes.png"
 import categoryPerceiveImg from "@/assets/images/category-perceive.jpg"
 import categoryResolveImg from "@/assets/images/category-resolve.jpg"
 import categoryLocateTImg from "@/assets/images/category-locate.jpg"
