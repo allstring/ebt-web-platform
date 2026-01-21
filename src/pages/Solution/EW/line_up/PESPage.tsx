@@ -6,15 +6,16 @@ import ComingSoon from "@/components/ComingSoon"
 
 
 
-import { useEffect, useRef, Fragment } from "react"
+// import { useEffect, useRef, Fragment } from "react"
+import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 import ScrollSmoother from "gsap/ScrollSmoother"
 import SplitText from "gsap/SplitText"
 
 // Assets
-import pesProductImg from "@/assets/images/pes.png"
-import contactImg from "@/assets/images/cuas1.jpg"
+// import pesProductImg from "@/assets/images/pes.png"
+// import contactImg from "@/assets/images/cuas1.jpg"
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText)
 
@@ -22,86 +23,86 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText)
 // 타입 정의
 // ============================================================================
 
-interface FeatureCard {
-  title: string
-  description: string[]
-  iconClass: string
-}
+// interface FeatureCard {
+//   title: string
+//   description: string[]
+//   iconClass: string
+// }
 
-interface SpecItem {
-  label: string
-  value: string
-}
+// interface SpecItem {
+//   label: string
+//   value: string
+// }
 
-interface SpecSection {
-  category: string
-  items: SpecItem[]
-}
+// interface SpecSection {
+//   category: string
+//   items: SpecItem[]
+// }
 
 // ============================================================================
 // 상수 정의
 // ============================================================================
 
-/** Key Features 카드 데이터 */
-const FEATURE_CARDS: FeatureCard[] = [
-  {
-    title: "Portable & Tactical",
-    description: [
-      "Compact lightweight design for rapid deployment",
-      "Handheld, wearable and versatile mounting options",
-      "Mobile operation capability for tactical flexibility",
-    ],
-    iconClass: "fa-solid fa-angles-down text-secondary",
-  },
-  {
-    title: "All-Weather Reliability",
-    description: [
-      "Waterproof and dustproof protection",
-      "Ruggedized construction for harsh environments",
-      "Extended operating temperature range",
-    ],
-    iconClass: "fa-solid fa-water text-secondary",
-  },
-  {
-    title: "Advanced Drone Detection",
-    description: [
-      "Comprehensive drone signal identification",
-      "Wide frequency coverage for various drone types",
-      "Real-time threat detection and classification",
-    ],
-    iconClass: "fa-solid fa-bullseye text-secondary",
-  },
-  {
-    title: "User-Friendly Operation",
-    description: [
-      "Intuitive display with tactical interface",
-      "Multi-alert system: Audio, LED, vibration",
-      "Extended battery life for continuous operations",
-    ],
-    iconClass: "fa-solid fa-user text-secondary",
-  },
-]
+// /** Key Features 카드 데이터 */
+// const FEATURE_CARDS: FeatureCard[] = [
+//   {
+//     title: "Portable & Tactical",
+//     description: [
+//       "Compact lightweight design for rapid deployment",
+//       "Handheld, wearable and versatile mounting options",
+//       "Mobile operation capability for tactical flexibility",
+//     ],
+//     iconClass: "fa-solid fa-angles-down text-secondary",
+//   },
+//   {
+//     title: "All-Weather Reliability",
+//     description: [
+//       "Waterproof and dustproof protection",
+//       "Ruggedized construction for harsh environments",
+//       "Extended operating temperature range",
+//     ],
+//     iconClass: "fa-solid fa-water text-secondary",
+//   },
+//   {
+//     title: "Advanced Drone Detection",
+//     description: [
+//       "Comprehensive drone signal identification",
+//       "Wide frequency coverage for various drone types",
+//       "Real-time threat detection and classification",
+//     ],
+//     iconClass: "fa-solid fa-bullseye text-secondary",
+//   },
+//   {
+//     title: "User-Friendly Operation",
+//     description: [
+//       "Intuitive display with tactical interface",
+//       "Multi-alert system: Audio, LED, vibration",
+//       "Extended battery life for continuous operations",
+//     ],
+//     iconClass: "fa-solid fa-user text-secondary",
+//   },
+// ]
 
-/** Technical Specification 데이터 */
-const SPEC_DATA: SpecSection[] = [
-  {
-    category: "Performance",
-    items: [
-      { label: "Frequency", value: "300MHz - 6GHz" },
-      { label: "Detection range", value: "2km (Open), 1km (Urban)" },
-      { label: "Detection time", value: "≤3s" },
-      { label: "Detection modes", value: "Spectrum Analysis, Protocol Analysis, FPV Transmission Detection" },
-      { label: "Detection sensitivity", value: "-95dBm (DJI), -106dBm (FPV)" },
-      { label: "Simultaneous tracking", value: "10+ Multiple targets" },
-      { label: "IP rating", value: "IP66" },
-      { label: "Operating temperature", value: "-32°C to 65°C" },
-      { label: "Operating time", value: "6 - 9h" },
-      { label: "Battery", value: "Rechargeable Li-ion battery" },
-      { label: "Dimension (Excluding Ant.)", value: "Approx. 150mm × 75mm × 36mm" },
-      { label: "Weight", value: "≤800g" },
-    ],
-  },
-]
+// /** Technical Specification 데이터 */
+// const SPEC_DATA: SpecSection[] = [
+//   {
+//     category: "Performance",
+//     items: [
+//       { label: "Frequency", value: "300MHz - 6GHz" },
+//       { label: "Detection range", value: "2km (Open), 1km (Urban)" },
+//       { label: "Detection time", value: "≤3s" },
+//       { label: "Detection modes", value: "Spectrum Analysis, Protocol Analysis, FPV Transmission Detection" },
+//       { label: "Detection sensitivity", value: "-95dBm (DJI), -106dBm (FPV)" },
+//       { label: "Simultaneous tracking", value: "10+ Multiple targets" },
+//       { label: "IP rating", value: "IP66" },
+//       { label: "Operating temperature", value: "-32°C to 65°C" },
+//       { label: "Operating time", value: "6 - 9h" },
+//       { label: "Battery", value: "Rechargeable Li-ion battery" },
+//       { label: "Dimension (Excluding Ant.)", value: "Approx. 150mm × 75mm × 36mm" },
+//       { label: "Weight", value: "≤800g" },
+//     ],
+//   },
+// ]
 
 // ============================================================================
 // Main Component
@@ -109,8 +110,8 @@ const SPEC_DATA: SpecSection[] = [
 
 export default function PESPage() {
   // Refs
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const subtitleRef = useRef<HTMLHeadingElement>(null)
+  // const titleRef = useRef<HTMLHeadingElement>(null)
+  // const subtitleRef = useRef<HTMLHeadingElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const leftTextRef = useRef<HTMLDivElement>(null)
   const featureCardsContainerRef = useRef<HTMLDivElement>(null)
