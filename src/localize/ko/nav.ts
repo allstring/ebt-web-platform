@@ -8,6 +8,34 @@ export const nav = {
   switchToDark: "다크 모드로 전환",
   switchToLight: "라이트 모드로 전환",
   openMenu: "메뉴 열기",
+  solutionDropdown: {
+    viewAll: "전체 솔루션",
+    ew: {
+      title: "전자기전",
+      items: {
+        goldenBatEws: "GoldenBat-EWS",
+        perceive: "PERCEIVE",
+        resolve: "RESOLVE",
+        microEsm: "MicroESM",
+        phobosM4: "PHOBOS M4",
+        deceive: "DECEIVE",
+        mapview: "MAPVIEW",
+      },
+    },
+    nc: {
+      title: "NC 방어",
+      items: {
+        chemproX: "CHEMPRO-X",
+        ncMonitoring: "NC 모니터링 시스템",
+      },
+    },
+    cuas: {
+      title: "대드론 방어",
+      items: {
+        ebtPes: "eBT-PES",
+      },
+    },
+  },
 } as const
 
 export type NavStrings = typeof nav
