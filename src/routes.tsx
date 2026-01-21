@@ -18,6 +18,10 @@ import Detail_PES from "./pages/Solution/EW/line_up/PESPage"
 import Detail_PERCEIVE from "./pages/Solution/EW/line_up/Detail_perceive"
 import Detail_RESOLVE from "./pages/Solution/EW/line_up/Detail_resolve"
 import Detail_LOCATE from "./pages/Solution/EW/line_up/Detail_locate"
+import Detail_DECEIVE from "./pages/Solution/EW/line_up/Detail_deceive"
+import Detail_MICROESM from "./pages/Solution/EW/line_up/Detail_microesm"
+import Detail_PHOBOSM4 from "./pages/Solution/EW/line_up/Detail_phobosm4"
+import Detail_MAPVIEW from "./pages/Solution/EW/line_up/Detail_mapview"
 
 import Detail_CPX from "./pages/Solution/NC/line_up/Detail_cpx"
 import Detail_NCM from "./pages/Solution/NC/line_up/Detail_ncm"
@@ -44,6 +48,10 @@ export default function AppRoutes() {
         <Route path="solution/ew/PERCEIVE" element={<Detail_PERCEIVE />} />
         <Route path="solution/ew/RESOLVE" element={<Detail_RESOLVE />} />
         <Route path="solution/ew/LOCATE-T" element={<Detail_LOCATE />} />
+        <Route path="solution/ew/DECEIVE" element={<Detail_DECEIVE />} />
+        <Route path="solution/ew/MicroESM" element={<Detail_MICROESM />} />
+        <Route path="solution/ew/PHOBOS M4" element={<Detail_PHOBOSM4 />} />
+        <Route path="solution/ew/MAPVIEW" element={<Detail_MAPVIEW />} />
 
         {/* NC */}
         <Route path="solution/nc" element={<Solution_NC />} />

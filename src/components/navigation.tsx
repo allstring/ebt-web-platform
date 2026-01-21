@@ -110,7 +110,8 @@ export function Navigation() {
           <Link
             to="/"
             onClick={() => handleNavClick("/")}
-            className="flex items-center gap-2 mx-6"
+            // 원래 마진이 있었는데 navigation option들이 많아지다 보니 글씨가 두줄이되서 변동중
+            className="flex items-center gap-2 mx-0"
           >
             {isLight ? (
               <LogoDark className="h-6 w-auto object-contain" />

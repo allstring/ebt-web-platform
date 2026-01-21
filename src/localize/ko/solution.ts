@@ -75,6 +75,52 @@ export const solution = {
       button: "문의하기",
     },
   },
+
+  // EW 페이지
+  ewPage: {
+    header: {
+      label: "솔루션",
+      title: "전자기전",
+      description: "적대적 환경에서 탐지, 보호 및 대응을 위한 포괄적인 전자기 스펙트럼 작전.",
+    },
+    products: {
+      label: "제품 라인업",
+      title: "제품 라인업",
+      goldenBatEws: "이동형 전자기전 솔루션",
+      ebtPes: "휴대용 RF 스캐너",
+      perceive: "통합 광대역 센서",
+      resolve: "전술 전자지원 시스템",
+      locateT: "전략 HF 모니터링 및 방향 탐지",
+    },
+    systemConfig: {
+      label: "시스템 구성",
+      title: "핵심 구성 요소",
+      items: [
+        {
+          name: "신호 정보",
+          description: "작전 스펙트럼 전반에 걸친 전자기 신호의 실시간 수집 및 분석.",
+        },
+        {
+          name: "전자 공격",
+          description: "위협 무력화를 위한 지향성 에너지 및 재밍 기능.",
+        },
+        {
+          name: "전자 보호",
+          description: "아군 시스템 무결성 및 통신 연속성을 보장하기 위한 방어 조치.",
+        },
+        {
+          name: "스펙트럼 관리",
+          description: "전자기 자원의 동적 할당 및 조정.",
+        },
+      ],
+    },
+    relatedProduct: {
+      label: "관련 제품",
+      title: "RESOLVE 플랫폼",
+      description: "통합 방어 플랫폼은 실시간 센서 융합 및 지휘 조정을 통한 원활한 전자기전 기능을 제공합니다.",
+      button: "정보 요청",
+    },
+  },
 } as const
 
 export type SolutionStrings = typeof solution
