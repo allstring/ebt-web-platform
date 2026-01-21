@@ -83,6 +83,20 @@ export const solution = {
       title: "전자기전",
       description: "적대적 환경에서 탐지, 보호 및 대응을 위한 포괄적인 전자기 스펙트럼 작전.",
     },
+    categories: {
+      es: {
+        label: "ES (Electronic Support)",
+        title: "전자지원",
+      },
+      ea: {
+        label: "EA (Electronic Attack)",
+        title: "전자공격",
+      },
+      integration: {
+        label: "Integration & Software",
+        title: "통합 및 소프트웨어",
+      },
+    },
     products: {
       label: "제품 라인업",
       title: "제품 라인업",
@@ -90,6 +104,10 @@ export const solution = {
       ebtPes: "휴대용 RF 스캐너",
       perceive: "통합 광대역 센서",
       resolve: "전술 전자지원 시스템",
+      microEsm: "소형 전자지원 측정 시스템",
+      phobosM4: "다중 채널 전자지원 시스템",
+      deceive: "전자 기만 시스템",
+      mapview: "전자전 통합 소프트웨어",
       locateT: "전략 HF 모니터링 및 방향 탐지",
     },
     systemConfig: {
@@ -118,6 +136,48 @@ export const solution = {
       label: "관련 제품",
       title: "RESOLVE 플랫폼",
       description: "통합 방어 플랫폼은 실시간 센서 융합 및 지휘 조정을 통한 원활한 전자기전 기능을 제공합니다.",
+      button: "정보 요청",
+    },
+  },
+  // C-UAS 페이지
+  cuasPage: {
+    header: {
+      label: "솔루션",
+      title: "대드론 방어",
+      description: "무인 항공기 위협에 대한 탐지, 추적, 식별 및 무력화를 위한 종합 대드론 솔루션.",
+    },
+    products: {
+      label: "제품 라인업",
+      title: "제품 라인업",
+      ebtPesDetector: "드론 탐지 시스템",
+      ebtPesJammer: "드론 재밍 시스템",
+    },
+    capabilities: {
+      label: "시스템 기능",
+      title: "통합 대드론 방어",
+      items: [
+        {
+          name: "탐지 및 추적",
+          description: "작전 공역 전반에 걸친 무인 항공 시스템의 다중 센서 탐지 및 추적.",
+        },
+        {
+          name: "식별 및 분류",
+          description: "실시간 경보 및 신뢰도 점수를 통한 자동 위협 평가 및 분류.",
+        },
+        {
+          name: "무력화",
+          description: "RF 재밍 및 지향성 에너지를 포함한 드론 무력화를 위한 통합 대응 수단.",
+        },
+        {
+          name: "지휘 통제",
+          description: "조정된 대응 및 다중 사이트 관리를 위한 중앙 집중식 C2 인터페이스.",
+        },
+      ],
+    },
+    relatedProduct: {
+      label: "관련 제품",
+      title: "대드론 솔루션",
+      description: "실시간 상황 인식 및 조정된 대응 기능을 갖춘 통합 대드론 탐지, 추적 및 무력화 솔루션.",
       button: "정보 요청",
     },
   },
