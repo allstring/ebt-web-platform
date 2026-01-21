@@ -44,7 +44,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <main className="pt-16 lg:pt-0">{children}</main>
+      <main>{children}</main>
       <BackToTopButton />
       <CookieConsent />
     </>
