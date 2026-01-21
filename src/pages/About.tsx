@@ -3,13 +3,53 @@
 // 회사 소개 페이지 - 비전, 미션, 핵심 역량 (GSAP 애니메이션)
 // ============================================================================
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useLayoutEffect } from "react"
 import { gsap } from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 
 import { useLocale } from "@/lib/i18n"
 
 gsap.registerPlugin(ScrollTrigger)
+
+// ============================================================================
+// Scroll Snap Hook
+// ============================================================================
+
+function useScrollSnap(containerRef: React.RefObject<HTMLDivElement>) {
+  useLayoutEffect(() => {
+    if (!containerRef.current) return
+
+    // 약간의 지연 후 스냅 포인트 계산 (레이아웃 안정화 대기)
+    const timeoutId = setTimeout(() => {
+      const sections = gsap.utils.toArray<HTMLElement>(".snap-section")
+      if (sections.length === 0) return
+
+      const snapPoints = sections.map((section) => {
+        const rect = section.getBoundingClientRect()
+        const scrollTop = window.pageYOffset
+        const sectionTop = rect.top + scrollTop
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+        return Math.min(Math.max(sectionTop / docHeight, 0), 1)
+      })
+
+      ScrollTrigger.create({
+        snap: {
+          snapTo: snapPoints,
+          duration: { min: 0.2, max: 0.6 },
+          delay: 0,
+          ease: "power2.inOut",
+        },
+      })
+    }, 100)
+
+    return () => {
+      clearTimeout(timeoutId)
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars.snap) t.kill()
+      })
+    }
+  }, [containerRef])
+}
 
 // Assets
 import heroBgImg from "@/assets/images/about/hero-bg.webp"
@@ -424,11 +464,20 @@ function CoreCapabilitiesSection() {
 // ============================================================================
 
 export default function AboutPage() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  useScrollSnap(containerRef)
+
   return (
-    <>
-      <HeroSection />
-      <VisionMissionSection />
-      <CoreCapabilitiesSection />
-    </>
+    <div ref={containerRef}>
+      <section className="snap-section">
+        <HeroSection />
+      </section>
+      <section className="snap-section">
+        <VisionMissionSection />
+      </section>
+      <section className="snap-section">
+        <CoreCapabilitiesSection />
+      </section>
+    </div>
   )
 }

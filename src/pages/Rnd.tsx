@@ -3,7 +3,7 @@
 // 연구개발 페이지 - 핵심 기술, 연구 분야, 개발 프로세스 (GSAP 애니메이션)
 // ============================================================================
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useLayoutEffect } from "react"
 import { Zap, Target, Settings } from "lucide-react"
 import { gsap } from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
@@ -11,6 +11,45 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 import { useLocale } from "@/lib/i18n"
 
 gsap.registerPlugin(ScrollTrigger)
+
+// ============================================================================
+// Scroll Snap Hook
+// ============================================================================
+
+function useScrollSnap(containerRef: React.RefObject<HTMLDivElement>) {
+  useLayoutEffect(() => {
+    if (!containerRef.current) return
+
+    const timeoutId = setTimeout(() => {
+      const sections = gsap.utils.toArray<HTMLElement>(".snap-section")
+      if (sections.length === 0) return
+
+      const snapPoints = sections.map((section) => {
+        const rect = section.getBoundingClientRect()
+        const scrollTop = window.pageYOffset
+        const sectionTop = rect.top + scrollTop
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+        return Math.min(Math.max(sectionTop / docHeight, 0), 1)
+      })
+
+      ScrollTrigger.create({
+        snap: {
+          snapTo: snapPoints,
+          duration: { min: 0.2, max: 0.6 },
+          delay: 0,
+          ease: "power2.inOut",
+        },
+      })
+    }, 100)
+
+    return () => {
+      clearTimeout(timeoutId)
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars.snap) t.kill()
+      })
+    }
+  }, [containerRef])
+}
 
 // Assets
 import heroMainImg from "@/assets/images/rnd/hero-main.webp"
@@ -561,14 +600,29 @@ function CommitmentSection() {
 // ============================================================================
 
 export default function RndPage() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  useScrollSnap(containerRef)
+
   return (
-    <div className="pt-16">
-      <HeroSection />
-      <CoreTechnologiesSection />
-      <ResearchAreasSection />
-      <DevelopmentProcessSection />
-      <TeamSection />
-      <CommitmentSection />
+    <div ref={containerRef} className="pt-16">
+      <section className="snap-section">
+        <HeroSection />
+      </section>
+      <section className="snap-section">
+        <CoreTechnologiesSection />
+      </section>
+      <section className="snap-section">
+        <ResearchAreasSection />
+      </section>
+      <section className="snap-section">
+        <DevelopmentProcessSection />
+      </section>
+      <section className="snap-section">
+        <TeamSection />
+      </section>
+      <section className="snap-section">
+        <CommitmentSection />
+      </section>
     </div>
   )
 }
