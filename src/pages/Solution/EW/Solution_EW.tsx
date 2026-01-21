@@ -16,7 +16,7 @@ import categoryEwsImg from "@/assets/images/category-ews_censored.jpg"
 import categoryPerceiveImg from "@/assets/images/category-perceive.jpg"
 import categoryResolveImg from "@/assets/images/category-resolve.jpg"
 // import categoryLocateTImg from "@/assets/images/category-locate.jpg"
-import categoryPesImg from "@/assets/images/category-pes.png"
+// import categoryPesImg from "@/assets/images/category-pes.png"  // Moved to C-UAS
 import categoryDeceiveImg from "@/assets/images/deceive_thumbnail.jpg"
 import categryMicroESMImg from "@/assets/images/microESMThumbnail.png"
 import categoryPhobosM4Img from "@/assets/images/phobosm4Thumbnail.png"
@@ -32,72 +32,61 @@ export default function ElectronicWarfarePage() {
   const { t } = useLocale()
   const ewPage = t.solution.ewPage
 
-  const ewProducts = [{
-    title: "GoldenBat-EWS",
-    subtitle: ewPage.products.goldenBatEws,
-    imageSrc: categoryEwsImg,
-    imageClassName: "blur-md",
-    href: "GoldenBat-EWS",
-    classified: true,
-  },
-  // {
-  //   title: "eBT-MES",
-  //   subtitle: "Drone detection and tracking system",
-  //   imageSrc: categoryMesImg,
-  //   href: "eBT-MES",
-  // },
-  {
-    title: "eBT-PES Detector(수정예정)",
-    subtitle: ewPage.products.ebtPes,
-    imageSrc: categoryPesImg,
-    href: "eBT-PES",
-  },{
-    title: "PERCEIVE",
-    subtitle: ewPage.products.perceive,
-    imageSrc: categoryPerceiveImg,
-    href: "PERCEIVE",
-  },{
-    title: "RESOLVE",
-    subtitle: ewPage.products.resolve,
-    imageSrc: categoryResolveImg,
-    href: "RESOLVE",
-  },
-  {
-    title: "DECEIVE",
-    subtitle: ewPage.products.resolve,
-    imageSrc: categoryDeceiveImg,
-    href: "DECEIVE",
-  },
-  {
-    title: "MicroESM",
-    subtitle: ewPage.products.resolve,
-    imageSrc: categryMicroESMImg,
-    href: "MicroESM",
-  },
-  {
-    title: "PHOBOS M4",
-    subtitle: ewPage.products.resolve,
-    imageSrc: categoryPhobosM4Img,
-    href: "PHOBOS M4",
-  },
-  {
-    title: "MAPVIEW",
-    subtitle: ewPage.products.resolve,
-    imageSrc: categoryMapViewImg,
-    href: "MAPVIEW",
-  },
-  {
-    title: "eBT-PES Jammer(수정예정)",
-    subtitle: ewPage.products.ebtPes,
-    imageSrc: categoryPesImg,
-    href: "eBT-PES",
-  }
-  // {
-  //   title: "LOCATE-T",
-  //   subtitle: ewPage.products.locateT,
-  //   imageSrc: categoryLocateTImg,
-  //   href: "LOCATE-T",
-  // },
+  // ES (Electronic Support) Products
+  const esProducts = [
+    {
+      title: "GoldenBat-EWS",
+      subtitle: ewPage.products.goldenBatEws,
+      imageSrc: categoryEwsImg,
+      imageClassName: "blur-md",
+      href: "GoldenBat-EWS",
+      classified: true
+    },
+    {
+      title: "PERCEIVE",
+      subtitle: ewPage.products.perceive,
+      imageSrc: categoryPerceiveImg,
+      href: "PERCEIVE",
+    },
+    {
+      title: "RESOLVE",
+      subtitle: ewPage.products.resolve,
+      imageSrc: categoryResolveImg,
+      href: "RESOLVE",
+    },
+    {
+      title: "MicroESM",
+      subtitle: ewPage.products.microEsm,
+      imageSrc: categryMicroESMImg,
+      href: "MicroESM",
+    },
+    {
+      title: "PHOBOS M4",
+      subtitle: ewPage.products.phobosM4,
+      imageSrc: categoryPhobosM4Img,
+      href: "PHOBOS M4",
+    },
+  ]
+
+  // EA (Electronic Attack) Products
+  const eaProducts = [
+    {
+      title: "DECEIVE",
+      subtitle: ewPage.products.deceive,
+      imageSrc: categoryDeceiveImg,
+      href: "DECEIVE",
+    },
+  ]
+
+  // Integration & Software Products
+  const integrationProducts = [
+    {
+      title: "MAPVIEW(수정예정)",
+      subtitle: ewPage.products.mapview,
+      imageSrc: categoryMapViewImg,
+      href: "MAPVIEW",
+      classified: true
+    },
   ]
 
   if (HIDE_PAGE) {
@@ -155,15 +144,39 @@ export default function ElectronicWarfarePage() {
           </div>
         </section> */}
 
-        {/* EW Products */}
+        {/* ES Products */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl mb-12">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{ewPage.products.label}</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{ewPage.products.title}</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{ewPage.categories.es.label}</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{ewPage.categories.es.title}</h2>
             </div>
 
-            <ProductGrid items={ewProducts} />
+            <ProductGrid items={esProducts} />
+          </div>
+        </section>
+
+        {/* EA Products */}
+        <section className="py-24 lg:py-32 border-t border-border">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{ewPage.categories.ea.label}</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{ewPage.categories.ea.title}</h2>
+            </div>
+
+            <ProductGrid items={eaProducts} />
+          </div>
+        </section>
+
+        {/* Integration & Software Products */}
+        <section className="py-24 lg:py-32 bg-card border-t border-border">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{ewPage.categories.integration.label}</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{ewPage.categories.integration.title}</h2>
+            </div>
+
+            <ProductGrid items={integrationProducts} />
           </div>
         </section>
 

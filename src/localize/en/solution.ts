@@ -83,13 +83,31 @@ export const solution = {
       title: "Electronic Warfare",
       description: "Comprehensive electromagnetic spectrum operations for detection, protection, and response in contested environments.",
     },
+    categories: {
+      es: {
+        label: "ES (Electronic Support)",
+        title: "Electronic Support",
+      },
+      ea: {
+        label: "EA (Electronic Attack)",
+        title: "Electronic Attack",
+      },
+      integration: {
+        label: "Integration & Software",
+        title: "Integration & Software",
+      },
+    },
     products: {
       label: "Product Lineup",
       title: "Product Lineup",
       goldenBatEws: "Mobile Electronic Warfare Solution",
       ebtPes: "Portable RF Scanner",
-      perceive: "INTEGRATED WIDEBAND SENSOR",
-      resolve: "TACTICAL ELECTRONIC SUPPORT SYSTEM",
+      perceive: "Integrated Wideband Sensor",
+      resolve: "Tactical Electronic Support System",
+      microEsm: "Compact Electronic Support Measures",
+      phobosM4: "Multi-Channel Electronic Support System",
+      deceive: "Electronic Deception System",
+      mapview: "EW Integration Software",
       locateT: "Strategic HF Monitoring & Direction Finding",
     },
     systemConfig: {
@@ -118,6 +136,48 @@ export const solution = {
       label: "Related Product",
       title: "RESOLVE Platform",
       description: "Our integrated defense platform provides seamless electronic warfare capabilities with real-time sensor fusion and command coordination.",
+      button: "Request Information",
+    },
+  },
+  // C-UAS Page
+  cuasPage: {
+    header: {
+      label: "Solution",
+      title: "Counter-UAS Defense",
+      description: "Comprehensive counter-drone solutions for detection, tracking, identification, and neutralization of unmanned aerial threats.",
+    },
+    products: {
+      label: "Product Lineup",
+      title: "Product Lineup",
+      ebtPesDetector: "Drone Detection System",
+      ebtPesJammer: "Drone Jamming System",
+    },
+    capabilities: {
+      label: "System Capabilities",
+      title: "Integrated Counter-UAS Defense",
+      items: [
+        {
+          name: "Detection & Tracking",
+          description: "Multi-sensor detection and tracking of unmanned aerial systems across operational airspace.",
+        },
+        {
+          name: "Identification & Classification",
+          description: "Automated threat assessment and classification with real-time alerting and confidence scoring.",
+        },
+        {
+          name: "Neutralization",
+          description: "Integrated countermeasures for drone neutralization including RF jamming and directed energy.",
+        },
+        {
+          name: "Command & Control",
+          description: "Centralized C2 interface for coordinated response and multi-site management.",
+        },
+      ],
+    },
+    relatedProduct: {
+      label: "Related Product",
+      title: "Counter-UAS Suite",
+      description: "Integrated counter-drone detection, tracking, and neutralization with real-time situational awareness and coordinated response capabilities.",
       button: "Request Information",
     },
   },

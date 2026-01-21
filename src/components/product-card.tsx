@@ -29,9 +29,13 @@ export function ProductCard({ title, subtitle, imageSrc, imageAlt, imageClassNam
           <>
             {/* 스캔라인 오버레이 */}
             <div
-              className="absolute inset-0 pointer-events-none opacity-30"
+              // 1. opacity-30 제거 (완전 불투명해짐)
+              className="absolute inset-0 pointer-events-none opacity-90"
               style={{
-                background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)'
+                // 2. gradient 변경:
+                // - transparent를 완전 검은색(#000000)으로 변경
+                // - 줄무늬 색상을 아주 진한 회색(#222222)으로 변경하여 미세한 패턴 유지
+                background: 'repeating-linear-gradient(0deg, #000000, #000000 2px, #222222 2px, #222222 4px)'
               }}
             />
             {/* 그린 틴트 오버레이 */}
