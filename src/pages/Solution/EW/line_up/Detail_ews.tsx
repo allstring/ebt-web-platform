@@ -1,10 +1,12 @@
 import categoryBbatsImg from "@/assets/images/gbews-bg_censored.jpg"
-import eseaRecImg from "@/assets/images/esea_rec.png"
+import eseaRecImgEn from "@/assets/images/esea_rec.png"
+import eseaRecImgKo from "@/assets/images/esea_rec_ko.png"
 import { useLocale } from "@/lib/i18n"
 
 export default function DetailEwsPage() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const ews = t.ews
+  const eseaRecImg = locale === "ko" ? eseaRecImgKo : eseaRecImgEn
 
   return (
     <div className="pt-16">
@@ -83,18 +85,35 @@ export default function DetailEwsPage() {
         </section>
 
         {/* 사진 섹션 */}
-        <section className="border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="w-full">
-              <img
-                src={eseaRecImg}
-                alt={ews.title}
-                className="w-full h-auto object-cover rounded-lg"
-                style={{
-                  filter: "invert(1) brightness(2)",
-                  mixBlendMode: "difference",
-                }}
-              />
+        <section className="py-16 lg:py-24 border-t border-border">
+          <div className="mx-auto max-w-5xl px-6 lg:px-8">
+            <div className="relative">
+              {/* 배경 그라데이션 */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-2xl" />
+
+              {/* 카드 */}
+              <div className="relative bg-card border border-border rounded-2xl p-6 md:p-8 shadow-xl">
+                {/* 상단 악센트 바 */}
+                <div className="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 rounded-b-full" />
+
+                {/* 이미지 컨테이너 */}
+                <div className="bg-white dark:bg-white rounded-xl p-4 md:p-6">
+                  <img
+                    src={eseaRecImg}
+                    alt={ews.title}
+                    className="w-full h-auto"
+                  />
+                </div>
+
+                {/* 하단 라벨 */}
+                <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+                  <span className="font-mono">ES/EA Architecture</span>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                    <span>GoldenBat-EWS</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
