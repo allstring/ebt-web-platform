@@ -8,22 +8,45 @@ export type ProductCardItem = {
   imageAlt?: string
   imageClassName?: string
   href?: string
+  classified?: boolean
 }
 
 type ProductCardProps = ProductCardItem & {
   className?: string
 }
 
-export function ProductCard({ title, subtitle, imageSrc, imageAlt, imageClassName, href, className }: ProductCardProps) {
+export function ProductCard({ title, subtitle, imageSrc, imageAlt, imageClassName, href, className, classified }: ProductCardProps) {
   const content = (
     <>
-      <div className="relative aspect-[4/3] bg-muted/40">
+      <div className="relative aspect-[4/3] bg-muted/40 overflow-hidden">
         <img
           src={imageSrc}
           alt={imageAlt ?? title}
           className={cn("h-full w-full object-cover transition duration-300 group-hover:scale-105", imageClassName)}
           loading="lazy"
         />
+        {classified && (
+          <>
+            {/* 스캔라인 오버레이 */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-30"
+              style={{
+                background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)'
+              }}
+            />
+            {/* 그린 틴트 오버레이 */}
+            <div className="absolute inset-0 pointer-events-none bg-emerald-900/10 mix-blend-overlay" />
+            {/* 코너 브라켓 */}
+            <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-emerald-500/60" />
+            <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-emerald-500/60" />
+            <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-emerald-500/60" />
+            <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-emerald-500/60" />
+            {/* CLASSIFIED 라벨 */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-red-600/80 backdrop-blur-sm">
+              <span className="text-xs font-mono font-bold tracking-widest text-white">CLASSIFIED</span>
+            </div>
+          </>
+        )}
       </div>
       <div className="p-6 space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{subtitle}</p>
@@ -35,7 +58,7 @@ export function ProductCard({ title, subtitle, imageSrc, imageAlt, imageClassNam
   if (href) {
     return (
       <Link
-        to={title}
+        to={href}
         className={cn(
           "group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md m-4 block",
           className,
