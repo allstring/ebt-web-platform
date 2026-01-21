@@ -2,6 +2,9 @@
 // PES Page
 // eBT-PES 제품 상세 페이지 - Portable RF Scanner (GSAP 애니메이션)
 // ============================================================================
+import ComingSoon from "@/components/ComingSoon"
+
+
 
 import { useEffect, useRef, Fragment } from "react"
 import { gsap } from "gsap"
@@ -126,22 +129,22 @@ export default function PESPage() {
     })
 
     // Intro 섹션 요소들 페이드인/아웃 애니메이션
-    gsap.fromTo(
-      [titleRef.current, subtitleRef.current],
-      { opacity: 0, y: 80 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 80%",
-          end: "bottom top",
-          toggleActions: "play reverse play reverse",
-        },
-      }
-    )
+    // gsap.fromTo(
+    //   [titleRef.current, subtitleRef.current],
+    //   { opacity: 0, y: 80 },
+    //   {
+    //     opacity: 1,
+    //     y: 0,
+    //     duration: 2,
+    //     ease: "power3.out",
+    //     scrollTrigger: {
+    //       trigger: titleRef.current,
+    //       start: "top 80%",
+    //       end: "bottom top",
+    //       toggleActions: "play reverse play reverse",
+    //     },
+    //   }
+    // )
 
     // 이미지 클립 애니메이션
     gsap.fromTo(
@@ -255,171 +258,176 @@ export default function PESPage() {
   // ============================================================================
 
   return (
-    <div id="smooth-wrapper" className="bg-black text-white">
-      <div id="smooth-content">
-        {/* Intro Section */}
-        <section
-          className="relative flex flex-col items-center justify-center min-h-screen px-6 pt-80 pb-20"
-          style={{
-            background: "linear-gradient(0deg, rgba(202, 72, 40, 0.8) 0%, rgba(0, 0, 0, 0) 60%)",
-          }}
-        >
-          {/* 제품명 */}
-          <div className="text-center mb-16">
-            <h1
-              ref={titleRef}
-              className="text-[64px] font-Tektur font-bold text-white leading-tight"
-            >
-              EBT-PES
-            </h1>
-            <h2
-              ref={subtitleRef}
-              className="text-[28px] text-gray-400 mt-4"
-            >
-              Portable RF Scanner
-            </h2>
-          </div>
-
-          {/* 제품 이미지 */}
-          <div className="w-full max-w-[500px]">
-            <img
-              ref={imageRef}
-              src={pesProductImg}
-              alt="eBT-PES"
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </section>
-
-        {/* Description Section */}
-        <section className="bg-black h-screen text-white px-6 lg:px-24 py-32">
-          <div className="max-w-4xl mx-auto text-left text-[32px] leading-[1.4] text-gray-300 flex flex-col justify-center h-full">
-            <p className="fade-line">
-              eBT-PES delivers advanced C-UAS detection with proven RF technology and rugged
-              portable design. Purpose-built for military and defense applications, our tactical
-              systems provide critical early warning of drone and controller signals for force
-              protection operations.
-            </p>
-          </div>
-        </section>
-
-        {/* Key Features Section */}
-        <section
-          className="border-t border-gray-800"
-          style={{
-            background: "linear-gradient(0deg, rgba(202, 72, 40, 0.2) 0%, rgba(0, 0, 0, 0) 60%)",
-          }}
-        >
-          <section
-            id="key-feature-section"
-            className="flex flex-col lg:flex-row gap-12 px-6 lg:px-24 py-32 max-w-[1800px] mx-auto"
-          >
-            {/* Left - 고정 문구 */}
-            <div
-              ref={leftTextRef}
-              className="w-full lg:w-1/2 text-[60px] font-Tektur font-semibold text-white leading-[1.2] relative"
-            >
-              Key<br />Features
-            </div>
-
-            {/* Right - 카드들 */}
-            <div
-              ref={featureCardsContainerRef}
-              className="w-full lg:w-1/2 flex flex-col gap-20"
-            >
-              {FEATURE_CARDS.map((card, i) => (
-                <div
-                  key={i}
-                  className="fade-card p-6 rounded-xl text-white shadow-md flex items-start gap-6"
-                >
-                  {/* 아이콘 */}
-                  <i className={`${card.iconClass} text-[48px] pt-1 min-w-[48px]`} />
-
-                  {/* Title + Description */}
-                  <div className="flex flex-col">
-                    <h3 className="text-[40px] font-semibold font-Tektur leading-[1.2] whitespace-nowrap">
-                      {card.title}
-                    </h3>
-                    <ul className="list-disc list-inside text-[20px] text-gray-400 leading-relaxed space-y-0 mt-2">
-                      {card.description.map((line, idx) => (
-                        <li key={idx} className="whitespace-pre-line">
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        </section>
-
-        {/* Technical Specification Section */}
-        <section className="flex flex-col lg:flex-row mx-auto px-6 lg:px-24 py-32 gap-16 bg-neutral-900 text-white border-t border-gray-800">
-          {/* Left - 헤더 */}
-          <div className="w-full lg:w-1/3 flex flex-col gap-6">
-            <h2 className="text-[48px] font-Tektur font-semibold leading-tight">
-              Technical<br />Specification
-            </h2>
-          </div>
-
-          {/* Right - 스펙 테이블 */}
-          <div className="w-full lg:w-2/3 border-t border-gray-600 pt-6">
-            <div className="grid grid-cols-3 gap-y-6 text-sm sm:text-base">
-              {SPEC_DATA.map((section, i) => (
-                <Fragment key={i}>
-                  {/* 첫 줄: 카테고리, 라벨, 값 */}
-                  <div className="text-secondary font-semibold text-[20px]">
-                    {section.category}
-                  </div>
-                  <div className="text-gray-400 uppercase font-semibold">
-                    {section.items[0].label}
-                  </div>
-                  <div className="text-white">{section.items[0].value}</div>
-
-                  {/* 나머지 줄 */}
-                  {section.items.slice(1).map((item, j) => (
-                    <Fragment key={j}>
-                      <div />
-                      <div className="text-gray-400 uppercase font-semibold">{item.label}</div>
-                      <div className="text-white">{item.value}</div>
-                    </Fragment>
-                  ))}
-                </Fragment>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section className="flex flex-col lg:flex-row w-full mx-auto px-6 lg:px-24 py-32 gap-16 text-white items-stretch">
-          {/* Left - 텍스트 및 버튼 */}
-          <div className="w-full lg:w-1/2 flex flex-col gap-8 justify-center">
-            <h2 className="font-Tektur text-[36px] lg:text-[48px] font-bold leading-tight">
-              Explore defense solutions<br />for modern threats
-            </h2>
-            <p className="text-[18px] text-gray-300 leading-relaxed">
-              Before you proceed with EBT-PES, please check the key specifications below.<br />
-              If you're still unsure, reach out to us for more details.
-            </p>
-            <a
-              href="mailto:info@ebtech.kr"
-              className="relative bg-white text-[#191e51] font-bold px-6 py-4 max-w-[300px] uppercase tracking-wide transition-colors duration-300 custom-angled-button hover:bg-gray-100"
-            >
-              REQUEST A Catalogue
-            </a>
-          </div>
-
-          {/* Right - 이미지 */}
-          <div className="w-full lg:w-1/2">
-            <img
-              src={contactImg}
-              alt="Contact"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </section>
-      </div>
+    <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <ComingSoon />
     </div>
+  </div>
   )
 }
+// <div id="smooth-wrapper" className="bg-black text-white">
+    //   <div id="smooth-content">
+    //     {/* Intro Section */}
+    //     <section
+    //       className="relative flex flex-col items-center justify-center min-h-screen px-6 pt-80 pb-20"
+    //       style={{
+    //         background: "linear-gradient(0deg, rgba(202, 72, 40, 0.8) 0%, rgba(0, 0, 0, 0) 60%)",
+    //       }}
+    //     >
+    //       {/* 제품명 */}
+    //       <div className="text-center mb-16">
+    //         <h1
+    //           ref={titleRef}
+    //           className="text-[64px] font-Tektur font-bold text-white leading-tight"
+    //         >
+    //           EBT-PES
+    //         </h1>
+    //         <h2
+    //           ref={subtitleRef}
+    //           className="text-[28px] text-gray-400 mt-4"
+    //         >
+    //           Portable RF Scanner
+    //         </h2>
+    //       </div>
+
+    //       {/* 제품 이미지 */}
+    //       <div className="w-full max-w-[500px]">
+    //         <img
+    //           ref={imageRef}
+    //           src={pesProductImg}
+    //           alt="eBT-PES"
+    //           className="w-full h-auto object-contain"
+    //         />
+    //       </div>
+    //     </section>
+
+    //     {/* Description Section */}
+    //     <section className="bg-black h-screen text-white px-6 lg:px-24 py-32">
+    //       <div className="max-w-4xl mx-auto text-left text-[32px] leading-[1.4] text-gray-300 flex flex-col justify-center h-full">
+    //         <p className="fade-line">
+    //           eBT-PES delivers advanced C-UAS detection with proven RF technology and rugged
+    //           portable design. Purpose-built for military and defense applications, our tactical
+    //           systems provide critical early warning of drone and controller signals for force
+    //           protection operations.
+    //         </p>
+    //       </div>
+    //     </section>
+
+    //     {/* Key Features Section */}
+    //     <section
+    //       className="border-t border-gray-800"
+    //       style={{
+    //         background: "linear-gradient(0deg, rgba(202, 72, 40, 0.2) 0%, rgba(0, 0, 0, 0) 60%)",
+    //       }}
+    //     >
+    //       <section
+    //         id="key-feature-section"
+    //         className="flex flex-col lg:flex-row gap-12 px-6 lg:px-24 py-32 max-w-[1800px] mx-auto"
+    //       >
+    //         {/* Left - 고정 문구 */}
+    //         <div
+    //           ref={leftTextRef}
+    //           className="w-full lg:w-1/2 text-[60px] font-Tektur font-semibold text-white leading-[1.2] relative"
+    //         >
+    //           Key<br />Features
+    //         </div>
+
+    //         {/* Right - 카드들 */}
+    //         <div
+    //           ref={featureCardsContainerRef}
+    //           className="w-full lg:w-1/2 flex flex-col gap-20"
+    //         >
+    //           {FEATURE_CARDS.map((card, i) => (
+    //             <div
+    //               key={i}
+    //               className="fade-card p-6 rounded-xl text-white shadow-md flex items-start gap-6"
+    //             >
+    //               {/* 아이콘 */}
+    //               <i className={`${card.iconClass} text-[48px] pt-1 min-w-[48px]`} />
+
+    //               {/* Title + Description */}
+    //               <div className="flex flex-col">
+    //                 <h3 className="text-[40px] font-semibold font-Tektur leading-[1.2] whitespace-nowrap">
+    //                   {card.title}
+    //                 </h3>
+    //                 <ul className="list-disc list-inside text-[20px] text-gray-400 leading-relaxed space-y-0 mt-2">
+    //                   {card.description.map((line, idx) => (
+    //                     <li key={idx} className="whitespace-pre-line">
+    //                       {line}
+    //                     </li>
+    //                   ))}
+    //                 </ul>
+    //               </div>
+    //             </div>
+    //           ))}
+    //         </div>
+    //       </section>
+    //     </section>
+
+    //     {/* Technical Specification Section */}
+    //     <section className="flex flex-col lg:flex-row mx-auto px-6 lg:px-24 py-32 gap-16 bg-neutral-900 text-white border-t border-gray-800">
+    //       {/* Left - 헤더 */}
+    //       <div className="w-full lg:w-1/3 flex flex-col gap-6">
+    //         <h2 className="text-[48px] font-Tektur font-semibold leading-tight">
+    //           Technical<br />Specification
+    //         </h2>
+    //       </div>
+
+    //       {/* Right - 스펙 테이블 */}
+    //       <div className="w-full lg:w-2/3 border-t border-gray-600 pt-6">
+    //         <div className="grid grid-cols-3 gap-y-6 text-sm sm:text-base">
+    //           {SPEC_DATA.map((section, i) => (
+    //             <Fragment key={i}>
+    //               {/* 첫 줄: 카테고리, 라벨, 값 */}
+    //               <div className="text-secondary font-semibold text-[20px]">
+    //                 {section.category}
+    //               </div>
+    //               <div className="text-gray-400 uppercase font-semibold">
+    //                 {section.items[0].label}
+    //               </div>
+    //               <div className="text-white">{section.items[0].value}</div>
+
+    //               {/* 나머지 줄 */}
+    //               {section.items.slice(1).map((item, j) => (
+    //                 <Fragment key={j}>
+    //                   <div />
+    //                   <div className="text-gray-400 uppercase font-semibold">{item.label}</div>
+    //                   <div className="text-white">{item.value}</div>
+    //                 </Fragment>
+    //               ))}
+    //             </Fragment>
+    //           ))}
+    //         </div>
+    //       </div>
+    //     </section>
+
+    //     {/* Contact Section */}
+    //     <section className="flex flex-col lg:flex-row w-full mx-auto px-6 lg:px-24 py-32 gap-16 text-white items-stretch">
+    //       {/* Left - 텍스트 및 버튼 */}
+    //       <div className="w-full lg:w-1/2 flex flex-col gap-8 justify-center">
+    //         <h2 className="font-Tektur text-[36px] lg:text-[48px] font-bold leading-tight">
+    //           Explore defense solutions<br />for modern threats
+    //         </h2>
+    //         <p className="text-[18px] text-gray-300 leading-relaxed">
+    //           Before you proceed with EBT-PES, please check the key specifications below.<br />
+    //           If you're still unsure, reach out to us for more details.
+    //         </p>
+    //         <a
+    //           href="mailto:info@ebtech.kr"
+    //           className="relative bg-white text-[#191e51] font-bold px-6 py-4 max-w-[300px] uppercase tracking-wide transition-colors duration-300 custom-angled-button hover:bg-gray-100"
+    //         >
+    //           REQUEST A Catalogue
+    //         </a>
+    //       </div>
+
+    //       {/* Right - 이미지 */}
+    //       <div className="w-full lg:w-1/2">
+    //         <img
+    //           src={contactImg}
+    //           alt="Contact"
+    //           className="w-full h-full object-cover"
+    //         />
+    //       </div>
+    //     </section>
+    //   </div>
+    // </div>
