@@ -75,6 +75,52 @@ export const solution = {
       button: "Request Information",
     },
   },
+
+  // EW Page
+  ewPage: {
+    header: {
+      label: "Solution",
+      title: "Electronic Warfare",
+      description: "Comprehensive electromagnetic spectrum operations for detection, protection, and response in contested environments.",
+    },
+    products: {
+      label: "Product Lineup",
+      title: "Product Lineup",
+      goldenBatEws: "Mobile Electronic Warfare Solution",
+      ebtPes: "Portable RF Scanner",
+      perceive: "INTEGRATED WIDEBAND SENSOR",
+      resolve: "TACTICAL ELECTRONIC SUPPORT SYSTEM",
+      locateT: "Strategic HF Monitoring & Direction Finding",
+    },
+    systemConfig: {
+      label: "System Configuration",
+      title: "Core Components",
+      items: [
+        {
+          name: "Signal Intelligence",
+          description: "Real-time collection and analysis of electromagnetic signals across operational spectrum.",
+        },
+        {
+          name: "Electronic Attack",
+          description: "Directed energy and jamming capabilities for threat neutralization.",
+        },
+        {
+          name: "Electronic Protection",
+          description: "Defensive measures to ensure friendly system integrity and communication continuity.",
+        },
+        {
+          name: "Spectrum Management",
+          description: "Dynamic allocation and coordination of electromagnetic resources.",
+        },
+      ],
+    },
+    relatedProduct: {
+      label: "Related Product",
+      title: "RESOLVE Platform",
+      description: "Our integrated defense platform provides seamless electronic warfare capabilities with real-time sensor fusion and command coordination.",
+      button: "Request Information",
+    },
+  },
 } as const
 
 export type SolutionStrings = typeof solution
