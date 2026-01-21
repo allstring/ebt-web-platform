@@ -1,46 +1,38 @@
 import { Link } from "react-router-dom"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-// import { ProductGrid } from "@/components/product-card"
+import { ProductGrid } from "@/components/product-card"
 import ComingSoon from "@/components/ComingSoon"
+import { useLocale } from "@/lib/i18n"
 
 // ============================================================================
 // 페이지 숨김 설정 - true로 변경시 "준비중" 페이지 표시
 // ============================================================================
-const HIDE_PAGE = true
+const HIDE_PAGE = false
 
-// TODO: C-UAS 제품 이미지 추가 후 주석 해제
-// import categoryCuasImg from "@/assets/images/category-cuas.jpg"
-
-const cuasProducts = [
-  {
-    title: "제품명",
-    subtitle: "제품 설명",
-    // imageSrc: categoryCuasImg,
-    href: "제품-경로",
-  },
-]
-
-const cuasCapabilities = [
-  {
-    name: "Detection & Tracking",
-    description: "Multi-sensor detection and tracking of unmanned aerial systems across operational airspace.",
-  },
-  {
-    name: "Identification & Classification",
-    description: "Automated threat assessment and classification with real-time alerting and confidence scoring.",
-  },
-  {
-    name: "Neutralization",
-    description: "Integrated countermeasures for drone neutralization including RF jamming and directed energy.",
-  },
-  {
-    name: "Command & Control",
-    description: "Centralized C2 interface for coordinated response and multi-site management.",
-  },
-]
+import categoryPesImg from "@/assets/images/category-pes.png"
 
 export default function CounterUASPage() {
+  const { t } = useLocale()
+  const cuasPage = t.solution.cuasPage
+
+  const cuasProducts = [
+    {
+      title: "eBT-PES Detector(수정예정)",
+      subtitle: cuasPage.products.ebtPesDetector,
+      imageSrc: categoryPesImg,
+      href: "eBT-PES",
+      classified: true
+    },
+    {
+      title: "eBT-PES Jammer(수정예정)",
+      subtitle: cuasPage.products.ebtPesJammer,
+      imageSrc: categoryPesImg,
+      href: "eBT-PES",
+      classified: true,
+    },
+  ]
+
   if (HIDE_PAGE) {
     return <ComingSoon />
   }
@@ -55,15 +47,14 @@ export default function CounterUASPage() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
-            All Solutions
+            {t.solution.backToSolutions}
           </Link>
 
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Solution</p>
-            <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">Counter-UAS Defense</h1>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{cuasPage.header.label}</p>
+            <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">{cuasPage.header.title}</h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Comprehensive counter-drone solutions for detection, tracking, identification, and neutralization
-              of unmanned aerial threats across military and civilian airspace.
+              {cuasPage.header.description}
             </p>
           </div>
         </div>
@@ -74,11 +65,11 @@ export default function CounterUASPage() {
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl mb-12">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Product Lineup</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Product Lineup</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{cuasPage.products.label}</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{cuasPage.products.title}</h2>
             </div>
 
-            {/* <ProductGrid items={cuasProducts} /> */}
+            <ProductGrid items={cuasProducts} />
           </div>
         </section>
       )}
@@ -87,14 +78,14 @@ export default function CounterUASPage() {
       <section className="py-24 lg:py-32 border-t border-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-2xl mb-16">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">System Capabilities</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{cuasPage.capabilities.label}</p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
-              Integrated Counter-UAS Defense
+              {cuasPage.capabilities.title}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {cuasCapabilities.map((capability, index) => (
+            {cuasPage.capabilities.items.map((capability: { name: string; description: string }, index: number) => (
               <div key={capability.name} className="p-8 bg-card border border-border">
                 <span className="text-4xl font-light text-muted-foreground/50">
                   {String(index + 1).padStart(2, "0")}
@@ -112,16 +103,15 @@ export default function CounterUASPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Related Product</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Counter-UAS Suite</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{cuasPage.relatedProduct.label}</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">{cuasPage.relatedProduct.title}</h2>
               <p className="mt-4 text-muted-foreground max-w-xl">
-                Integrated counter-drone detection, tracking, and neutralization with real-time situational awareness
-                and coordinated response capabilities.
+                {cuasPage.relatedProduct.description}
               </p>
             </div>
             <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent w-fit">
               <Link to="/contact">
-                Request Information
+                {cuasPage.relatedProduct.button}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

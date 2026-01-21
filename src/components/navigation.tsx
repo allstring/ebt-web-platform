@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { Menu, Sun, Moon, X, Globe } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Menu, Sun, Moon, X, Globe, ChevronDown } from "lucide-react"
 import { Link, useLocation } from "react-router-dom"
 
 import { cn, scrollToTop } from "@/lib/utils"
@@ -9,6 +9,41 @@ import { useIsMobile } from "@/hooks/use-mobile"
 
 import LogoLight from "@/assets/images/navigation/EBT-logo.svg?react"
 import LogoDark from "@/assets/images/navigation/EBT-logo--dark.svg?react"
+
+/* ==========================================================================
+   Solution Dropdown Data
+   ========================================================================== */
+
+const solutionCategories = [
+  {
+    key: "ew" as const,
+    href: "/solution/ew",
+    items: [
+      { key: "goldenBatEws" as const, href: "/solution/ew/GoldenBat-EWS" },
+      { key: "perceive" as const, href: "/solution/ew/PERCEIVE" },
+      { key: "resolve" as const, href: "/solution/ew/RESOLVE" },
+      { key: "microEsm" as const, href: "/solution/ew/MicroESM" },
+      { key: "phobosM4" as const, href: "/solution/ew/PHOBOS M4" },
+      { key: "deceive" as const, href: "/solution/ew/DECEIVE" },
+      { key: "mapview" as const, href: "/solution/ew/MAPVIEW" },
+    ],
+  },
+  {
+    key: "nc" as const,
+    href: "/solution/nc",
+    items: [
+      { key: "chemproX" as const, href: "/solution/nc/CHEMPRO-X" },
+      { key: "ncMonitoring" as const, href: "/solution/nc/NC MONITORING SYSTEM" },
+    ],
+  },
+  {
+    key: "cuas" as const,
+    href: "/solution/c-uas",
+    items: [
+      { key: "ebtPes" as const, href: "/solution/c-uas/eBT-PES" },
+    ],
+  },
+]
 /* ==========================================================================
    Constants
    ========================================================================== */
@@ -46,6 +81,10 @@ export function Navigation() {
     () => document.documentElement.classList.contains("light")
   )
   const [localeMenuOpen, setLocaleMenuOpen] = useState(false)
+  const [solutionDropdownOpen, setSolutionDropdownOpen] = useState(false)
+  const [mobileSolutionExpanded, setMobileSolutionExpanded] = useState(false)
+  const solutionDropdownRef = useRef<HTMLDivElement>(null)
+  const solutionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const { locale: currentLocale, setLocale, t } = useLocale()
 
@@ -97,6 +136,24 @@ export function Navigation() {
     setLocaleMenuOpen(false)
   }
 
+  const handleSolutionMouseEnter = () => {
+    if (solutionTimeoutRef.current) {
+      clearTimeout(solutionTimeoutRef.current)
+      solutionTimeoutRef.current = null
+    }
+    setSolutionDropdownOpen(true)
+  }
+
+  const handleSolutionMouseLeave = () => {
+    solutionTimeoutRef.current = setTimeout(() => {
+      setSolutionDropdownOpen(false)
+    }, 150)
+  }
+
+  const handleSolutionItemClick = () => {
+    setSolutionDropdownOpen(false)
+  }
+
   return (
     <header
       className={cn(
@@ -124,19 +181,94 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden flex-1 items-center justify-center lg:flex lg:gap-x-10">
             {navItems.map((item) => (
-              <Link
-                key={item.key}
-                to={item.href}
-                onClick={() => handleNavClick(item.href)}
-                className={cn(
-                  "text-lg font-semibold transition-colors hover:text-foreground",
-                  pathname === item.href
-                    ? "text-foreground"
-                    : "text-foreground/70"
-                )}
-              >
-                {t.nav[item.key]}
-              </Link>
+              item.key === "solution" ? (
+                <div
+                  key={item.key}
+                  ref={solutionDropdownRef}
+                  className="relative"
+                  onMouseEnter={handleSolutionMouseEnter}
+                  onMouseLeave={handleSolutionMouseLeave}
+                >
+                  <Link
+                    to={item.href}
+                    onClick={() => handleNavClick(item.href)}
+                    className={cn(
+                      "text-lg font-semibold transition-colors hover:text-foreground inline-flex items-center gap-1",
+                      pathname.startsWith("/solution")
+                        ? "text-foreground"
+                        : "text-foreground/70"
+                    )}
+                  >
+                    {t.nav[item.key]}
+                    <ChevronDown className={cn(
+                      "h-4 w-4 transition-transform duration-200",
+                      solutionDropdownOpen && "rotate-180"
+                    )} />
+                  </Link>
+
+                  {/* Solution Dropdown */}
+                  {solutionDropdownOpen && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
+                      <div className="bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-xl p-6 min-w-[600px]">
+                        {/* View All Link */}
+                        <Link
+                          to="/solution"
+                          onClick={handleSolutionItemClick}
+                          className="block text-sm font-medium text-primary hover:text-primary/80 mb-4 pb-3 border-b border-border"
+                        >
+                          {t.nav.solutionDropdown.viewAll} →
+                        </Link>
+
+                        {/* Categories Grid */}
+                        <div className="grid grid-cols-3 gap-6">
+                          {solutionCategories.map((category) => (
+                            <div key={category.key}>
+                              <Link
+                                to={category.href}
+                                onClick={handleSolutionItemClick}
+                                className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                              >
+                                {t.nav.solutionDropdown[category.key].title}
+                              </Link>
+                              <ul className="mt-3 space-y-2">
+                                {category.items.map((subItem) => (
+                                  <li key={subItem.key}>
+                                    <Link
+                                      to={subItem.href}
+                                      onClick={handleSolutionItemClick}
+                                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                      {
+                                        (
+                                          t.nav.solutionDropdown[category.key as "ew" | "nc" | "cuas"].items as Record<string, string>
+                                        )[subItem.key]
+                                      }
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={item.key}
+                  to={item.href}
+                  onClick={() => handleNavClick(item.href)}
+                  className={cn(
+                    "text-lg font-semibold transition-colors hover:text-foreground",
+                    pathname === item.href
+                      ? "text-foreground"
+                      : "text-foreground/70"
+                  )}
+                >
+                  {t.nav[item.key]}
+                </Link>
+              )
             ))}
           </div>
 
@@ -225,32 +357,111 @@ export function Navigation() {
         <div
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-300 ease-out relative z-50",
-            mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            mobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
           )}
         >
-          <div className="py-4 mt-2 rounded-xl bg-background/95 backdrop-blur-lg border border-border shadow-lg">
+          <div className="py-4 mt-2 rounded-xl bg-background/95 backdrop-blur-lg border border-border shadow-lg max-h-[70vh] overflow-y-auto">
             <div className="flex flex-col gap-1 px-2">
               {navItems.map((item, index) => (
-                <Link
-                  key={item.key}
-                  to={item.href}
-                  onClick={() => {
-                    handleNavClick(item.href)
-                    setMobileMenuOpen(false)
-                  }}
-                  className={cn(
-                    "text-base font-semibold transition-all duration-200 py-3 px-4 rounded-lg",
-                    "hover:bg-accent/50 hover:translate-x-1",
-                    pathname === item.href
-                      ? "text-foreground bg-accent/30"
-                      : "text-foreground/70"
-                  )}
-                  style={{
-                    transitionDelay: mobileMenuOpen ? `${index * 50}ms` : "0ms",
-                  }}
-                >
-                  {t.nav[item.key]}
-                </Link>
+                item.key === "solution" ? (
+                  <div key={item.key}>
+                    {/* Solution Header with Expand Toggle */}
+                    <button
+                      type="button"
+                      onClick={() => setMobileSolutionExpanded(!mobileSolutionExpanded)}
+                      className={cn(
+                        "w-full text-left text-base font-semibold transition-all duration-200 py-3 px-4 rounded-lg flex items-center justify-between",
+                        "hover:bg-accent/50",
+                        pathname.startsWith("/solution")
+                          ? "text-foreground bg-accent/30"
+                          : "text-foreground/70"
+                      )}
+                      style={{
+                        transitionDelay: mobileMenuOpen ? `${index * 50}ms` : "0ms",
+                      }}
+                    >
+                      {t.nav[item.key]}
+                      <ChevronDown className={cn(
+                        "h-4 w-4 transition-transform duration-200",
+                        mobileSolutionExpanded && "rotate-180"
+                      )} />
+                    </button>
+
+                    {/* Solution Submenu */}
+                    <div className={cn(
+                      "overflow-hidden transition-all duration-300",
+                      mobileSolutionExpanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                    )}>
+                      <div className="pl-4 py-2 space-y-3">
+                        {/* View All Link */}
+                        <Link
+                          to="/solution"
+                          onClick={() => {
+                            setMobileMenuOpen(false)
+                            setMobileSolutionExpanded(false)
+                          }}
+                          className="block text-sm font-medium text-primary py-2 px-4"
+                        >
+                          {t.nav.solutionDropdown.viewAll}
+                        </Link>
+
+                        {/* Categories */}
+                        {solutionCategories.map((category) => (
+                          <div key={category.key} className="space-y-1">
+                            <Link
+                              to={category.href}
+                              onClick={() => {
+                                setMobileMenuOpen(false)
+                                setMobileSolutionExpanded(false)
+                              }}
+                              className="block text-sm font-semibold text-foreground py-1 px-4"
+                            >
+                              {t.nav.solutionDropdown[category.key].title}
+                            </Link>
+                            {category.items.map((subItem) => (
+                              <Link
+                                key={subItem.key}
+                                to={subItem.href}
+                                onClick={() => {
+                                  setMobileMenuOpen(false)
+                                  setMobileSolutionExpanded(false)
+                                }}
+                                className="block text-sm text-muted-foreground hover:text-foreground py-1 px-6"
+                              >
+                                {
+                                    (
+                                      t.nav.solutionDropdown[category.key as "ew" | "nc" | "cuas"].items as Record<string, string>
+                                    )[subItem.key]
+                                  }
+                              </Link>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.key}
+                    to={item.href}
+                    onClick={() => {
+                      handleNavClick(item.href)
+                      setMobileMenuOpen(false)
+                    }}
+                    className={cn(
+                      "text-base font-semibold transition-all duration-200 py-3 px-4 rounded-lg",
+                      "hover:bg-accent/50 hover:translate-x-1",
+                      pathname === item.href
+                        ? "text-foreground bg-accent/30"
+                        : "text-foreground/70"
+                    )}
+                    style={{
+                      transitionDelay: mobileMenuOpen ? `${index * 50}ms` : "0ms",
+                    }}
+                  >
+                    {t.nav[item.key]}
+                  </Link>
+                )
               ))}
             </div>
           </div>

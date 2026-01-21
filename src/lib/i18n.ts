@@ -47,6 +47,9 @@ import { ncm as ncmEn } from "@/localize/en/solution/nc/ncm"
 import { ews as ewsEn } from "@/localize/en/solution/ew/ews"
 import { resolve as resolveEn } from "@/localize/en/solution/ew/resolve"
 import { perceive as perceiveEn } from "@/localize/en/solution/ew/perceive"
+import { deceive as deceiveEn } from "@/localize/en/solution/ew/deceive"
+import { microesm as microesmEn } from "@/localize/en/solution/ew/microesm"
+import { phobosm4 as phobosm4En } from "@/localize/en/solution/ew/phobosm4"
 
 // --- Korean (ko) ---
 import { home as homeKo } from "@/localize/ko/home"
@@ -63,6 +66,9 @@ import { ncm as ncmKo } from "@/localize/ko/solution/nc/ncm"
 import { ews as ewsKo } from "@/localize/ko/solution/ew/ews"
 import { resolve as resolveKo } from "@/localize/ko/solution/ew/resolve"
 import { perceive as perceiveKo } from "@/localize/ko/solution/ew/perceive"
+import { deceive as deceiveKo } from "@/localize/ko/solution/ew/deceive"
+import { microesm as microesmKo } from "@/localize/ko/solution/ew/microesm"
+import { phobosm4 as phobosm4Ko } from "@/localize/ko/solution/ew/phobosm4"
 
 // --- Japanese (ja) - 일본어 추가 시 주석 해제 ---
 // import { home as homeJa } from "@/localize/ja/home"
@@ -106,6 +112,9 @@ const RESOURCES = {
     ews: ewsEn,
     resolve: resolveEn,
     perceive: perceiveEn,
+    deceive: deceiveEn,
+    microesm: microesmEn,
+    phobosm4: phobosm4En,
   },
 
   // Korean
@@ -124,6 +133,9 @@ const RESOURCES = {
     ews: ewsKo,
     resolve: resolveKo,
     perceive: perceiveKo,
+    deceive: deceiveKo,
+    microesm: microesmKo,
+    phobosm4: phobosm4Ko,
   },
 
   // Japanese - 일본어 추가 시 주석 해제
