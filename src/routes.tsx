@@ -44,7 +44,6 @@ export default function AppRoutes() {
         <Route path="solution/ew" element={<Solution_EW />} />
         <Route path="solution/ew/GoldenBat-EWS" element={<Detail_EWS />} />
         <Route path="solution/ew/eBT-MES" element={<Detail_MES />} />
-        <Route path="solution/ew/eBT-PES" element={<Detail_PES />} />
         <Route path="solution/ew/PERCEIVE" element={<Detail_PERCEIVE />} />
         <Route path="solution/ew/RESOLVE" element={<Detail_RESOLVE />} />
         <Route path="solution/ew/LOCATE-T" element={<Detail_LOCATE />} />
@@ -60,6 +59,7 @@ export default function AppRoutes() {
 
         {/* C-UAS */}
         <Route path="solution/c-uas" element={<Solution_CUAS />} />
+        <Route path="solution/c-uas/eBT-PES" element={<Detail_PES />} />
 
         {/* NC - BIOBATS */}
         <Route path="solution/nc/BIOBATS" element={<Detail_BBATS />} />
