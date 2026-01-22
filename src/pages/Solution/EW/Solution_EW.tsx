@@ -64,7 +64,7 @@ export default function ElectronicWarfarePage() {
       title: "PHOBOS M4",
       subtitle: ewPage.products.phobosM4,
       imageSrc: categoryPhobosM4Img,
-      href: "PHOBOS M4",
+      href: "PHOBOS-M4",
     },
   ]
 
