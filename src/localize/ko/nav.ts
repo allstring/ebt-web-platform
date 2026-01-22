@@ -34,6 +34,7 @@ export const nav = {
       title: "대드론 방어",
       items: {
         ebtPes: "eBT-PES",
+        spectraC2: "Spectra-C2",
       },
     },
   },

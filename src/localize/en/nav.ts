@@ -34,6 +34,7 @@ export const nav = {
       title: "Counter-UAS",
       items: {
         ebtPes: "eBT-PES",
+        spectraC2: "Spectra-C2",
       },
     },
   },
