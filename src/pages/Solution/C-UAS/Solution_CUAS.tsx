@@ -11,6 +11,7 @@ import { useLocale } from "@/lib/i18n"
 const HIDE_PAGE = false
 
 import categoryPesImg from "@/assets/images/category-pes.png"
+import spectraC2Thumbnail from "@/assets/images/spectraC2Thumbnail.png"
 
 export default function CounterUASPage() {
   const { t } = useLocale()
@@ -30,6 +31,12 @@ export default function CounterUASPage() {
       imageSrc: categoryPesImg,
       href: "eBT-PES",
       classified: true,
+    },
+    {
+      title: "Spectra-C2",
+      subtitle: cuasPage.products.spectraC2,
+      imageSrc: spectraC2Thumbnail,
+      href: "Spectra-C2",
     },
   ]
 

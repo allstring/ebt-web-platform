@@ -152,6 +152,7 @@ export const solution = {
       title: "제품 라인업",
       ebtPesDetector: "드론 탐지 시스템",
       ebtPesJammer: "드론 재밍 시스템",
+      spectraC2: "모바일 UAS 탐지 및 재밍 C2",
     },
     capabilities: {
       label: "시스템 기능",

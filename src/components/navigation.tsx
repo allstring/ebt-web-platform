@@ -42,6 +42,7 @@ const solutionCategories = [
     href: "/solution/c-uas",
     items: [
       { key: "ebtPes" as const, href: "/solution/c-uas/eBT-PES" },
+      { key: "spectraC2" as const, href: "/solution/c-uas/Spectra-C2" },
     ],
   },
 ]
