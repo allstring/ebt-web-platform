@@ -152,6 +152,7 @@ export const solution = {
       title: "Product Lineup",
       ebtPesDetector: "Drone Detection System",
       ebtPesJammer: "Drone Jamming System",
+      spectraC2: "Mobile UAS Detection & Jamming C2",
     },
     capabilities: {
       label: "System Capabilities",
