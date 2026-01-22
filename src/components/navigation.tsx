@@ -34,6 +34,7 @@ const solutionCategories = [
     items: [
       { key: "chemproX" as const, href: "/solution/nc/CHEMPRO-X" },
       { key: "ncMonitoring" as const, href: "/solution/nc/NC MONITORING SYSTEM" },
+      { key: "ranidX" as const, href: "/solution/nc/RanidX" },
     ],
   },
   {
