@@ -11,10 +11,18 @@ import { Footer } from "@/components/footer"
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Skip to content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:border focus:border-border focus:rounded-md focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+
       <Navigation />
 
       {/* 페이지 콘텐츠 */}
-      <main className="flex-1">
+      <main id="main-content" className="flex-1" tabIndex={-1}>
         <Outlet />
       </main>
 

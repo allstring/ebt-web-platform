@@ -3,53 +3,19 @@
 // 연락처 페이지 - 회사 위치, 연락처, 채용 정보 (GSAP 애니메이션)
 // ============================================================================
 
-import { useEffect, useRef, useLayoutEffect } from "react"
+import { useRef } from "react"
 import { MapPin, Phone, Mail } from "lucide-react"
 import { gsap } from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 
 import { useLocale } from "@/lib/i18n"
+import {
+  useHeroAnimation,
+  useFadeIn,
+  useStaggerAnimation,
+} from "@/hooks/use-gsap-animation"
 
 gsap.registerPlugin(ScrollTrigger)
-
-// ============================================================================
-// Scroll Snap Hook
-// ============================================================================
-
-function useScrollSnap(containerRef: React.RefObject<HTMLDivElement>) {
-  useLayoutEffect(() => {
-    if (!containerRef.current) return
-
-    const timeoutId = setTimeout(() => {
-      const sections = gsap.utils.toArray<HTMLElement>(".snap-section")
-      if (sections.length === 0) return
-
-      const snapPoints = sections.map((section) => {
-        const rect = section.getBoundingClientRect()
-        const scrollTop = window.pageYOffset
-        const sectionTop = rect.top + scrollTop
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight
-        return Math.min(Math.max(sectionTop / docHeight, 0), 1)
-      })
-
-      ScrollTrigger.create({
-        snap: {
-          snapTo: snapPoints,
-          duration: { min: 0.2, max: 0.6 },
-          delay: 0,
-          ease: "power2.inOut",
-        },
-      })
-    }, 100)
-
-    return () => {
-      clearTimeout(timeoutId)
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.vars.snap) t.kill()
-      })
-    }
-  }, [containerRef])
-}
 
 // Assets
 import icoHan from "@/assets/images/contact/ico_han.png"
@@ -78,29 +44,11 @@ function HeroSection() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLParagraphElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        labelRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }
-      )
-
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "expo.out", delay: 0.15 }
-      )
-
-      gsap.fromTo(
-        descRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "expo.out", delay: 0.3 }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  useHeroAnimation(sectionRef, {
+    label: labelRef,
+    title: titleRef,
+    description: descRef,
+  })
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32">
@@ -108,13 +56,13 @@ function HeroSection() {
         <div className="max-w-3xl">
           <p
             ref={labelRef}
-            className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+            className="text-xs font-semibold uppercase tracking-wider text-accent"
           >
             {t.contact.hero.sectionLabel}
           </p>
           <h1
             ref={titleRef}
-            className="mt-2 text-4xl md:text-5xl font-semibold tracking-tight text-foreground"
+            className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-foreground"
           >
             {t.contact.hero.title}
           </h1>
@@ -141,69 +89,19 @@ function LocationSection() {
   const infoRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
-
-      gsap.fromTo(
-        infoRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: infoRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
-
-      gsap.fromTo(
-        mapRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: mapRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  useFadeIn(headerRef, headerRef, { y: 30 })
+  useFadeIn(infoRef, infoRef, { y: 30, delay: 0.1 })
+  useFadeIn(mapRef, mapRef, { y: 30, delay: 0.2 })
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
         <div ref={headerRef} className="max-w-2xl mb-12">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
             {t.contact.location.sectionLabel}
           </p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
+          <h2 className="mt-3 text-3xl lg:text-4xl font-semibold tracking-tight text-foreground">
             {t.contact.location.title}
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -219,7 +117,7 @@ function LocationSection() {
         {/* 지도 */}
         <div
           ref={mapRef}
-          className="rounded-xl overflow-hidden border border-border bg-background hover:border-accent/30 transition-colors duration-300"
+          className="rounded-2xl overflow-hidden border border-border bg-background hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5"
         >
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1584.5348376758109!2d127.09348!3d37.411828!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca7c7e7677691%3A0x2c4282e124e93f95!2zTEgg7YyQ6rWQ7KCcMu2FjO2BrOuFuOuwuOumrCDquLDsl4XshLHsnqXshLzthLA!5e0!3m2!1sko!2skr!4v1767849458960!5m2!1sko!2skr"
@@ -244,69 +142,56 @@ function LocationSection() {
 function CompanyInfo() {
   const { t } = useLocale()
 
+  const contactItems = [
+    {
+      href: "https://maps.google.com/?q=경기도+성남시+분당구+판교로228번길+15",
+      target: "_blank",
+      icon: MapPin,
+      label: t.contact.location.addressLabel,
+      value: t.contact.location.address,
+    },
+    {
+      href: `tel:${t.contact.location.phone}`,
+      icon: Phone,
+      label: t.contact.location.phoneLabel,
+      value: t.contact.location.phone,
+    },
+    {
+      href: `mailto:${t.contact.location.email}`,
+      icon: Mail,
+      label: t.contact.location.emailLabel,
+      value: t.contact.location.email,
+    },
+  ]
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {/* 주소 */}
-      <a
-        href="https://maps.google.com/?q=경기도+성남시+분당구+판교로228번길+15"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative overflow-hidden rounded-xl bg-card p-6 border border-border hover:border-accent/50 hover:-translate-y-0.5 transition-all duration-300"
-      >
-        <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-            <MapPin className="w-5 h-5 text-accent" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-              {t.contact.location.addressLabel}
-            </p>
-            <p className="text-foreground leading-relaxed text-sm">
-              {t.contact.location.address}
-            </p>
-          </div>
-        </div>
-      </a>
+      {contactItems.map((item) => (
+        <a
+          key={item.label}
+          href={item.href}
+          target={item.target}
+          rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+          className="group relative overflow-hidden rounded-xl bg-card p-6 border border-border hover:border-accent/50 hover:-translate-y-1 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5"
+        >
+          {/* 호버 시 배경 그라데이션 */}
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      {/* 전화번호 */}
-      <a
-        href={`tel:${t.contact.location.phone}`}
-        className="group relative overflow-hidden rounded-xl bg-card p-6 border border-border hover:border-accent/50 hover:-translate-y-0.5 transition-all duration-300"
-      >
-        <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-            <Phone className="w-5 h-5 text-accent" />
+          <div className="relative flex items-start gap-4">
+            <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+              <item.icon className="w-5 h-5 text-accent" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                {item.label}
+              </p>
+              <p className="text-foreground leading-relaxed text-sm group-hover:text-accent transition-colors duration-300">
+                {item.value}
+              </p>
+            </div>
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-              {t.contact.location.phoneLabel}
-            </p>
-            <p className="text-foreground text-sm font-medium">
-              {t.contact.location.phone}
-            </p>
-          </div>
-        </div>
-      </a>
-
-      {/* 이메일 */}
-      <a
-        href={`mailto:${t.contact.location.email}`}
-        className="group relative overflow-hidden rounded-xl bg-card p-6 border border-border hover:border-accent/50 hover:-translate-y-0.5 transition-all duration-300"
-      >
-        <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-            <Mail className="w-5 h-5 text-accent" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-              {t.contact.location.emailLabel}
-            </p>
-            <p className="text-foreground text-sm font-medium">
-              {t.contact.location.email}
-            </p>
-          </div>
-        </div>
-      </a>
+        </a>
+      ))}
     </div>
   )
 }
@@ -336,18 +221,23 @@ function ApplicationDocCard({
     <a
       href={href}
       download
-      className="group flex flex-col gap-3 rounded-lg border border-border bg-background p-5 transition hover:-translate-y-0.5 hover:border-accent hover:shadow-sm"
+      className="doc-card group flex flex-col gap-4 rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5"
     >
-      <div className="flex items-center gap-3">
-        <div className="rounded-full bg-muted p-3 text-muted-foreground group-hover:text-foreground">
-          <img src={icon} alt={iconAlt} className="h-5 w-5" />
+      {/* 호버 시 배경 그라데이션 */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
+
+      <div className="relative flex items-center gap-4">
+        <div className="rounded-xl bg-muted p-3 group-hover:bg-accent/10 transition-colors duration-300">
+          <img src={icon} alt={iconAlt} className="h-6 w-6" />
         </div>
         <div>
-          <p className="font-medium text-foreground">{title}</p>
+          <p className="font-medium text-foreground group-hover:text-accent transition-colors duration-300">
+            {title}
+          </p>
           <p className="text-sm text-muted-foreground">{description}</p>
         </div>
       </div>
-      <span className="text-sm text-accent group-hover:text-foreground transition-colors">
+      <span className="text-sm text-accent group-hover:text-foreground transition-colors duration-300">
         {downloadText}
       </span>
     </a>
@@ -360,31 +250,35 @@ function ApplicationDocCard({
 
 function CareerSection() {
   const { t } = useLocale()
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const docsRef = useRef<HTMLDivElement>(null)
+
+  useFadeIn(headerRef, headerRef, { y: 30 })
+  useStaggerAnimation(docsRef, ".doc-card", { y: 30, stagger: 0.1 })
 
   return (
-    <section className="py-24 lg:py-32 bg-card border-t border-border">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
-        <div className="gap-10 mb-12">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {t.contact.career.sectionLabel}
-            </p>
-            <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground">
-              {t.contact.career.title}
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              {t.contact.career.description}
-            </p>
-          </div>
+        <div ref={headerRef} className="max-w-2xl mb-12">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+            {t.contact.career.sectionLabel}
+          </p>
+          <h2 className="mt-3 text-3xl lg:text-4xl font-semibold tracking-tight text-foreground">
+            {t.contact.career.title}
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            {t.contact.career.description}
+          </p>
         </div>
 
         {/* 입사지원서 다운로드 */}
         <div className="mb-12">
-          <h3 className="text-lg font-medium text-foreground">
+          <h3 className="text-lg font-medium text-foreground mb-6">
             {t.contact.career.applicationDocs}
           </h3>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div ref={docsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.contact.career.docs.map((doc, index) => {
               const file = APPLICATION_DOC_FILES[index]
               return (
@@ -403,15 +297,17 @@ function CareerSection() {
         </div>
 
         {/* 이력서 안내 */}
-        <p className="mt-8 text-sm text-muted-foreground">
-          {t.contact.career.resumeText}{" "}
-          <a
-            href="mailto:info@ebtech.kr"
-            className="text-accent hover:text-foreground transition-colors"
-          >
-            info@ebtech.kr
-          </a>
-        </p>
+        <div className="p-6 bg-background rounded-xl border border-border">
+          <p className="text-sm text-muted-foreground">
+            {t.contact.career.resumeText}{" "}
+            <a
+              href="mailto:info@ebtech.kr"
+              className="text-accent hover:text-foreground transition-colors duration-200 font-medium"
+            >
+              info@ebtech.kr
+            </a>
+          </p>
+        </div>
       </div>
     </section>
   )
@@ -422,20 +318,11 @@ function CareerSection() {
 // ============================================================================
 
 export default function ContactPage() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  useScrollSnap(containerRef)
-
   return (
-    <div ref={containerRef} className="pt-16">
-      <section className="snap-section">
-        <HeroSection />
-      </section>
-      <section className="snap-section">
-        <LocationSection />
-      </section>
-      <section className="snap-section">
-        <CareerSection />
-      </section>
+    <div className="pt-16">
+      <HeroSection />
+      <LocationSection />
+      <CareerSection />
     </div>
   )
 }

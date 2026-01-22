@@ -159,7 +159,7 @@ export default function NCDefensePage() {
     title: "NC MONITORING SYSTEM",
     subtitle: nc.products.ncMonitoring,
     imageSrc: categoryNcmImg,
-    href: "NC MONITORING SYSTEM",
+    href: "NC-MONITORING-SYSTEM",
   }, {
     title: "RanidX",
     subtitle: nc.products.ranidx,

@@ -3,7 +3,7 @@
 // 메인 랜딩 페이지 - 회사 소개 및 솔루션 개요 (GSAP 애니메이션)
 // ============================================================================
 
-import { useEffect, useRef, useMemo } from "react"
+import { useRef, useMemo } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Settings, Shield, Zap, Target, Users, Wrench } from "lucide-react"
 import { gsap } from "gsap"
@@ -12,6 +12,12 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 import { Button } from "@/components/ui/button"
 import { useLocale } from "@/lib/i18n"
 import DefenseRadarHero from "@/components/defense-radar-hero"
+import {
+  useFadeIn,
+  useSlideIn,
+  useStaggerAnimation,
+  useDualSlideIn,
+} from "@/hooks/use-gsap-animation"
 
 // Assets
 import heroVideo from "@/assets/videos/home/hero-video.webm"
@@ -83,55 +89,17 @@ function FeaturedProductSection() {
   const textRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 텍스트 영역 등장
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, x: -60 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-
-      // 이미지 영역 등장
-      gsap.fromTo(
-        imageRef.current,
-        { opacity: 0, x: 60 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  useDualSlideIn(sectionRef, textRef, imageRef, { duration: 1 })
 
   return (
     <div ref={sectionRef} className="mt-16 mb-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center p-8 lg:p-12 bg-card border border-border rounded-lg hover:border-accent/30 transition-colors duration-300">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center p-8 lg:p-12 bg-card border border-border rounded-2xl hover:border-accent/30 transition-all duration-500 hover:shadow-lg hover:shadow-accent/5">
         {/* 텍스트 영역 */}
         <div ref={textRef}>
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
             {t.home.featured.sectionLabel}
           </p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
+          <h2 className="mt-3 text-3xl lg:text-4xl font-semibold tracking-tight text-foreground">
             {t.home.featured.title}
           </h2>
           <p className="mt-6 text-muted-foreground leading-relaxed">
@@ -145,7 +113,7 @@ function FeaturedProductSection() {
                 key={feature}
                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
-                <span className="w-1.5 h-1.5 bg-accent rounded-full" />
+                <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
                 {feature}
               </li>
             ))}
@@ -155,7 +123,7 @@ function FeaturedProductSection() {
             <Button
               asChild
               variant="outline"
-              className="border-border group"
+              className="border-border hover:border-accent group"
             >
               <Link to="/solution">
                 {t.home.featured.viewSpecs}
@@ -168,13 +136,14 @@ function FeaturedProductSection() {
         {/* 이미지 영역 */}
         <div
           ref={imageRef}
-          className="relative aspect-[4/3] bg-secondary/50 border border-border rounded-lg overflow-hidden group"
+          className="relative aspect-[4/3] bg-secondary/50 border border-border rounded-xl overflow-hidden group"
         >
           <img
             src={heroMainImg}
             alt={t.home.featured.imageAlt}
-            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
       </div>
     </div>
@@ -197,29 +166,34 @@ function SolutionCard({ title, description, href, index, learnMoreText }: Soluti
   return (
     <Link
       to={href}
-      className="solution-card group preserve-text-rendering relative p-8 bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 ease-out transform-gpu hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl hover:border-accent/30"
+      className="solution-card group preserve-text-rendering relative p-8 bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 ease-out transform-gpu hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10 hover:border-accent/40"
     >
-      {/* 인덱스 번호 */}
-      <div className="flex items-center gap-4 mb-6">
-        <span className="text-5xl font-light text-muted-foreground/50 group-hover:text-accent/50 transition-colors duration-300">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-      </div>
+      {/* 호버 시 배경 그라데이션 */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      {/* 제목 */}
-      <h3 className="text-lg font-medium text-foreground group-hover:text-accent transition-colors duration-300">
-        {title}
-      </h3>
+      <div className="relative z-10">
+        {/* 인덱스 번호 */}
+        <div className="flex items-center gap-4 mb-6">
+          <span className="text-5xl font-light text-muted-foreground/40 group-hover:text-accent/60 transition-colors duration-300">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
 
-      {/* 설명 */}
-      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-        {description}
-      </p>
+        {/* 제목 */}
+        <h3 className="text-xl font-medium text-foreground group-hover:text-accent transition-colors duration-300">
+          {title}
+        </h3>
 
-      {/* Learn More 링크 */}
-      <div className="mt-6 flex items-center text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-200">
-        <span className="mr-2">{learnMoreText}</span>
-        <ArrowRight className="h-3 w-3 transform transition-all duration-200 translate-x-0 opacity-0 group-hover:translate-x-1 group-hover:opacity-100" />
+        {/* 설명 */}
+        <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
+          {description}
+        </p>
+
+        {/* Learn More 링크 */}
+        <div className="mt-6 flex items-center text-sm text-muted-foreground group-hover:text-accent transition-colors duration-200">
+          <span className="mr-2">{learnMoreText}</span>
+          <ArrowRight className="h-4 w-4 transform transition-all duration-300 translate-x-0 group-hover:translate-x-2" />
+        </div>
       </div>
     </Link>
   )
@@ -235,56 +209,18 @@ function SolutionsSection() {
   const headerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 섹션 헤더 등장
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-
-      // 솔루션 카드 순차 등장
-      gsap.fromTo(
-        ".solution-card",
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  useFadeIn(headerRef, headerRef, { y: 40 })
+  useStaggerAnimation(cardsRef, ".solution-card", { y: 60, stagger: 0.15 })
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
         <div ref={headerRef} className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
             {t.home.solutions.sectionLabel}
           </p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">
+          <h2 className="mt-3 text-3xl lg:text-4xl font-semibold tracking-tight text-foreground">
             {t.home.solutions.sectionTitle}
           </h2>
         </div>
@@ -293,7 +229,7 @@ function SolutionsSection() {
         <FeaturedProductSection />
 
         {/* 솔루션 카드 그리드 */}
-        <div ref={cardsRef} className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div ref={cardsRef} className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
           {t.home.solutions.items.map((solution, index) => (
             <SolutionCard
               key={solution.title}
@@ -325,27 +261,11 @@ function CapabilityCard({ title, description, index, isEven }: CapabilityCardPro
   const Icon = CAPABILITY_ICONS[index]
   const cardRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        cardRef.current,
-        { opacity: 0, x: isEven ? -80 : 80 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-    }, cardRef)
-
-    return () => ctx.revert()
-  }, [isEven])
+  useSlideIn(cardRef, cardRef, {
+    direction: isEven ? "left" : "right",
+    distance: 80,
+    duration: 0.9,
+  })
 
   return (
     <div
@@ -358,9 +278,9 @@ function CapabilityCard({ title, description, index, isEven }: CapabilityCardPro
       <div className="flex-shrink-0 w-full lg:w-1/3">
         <div className="relative">
           {/* 배경 블러 효과 */}
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl blur-2xl group-hover:blur-3xl transition-[filter] duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl blur-2xl group-hover:blur-3xl transition-[filter] duration-500 opacity-50 group-hover:opacity-100" />
 
-          <div className="relative p-8 lg:p-12 bg-card border border-border rounded-2xl group-hover:border-accent/50 transition-colors duration-300">
+          <div className="relative p-8 lg:p-12 bg-card border border-border rounded-2xl group-hover:border-accent/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-accent/5">
             <div className="flex items-center justify-between mb-6">
               {/* 아이콘 */}
               <div className="p-4 bg-accent/10 rounded-xl group-hover:bg-accent/20 transition-colors duration-300">
@@ -368,7 +288,7 @@ function CapabilityCard({ title, description, index, isEven }: CapabilityCardPro
               </div>
 
               {/* 번호 */}
-              <span className="text-6xl lg:text-7xl font-light text-muted-foreground/30 group-hover:text-accent/30 transition-colors duration-300">
+              <span className="text-6xl lg:text-7xl font-light text-muted-foreground/20 group-hover:text-accent/30 transition-colors duration-300">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </div>
@@ -387,7 +307,7 @@ function CapabilityCard({ title, description, index, isEven }: CapabilityCardPro
           </p>
 
           {/* Hover 시 나타나는 액센트 라인 */}
-          <div className="mt-6 h-1 w-20 bg-gradient-to-r from-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="mt-6 h-1 w-0 bg-gradient-to-r from-accent to-accent/50 group-hover:w-24 transition-all duration-500" />
         </div>
       </div>
     </div>
@@ -402,46 +322,30 @@ function CapabilitiesSection() {
   const { t } = useLocale()
   const headerRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-    }, headerRef)
-
-    return () => ctx.revert()
-  }, [])
+  useFadeIn(headerRef, headerRef, { y: 40 })
 
   return (
     <section className="py-24 lg:py-32 border-t border-border relative overflow-hidden">
+      {/* 배경 장식 */}
+      <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
         <div ref={headerRef} className="max-w-3xl space-y-4 mb-20 text-center mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
             {t.home.capabilities.sectionLabel}
           </p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
             {t.home.capabilities.sectionTitle}
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
+          <p className="text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             {t.home.capabilities.sectionDescription}
           </p>
         </div>
 
         {/* 역량 카드 목록 */}
-        <div className="space-y-8 lg:space-y-12">
+        <div className="space-y-12 lg:space-y-16">
           {t.home.capabilities.items.map((capability, index) => (
             <CapabilityCard
               key={capability.title}
@@ -466,43 +370,23 @@ function CTASection() {
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  useFadeIn(contentRef, sectionRef, { y: 40 })
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32 bg-card border-t border-border">
       <div ref={contentRef} className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+        <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-foreground">
           {t.home.cta.title}
         </h2>
-        <p className="mt-4 text-muted-foreground">
+        <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
           {t.home.cta.description}
         </p>
 
-        <div className="mt-8">
+        <div className="mt-10">
           <Button
             asChild
             size="lg"
-            className="bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 hover:scale-105"
+            className="bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >
             <Link to="/contact">
               {t.home.cta.contactUs}
