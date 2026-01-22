@@ -1,4 +1,4 @@
-import categoryResolveImg from "@/assets/images/resolve-banner.jpg"
+import categoryResolveImg from "@/assets/images/resolve-banner2.jpeg"
 import eseaRecImg from "@/assets/images/resolve2.jpg"
 import { useLocale } from "@/lib/i18n"
 

@@ -10,19 +10,19 @@ import gsap from "gsap"
 
 // Assets - Posters
 import solutionEwImg from "@/assets/images/solution/list-ew-video-poster.webp"
-import solutionCwImg from "@/assets/images/solution/list-bw-video-poster.webp"
+import solutionNcImg from "@/assets/images/solution/list-bw-video-poster.webp"
 import solutionCuasImg from "@/assets/images/solution/list-cuas-video-poster.jpg"
 
 // Assets - Videos
 import solutionEwVideo from "@/assets/videos/solution/list-ew-video.webm"
-import solutionCwVideo from "@/assets/videos/solution/list-bw-video.webm"
+import solutionNcVideo from "@/assets/videos/solution/list-bw-video.webm"
 import solutionCuasVideo from "@/assets/videos/solution/list-cuas-video.mp4"
 
 // ============================================================================
 // 타입 정의
 // ============================================================================
 
-type SolutionKey = "electronicWarfare" | "chemicalWarfare" | "counterUAS"
+type SolutionKey = "electronicWarfare" | "nuclearChemical" | "counterUAS"
 
 interface SolutionItem {
   id: string
@@ -48,12 +48,12 @@ const SOLUTION_DATA: SolutionItem[] = [
     video: solutionEwVideo,
   },
   {
-    id: "chemical-warfare",
+    id: "nuclear-chemical",
     number: "02",
-    key: "chemicalWarfare",
+    key: "nuclearChemical",
     href: "/solution/nc",
-    poster: solutionCwImg,
-    video: solutionCwVideo,
+    poster: solutionNcImg,
+    video: solutionNcVideo,
   },
   {
     id: "counter-uas",
