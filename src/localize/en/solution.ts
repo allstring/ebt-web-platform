@@ -11,9 +11,9 @@ export const solution = {
     summary:
       "Signal processing and spectrum management for complex electromagnetic environments.",
   },
-  chemicalWarfare: {
+  nuclearChemical: {
     label: "NC",
-    title: "Chemical Warfare",
+    title: "Nuclear Chemical",
     summary:
       "Detection, identification, and monitoring systems for chemical agents in hazardous operational environments.",
   },

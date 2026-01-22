@@ -11,7 +11,7 @@ export const solution = {
     summary:
       "복잡한 전자기 환경에서의 정밀한 신호 처리 및 효율적인 주파수 대역 관리 솔루션을 제공합니다.",
   },
-  chemicalWarfare: {
+  nuclearChemical: {
     label: "NC",
     title: "화학전 대응",
     summary:
