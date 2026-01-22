@@ -3,53 +3,20 @@
 // 회사 소개 페이지 - 비전, 미션, 핵심 역량 (GSAP 애니메이션)
 // ============================================================================
 
-import { useEffect, useRef, useLayoutEffect } from "react"
+import { useRef } from "react"
 import { gsap } from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 
 import { useLocale } from "@/lib/i18n"
+import {
+  useHeroAnimation,
+  useFadeIn,
+  useSlideIn,
+  useStaggerAnimation,
+  useDualSlideIn,
+} from "@/hooks/use-gsap-animation"
 
 gsap.registerPlugin(ScrollTrigger)
-
-// ============================================================================
-// Scroll Snap Hook
-// ============================================================================
-
-function useScrollSnap(containerRef: React.RefObject<HTMLDivElement>) {
-  useLayoutEffect(() => {
-    if (!containerRef.current) return
-
-    // 약간의 지연 후 스냅 포인트 계산 (레이아웃 안정화 대기)
-    const timeoutId = setTimeout(() => {
-      const sections = gsap.utils.toArray<HTMLElement>(".snap-section")
-      if (sections.length === 0) return
-
-      const snapPoints = sections.map((section) => {
-        const rect = section.getBoundingClientRect()
-        const scrollTop = window.pageYOffset
-        const sectionTop = rect.top + scrollTop
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight
-        return Math.min(Math.max(sectionTop / docHeight, 0), 1)
-      })
-
-      ScrollTrigger.create({
-        snap: {
-          snapTo: snapPoints,
-          duration: { min: 0.2, max: 0.6 },
-          delay: 0,
-          ease: "power2.inOut",
-        },
-      })
-    }, 100)
-
-    return () => {
-      clearTimeout(timeoutId)
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.vars.snap) t.kill()
-      })
-    }
-  }, [containerRef])
-}
 
 // Assets
 import heroBgImg from "@/assets/images/about/hero-bg.webp"
@@ -65,47 +32,19 @@ function HeroSection() {
   const labelRef = useRef<HTMLParagraphElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const desc1Ref = useRef<HTMLParagraphElement>(null)
-  const desc2Ref = useRef<HTMLParagraphElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 라벨 등장
-      gsap.fromTo(
-        labelRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-      )
-
-      // 타이틀 애니메이션
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.2 }
-      )
-
-      // 설명 텍스트 순차 등장
-      gsap.fromTo(
-        [desc1Ref.current, desc2Ref.current],
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.15, delay: 0.5 }
-      )
-
-      // 카드 영역 등장
-      gsap.fromTo(
-        cardsRef.current,
-        { opacity: 0, x: 80 },
-        { opacity: 1, x: 0, duration: 1.2, ease: "power3.out", delay: 0.4 }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  useHeroAnimation(sectionRef, {
+    label: labelRef,
+    title: titleRef,
+    description: desc1Ref,
+  })
+  useSlideIn(cardsRef, sectionRef, { direction: "right", distance: 80, delay: 0.4 })
 
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden py-24 lg:pt-48 lg:pb-18 bg-cover bg-center"
+      className="relative overflow-hidden py-24 lg:pt-48 lg:pb-24 bg-cover bg-center"
       style={{ backgroundImage: `url(${heroBgImg})` }}
     >
       {/* 배경 오버레이 */}
@@ -117,13 +56,13 @@ function HeroSection() {
           <div className="max-w-xl">
             <p
               ref={labelRef}
-              className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+              className="text-xs font-semibold uppercase tracking-wider text-accent"
             >
               {t.about.hero.sectionLabel}
             </p>
             <h1
               ref={titleRef}
-              className="mt-2 text-4xl md:text-5xl font-semibold tracking-tight text-foreground"
+              className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-foreground"
             >
               {t.about.hero.title1}
               <br className="hidden md:block" /> {t.about.hero.title2}
@@ -134,10 +73,7 @@ function HeroSection() {
             >
               {t.about.hero.description1}
             </p>
-            <p
-              ref={desc2Ref}
-              className="mt-4 text-base text-muted-foreground leading-relaxed"
-            >
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed">
               {t.about.hero.description2}
             </p>
           </div>
@@ -161,56 +97,17 @@ function WhyChooseUsCards() {
   const containerRef = useRef<HTMLDivElement>(null)
   const mainCardRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 메인 카드 등장
-      gsap.fromTo(
-        mainCardRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: mainCardRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
-
-      // 서브 카드들 순차 등장
-      gsap.fromTo(
-        ".why-choose-card",
-        { opacity: 0, y: 30, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.6,
-          ease: "power3.out",
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: ".why-choose-card",
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
-    }, containerRef)
-
-    return () => ctx.revert()
-  }, [])
+  useFadeIn(mainCardRef, mainCardRef, { y: 40, delay: 0.2 })
+  useStaggerAnimation(containerRef, ".why-choose-card", { y: 30, scale: 0.95, stagger: 0.1 })
 
   return (
     <div ref={containerRef} className="space-y-6">
       {/* 메인 카드 */}
       <div
         ref={mainCardRef}
-        className="p-6 bg-card border border-border shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:shadow-md"
+        className="p-6 bg-card border border-border rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-lg hover:shadow-accent/5"
       >
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
           {t.about.whyChoose.sectionLabel}
         </p>
         <h2 className="mt-3 text-xl font-medium text-foreground">
@@ -222,13 +119,13 @@ function WhyChooseUsCards() {
       </div>
 
       {/* 서브 카드 그리드 */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         {t.about.whyChoose.cards.map((card) => (
           <div
             key={card.title}
-            className="why-choose-card p-6 bg-card border border-border transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:shadow-sm"
+            className="why-choose-card group p-6 bg-card border border-border rounded-xl transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-md"
           >
-            <h3 className="text-sm font-semibold tracking-wide text-muted-foreground">
+            <h3 className="text-sm font-semibold tracking-wide text-foreground group-hover:text-accent transition-colors duration-200">
               {card.title}
             </h3>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -251,74 +148,41 @@ function VisionMissionSection() {
   const visionRef = useRef<HTMLDivElement>(null)
   const missionRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Vision 카드 - 왼쪽에서 등장
-      gsap.fromTo(
-        visionRef.current,
-        { opacity: 0, x: -80 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-
-      // Mission 카드 - 오른쪽에서 등장
-      gsap.fromTo(
-        missionRef.current,
-        { opacity: 0, x: 80 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  useDualSlideIn(sectionRef, visionRef, missionRef, { duration: 1 })
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-20 lg:py-28 border-t border-border">
+    <section ref={sectionRef} className="relative overflow-hidden py-24 lg:py-32 border-t border-border">
+      {/* 배경 장식 */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Vision */}
-          <div ref={visionRef} className="group">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div ref={visionRef} className="group p-8 bg-card/50 rounded-2xl border border-border hover:border-accent/30 transition-all duration-300">
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
               {t.about.vision.sectionLabel}
             </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors duration-300">
+            <h2 className="mt-3 text-2xl lg:text-3xl font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors duration-300">
               {t.about.vision.title}
             </h2>
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-muted-foreground leading-relaxed">
               {t.about.vision.description}
             </p>
+            <div className="mt-6 h-1 w-0 bg-gradient-to-r from-accent to-accent/50 group-hover:w-20 transition-all duration-500" />
           </div>
 
           {/* Mission */}
-          <div ref={missionRef} className="group">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div ref={missionRef} className="group p-8 bg-card/50 rounded-2xl border border-border hover:border-accent/30 transition-all duration-300">
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
               {t.about.mission.sectionLabel}
             </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors duration-300">
+            <h2 className="mt-3 text-2xl lg:text-3xl font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors duration-300">
               {t.about.mission.title}
             </h2>
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-muted-foreground leading-relaxed">
               {t.about.mission.description}
             </p>
+            <div className="mt-6 h-1 w-0 bg-gradient-to-r from-accent to-accent/50 group-hover:w-20 transition-all duration-500" />
           </div>
         </div>
       </div>
@@ -339,36 +203,15 @@ interface CapabilityCardProps {
 function CapabilityCard({ title, description, index }: CapabilityCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        cardRef.current,
-        { opacity: 0.5, y: 60, scale: 0.9 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.4,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 90%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-    }, cardRef)
-
-    return () => ctx.revert()
-  }, [])
+  useFadeIn(cardRef, cardRef, { y: 50, duration: 0.6 })
 
   return (
     <div
       ref={cardRef}
-      className="group p-6 bg-card border border-border transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
+      className="group p-6 bg-card border border-border rounded-xl transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5"
     >
       {/* 인덱스 번호 */}
-      <span className="text-4xl font-light text-muted-foreground/50 group-hover:text-accent/50 transition-colors duration-300">
+      <span className="text-4xl font-light text-muted-foreground/30 group-hover:text-accent/50 transition-colors duration-300">
         {String(index + 1).padStart(2, "0")}
       </span>
 
@@ -378,12 +221,12 @@ function CapabilityCard({ title, description, index }: CapabilityCardProps) {
       </h3>
 
       {/* 설명 */}
-      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
         {description}
       </p>
 
       {/* Hover 시 나타나는 액센트 라인 */}
-      <div className="mt-4 h-0.5 w-12 bg-gradient-to-r from-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="mt-4 h-0.5 w-0 bg-gradient-to-r from-accent to-accent/50 group-hover:w-16 transition-all duration-500" />
     </div>
   )
 }
@@ -397,28 +240,7 @@ function CoreCapabilitiesSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 섹션 헤더 등장
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  useFadeIn(headerRef, headerRef, { y: 50 })
 
   return (
     <section
@@ -431,11 +253,11 @@ function CoreCapabilitiesSection() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
-        <div ref={headerRef} className="max-w-3xl space-y-4">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <div ref={headerRef} className="max-w-3xl space-y-4 mb-16">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
             {t.about.capabilities.sectionLabel}
           </p>
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground">
+          <h2 className="text-3xl lg:text-4xl font-semibold tracking-tight text-foreground">
             {t.about.capabilities.title}
           </h2>
           <p className="text-base text-muted-foreground leading-relaxed">
@@ -444,7 +266,7 @@ function CoreCapabilitiesSection() {
         </div>
 
         {/* 역량 카드 그리드 */}
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
           {t.about.capabilities.items.map((capability, index) => (
             <CapabilityCard
               key={capability.title}
@@ -464,20 +286,11 @@ function CoreCapabilitiesSection() {
 // ============================================================================
 
 export default function AboutPage() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  useScrollSnap(containerRef)
-
   return (
-    <div ref={containerRef}>
-      <section className="snap-section">
-        <HeroSection />
-      </section>
-      <section className="snap-section">
-        <VisionMissionSection />
-      </section>
-      <section className="snap-section">
-        <CoreCapabilitiesSection />
-      </section>
+    <div>
+      <HeroSection />
+      <VisionMissionSection />
+      <CoreCapabilitiesSection />
     </div>
   )
 }
