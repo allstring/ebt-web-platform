@@ -23,6 +23,7 @@ import Detail_MICROESM from "./pages/Solution/EW/line_up/Detail_microesm"
 import Detail_PHOBOSM4 from "./pages/Solution/EW/line_up/Detail_phobosm4"
 import Detail_MAPVIEW from "./pages/Solution/EW/line_up/Detail_mapview"
 
+import Detail_SPECTRAC2 from "./pages/Solution/C-UAS/line_up/Detail_spectrac2"
 import Detail_CPX from "./pages/Solution/NC/line_up/Detail_cpx"
 import Detail_NCM from "./pages/Solution/NC/line_up/Detail_ncm"
 import Detail_BBATS from "./pages/Solution/NC/line_up/Detail_bbats"
@@ -62,6 +63,7 @@ export default function AppRoutes() {
         {/* C-UAS */}
         <Route path="solution/c-uas" element={<Solution_CUAS />} />
         <Route path="solution/c-uas/eBT-PES" element={<Detail_PES />} />
+        <Route path="solution/c-uas/Spectra-C2" element={<Detail_SPECTRAC2 />} />
 
         {/* NC - BIOBATS */}
         <Route path="solution/nc/BIOBATS" element={<Detail_BBATS />} />
