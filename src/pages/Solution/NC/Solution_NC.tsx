@@ -9,7 +9,9 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import categoryCpxImg from "@/assets/images/category-cpx.jpg"
 import categoryNcmImg from "@/assets/images/category-ncm.jpg"
+
 // import categoryBbatsImg from "@/assets/images/category-bbats.png"
+import categoryRanidxImg from "@/assets/images/RanidX 01_thumbnail.png"
 import ncNetworkSchemaImg from "@/assets/images/nc_network_schema.png"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -158,7 +160,12 @@ export default function NCDefensePage() {
     subtitle: nc.products.ncMonitoring,
     imageSrc: categoryNcmImg,
     href: "NC MONITORING SYSTEM",
-  }, 
+  }, {
+    title: "RanidX",
+    subtitle: nc.products.ranidx,
+    imageSrc: categoryRanidxImg,
+    href: "RanidX",
+  },
   // {
   //   title: "BIOBATS",
   //   subtitle: nc.products.biobats,
