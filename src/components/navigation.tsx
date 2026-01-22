@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback, type KeyboardEvent } from "react"
 import { Menu, Sun, Moon, X, Globe, ChevronDown } from "lucide-react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 import { cn, scrollToTop } from "@/lib/utils"
 import { useLocale, type Locale } from "@/lib/i18n"
@@ -23,7 +23,7 @@ const solutionCategories = [
       { key: "perceive" as const, href: "/solution/ew/PERCEIVE" },
       { key: "resolve" as const, href: "/solution/ew/RESOLVE" },
       { key: "microEsm" as const, href: "/solution/ew/MicroESM" },
-      { key: "phobosM4" as const, href: "/solution/ew/PHOBOS M4" },
+      { key: "phobosM4" as const, href: "/solution/ew/PHOBOS-M4" },
       { key: "deceive" as const, href: "/solution/ew/DECEIVE" },
       { key: "mapview" as const, href: "/solution/ew/MAPVIEW" },
     ],
@@ -33,7 +33,7 @@ const solutionCategories = [
     href: "/solution/nc",
     items: [
       { key: "chemproX" as const, href: "/solution/nc/CHEMPRO-X" },
-      { key: "ncMonitoring" as const, href: "/solution/nc/NC MONITORING SYSTEM" },
+      { key: "ncMonitoring" as const, href: "/solution/nc/NC-MONITORING-SYSTEM" },
       { key: "ranidX" as const, href: "/solution/nc/RanidX" },
     ],
   },
@@ -74,6 +74,7 @@ const navItems = [
 
 export function Navigation() {
   const location = useLocation()
+  const navigate = useNavigate()
   const pathname = location.pathname
   const isMobile = useIsMobile()
 
@@ -85,10 +86,25 @@ export function Navigation() {
   const [localeMenuOpen, setLocaleMenuOpen] = useState(false)
   const [solutionDropdownOpen, setSolutionDropdownOpen] = useState(false)
   const [mobileSolutionExpanded, setMobileSolutionExpanded] = useState(false)
+  const [focusedDropdownIndex, setFocusedDropdownIndex] = useState(-1)
   const solutionDropdownRef = useRef<HTMLDivElement>(null)
+  const solutionButtonRef = useRef<HTMLButtonElement>(null)
+  const dropdownItemsRef = useRef<(HTMLAnchorElement | null)[]>([])
   const solutionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const { locale: currentLocale, setLocale, t } = useLocale()
+
+  // Build flat list of dropdown links for keyboard navigation
+  const dropdownLinks = [
+    { href: "/solution", label: t.nav.solutionDropdown.viewAll },
+    ...solutionCategories.flatMap((category) => [
+      { href: category.href, label: t.nav.solutionDropdown[category.key].title },
+      ...category.items.map((item) => ({
+        href: item.href,
+        label: (t.nav.solutionDropdown[category.key as "ew" | "nc" | "cuas"].items as Record<string, string>)[item.key],
+      })),
+    ]),
+  ]
 
   // Close mobile menu when switching to desktop
   useEffect(() => {
@@ -154,7 +170,79 @@ export function Navigation() {
 
   const handleSolutionItemClick = () => {
     setSolutionDropdownOpen(false)
+    setFocusedDropdownIndex(-1)
   }
+
+  // Keyboard navigation for Solution dropdown
+  const handleSolutionKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
+    if (!solutionDropdownOpen) {
+      // Open dropdown on Enter, Space, or ArrowDown
+      if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+        e.preventDefault()
+        setSolutionDropdownOpen(true)
+        setFocusedDropdownIndex(0)
+        setTimeout(() => dropdownItemsRef.current[0]?.focus(), 0)
+      }
+      return
+    }
+
+    switch (e.key) {
+      case "Escape":
+        e.preventDefault()
+        setSolutionDropdownOpen(false)
+        setFocusedDropdownIndex(-1)
+        solutionButtonRef.current?.focus()
+        break
+      case "ArrowDown":
+        e.preventDefault()
+        setFocusedDropdownIndex((prev) => {
+          const next = prev < dropdownLinks.length - 1 ? prev + 1 : 0
+          dropdownItemsRef.current[next]?.focus()
+          return next
+        })
+        break
+      case "ArrowUp":
+        e.preventDefault()
+        setFocusedDropdownIndex((prev) => {
+          const next = prev > 0 ? prev - 1 : dropdownLinks.length - 1
+          dropdownItemsRef.current[next]?.focus()
+          return next
+        })
+        break
+      case "Home":
+        e.preventDefault()
+        setFocusedDropdownIndex(0)
+        dropdownItemsRef.current[0]?.focus()
+        break
+      case "End":
+        e.preventDefault()
+        const lastIndex = dropdownLinks.length - 1
+        setFocusedDropdownIndex(lastIndex)
+        dropdownItemsRef.current[lastIndex]?.focus()
+        break
+      case "Tab":
+        // Close dropdown when tabbing out
+        setSolutionDropdownOpen(false)
+        setFocusedDropdownIndex(-1)
+        break
+    }
+  }, [solutionDropdownOpen, dropdownLinks.length])
+
+  // Handle dropdown item click via keyboard
+  const handleDropdownItemKeyDown = (e: KeyboardEvent<HTMLAnchorElement>, href: string) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault()
+      handleSolutionItemClick()
+      navigate(href)
+    }
+  }
+
+  // Reset focus index when dropdown closes
+  useEffect(() => {
+    if (!solutionDropdownOpen) {
+      setFocusedDropdownIndex(-1)
+    }
+  }, [solutionDropdownOpen])
 
   return (
     <header
@@ -190,10 +278,15 @@ export function Navigation() {
                   className="relative"
                   onMouseEnter={handleSolutionMouseEnter}
                   onMouseLeave={handleSolutionMouseLeave}
+                  onKeyDown={handleSolutionKeyDown}
                 >
-                  <Link
-                    to={item.href}
-                    onClick={() => handleNavClick(item.href)}
+                  <button
+                    ref={solutionButtonRef}
+                    type="button"
+                    onClick={() => setSolutionDropdownOpen(!solutionDropdownOpen)}
+                    aria-expanded={solutionDropdownOpen}
+                    aria-haspopup="menu"
+                    aria-controls="solution-dropdown-menu"
                     className={cn(
                       "text-lg font-semibold transition-colors hover:text-foreground inline-flex items-center gap-1",
                       pathname.startsWith("/solution")
@@ -206,51 +299,74 @@ export function Navigation() {
                       "h-4 w-4 transition-transform duration-200",
                       solutionDropdownOpen && "rotate-180"
                     )} />
-                  </Link>
+                  </button>
 
                   {/* Solution Dropdown */}
                   {solutionDropdownOpen && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
+                    <div
+                      id="solution-dropdown-menu"
+                      role="menu"
+                      aria-label={t.nav.solution}
+                      className="absolute top-full left-1/2 -translate-x-1/2 pt-4"
+                    >
                       <div className="bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-xl p-6 min-w-[600px]">
                         {/* View All Link */}
                         <Link
+                          ref={(el) => { dropdownItemsRef.current[0] = el }}
                           to="/solution"
+                          role="menuitem"
+                          tabIndex={focusedDropdownIndex === 0 ? 0 : -1}
                           onClick={handleSolutionItemClick}
-                          className="block text-sm font-medium text-primary hover:text-primary/80 mb-4 pb-3 border-b border-border"
+                          onKeyDown={(e) => handleDropdownItemKeyDown(e, "/solution")}
+                          className="block text-sm font-medium text-primary hover:text-primary/80 mb-4 pb-3 border-b border-border focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded"
                         >
                           {t.nav.solutionDropdown.viewAll} →
                         </Link>
 
                         {/* Categories Grid */}
                         <div className="grid grid-cols-3 gap-6">
-                          {solutionCategories.map((category) => (
-                            <div key={category.key}>
-                              <Link
-                                to={category.href}
-                                onClick={handleSolutionItemClick}
-                                className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
-                              >
-                                {t.nav.solutionDropdown[category.key].title}
-                              </Link>
-                              <ul className="mt-3 space-y-2">
-                                {category.items.map((subItem) => (
-                                  <li key={subItem.key}>
-                                    <Link
-                                      to={subItem.href}
-                                      onClick={handleSolutionItemClick}
-                                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                                    >
-                                      {
-                                        (
-                                          t.nav.solutionDropdown[category.key as "ew" | "nc" | "cuas"].items as Record<string, string>
-                                        )[subItem.key]
-                                      }
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
+                          {(() => {
+                            let itemIndex = 1
+                            return solutionCategories.map((category) => (
+                              <div key={category.key} role="group" aria-label={t.nav.solutionDropdown[category.key].title}>
+                                <Link
+                                  ref={(el) => { dropdownItemsRef.current[itemIndex++] = el }}
+                                  to={category.href}
+                                  role="menuitem"
+                                  tabIndex={-1}
+                                  onClick={handleSolutionItemClick}
+                                  onKeyDown={(e) => handleDropdownItemKeyDown(e, category.href)}
+                                  className="text-sm font-semibold text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded"
+                                >
+                                  {t.nav.solutionDropdown[category.key].title}
+                                </Link>
+                                <ul className="mt-3 space-y-2" role="group">
+                                  {category.items.map((subItem) => {
+                                    const currentIndex = itemIndex++
+                                    return (
+                                      <li key={subItem.key} role="none">
+                                        <Link
+                                          ref={(el) => { dropdownItemsRef.current[currentIndex] = el }}
+                                          to={subItem.href}
+                                          role="menuitem"
+                                          tabIndex={-1}
+                                          onClick={handleSolutionItemClick}
+                                          onKeyDown={(e) => handleDropdownItemKeyDown(e, subItem.href)}
+                                          className="text-sm text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded block"
+                                        >
+                                          {
+                                            (
+                                              t.nav.solutionDropdown[category.key as "ew" | "nc" | "cuas"].items as Record<string, string>
+                                            )[subItem.key]
+                                          }
+                                        </Link>
+                                      </li>
+                                    )
+                                  })}
+                                </ul>
+                              </div>
+                            ))
+                          })()}
                         </div>
                       </div>
                     </div>
