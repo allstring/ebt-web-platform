@@ -27,6 +27,7 @@ export const nav = {
       items: {
         chemproX: "CHEMPRO-X",
         ncMonitoring: "NC Monitoring System",
+        ranidX: "RanidX",
       },
     },
     cuas: {

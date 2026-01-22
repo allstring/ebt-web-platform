@@ -44,6 +44,7 @@ import { notFound as notFoundEn } from "@/localize/en/notFound"
 import { comingSoon as comingSoonEn } from "@/localize/en/comingSoon"
 import { cpx as cpxEn } from "@/localize/en/solution/nc/cpx"
 import { ncm as ncmEn } from "@/localize/en/solution/nc/ncm"
+import { ranidx as ranidxEn } from "@/localize/en/solution/nc/ranidx"
 import { ews as ewsEn } from "@/localize/en/solution/ew/ews"
 import { resolve as resolveEn } from "@/localize/en/solution/ew/resolve"
 import { perceive as perceiveEn } from "@/localize/en/solution/ew/perceive"
@@ -63,6 +64,7 @@ import { notFound as notFoundKo } from "@/localize/ko/notFound"
 import { comingSoon as comingSoonKo } from "@/localize/ko/comingSoon"
 import { cpx as cpxKo } from "@/localize/ko/solution/nc/cpx"
 import { ncm as ncmKo } from "@/localize/ko/solution/nc/ncm"
+import { ranidx as ranidxKo } from "@/localize/ko/solution/nc/ranidx"
 import { ews as ewsKo } from "@/localize/ko/solution/ew/ews"
 import { resolve as resolveKo } from "@/localize/ko/solution/ew/resolve"
 import { perceive as perceiveKo } from "@/localize/ko/solution/ew/perceive"
@@ -109,6 +111,7 @@ const RESOURCES = {
     comingSoon: comingSoonEn,
     cpx: cpxEn,
     ncm: ncmEn,
+    ranidx: ranidxEn,
     ews: ewsEn,
     resolve: resolveEn,
     perceive: perceiveEn,
@@ -130,6 +133,7 @@ const RESOURCES = {
     comingSoon: comingSoonKo,
     cpx: cpxKo,
     ncm: ncmKo,
+    ranidx: ranidxKo,
     ews: ewsKo,
     resolve: resolveKo,
     perceive: perceiveKo,

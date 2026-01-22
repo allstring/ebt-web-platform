@@ -84,6 +84,93 @@ export default function DetailDeceivePage() {
           </div>
         </section>
 
+        {/* Specifications Section */}
+        <section className="py-24 lg:py-32 border-t border-border">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mb-12">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-2">{deceive.specifications.title}</h2>
+              <p className="text-sm text-muted-foreground">{deceive.specifications.note}</p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* General */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden">
+                <div className="bg-muted px-4 py-3 border-b border-border">
+                  <h3 className="font-medium text-foreground">{deceive.specifications.general.title}</h3>
+                </div>
+                <div className="divide-y divide-border">
+                  {deceive.specifications.general.items.map((item, index) => (
+                    <div key={index} className="flex px-4 py-3">
+                      <span className="w-1/3 text-sm text-muted-foreground">{item.label}</span>
+                      <span className="w-2/3 text-sm text-foreground">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* RF / EW Performance */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden">
+                <div className="bg-muted px-4 py-3 border-b border-border">
+                  <h3 className="font-medium text-foreground">{deceive.specifications.rf.title}</h3>
+                </div>
+                <div className="divide-y divide-border">
+                  {deceive.specifications.rf.items.map((item, index) => (
+                    <div key={index} className="flex px-4 py-3">
+                      <span className="w-1/3 text-sm text-muted-foreground">{item.label}</span>
+                      <span className="w-2/3 text-sm text-foreground">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Processing & Network */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden">
+                <div className="bg-muted px-4 py-3 border-b border-border">
+                  <h3 className="font-medium text-foreground">{deceive.specifications.processing.title}</h3>
+                </div>
+                <div className="divide-y divide-border">
+                  {deceive.specifications.processing.items.map((item, index) => (
+                    <div key={index} className="flex px-4 py-3">
+                      <span className="w-1/3 text-sm text-muted-foreground">{item.label}</span>
+                      <span className="w-2/3 text-sm text-foreground">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* PNT / Sensors */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden">
+                <div className="bg-muted px-4 py-3 border-b border-border">
+                  <h3 className="font-medium text-foreground">{deceive.specifications.pnt.title}</h3>
+                </div>
+                <div className="divide-y divide-border">
+                  {deceive.specifications.pnt.items.map((item, index) => (
+                    <div key={index} className="flex px-4 py-3">
+                      <span className="w-1/3 text-sm text-muted-foreground">{item.label}</span>
+                      <span className="w-2/3 text-sm text-foreground">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Environmental & Standards - Full width */}
+              <div className="lg:col-span-2 bg-card border border-border rounded-lg overflow-hidden">
+                <div className="bg-muted px-4 py-3 border-b border-border">
+                  <h3 className="font-medium text-foreground">{deceive.specifications.environmental.title}</h3>
+                </div>
+                <div className="divide-y divide-border">
+                  {deceive.specifications.environmental.items.map((item, index) => (
+                    <div key={index} className="flex px-4 py-3">
+                      <span className="w-1/4 text-sm text-muted-foreground">{item.label}</span>
+                      <span className="w-3/4 text-sm text-foreground">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section className="py-24 lg:py-32 bg-card border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">

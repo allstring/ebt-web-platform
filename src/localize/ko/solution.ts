@@ -45,6 +45,7 @@ export const solution = {
       chemproX: "휴대용 화학 탐지기",
       ncMonitoring: "통합 탐지 및 제어 플랫폼",
       biobats: "스마트 생물학적 탐지 및 조기 경보 시스템",
+      ranidx: "시스템 호환 방사선 검출기",
     },
     protection: {
       label: "방어 개념",

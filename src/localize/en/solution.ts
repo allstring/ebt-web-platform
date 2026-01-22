@@ -45,6 +45,7 @@ export const solution = {
       chemproX: "HANDHELD CHEMICAL DETECTOR",
       ncMonitoring: "INTEGRATED DETECTION & CONTROL PLATFORM",
       biobats: "SMART BIOLOGICAL DETECTION & EARLY WARNING SYSTEM",
+      ranidx: "SYSTEM COMPATIBLE RADIATION DETECTOR",
     },
     protection: {
       label: "Protection Concept",

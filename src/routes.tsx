@@ -26,6 +26,7 @@ import Detail_MAPVIEW from "./pages/Solution/EW/line_up/Detail_mapview"
 import Detail_CPX from "./pages/Solution/NC/line_up/Detail_cpx"
 import Detail_NCM from "./pages/Solution/NC/line_up/Detail_ncm"
 import Detail_BBATS from "./pages/Solution/NC/line_up/Detail_bbats"
+import Detail_RANIDX from "./pages/Solution/NC/line_up/Detail_ranidx"
 
 export default function AppRoutes() {
   return (
@@ -56,6 +57,7 @@ export default function AppRoutes() {
         <Route path="solution/nc" element={<Solution_NC />} />
         <Route path="solution/nc/CHEMPRO-X" element={<Detail_CPX />} />
         <Route path="solution/nc/NC MONITORING SYSTEM" element={<Detail_NCM />} />
+        <Route path="solution/nc/RanidX" element={<Detail_RANIDX />} />
 
         {/* C-UAS */}
         <Route path="solution/c-uas" element={<Solution_CUAS />} />
