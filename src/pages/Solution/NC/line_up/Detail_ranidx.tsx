@@ -7,14 +7,14 @@ import ranidxHeroImg from "@/assets/images/solution/NC/RanidX/hero.webp"
 import ranidxImg1 from "@/assets/images/solution/NC/RanidX/main1.webp"
 import ranidxImg2 from "@/assets/images/solution/NC/RanidX/main2.webp"
 
-import app1Img from "@/assets/images/solution/NC/ranidx/app1.webp"
-import app2Img from "@/assets/images/solution/NC/ranidx/app2.webp"
-import app3Img from "@/assets/images/solution/NC/ranidx/app3.webp"
-import app4Img from "@/assets/images/solution/NC/ranidx/app4.webp"
-import app5Img from "@/assets/images/solution/NC/ranidx/app5.webp"
-import app6Img from "@/assets/images/solution/NC/ranidx/app6.webp"
-import app7Img from "@/assets/images/solution/NC/ranidx/app7.webp"
-import app8Img from "@/assets/images/solution/NC/ranidx/app8.webp"
+import app1Img from "@/assets/images/solution/NC/RanidX/app1.webp"
+import app2Img from "@/assets/images/solution/NC/RanidX/app2.webp"
+import app3Img from "@/assets/images/solution/NC/RanidX/app3.webp"
+import app4Img from "@/assets/images/solution/NC/RanidX/app4.webp"
+import app5Img from "@/assets/images/solution/NC/RanidX/app5.webp"
+import app6Img from "@/assets/images/solution/NC/RanidX/app6.webp"
+import app7Img from "@/assets/images/solution/NC/RanidX/app7.webp"
+import app8Img from "@/assets/images/solution/NC/RanidX/app8.webp"
 
 const applicationImages = [app1Img, app2Img, app3Img, app4Img, app5Img, app6Img, app7Img, app8Img]
 
