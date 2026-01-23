@@ -1,6 +1,7 @@
 import Check from "lucide-react/dist/esm/icons/check";
 
 import { ApplicationItem } from "@/components/application-item"
+import { ProductContactSection } from "@/components/product-contact-section"
 import { useLocale } from "@/lib/i18n"
 import categoryCpxImg from "@/assets/images/cpx-bg.jpg"
 import eseaRecImg from "@/assets/images/cpx.jpg"
@@ -188,24 +189,7 @@ export default function DetailCpxPage() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                {cpx.contact.text}{" "}
-                <a href="mailto:info@ebtech.kr" className="text-foreground hover:underline">
-                  info@ebtech.kr
-                </a>{" "}
-                or{" "}
-                <a href="tel:+82317216380" className="text-foreground hover:underline">
-                  +82 31 721 6380
-                </a>
-                {cpx.contact.suffix}
-              </p>
-            </div>
-          </div>
-        </section>
+        <ProductContactSection text={cpx.contact.text} suffix={cpx.contact.suffix} />
     </div>
   )
 }

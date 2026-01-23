@@ -1,5 +1,6 @@
 import categoryMesImg from "@/assets/images/mes-bg.png"
 import mesImg from "@/assets/images/mes.png"
+import { ProductContactSection } from "@/components/product-contact-section"
 export default function DetailEwsPage() {
   return (
     <div className="pt-16">
@@ -170,24 +171,7 @@ From multicopter to multicopter, even in complex urban radio environments and op
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                To learn more about GoldenBat-EWS and how it can benefit your organization,
-                please contact us at{" "}
-                <a href="mailto:info@ebtech.kr" className="text-foreground hover:underline">
-                  info@ebtech.kr
-                </a>{" "}
-                or{" "}
-                <a href="tel:+82317216380" className="text-foreground hover:underline">
-                  +82 31 721 6380
-                </a>.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ProductContactSection text="To learn more about GoldenBat-EWS and how it can benefit your organization, please contact us at" />
     </div>
   )
 }
