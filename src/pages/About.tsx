@@ -63,15 +63,20 @@ function HeroSection() {
               {t.about.hero.title1}
               <br className="hidden md:block" /> {t.about.hero.title2}
             </h1>
+            <div ref={desc1Ref}>
+          
             <p
-              ref={desc1Ref}
+              
               className="mt-6 text-lg text-muted-foreground leading-relaxed"
             >
               {t.about.hero.description1}
             </p>
-            <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+            <p 
+            className="mt-4 text-base text-muted-foreground leading-relaxed">
               {t.about.hero.description2}
             </p>
+            </div>
+            
           </div>
 
           {/* 오른쪽: Why Choose Us 카드 */}
@@ -93,7 +98,7 @@ function WhyChooseUsCards() {
   const containerRef = useRef<HTMLDivElement>(null)
   const mainCardRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(mainCardRef, mainCardRef, { y: 40, delay: 0.2 })
+  // useFadeIn(mainCardRef, mainCardRef, { y: 40, delay: 0.2 })
   useStaggerAnimation(containerRef, ".why-choose-card", { y: 30, scale: 0.95, stagger: 0.1 })
 
   return (
@@ -144,7 +149,7 @@ function VisionMissionSection() {
   const visionRef = useRef<HTMLDivElement>(null)
   const missionRef = useRef<HTMLDivElement>(null)
 
-  useDualSlideIn(sectionRef, visionRef, missionRef, { duration: 1 })
+  useDualSlideIn(sectionRef, visionRef, missionRef, { duration: 0.2 })
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden py-24 lg:py-32 border-t border-border">
@@ -199,7 +204,7 @@ interface CapabilityCardProps {
 function CapabilityCard({ title, description, index }: CapabilityCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(cardRef, cardRef, { y: 50, duration: 0.6 })
+  useFadeIn(cardRef, cardRef, { y: 10, duration: 0.3 })
 
   return (
     <div
@@ -236,7 +241,7 @@ function CoreCapabilitiesSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(headerRef, headerRef, { y: 50 })
+  useFadeIn(headerRef, headerRef, { y: 10 })
 
   return (
     <section
