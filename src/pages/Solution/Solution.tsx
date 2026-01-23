@@ -99,7 +99,7 @@ function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 overflow-hidden">
+    <section ref={sectionRef} className="pt-24 pb-18 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div ref={contentRef} className="max-w-3xl relative">
           {/* 왼쪽 악센트 라인 */}
