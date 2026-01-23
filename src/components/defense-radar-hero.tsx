@@ -138,7 +138,7 @@ const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent:
       </div>
 
       {/* 데스크탑 카드 */}
-      <Link
+      {/* <Link
         to={activeTarget?.link ?? "#"}
         className={`opacity-0 hero-card hidden lg:block group p-6 rounded-xl border bg-card/80 backdrop-blur-sm transition-all duration-300 ${isHovered ? "border-accent/50 shadow-lg" : "border-border hover:border-accent/30"}`}
         onMouseEnter={() => activeTarget && onHover(activeTarget.id)}
@@ -156,7 +156,7 @@ const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent:
           <span>{strings.viewDetails}</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </div>
-      </Link>
+      </Link> */}
     </div>
   )
 )
@@ -300,7 +300,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
         {/* Info */}
         <div className="order-2 lg:order-1 w-full lg:flex-1 lg:max-w-md">
           <InfoPanel ref={infoPanelRef} title={title} titleAccent={titleAccent} subtitle={subtitle} activeTarget={activeTarget} isHovered={hoveredId !== null} strings={strings} onHover={setHoveredId} />
-          <MobileTargetList ref={mobileListRef} targets={normalizedTargets} activeTarget={activeTarget} strings={strings} />
+          {/* <MobileTargetList ref={mobileListRef} targets={normalizedTargets} activeTarget={activeTarget} strings={strings} /> */}
         </div>
       </div>
     </section>
