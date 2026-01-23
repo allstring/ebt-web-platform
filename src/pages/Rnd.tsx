@@ -117,8 +117,8 @@ function CoreTechnologiesSection() {
   const headerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(headerRef, headerRef, { y: 30 })
-  useStaggerAnimation(cardsRef, ".core-tech-card", { y: 40, stagger: 0.12 })
+  useFadeIn(headerRef, headerRef, { y: 10 })
+  useStaggerAnimation(cardsRef, ".core-tech-card", { y: 15, stagger: 0.12 })
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32 bg-card border-t border-border">
@@ -187,8 +187,8 @@ function ResearchAreasSection() {
   const headerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(headerRef, headerRef, { y: 30 })
-  useStaggerAnimation(cardsRef, ".research-area-card", { y: 30, stagger: 0.1 })
+  useFadeIn(headerRef, headerRef, { y: 10 })
+  useStaggerAnimation(cardsRef, ".research-area-card", { y: 15, stagger: 0.05 })
 
   return (
     <section
@@ -272,7 +272,7 @@ function DevelopmentProcessSection() {
   const headerRef = useRef<HTMLDivElement>(null)
   const stepsRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(headerRef, headerRef, { y: 30 })
+  useFadeIn(headerRef, headerRef, { y: 10 })
   useStaggerAnimation(stepsRef, ".process-step-card", { x: -20, y: 0, stagger: 0.15 })
 
   return (
