@@ -239,7 +239,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
   // 레이더 회전 애니메이션
   const animate = useCallback((time: number) => {
     if (!startTimeRef.current) startTimeRef.current = time
-    setScanAngle(((time - startTimeRef.current) * 0.12) % 360)
+    setScanAngle(((time - startTimeRef.current) * 0.03) % 360)
     requestRef.current = requestAnimationFrame(animate)
   }, [])
 
@@ -251,7 +251,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
   // 타겟 자동 순환
   useEffect(() => {
     if (hoveredId !== null || normalizedTargets.length === 0) return
-    const id = setInterval(() => setActiveIndex((prev) => (prev + 1) % normalizedTargets.length), 2500)
+    const id = setInterval(() => setActiveIndex((prev) => (prev + 1) % normalizedTargets.length), 4500)
     return () => clearInterval(id)
   }, [normalizedTargets.length, hoveredId])
 
