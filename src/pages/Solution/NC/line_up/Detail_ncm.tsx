@@ -1,4 +1,4 @@
-import { Check } from "lucide-react"
+import Check from "lucide-react/dist/esm/icons/check";
 
 import { ApplicationItem } from "@/components/application-item"
 import { useLocale } from "@/lib/i18n"

@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef, useCallback, type KeyboardEvent } from "react"
-import { Menu, Sun, Moon, X, Globe, ChevronDown } from "lucide-react"
+import Menu from "lucide-react/dist/esm/icons/menu";
+import Sun from "lucide-react/dist/esm/icons/sun";
+import Moon from "lucide-react/dist/esm/icons/moon";
+import X from "lucide-react/dist/esm/icons/x";
+import Globe from "lucide-react/dist/esm/icons/globe";
+import ChevronDown from "lucide-react/dist/esm/icons/chevron-down";
 import { Link, useLocation, useNavigate } from "react-router-dom"
 
 import { cn, scrollToTop } from "@/lib/utils"
@@ -28,6 +33,15 @@ const solutionCategories = [
       { key: "mapview" as const, href: "/solution/ew/MAPVIEW" },
     ],
   },
+
+  {
+    key: "cuas" as const,
+    href: "/solution/c-uas",
+    items: [
+      { key: "ebtPes" as const, href: "/solution/c-uas/eBT-PES" },
+      { key: "spectraC2" as const, href: "/solution/c-uas/Spectra-C2" },
+    ],
+  },
   {
     key: "nc" as const,
     href: "/solution/nc",
@@ -35,14 +49,6 @@ const solutionCategories = [
       { key: "chemproX" as const, href: "/solution/nc/CHEMPRO-X" },
       { key: "ncMonitoring" as const, href: "/solution/nc/NC-MONITORING-SYSTEM" },
       { key: "ranidX" as const, href: "/solution/nc/RanidX" },
-    ],
-  },
-  {
-    key: "cuas" as const,
-    href: "/solution/c-uas",
-    items: [
-      { key: "ebtPes" as const, href: "/solution/c-uas/eBT-PES" },
-      { key: "spectraC2" as const, href: "/solution/c-uas/Spectra-C2" },
     ],
   },
 ]

@@ -5,10 +5,13 @@
 
 import { useRef, useMemo } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, Settings, Shield, Zap, Target, Users, Wrench } from "lucide-react"
-import { gsap } from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
-
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
+import Settings from "lucide-react/dist/esm/icons/settings";
+import Shield from "lucide-react/dist/esm/icons/shield";
+import Zap from "lucide-react/dist/esm/icons/zap";
+import Target from "lucide-react/dist/esm/icons/target";
+import Users from "lucide-react/dist/esm/icons/users";
+import Wrench from "lucide-react/dist/esm/icons/wrench";
 import { Button } from "@/components/ui/button"
 import { useLocale } from "@/lib/i18n"
 import DefenseRadarHero from "@/components/defense-radar-hero"
@@ -22,8 +25,6 @@ import {
 // Assets
 import heroVideo from "@/assets/videos/home/hero-video.webm"
 import heroMainImg from "@/assets/images/home/hero-main.webp"
-
-gsap.registerPlugin(ScrollTrigger)
 
 // ============================================================================
 // 상수 정의
@@ -113,7 +114,7 @@ function FeaturedProductSection() {
                 key={feature}
                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
-                <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" aria-hidden="true" />
                 {feature}
               </li>
             ))}

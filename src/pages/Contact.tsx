@@ -4,9 +4,9 @@
 // ============================================================================
 
 import { useRef } from "react"
-import { MapPin, Phone, Mail } from "lucide-react"
-import { gsap } from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
+import MapPin from "lucide-react/dist/esm/icons/map-pin";
+import Phone from "lucide-react/dist/esm/icons/phone";
+import Mail from "lucide-react/dist/esm/icons/mail";
 
 import { useLocale } from "@/lib/i18n"
 import {
@@ -14,8 +14,6 @@ import {
   useFadeIn,
   useStaggerAnimation,
 } from "@/hooks/use-gsap-animation"
-
-gsap.registerPlugin(ScrollTrigger)
 
 // Assets
 import icoHan from "@/assets/images/contact/ico_han.png"
@@ -120,6 +118,7 @@ function LocationSection() {
           className="rounded-2xl overflow-hidden border border-border bg-background hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5"
         >
           <iframe
+            title="EBTech Office Location - Google Maps"
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1584.5348376758109!2d127.09348!3d37.411828!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca7c7e7677691%3A0x2c4282e124e93f95!2zTEgg7YyQ6rWQ7KCcMu2FjO2BrOuFuOuwuOumrCDquLDsl4XshLHsnqXshLzthLA!5e0!3m2!1sko!2skr!4v1767849458960!5m2!1sko!2skr"
             width="100%"
             height="400"

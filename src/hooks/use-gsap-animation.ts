@@ -1,8 +1,5 @@
 import { useEffect, type RefObject } from "react"
-import { gsap } from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
-
-gsap.registerPlugin(ScrollTrigger)
+import { gsap } from "@/lib/gsap"
 
 // ============================================================================
 // 타입 정의

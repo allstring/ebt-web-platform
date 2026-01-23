@@ -1,8 +1,5 @@
 import { useLayoutEffect, type RefObject } from "react"
-import { gsap } from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
-
-gsap.registerPlugin(ScrollTrigger)
+import { gsap, ScrollTrigger } from "@/lib/gsap"
 
 /**
  * useScrollSnap - 섹션 스크롤 스냅 훅

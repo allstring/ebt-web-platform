@@ -4,8 +4,6 @@
 // ============================================================================
 
 import { useRef } from "react"
-import { gsap } from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
 
 import { useLocale } from "@/lib/i18n"
 import {
@@ -15,8 +13,6 @@ import {
   useStaggerAnimation,
   useDualSlideIn,
 } from "@/hooks/use-gsap-animation"
-
-gsap.registerPlugin(ScrollTrigger)
 
 // Assets
 import heroBgImg from "@/assets/images/about/hero-bg.webp"

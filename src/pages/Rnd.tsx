@@ -4,9 +4,9 @@
 // ============================================================================
 
 import { useRef } from "react"
-import { Zap, Target, Settings } from "lucide-react"
-import { gsap } from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
+import Zap from "lucide-react/dist/esm/icons/zap";
+import Target from "lucide-react/dist/esm/icons/target";
+import Settings from "lucide-react/dist/esm/icons/settings";
 
 import { useLocale } from "@/lib/i18n"
 import {
@@ -15,8 +15,6 @@ import {
   useStaggerAnimation,
   useDualSlideIn,
 } from "@/hooks/use-gsap-animation"
-
-gsap.registerPlugin(ScrollTrigger)
 
 // Assets
 import heroMainImg from "@/assets/images/rnd/hero-main.webp"

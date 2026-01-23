@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
-import { ArrowLeft, Home } from "lucide-react"
+import ArrowLeft from "lucide-react/dist/esm/icons/arrow-left";
+import Home from "lucide-react/dist/esm/icons/home";
 import { Button } from "@/components/ui/button"
 import notFoundImg from "@/assets/images/404/404.jpg"
 
@@ -36,11 +37,14 @@ export default function NotFound() {
               Home
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="border-foreground/20 text-foreground hover:bg-foreground/5 bg-transparent w-full sm:w-auto">
-            <Link to="#" onClick={() => window.history.back()}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Go Back
-            </Link>
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={() => window.history.back()}
+            className="border-foreground/20 text-foreground hover:bg-foreground/5 bg-transparent w-full sm:w-auto"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Go Back
           </Button>
         </div>
       </div>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, Target, Activity } from "lucide-react"
-import { gsap } from "gsap"
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
+import Target from "lucide-react/dist/esm/icons/target";
+import Activity from "lucide-react/dist/esm/icons/activity";
+import { gsap } from "@/lib/gsap"
 
 // ============================================================================
 // Types
