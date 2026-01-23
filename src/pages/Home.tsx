@@ -56,15 +56,8 @@ function HeroSection() {
       link: SOLUTION_HREFS[index] ?? "/solution",
     }))
 
-    // 마지막에 RESOLVE (featured) 추가
     return [
       ...solutionTargets,
-      {
-        id: solutionTargets.length + 1,
-        label: t.home.featured.label,
-        description: t.home.featured.description,
-        link: "/solution",
-      },
     ]
   }, [t])
 
@@ -84,72 +77,72 @@ function HeroSection() {
 // Featured Product Section - 주력 제품 소개
 // ============================================================================
 
-function FeaturedProductSection() {
-  const { t } = useLocale()
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
+// function FeaturedProductSection() {
+//   const { t } = useLocale()
+//   const sectionRef = useRef<HTMLDivElement>(null)
+//   const textRef = useRef<HTMLDivElement>(null)
+//   const imageRef = useRef<HTMLDivElement>(null)
 
-  useDualSlideIn(sectionRef, textRef, imageRef, { duration: 1 })
+//   useDualSlideIn(sectionRef, textRef, imageRef, { duration: 1 })
 
-  return (
-    <div ref={sectionRef} className="mt-16 mb-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center p-8 lg:p-12 bg-card border border-border rounded-2xl hover:border-accent/30 transition-all duration-500 hover:shadow-lg hover:shadow-accent/5">
-        {/* 텍스트 영역 */}
-        <div ref={textRef}>
-          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-            {t.home.featured.sectionLabel}
-          </p>
-          <h2 className="mt-3 text-3xl lg:text-4xl font-semibold tracking-tight text-foreground">
-            {t.home.featured.title}
-          </h2>
-          <p className="mt-6 text-muted-foreground leading-relaxed">
-            {t.home.featured.description}
-          </p>
+//   return (
+//     <div ref={sectionRef} className="mt-16 mb-20">
+//       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center p-8 lg:p-12 bg-card border border-border rounded-2xl hover:border-accent/30 transition-all duration-500 hover:shadow-lg hover:shadow-accent/5">
+//         {/* 텍스트 영역 */}
+//         <div ref={textRef}>
+//           <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+//             {t.home.featured.sectionLabel}
+//           </p>
+//           <h2 className="mt-3 text-3xl lg:text-4xl font-semibold tracking-tight text-foreground">
+//             {t.home.featured.title}
+//           </h2>
+//           <p className="mt-6 text-muted-foreground leading-relaxed">
+//             {t.home.featured.description}
+//           </p>
 
-          {/* 기능 목록 */}
-          <ul className="mt-8 space-y-3">
-            {t.home.featured.features.map((feature) => (
-              <li
-                key={feature}
-                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-              >
-                <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" aria-hidden="true" />
-                {feature}
-              </li>
-            ))}
-          </ul>
+//           {/* 기능 목록 */}
+//           <ul className="mt-8 space-y-3">
+//             {t.home.featured.features.map((feature) => (
+//               <li
+//                 key={feature}
+//                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+//               >
+//                 <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" aria-hidden="true" />
+//                 {feature}
+//               </li>
+//             ))}
+//           </ul>
 
-          <div className="mt-10">
-            <Button
-              asChild
-              variant="outline"
-              className="border-border hover:border-accent group"
-            >
-              <Link to="/solution">
-                {t.home.featured.viewSpecs}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-            </Button>
-          </div>
-        </div>
+//           <div className="mt-10">
+//             <Button
+//               asChild
+//               variant="outline"
+//               className="border-border hover:border-accent group"
+//             >
+//               <Link to="/solution">
+//                 {t.home.featured.viewSpecs}
+//                 <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+//               </Link>
+//             </Button>
+//           </div>
+//         </div>
 
-        {/* 이미지 영역 */}
-        <div
-          ref={imageRef}
-          className="relative aspect-[4/3] bg-secondary/50 border border-border rounded-xl overflow-hidden group"
-        >
-          <img
-            src={heroMainImg}
-            alt={t.home.featured.imageAlt}
-            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        </div>
-      </div>
-    </div>
-  )
-}
+//         {/* 이미지 영역 */}
+//         <div
+//           ref={imageRef}
+//           className="relative aspect-[4/3] bg-secondary/50 border border-border rounded-xl overflow-hidden group"
+//         >
+//           <img
+//             src={heroMainImg}
+//             alt={t.home.featured.imageAlt}
+//             className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+//           />
+//           <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
 
 // ============================================================================
 // Solution Card - 솔루션 카드 컴포넌트
@@ -167,7 +160,7 @@ function SolutionCard({ title, description, href, index, learnMoreText }: Soluti
   return (
     <Link
       to={href}
-      className="solution-card group preserve-text-rendering relative p-8 bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 ease-out transform-gpu hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10 hover:border-accent/40"
+      className="mt-8 solution-card group preserve-text-rendering relative p-8 bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 ease-out transform-gpu hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10 hover:border-accent/40"
     >
       {/* 호버 시 배경 그라데이션 */}
       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -214,7 +207,7 @@ function SolutionsSection() {
   useStaggerAnimation(cardsRef, ".solution-card", { y: 60, stagger: 0.15 })
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
+    <section ref={sectionRef} className="py-24 lg:py-24 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
         <div ref={headerRef} className="max-w-2xl">
@@ -227,7 +220,7 @@ function SolutionsSection() {
         </div>
 
         {/* 주력 제품 */}
-        <FeaturedProductSection />
+        {/* <FeaturedProductSection /> */}
 
         {/* 솔루션 카드 그리드 */}
         <div ref={cardsRef} className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
