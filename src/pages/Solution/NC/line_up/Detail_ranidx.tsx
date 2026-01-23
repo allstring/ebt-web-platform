@@ -9,7 +9,7 @@ import ranidxImg2 from "@/assets/images/solution/NC/RanidX/main2.webp"
 
 import app1Img from "@/assets/images/solution/NC/ranidx/app1.webp"
 import app2Img from "@/assets/images/solution/NC/ranidx/app2.webp"
-import app3Img from "@/assets/images/solution/NC/ranidx/app3x.webp"
+import app3Img from "@/assets/images/solution/NC/ranidx/app3.webp"
 import app4Img from "@/assets/images/solution/NC/ranidx/app4.webp"
 import app5Img from "@/assets/images/solution/NC/ranidx/app5.webp"
 import app6Img from "@/assets/images/solution/NC/ranidx/app6.webp"
