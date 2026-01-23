@@ -342,7 +342,12 @@ export function Navigation() {
                                   tabIndex={-1}
                                   onClick={handleSolutionItemClick}
                                   onKeyDown={(e) => handleDropdownItemKeyDown(e, category.href)}
-                                  className="text-sm font-semibold text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded"
+                                  className={cn(
+                                    "text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded",
+                                    pathname === category.href
+                                      ? "text-primary"
+                                      : "text-foreground hover:text-primary"
+                                  )}
                                 >
                                   {t.nav.solutionDropdown[category.key].title}
                                 </Link>
@@ -358,7 +363,12 @@ export function Navigation() {
                                           tabIndex={-1}
                                           onClick={handleSolutionItemClick}
                                           onKeyDown={(e) => handleDropdownItemKeyDown(e, subItem.href)}
-                                          className="text-sm text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded block"
+                                          className={cn(
+                                            "text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded block",
+                                            pathname === subItem.href
+                                              ? "text-primary font-medium"
+                                              : "text-muted-foreground hover:text-foreground"
+                                          )}
                                         >
                                           {
                                             (
@@ -538,7 +548,12 @@ export function Navigation() {
                                 setMobileMenuOpen(false)
                                 setMobileSolutionExpanded(false)
                               }}
-                              className="block text-sm font-semibold text-foreground py-1 px-4"
+                              className={cn(
+                                "block text-sm font-semibold py-1 px-4",
+                                pathname === category.href
+                                  ? "text-primary"
+                                  : "text-foreground"
+                              )}
                             >
                               {t.nav.solutionDropdown[category.key].title}
                             </Link>
@@ -550,7 +565,12 @@ export function Navigation() {
                                   setMobileMenuOpen(false)
                                   setMobileSolutionExpanded(false)
                                 }}
-                                className="block text-sm text-muted-foreground hover:text-foreground py-1 px-6"
+                                className={cn(
+                                  "block text-sm py-1 px-6",
+                                  pathname === subItem.href
+                                    ? "text-primary font-medium"
+                                    : "text-muted-foreground hover:text-foreground"
+                                )}
                               >
                                 {
                                     (
