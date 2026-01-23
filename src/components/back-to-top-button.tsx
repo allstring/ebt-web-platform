@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ArrowUp } from "lucide-react"
+import ArrowUp from "lucide-react/dist/esm/icons/arrow-up";
 import { cn, scrollToTop } from "@/lib/utils"
 
 export function BackToTopButton() {

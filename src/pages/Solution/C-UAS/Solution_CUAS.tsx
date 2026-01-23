@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import ArrowLeft from "lucide-react/dist/esm/icons/arrow-left";
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
 import { Button } from "@/components/ui/button"
 import { ProductGrid } from "@/components/product-card"
 import ComingSoon from "@/components/ComingSoon"

@@ -1,20 +1,18 @@
 import { useRef, useLayoutEffect } from "react"
 import { Link } from "react-router-dom"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import ArrowLeft from "lucide-react/dist/esm/icons/arrow-left";
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
 import { Button } from "@/components/ui/button"
 import { ProductGrid } from "@/components/product-card"
 import ComingSoon from "@/components/ComingSoon"
 import { useLocale } from "@/lib/i18n"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { gsap } from "@/lib/gsap"
 import categoryCpxImg from "@/assets/images/category-cpx.jpg"
 import categoryNcmImg from "@/assets/images/category-ncm.jpg"
 
 // import categoryBbatsImg from "@/assets/images/category-bbats.png"
 import categoryRanidxImg from "@/assets/images/RanidX 01_thumbnail.png"
 import ncNetworkSchemaImg from "@/assets/images/nc_network_schema.png"
-
-gsap.registerPlugin(ScrollTrigger)
 
 // ============================================================================
 // 페이지 숨김 설정 - true로 변경시 "준비중" 페이지 표시
@@ -88,12 +86,24 @@ function NetworkArchitectureSection() {
 
         <div
           ref={imageRef}
+          role="button"
+          tabIndex={0}
+          aria-label={nc.architecture.hoverTitle}
           className="relative group cursor-pointer max-w-4xl mx-auto"
           onClick={() => {
             document.getElementById("product-lineup")?.scrollIntoView({
               behavior: "smooth",
               block: "start",
             })
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault()
+              document.getElementById("product-lineup")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              })
+            }
           }}
         >
           <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

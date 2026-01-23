@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
-import { ArrowLeft, Construction } from "lucide-react"
+import ArrowLeft from "lucide-react/dist/esm/icons/arrow-left";
+import Construction from "lucide-react/dist/esm/icons/construction";
 import { Button } from "@/components/ui/button"
 import { useLocale } from "@/lib/i18n"
 

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, Target, Activity } from "lucide-react"
-import { gsap } from "gsap"
+// import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
+import Target from "lucide-react/dist/esm/icons/target";
+import Activity from "lucide-react/dist/esm/icons/activity";
+import { gsap } from "@/lib/gsap"
 
 // ============================================================================
 // Types
@@ -122,7 +124,8 @@ const TargetPoint = ({ target, isActive, onHover }: { target: Required<RadarTarg
 
 /** 데스크탑 InfoPanel */
 const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent: string; subtitle: string; activeTarget: Required<RadarTarget> | null; isHovered: boolean; strings: RadarStrings; onHover: (id: number | null) => void }>(
-  ({ title, titleAccent, subtitle, activeTarget, isHovered, strings, onHover }, ref) => (
+  // ({ title, titleAccent, subtitle, activeTarget, isHovered, strings, onHover }, ref) => (
+  ({ title, titleAccent, subtitle, strings }, ref) => (
     <div ref={ref} className="w-full lg:flex-1 lg:max-w-md space-y-6 lg:space-y-8 order-2 lg:order-1 z-10">
       <div className="space-y-3 lg:space-y-4 text-center lg:text-left">
         <div className="hero-status flex items-center justify-center lg:justify-start gap-2 text-[10px] sm:text-xs text-accent tracking-widest">
@@ -136,7 +139,7 @@ const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent:
       </div>
 
       {/* 데스크탑 카드 */}
-      <Link
+      {/* <Link
         to={activeTarget?.link ?? "#"}
         className={`opacity-0 hero-card hidden lg:block group p-6 rounded-xl border bg-card/80 backdrop-blur-sm transition-all duration-300 ${isHovered ? "border-accent/50 shadow-lg" : "border-border hover:border-accent/30"}`}
         onMouseEnter={() => activeTarget && onHover(activeTarget.id)}
@@ -154,7 +157,7 @@ const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent:
           <span>{strings.viewDetails}</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </div>
-      </Link>
+      </Link> */}
     </div>
   )
 )
@@ -206,7 +209,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
   const sectionRef = useRef<HTMLElement>(null)
   const radarRef = useRef<HTMLDivElement>(null)
   const infoPanelRef = useRef<HTMLDivElement>(null)
-  const mobileListRef = useRef<HTMLDivElement>(null)
+  // const mobileListRef = useRef<HTMLDivElement>(null)
   const requestRef = useRef<number>()
   const startTimeRef = useRef<number | null>(null)
 
@@ -298,7 +301,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
         {/* Info */}
         <div className="order-2 lg:order-1 w-full lg:flex-1 lg:max-w-md">
           <InfoPanel ref={infoPanelRef} title={title} titleAccent={titleAccent} subtitle={subtitle} activeTarget={activeTarget} isHovered={hoveredId !== null} strings={strings} onHover={setHoveredId} />
-          <MobileTargetList ref={mobileListRef} targets={normalizedTargets} activeTarget={activeTarget} strings={strings} />
+          {/* <MobileTargetList ref={mobileListRef} targets={normalizedTargets} activeTarget={activeTarget} strings={strings} /> */}
         </div>
       </div>
     </section>

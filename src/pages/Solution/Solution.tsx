@@ -4,9 +4,9 @@
 // ============================================================================
 
 import { useState, useRef, useLayoutEffect } from "react"
-import { ArrowRight } from "lucide-react"
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
 import { useLocale } from "@/lib/i18n"
-import gsap from "gsap"
+import { gsap } from "@/lib/gsap"
 
 // Assets - Posters
 import solutionEwImg from "@/assets/images/solution/list-ew-video-poster.webp"
@@ -48,21 +48,22 @@ const SOLUTION_DATA: SolutionItem[] = [
     video: solutionEwVideo,
   },
   {
-    id: "nuclear-chemical",
-    number: "02",
-    key: "nuclearChemical",
-    href: "/solution/nc",
-    poster: solutionNcImg,
-    video: solutionNcVideo,
-  },
-  {
     id: "counter-uas",
-    number: "03",
+    number: "02",
     key: "counterUAS",
     href: "/solution/c-uas",
     poster: solutionCuasImg,
     video: solutionCuasVideo,
   },
+  {
+    id: "nuclear-chemical",
+    number: "03",
+    key: "nuclearChemical",
+    href: "/solution/nc",
+    poster: solutionNcImg,
+    video: solutionNcVideo,
+  },
+
 ]
 
 // ============================================================================
@@ -98,7 +99,7 @@ function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 overflow-hidden">
+    <section ref={sectionRef} className="pt-24 pb-18 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div ref={contentRef} className="max-w-3xl relative">
           {/* 왼쪽 악센트 라인 */}
@@ -187,6 +188,7 @@ function DesktopSolutionCard({
       {/* Background Video with Cinematic Effect */}
       <video
         ref={videoRef}
+        aria-label={`${title} solution preview video`}
         className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
         style={{
           transform: isHovered ? "scale(1.05)" : "scale(1)",
@@ -351,6 +353,7 @@ function MobileSolutionCard({
 
       {/* Background Video */}
       <video
+        aria-label={`${title} solution preview video`}
         className="absolute inset-0 w-full h-full object-cover"
         style={{
           filter: "brightness(0.95) saturate(1.1)",
