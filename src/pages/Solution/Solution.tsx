@@ -16,7 +16,7 @@ import solutionCuasImg from "@/assets/images/solution/list-cuas-video-poster.jpg
 // Assets - Videos
 import solutionEwVideo from "@/assets/videos/solution/list-ew-video.webm"
 import solutionNcVideo from "@/assets/videos/solution/list-bw-video.webm"
-import solutionCuasVideo from "@/assets/videos/solution/list-cuas-video.mp4"
+import solutionCuasVideo from "@/assets/videos/solution/list-cuas-video.webm"
 
 // ============================================================================
 // 타입 정의
