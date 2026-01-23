@@ -156,7 +156,7 @@ export function useStaggerAnimation(
   options: StaggerOptions = {}
 ) {
   const {
-    duration = 0.6,
+    duration = 0.3,
     delay = 0,
     ease = DEFAULTS.ease,
     start = DEFAULTS.start,
