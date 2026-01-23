@@ -11,12 +11,12 @@ import { gsap } from "@/lib/gsap"
 // Assets - Posters
 import solutionEwImg from "@/assets/images/solution/list-ew-video-poster.webp"
 import solutionNcImg from "@/assets/images/solution/list-bw-video-poster.webp"
-import solutionCuasImg from "@/assets/images/solution/list-cuas-video-poster.jpg"
+import solutionCuasImg from "@/assets/images/solution/list-cuas-video-poster.webp"
 
 // Assets - Videos
 import solutionEwVideo from "@/assets/videos/solution/list-ew-video.webm"
 import solutionNcVideo from "@/assets/videos/solution/list-bw-video.webm"
-import solutionCuasVideo from "@/assets/videos/solution/list-cuas-video.mp4"
+import solutionCuasVideo from "@/assets/videos/solution/list-cuas-video.webm"
 
 // ============================================================================
 // 타입 정의

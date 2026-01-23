@@ -107,6 +107,8 @@ export const ncm = {
       "Light CBRN Reconnaissance",
       "Building CBRN Monitoring",
       "Shelter CBRN Monitoring",
+      "Unmanned CBRN Monitoring",
+      "USV CBRN Monitoring",
     ],
   },
 

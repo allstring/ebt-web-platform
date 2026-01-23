@@ -1,6 +1,7 @@
-import categoryDeceiveImg from "@/assets/images/deceive_hero.jpg"
+import categoryDeceiveImg from "@/assets/images/solution/EW/DECEIVE/hero.webp"
 import { useLocale } from "@/lib/i18n"
-import easeDeceiveImg from "@/assets/images/deceive_main.webp"
+import easeDeceiveImg from "@/assets/images/solution/EW/DECEIVE/main.webp"
+import { ProductContactSection } from "@/components/product-contact-section"
 export default function DetailDeceivePage() {
   const { t } = useLocale()
   const deceive = t.deceive
@@ -171,24 +172,7 @@ export default function DetailDeceivePage() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                {deceive.contact.text}{" "}
-                <a href="mailto:info@ebtech.kr" className="text-foreground hover:underline">
-                  info@ebtech.kr
-                </a>{" "}
-                or{" "}
-                <a href="tel:+82317216380" className="text-foreground hover:underline">
-                  +82 31 721 6380
-                </a>
-                {deceive.contact.suffix}
-              </p>
-            </div>
-          </div>
-        </section>
+        <ProductContactSection text={deceive.contact.text} suffix={deceive.contact.suffix} />
     </div>
   )
 }

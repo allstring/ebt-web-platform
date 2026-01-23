@@ -1,18 +1,15 @@
 import { useRef, useLayoutEffect } from "react"
 import { Link } from "react-router-dom"
 import ArrowLeft from "lucide-react/dist/esm/icons/arrow-left";
-import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
-import { Button } from "@/components/ui/button"
 import { ProductGrid } from "@/components/product-card"
+import { ProductContactSection } from "@/components/product-contact-section"
 import ComingSoon from "@/components/ComingSoon"
 import { useLocale } from "@/lib/i18n"
 import { gsap } from "@/lib/gsap"
-import categoryCpxImg from "@/assets/images/category-cpx.jpg"
-import categoryNcmImg from "@/assets/images/category-ncm.jpg"
-
-// import categoryBbatsImg from "@/assets/images/category-bbats.png"
-import categoryRanidxImg from "@/assets/images/RanidX 01_thumbnail.png"
-import ncNetworkSchemaImg from "@/assets/images/nc_network_schema.png"
+import categoryCpxImg from "@/assets/images/solution/NC/CHEMPRO-X/thumbnail.webp"
+import categoryNcmImg from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/thumbnail.webp"
+import categoryRanidxImg from "@/assets/images/solution/NC/RanidX/thumbnail.webp"
+import ncNetworkSchemaImg from "@/assets/images/solution/NC/nc_network_schema.png"
 
 // ============================================================================
 // 페이지 숨김 설정 - true로 변경시 "준비중" 페이지 표시
@@ -237,7 +234,7 @@ export default function NCDefensePage() {
       {/* Protection Concept */}
       <section className="py-24 lg:py-32 border-t border-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-2xl mb-16">
+          <div className="max-w-2xl mb-12">
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               {nc.protection.label}
             </p>
@@ -246,13 +243,10 @@ export default function NCDefensePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {nc.protection.items.map((item, index) => (
-              <div key={item.name} className="p-8 bg-card border border-border">
-                <span className="text-4xl font-light text-muted-foreground/50">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-4 text-lg font-medium text-foreground">{item.name}</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {nc.protection.items.slice(0, 2).map((item) => (
+              <div key={item.name} className="p-6 bg-card border border-border rounded-lg">
+                <h3 className="text-lg font-medium text-foreground">{item.name}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.description}</p>
               </div>
             ))}
@@ -260,30 +254,7 @@ export default function NCDefensePage() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section className="py-24 lg:py-32 bg-card border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                {nc.contact.label}
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
-                {nc.contact.title}
-              </h2>
-              <p className="mt-4 text-muted-foreground max-w-xl">
-                {nc.contact.description}
-              </p>
-            </div>
-            <Button asChild variant="outline" className="border-border hover:bg-secondary bg-transparent w-fit">
-              <Link to="/contact">
-                {nc.contact.button}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ProductContactSection text="To learn more about our NC Defense solutions, please contact us at" />
     </div>
   )
 }

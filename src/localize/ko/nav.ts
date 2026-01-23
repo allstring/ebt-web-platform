@@ -26,7 +26,7 @@ export const nav = {
       title: "NC 방어",
       items: {
         chemproX: "CHEMPRO-X",
-        ncMonitoring: "NC 모니터링 시스템",
+        ncMonitoring: "NC Monitoring System",
         ranidX: "RanidX",
       },
     },

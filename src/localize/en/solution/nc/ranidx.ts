@@ -114,12 +114,14 @@ export const ranidx = {
     title: "Application",
     description: "The RanidX's compact design and robust construction make it suitable for a wide range of radiation monitoring applications. Its flexible integration capabilities allow deployment in vehicles, vessels, UAVs/UGVs, and critical infrastructure protection systems.",
     items: [
-      "First Responders",
-      "Military",
-      "Mounting on Drone",
-      "Border CBRN Monitoring",
+      "Naval & Maritime CBRN Monitoring",
       "Armoured CBRN Reconnaissance",
+      "Armoured CBRN Monitoring",
       "Light CBRN Reconnaissance",
+      "Building CBRN Monitoring",
+      "Shelter CBRN Monitoring",
+      "Unmanned CBRN Monitoring",
+      "USV CBRN Monitoring",
     ],
   },
 

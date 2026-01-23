@@ -1,8 +1,9 @@
 import { useLocale } from "@/lib/i18n"
+import { ProductContactSection } from "@/components/product-contact-section"
 
-import thumbnailImg from "@/assets/images/spectraC2Thumbnail.png"
-import screenshotImg1 from "@/assets/images/SpectraC21.png"
-import screenshotImg2 from "@/assets/images/SpectraC22.png"
+import thumbnailImg from "@/assets/images/solution/C-UAS/Spectra-C2/thumbnail.webp"
+import screenshotImg1 from "@/assets/images/solution/C-UAS/Spectra-C2/hero.webp"
+import screenshotImg2 from "@/assets/images/solution/C-UAS/Spectra-C2/main2.webp"
 
 export default function DetailSpectraC2Page() {
   const { t } = useLocale()
@@ -183,24 +184,7 @@ export default function DetailSpectraC2Page() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-24 lg:py-32 border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-              {spectrac2.contact.text}{" "}
-              <a href="mailto:info@ebtech.kr" className="text-foreground hover:underline">
-                info@ebtech.kr
-              </a>{" "}
-              or{" "}
-              <a href="tel:+82317216380" className="text-foreground hover:underline">
-                +82 31 721 6380
-              </a>
-              {spectrac2.contact.suffix}
-            </p>
-          </div>
-        </div>
-      </section>
+      <ProductContactSection text={spectrac2.contact.text} suffix={spectrac2.contact.suffix} variant="default" />
     </div>
   )
 }

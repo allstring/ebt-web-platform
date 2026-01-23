@@ -76,6 +76,8 @@ export const cpx = {
       "Border CBRN Monitoring",
       "Armoured CBRN Reconnaissance",
       "Light CBRN Reconnaissance",
+      "Mass Events",
+      "USV CBRN Monitoring"
     ],
   },
 

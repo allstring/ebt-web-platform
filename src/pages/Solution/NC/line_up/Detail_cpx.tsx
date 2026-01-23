@@ -1,18 +1,21 @@
 import Check from "lucide-react/dist/esm/icons/check";
 
 import { ApplicationItem } from "@/components/application-item"
+import { ProductContactSection } from "@/components/product-contact-section"
 import { useLocale } from "@/lib/i18n"
-import categoryCpxImg from "@/assets/images/cpx-bg.jpg"
-import eseaRecImg from "@/assets/images/cpx.jpg"
+import categoryCpxImg from "@/assets/images/solution/NC/CHEMPRO-X/hero.webp"
+import eseaRecImg from "@/assets/images/solution/NC/CHEMPRO-X/main.webp"
 
-import app1Img from "@/assets/images/app-1.jpg"
-import app2Img from "@/assets/images/app-2.jpg"
-import app3Img from "@/assets/images/app-4.jpg"
-import app4Img from "@/assets/images/app-5.png"
-import app5Img from "@/assets/images/app-6.png"
-import app6Img from "@/assets/images/app-7.jpg"
+import app1Img from "@/assets/images/solution/NC/CHEMPRO-X/app1.webp"
+import app2Img from "@/assets/images/solution/NC/CHEMPRO-X/app2.webp"
+import app3Img from "@/assets/images/solution/NC/CHEMPRO-X/app3.webp"
+import app4Img from "@/assets/images/solution/NC/CHEMPRO-X/app4.webp"
+import app5Img from "@/assets/images/solution/NC/CHEMPRO-X/app5.webp"
+import app6Img from "@/assets/images/solution/NC/CHEMPRO-X/app6.webp"
+import app7Img from "@/assets/images/solution/NC/CHEMPRO-X/app7.webp"
+import app8Img from "@/assets/images/solution/NC/CHEMPRO-X/app8.webp"
 
-const applicationImages = [app1Img, app2Img, app3Img, app4Img, app5Img, app6Img]
+const applicationImages = [app1Img, app2Img, app3Img, app4Img, app5Img, app6Img, app7Img, app8Img]
 
 export default function DetailCpxPage() {
   const { t } = useLocale()
@@ -188,24 +191,7 @@ export default function DetailCpxPage() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section className="py-24 lg:py-32 bg-card border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                {cpx.contact.text}{" "}
-                <a href="mailto:info@ebtech.kr" className="text-foreground hover:underline">
-                  info@ebtech.kr
-                </a>{" "}
-                or{" "}
-                <a href="tel:+82317216380" className="text-foreground hover:underline">
-                  +82 31 721 6380
-                </a>
-                {cpx.contact.suffix}
-              </p>
-            </div>
-          </div>
-        </section>
+        <ProductContactSection text={cpx.contact.text} suffix={cpx.contact.suffix} />
     </div>
   )
 }
