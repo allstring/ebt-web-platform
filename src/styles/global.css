@@ -156,6 +156,9 @@ html:lang(ko) h2 {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    font-size: 17px; /* 기본 16px에서 살짝 키움 */
+  }
   body {
     @apply bg-background text-foreground;
   }
