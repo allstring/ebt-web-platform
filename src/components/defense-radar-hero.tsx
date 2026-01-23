@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react"
 import { Link } from "react-router-dom"
-import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
+// import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
 import Target from "lucide-react/dist/esm/icons/target";
 import Activity from "lucide-react/dist/esm/icons/activity";
 import { gsap } from "@/lib/gsap"
@@ -124,7 +124,8 @@ const TargetPoint = ({ target, isActive, onHover }: { target: Required<RadarTarg
 
 /** 데스크탑 InfoPanel */
 const InfoPanel = React.forwardRef<HTMLDivElement, { title: string; titleAccent: string; subtitle: string; activeTarget: Required<RadarTarget> | null; isHovered: boolean; strings: RadarStrings; onHover: (id: number | null) => void }>(
-  ({ title, titleAccent, subtitle, activeTarget, isHovered, strings, onHover }, ref) => (
+  // ({ title, titleAccent, subtitle, activeTarget, isHovered, strings, onHover }, ref) => (
+  ({ title, titleAccent, subtitle, strings }, ref) => (
     <div ref={ref} className="w-full lg:flex-1 lg:max-w-md space-y-6 lg:space-y-8 order-2 lg:order-1 z-10">
       <div className="space-y-3 lg:space-y-4 text-center lg:text-left">
         <div className="hero-status flex items-center justify-center lg:justify-start gap-2 text-[10px] sm:text-xs text-accent tracking-widest">
@@ -208,7 +209,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
   const sectionRef = useRef<HTMLElement>(null)
   const radarRef = useRef<HTMLDivElement>(null)
   const infoPanelRef = useRef<HTMLDivElement>(null)
-  const mobileListRef = useRef<HTMLDivElement>(null)
+  // const mobileListRef = useRef<HTMLDivElement>(null)
   const requestRef = useRef<number>()
   const startTimeRef = useRef<number | null>(null)
 

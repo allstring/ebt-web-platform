@@ -19,12 +19,12 @@ import {
   useFadeIn,
   useSlideIn,
   useStaggerAnimation,
-  useDualSlideIn,
+  // useDualSlideIn,
 } from "@/hooks/use-gsap-animation"
 
 // Assets
 import heroVideo from "@/assets/videos/home/hero-video.webm"
-import heroMainImg from "@/assets/images/home/hero-main.webp"
+// import heroMainImg from "@/assets/images/home/hero-main.webp"
 
 // ============================================================================
 // 상수 정의
