@@ -3,19 +3,21 @@ import Check from "lucide-react/dist/esm/icons/check";
 import { ApplicationItem } from "@/components/application-item"
 import { ProductContactSection } from "@/components/product-contact-section"
 import { useLocale } from "@/lib/i18n"
-import categoryNcmImg from "@/assets/images/ncm-bg.jpg"
-import eseaRecImg from "@/assets/images/ncm.jpg"
+import categoryNcmImg from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/hero.webp"
+import eseaRecImg from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/main.webp"
 
-import app1Img from "@/assets/images/app-b1.png"
-import app2Img from "@/assets/images/app-b2.png"
-import app3Img from "@/assets/images/app-b3.png"
-import app4Img from "@/assets/images/app-b4.png"
-import app5Img from "@/assets/images/app-b5.png"
-import app6Img from "@/assets/images/app-b6.png"
+import app1Img from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/app1.webp"
+import app2Img from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/app2.webp"
+import app3Img from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/app3.webp"
+import app4Img from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/app4.webp"
+import app5Img from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/app5.webp"
+import app6Img from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/app6.webp"
+import app7Img from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/app7.webp"
+import app8Img from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/app8.webp"
 
-import networkImg from "@/assets/images/ncm_network.png"
+import networkImg from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/schema.webp"
 
-const applicationImages = [app1Img, app2Img, app3Img, app4Img, app5Img, app6Img]
+const applicationImages = [app1Img, app2Img, app3Img, app4Img, app5Img, app6Img, app7Img, app8Img]
 
 export default function DetailNcmPage() {
   const { t } = useLocale()

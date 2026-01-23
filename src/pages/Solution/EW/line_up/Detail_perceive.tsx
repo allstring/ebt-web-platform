@@ -1,5 +1,5 @@
-import categoryPerceiveImg from "@/assets/images/perceive_bg2.jpg"
-import eseaRecImg from "@/assets/images/perceive2.jpg"
+import categoryPerceiveImg from "@/assets/images/solution/EW/PERCEIVE/hero.webp"
+import eseaRecImg from "@/assets/images/solution/EW/PERCEIVE/main.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
 

@@ -3,18 +3,20 @@ import Check from "lucide-react/dist/esm/icons/check";
 import { ApplicationItem } from "@/components/application-item"
 import { ProductContactSection } from "@/components/product-contact-section"
 import { useLocale } from "@/lib/i18n"
-import ranidxHeroImg from "@/assets/images/ranidX_hero.png"
-import ranidxImg1 from "@/assets/images/RanidX 01.png"
-import ranidxImg2 from "@/assets/images/RanidX 02.png"
+import ranidxHeroImg from "@/assets/images/solution/NC/RanidX/hero.webp"
+import ranidxImg1 from "@/assets/images/solution/NC/RanidX/main1.webp"
+import ranidxImg2 from "@/assets/images/solution/NC/RanidX/main2.webp"
 
-import app1Img from "@/assets/images/app-1.jpg"
-import app2Img from "@/assets/images/app-2.jpg"
-import app3Img from "@/assets/images/app-4.jpg"
-import app4Img from "@/assets/images/app-5.png"
-import app5Img from "@/assets/images/app-6.png"
-import app6Img from "@/assets/images/app-7.jpg"
+import app3Img from "@/assets/images/solution/NC/ranidx/app3.webp"
+import app2Img from "@/assets/images/solution/NC/ranidx/app2.webp"
+import app1Img from "@/assets/images/solution/NC/ranidx/app1.webp"
+import app4Img from "@/assets/images/solution/NC/ranidx/app4.webp"
+import app5Img from "@/assets/images/solution/NC/ranidx/app5.webp"
+import app6Img from "@/assets/images/solution/NC/ranidx/app6.webp"
+import app7Img from "@/assets/images/solution/NC/ranidx/app7.webp"
+import app8Img from "@/assets/images/solution/NC/ranidx/app8.webp"
 
-const applicationImages = [app1Img, app2Img, app3Img, app4Img, app5Img, app6Img]
+const applicationImages = [app1Img, app2Img, app3Img, app4Img, app5Img, app6Img, app7Img, app8Img]
 
 export default function DetailRanidxPage() {
   const { t } = useLocale()

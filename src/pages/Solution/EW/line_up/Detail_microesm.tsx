@@ -1,5 +1,5 @@
-import microesmHeroImg from "@/assets/images/microESM_hero.jpeg"
-import microesmMainImg from "@/assets/images/microESM_main.jpg"
+import microesmHeroImg from "@/assets/images/solution/EW/MicroESM/hero.webp"
+import microesmMainImg from "@/assets/images/solution/EW/MicroESM/main.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
 

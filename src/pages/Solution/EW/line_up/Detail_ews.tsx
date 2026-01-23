@@ -1,6 +1,6 @@
-import categoryBbatsImg from "@/assets/images/gbews-bg_censored.jpg"
-import eseaRecImgEn from "@/assets/images/esea_rec.png"
-import eseaRecImgKo from "@/assets/images/esea_rec_ko.png"
+import categoryBbatsImg from "@/assets/images/solution/EW/GoldenBat-EWS/hero_censored.webp"
+import eseaRecImgEn from "@/assets/images/solution/EW/GoldenBat-EWS/esea_rec_en.webp"
+import eseaRecImgKo from "@/assets/images/solution/EW/GoldenBat-EWS/esea_rec_ko.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
 

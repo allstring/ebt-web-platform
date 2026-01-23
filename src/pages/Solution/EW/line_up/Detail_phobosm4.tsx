@@ -1,5 +1,5 @@
-import phobosm4HeroImg from "@/assets/images/PhobosM4_hero.png"
-import phobosm4MainImg from "@/assets/images/PhobosM4_main.png"
+import phobosm4HeroImg from "@/assets/images/solution/EW/PHOBOS M4/hero.webp"
+import phobosm4MainImg from "@/assets/images/solution/EW/PHOBOS M4/main.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
 

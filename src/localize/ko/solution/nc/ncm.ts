@@ -107,6 +107,9 @@ export const ncm = {
       "경량 CBRN 정찰",
       "건물 CBRN 모니터링",
       "대피소 CBRN 모니터링",
+      "무인 CBRN 모니터링",
+      "USV CBRN 모니터링",
+      
     ],
   },
 

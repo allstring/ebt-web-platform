@@ -76,6 +76,8 @@ export const cpx = {
       "국경 CBRN 모니터링",
       "장갑 CBRN 정찰",
       "경량 CBRN 정찰",
+      "대규모 상황",
+      "USV CBRN 모니터링"
     ],
   },
 

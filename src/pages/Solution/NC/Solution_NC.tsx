@@ -6,12 +6,10 @@ import { ProductContactSection } from "@/components/product-contact-section"
 import ComingSoon from "@/components/ComingSoon"
 import { useLocale } from "@/lib/i18n"
 import { gsap } from "@/lib/gsap"
-import categoryCpxImg from "@/assets/images/category-cpx.jpg"
-import categoryNcmImg from "@/assets/images/category-ncm.jpg"
-
-// import categoryBbatsImg from "@/assets/images/category-bbats.png"
-import categoryRanidxImg from "@/assets/images/RanidX 01_thumbnail.png"
-import ncNetworkSchemaImg from "@/assets/images/nc_network_schema.png"
+import categoryCpxImg from "@/assets/images/solution/NC/CHEMPRO-X/thumbnail.webp"
+import categoryNcmImg from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/thumbnail.webp"
+import categoryRanidxImg from "@/assets/images/solution/NC/RanidX/thumbnail.webp"
+import ncNetworkSchemaImg from "@/assets/images/solution/NC/nc_network_schema.png"
 
 // ============================================================================
 // 페이지 숨김 설정 - true로 변경시 "준비중" 페이지 표시

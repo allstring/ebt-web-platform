@@ -11,16 +11,13 @@ import { useLocale } from "@/lib/i18n"
 // ============================================================================
 const HIDE_PAGE = false
 
-import categoryEwsImg from "@/assets/images/category-ews_censored.jpg"
-// import categoryMesImg from "@/assets/images/category-mes.png"
-import categoryPerceiveImg from "@/assets/images/category-perceive.jpg"
-import categoryResolveImg from "@/assets/images/category-resolve.jpg"
-// import categoryLocateTImg from "@/assets/images/category-locate.jpg"
-// import categoryPesImg from "@/assets/images/category-pes.png"  // Moved to C-UAS
-import categoryDeceiveImg from "@/assets/images/deceive_thumbnail.jpg"
-import categryMicroESMImg from "@/assets/images/microESMThumbnail.png"
-import categoryPhobosM4Img from "@/assets/images/phobosm4Thumbnail.png"
-import categoryMapViewImg from "@/assets/images/mapViewThumbnail.png"
+import categoryEwsImg from "@/assets/images/solution/EW/GoldenBat-EWS/thumbnail_censored.webp"
+import categoryPerceiveImg from "@/assets/images/solution/EW/PERCEIVE/thumbnail.webp"
+import categoryResolveImg from "@/assets/images/solution/EW/RESOLVE/thumbnail.webp"
+import categoryDeceiveImg from "@/assets/images/solution/EW/DECEIVE/thumbnail.webp"
+import categryMicroESMImg from "@/assets/images/solution/EW/MicroESM/thumbnail.webp"
+import categoryPhobosM4Img from "@/assets/images/solution/EW/PHOBOS M4/thumbnail.webp"
+import categoryMapViewImg from "@/assets/images/solution/EW/MAPVIEW/thumbnail.webp"
 // const environments = [
 //   "Ground-based installations",
 //   "Vehicle-mounted platforms",

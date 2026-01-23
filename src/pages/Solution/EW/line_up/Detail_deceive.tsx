@@ -1,6 +1,6 @@
-import categoryDeceiveImg from "@/assets/images/deceive_hero.jpg"
+import categoryDeceiveImg from "@/assets/images/solution/EW/DECEIVE/hero.webp"
 import { useLocale } from "@/lib/i18n"
-import easeDeceiveImg from "@/assets/images/deceive_main.webp"
+import easeDeceiveImg from "@/assets/images/solution/EW/DECEIVE/main.webp"
 import { ProductContactSection } from "@/components/product-contact-section"
 export default function DetailDeceivePage() {
   const { t } = useLocale()

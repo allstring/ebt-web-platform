@@ -1,9 +1,9 @@
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
 
-import thumbnailImg from "@/assets/images/spectraC2Thumbnail.png"
-import screenshotImg1 from "@/assets/images/SpectraC21.png"
-import screenshotImg2 from "@/assets/images/SpectraC22.png"
+import thumbnailImg from "@/assets/images/solution/C-UAS/Spectra-C2/thumbnail.webp"
+import screenshotImg1 from "@/assets/images/solution/C-UAS/Spectra-C2/hero.webp"
+import screenshotImg2 from "@/assets/images/solution/C-UAS/Spectra-C2/main2.webp"
 
 export default function DetailSpectraC2Page() {
   const { t } = useLocale()
