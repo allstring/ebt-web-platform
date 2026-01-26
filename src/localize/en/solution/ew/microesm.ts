@@ -1,49 +1,104 @@
 export const microesm = {
   title: "MicroESM",
-  subtitle: "ULTRA-COMPACT TACTICAL ELECTRONIC SUPPORT SYSTEM",
-  tagline: "Tactical Radar Electronic Support",
+  subtitle: "ULTRA-COMPACT TACTICAL RADAR ELECTRONIC SUPPORT SYSTEM",
+  tagline: "Tactical Intelligence. Deployed Anywhere.",
 
-  whatIs: {
-    title: "WHAT IS MicroESM?",
-    description: "MicroESM is an ultra-compact, distributed tactical electronic warfare solution designed to enhance Electronic Support Measures (ESM) and Electronic Intelligence (ELINT) capabilities. Built on a low-SWaP (Small Size, Weight and Power) platform, MicroESM overcomes the limitations of conventional RESM systems that have relied on large platforms. It can be mounted on various platforms including soldier-portable systems, Unmanned Aerial Vehicles (UAVs), and ground/maritime unmanned systems, passively detecting and identifying radar signals while calculating bearings to support tactical decision-making.",
+  highlights: {
+    weight: "< 2 kg",
+    frequency: "2.0 – 18.0 GHz",
+    coverage: "360°",
+    pulses: "200,000 pulses/sec",
+  },
+
+  overview: {
+    title: "Product Overview",
+    description:
+      "MicroESM is an ultra-compact, fully automatic radar ESM system designed to overcome the limitations of conventional RESM systems that relied on large platforms. Weighing less than 2 kg, MicroESM passively detects and identifies radar signals across the 2–18 GHz band with full 360° coverage. The system can be deployed on soldier-portable configurations, fixed coastal surveillance sites, UAVs, and ground or maritime vehicles.",
+    configurationsTitle: "Available in Two Configurations",
+    configurations: [
+      {
+        name: "MicroESM 1t",
+        description: "Tablet-based interface",
+      },
+      {
+        name: "MicroESM 1l",
+        description: "Laptop-based interface",
+      },
+    ],
   },
 
   features: {
-    title: "KEY Features",
+    title: "Key Features",
     items: [
       {
-        title: "Wideband Electromagnetic Surveillance",
-        description: "Detects signals to provide comprehensive SIGINT situational awareness",
+        title: "Ultra-Compact & Lightweight",
+        description:
+          "Main unit weight under 2 kg with compact dimensions of 180 × 180 × 96 mm, enabling rapid integration across multiple platforms.",
+        icon: "feather",
       },
       {
-        title: "Accurate Position & Bearing Calculation",
-        description: "Multi-antenna based bearing measurement for tactical threat positioning",
+        title: "Wideband Radar Detection",
+        description:
+          "Wideband frequency coverage from 2.0 to 18.0 GHz with 360° azimuth coverage using four antennas and bearing accuracy of 7° rms.",
+        icon: "radar",
       },
       {
-        title: "Tactical ESM Specialization",
-        description: "Real-time ELINT acquisition through radar detection, identification, and tracking",
+        title: "Advanced Signal Processing",
+        description:
+          "Processes up to 200,000 pulses per second with simultaneous tracking of over 100 emitters and a 200 mode-line emitter library, expandable as required.",
+        icon: "cpu",
       },
       {
-        title: "Ultra-lightweight Portable Design",
-        description: "MANPACK configuration under 2kg for individual soldier operation",
+        title: "Flexible Power Options",
+        description:
+          "Supports LIPS 14 battery for 3 hours or BB 2590 battery for up to 12 hours. Operates at under 20 W in full mode with swappable battery packs.",
+        icon: "battery",
       },
       {
-        title: "Fully Automated Operation",
-        description: "Automatic signal analysis and identification usable by non-specialist personnel",
+        title: "Data Logging & Storage",
+        description:
+          "Continuous pulse data logging with real-time streaming or local storage, supporting both internal and external storage devices.",
+        icon: "database",
       },
       {
-        title: "Low Detectability & Low Power",
-        description: "Low power consumption and heat emission for covert tactical operations",
+        title: "Passive & Covert Operation",
+        description:
+          "Passive radar interception only with no active emissions, ensuring covert operation and a low heat signature.",
+        icon: "eyeOff",
       },
       {
-        title: "Multi-Platform Integration",
-        description: "Supports mounting on soldier-portable, UAV, vehicle, and unmanned systems",
-      },
-      {
-        title: "Distributed Network Scalability",
-        description: "Integrated electromagnetic situational awareness across the battlefield through multi-sensor networking",
+        title: "Ruggedized Design",
+        description:
+          "IP68 environmental protection with shock and vibration testing, designed for reliable operation in harsh environments.",
+        icon: "shield",
       },
     ],
+  },
+
+  configurations: {
+    title: "Configurations",
+    tablet: {
+      name: "MicroESM 1t",
+      subtitle: "Tablet-Based",
+      bestFor: "Best For",
+      items: [
+        "Tactical field operations",
+        "Individual soldier deployment",
+        "Mobile reconnaissance",
+        "Quick deployment scenarios",
+      ],
+    },
+    laptop: {
+      name: "MicroESM 1l",
+      subtitle: "Laptop-Based",
+      bestFor: "Best For",
+      items: [
+        "Extended mission analysis",
+        "Command post integration",
+        "Enhanced processing capability",
+        "Detailed data analysis",
+      ],
+    },
   },
 
   specs: {
@@ -52,37 +107,110 @@ export const microesm = {
       performance: {
         title: "Performance",
         items: [
-          { label: "Operational Concept", value: "Tactical ESM / ELINT" },
-          { label: "Frequency", value: "2.0 ~ 18.0 GHz" },
+          { label: "Frequency Range", value: "2.0 – 18.0 GHz" },
           { label: "Detection Method", value: "Passive Detection & Auto Identification" },
-          { label: "Bearing Measurement", value: "360° / 7° rms" },
-          { label: "Sensitivity", value: "-55 dBm (with bearing) / -70 dBm (CW)" },
-          { label: "Signal Processing", value: "Up to 200,000 pulses/sec" },
-          { label: "Library", value: "200 mode lines (expandable)" },
-          { label: "Simultaneous Tracking", value: "Up to 100" },
+          { label: "Bearing Accuracy", value: "7° rms" },
+          { label: "Azimuth Coverage", value: "360° (4 antennas)" },
+          { label: "Sensitivity", value: "-55 dBm (bearing) / -70 dBm (CW)" },
+          { label: "Pulse Processing", value: "Up to 200,000 pulses/sec" },
+          { label: "Emitter Library", value: "200 mode lines (expandable)" },
+          { label: "Simultaneous Tracking", value: "Up to 100 emitters" },
+          { label: "Dynamic Range", value: "50 dB" },
         ],
       },
       physical: {
-        title: "Physical Characteristics",
+        title: "Physical Specifications",
+        headers: ["Parameter", "MicroESM 1t", "MicroESM 1l"],
         items: [
-          { label: "Power", value: "< 20 W (max)" },
-          { label: "Power Supply", value: "10 ~ 18 V DC" },
-          { label: "Battery", value: "Up to 12 hours" },
-          { label: "Size", value: "180 × 180 × 96 mm" },
-          { label: "Weight", value: "< 2 kg" },
-          { label: "Environment", value: "IP68" },
+          { label: "Main Unit", tablet: "< 2 kg", laptop: "< 2 kg" },
+          { label: "Display", tablet: "1 kg (tablet)", laptop: "~1.5 kg (laptop)" },
+          { label: "Dimensions", tablet: "180 × 180 × 96 mm", laptop: "180 × 180 × 96 mm" },
+          { label: "Environment", tablet: "IP68 (main) / IP65 (tablet)", laptop: "IP68 (main)" },
+          { label: "Operating Temperature", tablet: "-20°C to +48°C", laptop: "-20°C to +48°C" },
         ],
-      },
-      platform: {
-        title: "Platform",
-        value: "Soldier-portable, UAV, Vehicle, Unmanned Systems",
       },
     },
   },
 
+  useCases: {
+    title: "Use Cases",
+    items: [
+      {
+        title: "Tactical Field Operations",
+        subtitle: "Person-portable MANPACK deployment",
+        icon: "users",
+        applications: [
+          "Frontline reconnaissance units",
+          "Light Electronic Warfare Troops (LEWTs)",
+          "Special operations forces",
+          "Border patrol and surveillance",
+        ],
+        benefits: [
+          "Deploy in minutes by untrained operators",
+          "Operate in transit with no mobility restrictions",
+          "Battery-powered operation for 3–12 hours",
+          "Passive covert operation",
+        ],
+      },
+      {
+        title: "Coastal Surveillance",
+        subtitle: "Fixed installation for 24/7 monitoring",
+        icon: "anchor",
+        applications: [
+          "Coastal border monitoring",
+          "Harbor and port security",
+          "Maritime domain awareness",
+          "Critical infrastructure protection",
+        ],
+        benefits: [
+          "24/7 unattended continuous operation",
+          "External power for unlimited runtime",
+          "Remote wireless control",
+          "Multi-sensor network capability",
+        ],
+      },
+      {
+        title: "UAV & Vehicle Integration",
+        subtitle: "Multi-platform deployment",
+        icon: "plane",
+        applications: [
+          "UAV/drone payload integration",
+          "Small vessel installation",
+          "Ground vehicle mounting",
+          "Unmanned system integration",
+        ],
+        benefits: [
+          "Ultra-low weight under 2 kg",
+          "Multiple mounting options",
+          "Extended detection range",
+          "Coordinated sensor networks",
+        ],
+      },
+      {
+        title: "Distributed Sensor Networks",
+        subtitle: "Area coverage with multiple sensors",
+        icon: "network",
+        applications: [
+          "Perimeter security networks",
+          "Regional surveillance arrays",
+          "Geolocation with two or more sensors",
+          "Command and control system integration",
+        ],
+        benefits: [
+          "Scalable architecture",
+          "Wireless networking",
+          "Coordinated tracking",
+          "C2 system integration via API",
+        ],
+      },
+    ],
+  },
+
   contact: {
-    text: "To learn more about MicroESM and how it can benefit your organization, please contact us at",
-    suffix: ".",
+    title: "Contact for More Information",
+    text: "Learn how MicroESM can enhance your electronic warfare capabilities.",
+    email: "info@ebtech.kr",
+    phone: "+82 31 721 6380",
   },
 } as const
 
