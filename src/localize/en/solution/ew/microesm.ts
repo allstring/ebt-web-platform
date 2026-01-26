@@ -207,10 +207,8 @@ export const microesm = {
   },
 
   contact: {
-    title: "Contact for More Information",
-    text: "Learn how MicroESM can enhance your electronic warfare capabilities.",
-    email: "info@ebtech.kr",
-    phone: "+82 31 721 6380",
+    text: "To learn more about PERCEIVE MR® and how it can benefit your organization, please contact us at",
+    suffix: ".",
   },
 } as const
 

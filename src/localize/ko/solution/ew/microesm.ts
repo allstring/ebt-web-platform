@@ -194,11 +194,8 @@ export const microesm = {
   },
 
   contact: {
-    title: "상세 정보 문의",
-    text: "MicroESM에 대해 더 알아보고 조직에 어떤 이점이 있는지 확인하시려면",
+    text: "PERCEIVE MR®에 대해 더 알아보고 조직에 어떤 이점이 있는지 확인하시려면",
     suffix: "로 문의해 주세요.",
-    email: "info@ebtech.kr",
-    phone: "+82 31 721 6380",
   },
 } as const
 
