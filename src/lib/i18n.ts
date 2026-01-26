@@ -52,6 +52,8 @@ import { deceive as deceiveEn } from "@/localize/en/solution/ew/deceive"
 import { microesm as microesmEn } from "@/localize/en/solution/ew/microesm"
 import { phobosm4 as phobosm4En } from "@/localize/en/solution/ew/phobosm4"
 import { spectrac2 as spectrac2En } from "@/localize/en/solution/cuas/spectrac2"
+import { mapview as mapviewEn } from "@/localize/en/solution/ew/mapview"
+import { detailPageGate as detailPageGateEn } from "@/localize/en/detailPageGate"
 
 // --- Korean (ko) ---
 import { home as homeKo } from "@/localize/ko/home"
@@ -73,6 +75,8 @@ import { deceive as deceiveKo } from "@/localize/ko/solution/ew/deceive"
 import { microesm as microesmKo } from "@/localize/ko/solution/ew/microesm"
 import { phobosm4 as phobosm4Ko } from "@/localize/ko/solution/ew/phobosm4"
 import { spectrac2 as spectrac2Ko } from "@/localize/ko/solution/cuas/spectrac2"
+import { mapview as mapviewKo } from "@/localize/ko/solution/ew/mapview"
+import { detailPageGate as detailPageGateKo } from "@/localize/ko/detailPageGate"
 
 // --- Japanese (ja) - 일본어 추가 시 주석 해제 ---
 // import { home as homeJa } from "@/localize/ja/home"
@@ -121,6 +125,8 @@ const RESOURCES = {
     microesm: microesmEn,
     phobosm4: phobosm4En,
     spectrac2: spectrac2En,
+    mapview: mapviewEn,
+    detailPageGate: detailPageGateEn,
   },
 
   // Korean
@@ -144,6 +150,8 @@ const RESOURCES = {
     microesm: microesmKo,
     phobosm4: phobosm4Ko,
     spectrac2: spectrac2Ko,
+    mapview: mapviewKo,
+    detailPageGate: detailPageGateKo,
   },
 
   // Japanese - 일본어 추가 시 주석 해제
