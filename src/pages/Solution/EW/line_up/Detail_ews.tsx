@@ -3,6 +3,7 @@ import eseaRecImgEn from "@/assets/images/solution/EW/GoldenBat-EWS/esea_rec_en.
 import eseaRecImgKo from "@/assets/images/solution/EW/GoldenBat-EWS/esea_rec_ko.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
+import { DetailPageGate } from "@/components/DetailPageGate";
 
 export default function DetailEwsPage() {
   const { t, locale } = useLocale()
@@ -10,7 +11,8 @@ export default function DetailEwsPage() {
   const eseaRecImg = locale === "ko" ? eseaRecImgKo : eseaRecImgEn
 
   return (
-    <div className="pt-16">
+    <DetailPageGate>
+      <div className="pt-16">
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* 제목 */}
@@ -20,54 +22,52 @@ export default function DetailEwsPage() {
 
             {/* 소제목 */}
             <div className="mb-8 text-center">
-              <p className="text-s font-semibold uppercase tracking-wider text-muted-foreground">{ews.subtitle}</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{ews.subtitle}</p>
             </div>
+          </div>
+
+          {/* Full-width Hero Image - Classified Style */}
+          <div className="w-full mb-12 relative group overflow-hidden">
+            <img
+              src={categoryBbatsImg}
+              alt={ews.title}
+              className="w-full h-auto object-cover"
+            />
+
+            {/* Scanline Overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-30"
+              style={{
+                background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)'
+              }}
+            />
+
+            {/* Green Tint Overlay */}
+            <div className="absolute inset-0 pointer-events-none bg-emerald-900/10 mix-blend-overlay" />
+
+            {/* Corner Brackets */}
+            <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-emerald-500/60" />
+            <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-emerald-500/60" />
+            <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-emerald-500/60" />
+            <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-emerald-500/60" />
+
+            {/* CLASSIFIED Label */}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-red-600/80 backdrop-blur-sm">
+              <span className="text-xs font-mono font-bold tracking-widest text-white">CLASSIFIED</span>
             </div>
-            <div className="mx-auto max-w-10xl ">
-            {/* width 100% 사진 - 보안 처리 스타일 */}
-            <div className="w-full mb-12 relative group overflow-hidden">
-              {/* 메인 이미지 */}
-              <img
-                src={categoryBbatsImg}
-                alt={ews.title}
-                className="w-full h-auto object-cover"
-              />
 
-              {/* 스캔라인 오버레이 */}
-              <div
-                className="absolute inset-0 pointer-events-none opacity-30"
-                style={{
-                  background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)'
-                }}
-              />
-
-              {/* 그린 틴트 오버레이 */}
-              <div className="absolute inset-0 pointer-events-none bg-emerald-900/10 mix-blend-overlay" />
-
-              {/* 코너 브라켓 */}
-              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-emerald-500/60" />
-              <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-emerald-500/60" />
-              <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-emerald-500/60" />
-              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-emerald-500/60" />
-
-              {/* CLASSIFIED 라벨 */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-red-600/80 backdrop-blur-sm">
-                <span className="text-xs font-mono font-bold tracking-widest text-white">CLASSIFIED</span>
-              </div>
-
-              {/* 하단 HUD 정보 */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 text-[10px] font-mono text-emerald-400/80">
-                <span>SEC-LVL: RESTRICTED</span>
-                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                <span>EBT-GoldenBat-EWS</span>
-              </div>
+            {/* Bottom HUD Info */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 text-[10px] font-mono text-emerald-400/80">
+              <span>SEC-LVL: RESTRICTED</span>
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+              <span>EBT-GoldenBat-EWS</span>
             </div>
-            </div>
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            {/* 한 줄짜리 큰 설명 */}
+          </div>
+
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-5xl lg:text-3xl font-medium text-foreground leading-relaxed">
-              {ews.tagline}
+              <p className="text-2xl lg:text-4xl font-medium text-foreground leading-relaxed">
+                {ews.tagline}
               </p>
             </div>
           </div>
@@ -231,5 +231,6 @@ export default function DetailEwsPage() {
 
         <ProductContactSection text={ews.contact.text} suffix={ews.contact.suffix} />
     </div>
+    </DetailPageGate>
   )
 }

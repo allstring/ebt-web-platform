@@ -3,6 +3,7 @@
 // eBT-PES 제품 상세 페이지 - Portable RF Scanner (GSAP 애니메이션)
 // ============================================================================
 import ComingSoon from "@/components/ComingSoon"
+import { DetailPageGate } from "@/components/DetailPageGate";
 
 
 
@@ -259,11 +260,13 @@ export default function PESPage() {
   // ============================================================================
 
   return (
-    <div id="smooth-wrapper">
-    <div id="smooth-content">
-      <ComingSoon />
-    </div>
-  </div>
+    <DetailPageGate>
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          <ComingSoon />
+        </div>
+      </div>
+    </DetailPageGate>
   )
 }
 // <div id="smooth-wrapper" className="bg-black text-white">

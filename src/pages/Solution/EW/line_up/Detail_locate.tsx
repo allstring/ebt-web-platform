@@ -1,11 +1,12 @@
 import categoryLocateImg from "@/assets/images/locate-bg.jpg"
 import eseaRecImg from "@/assets/images/locate.jpg"
 import { ProductContactSection } from "@/components/product-contact-section"
+import { DetailPageGate } from "@/components/DetailPageGate";
 
-
-export default function DetailEwsPage() {
+export default function DetailLocatePage() {
   return (
-    <div className="pt-16">
+    <DetailPageGate>
+      <div className="pt-16">
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* 제목 */}
@@ -15,24 +16,23 @@ export default function DetailEwsPage() {
 
             {/* 소제목 */}
             <div className="mb-8 text-center">
-              <p className="text-s font-semibold uppercase tracking-wider text-muted-foreground">STRATEGIC HF MONITORING & DIRECTION FINDING</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Strategic HF Monitoring & Direction Finding</p>
             </div>
-            </div>
-            <div className="mx-auto max-w-10xl ">
-            {/* width 100% 사진 */}
-            <div className="w-full mb-12">
-              <img
-                src={categoryLocateImg}
-                alt="Product Lineup"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            </div>
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            {/* 한 줄짜리 큰 설명 */}
+          </div>
+
+          {/* Full-width Hero Image */}
+          <div className="w-full mb-12">
+            <img
+              src={categoryLocateImg}
+              alt="LOCATE-T"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-5xl lg:text-3xl font-medium text-foreground leading-relaxed">
-              Strategic HF Monitoring & Direction Finding
+              <p className="text-2xl lg:text-4xl font-medium text-foreground leading-relaxed">
+                Strategic HF Monitoring & Direction Finding
               </p>
             </div>
           </div>
@@ -138,5 +138,6 @@ export default function DetailEwsPage() {
 
         <ProductContactSection text="To learn more about LOCATE-T and how it can benefit your organization, please contact us at" />
     </div>
+    </DetailPageGate>
   )
 }
