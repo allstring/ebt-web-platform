@@ -6,6 +6,7 @@ import { useLocale } from "@/lib/i18n"
 import ranidxHeroImg from "@/assets/images/solution/NC/RanidX/hero.webp"
 import ranidxImg1 from "@/assets/images/solution/NC/RanidX/main1.webp"
 import ranidxImg2 from "@/assets/images/solution/NC/RanidX/main2.webp"
+import { DetailPageGate } from "@/components/DetailPageGate";
 
 import app1Img from "@/assets/images/solution/NC/RanidX/app1.webp"
 import app2Img from "@/assets/images/solution/NC/RanidX/app2.webp"
@@ -23,7 +24,8 @@ export default function DetailRanidxPage() {
   const ranidx = t.ranidx
 
   return (
-    <div className="pt-16">
+    <DetailPageGate>
+      <div className="pt-16">
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* 제목 */}
@@ -33,24 +35,23 @@ export default function DetailRanidxPage() {
 
             {/* 소제목 */}
             <div className="mb-8 text-center">
-              <p className="text-s font-semibold uppercase tracking-wider text-muted-foreground">{ranidx.subtitle}</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{ranidx.subtitle}</p>
             </div>
-            </div>
-            <div className="mx-auto max-w-10xl ">
-            {/* width 100% 사진 */}
-            <div className="w-full mb-12">
-              <img
-                src={ranidxHeroImg}
-                alt={ranidx.title}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            </div>
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            {/* 한 줄짜리 큰 설명 */}
+          </div>
+
+          {/* Full-width Hero Image */}
+          <div className="w-full mb-12">
+            <img
+              src={ranidxHeroImg}
+              alt={ranidx.title}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-5xl lg:text-3xl font-medium text-foreground leading-relaxed">
-              {ranidx.tagline}
+              <p className="text-2xl lg:text-4xl font-medium text-foreground leading-relaxed">
+                {ranidx.tagline}
               </p>
             </div>
           </div>
@@ -250,5 +251,6 @@ export default function DetailRanidxPage() {
 
         <ProductContactSection text={ranidx.contact.text} suffix={ranidx.contact.suffix} />
     </div>
+    </DetailPageGate>
   )
 }

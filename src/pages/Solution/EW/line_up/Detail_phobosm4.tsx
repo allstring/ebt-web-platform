@@ -2,13 +2,15 @@ import phobosm4HeroImg from "@/assets/images/solution/EW/PHOBOS M4/hero.webp"
 import phobosm4MainImg from "@/assets/images/solution/EW/PHOBOS M4/main.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
+import { DetailPageGate } from "@/components/DetailPageGate";
 
 export default function DetailPhobosM4Page() {
   const { t } = useLocale()
   const phobosm4 = t.phobosm4
 
   return (
-    <div className="pt-16">
+    <DetailPageGate>
+      <div className="pt-16">
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* 제목 */}
@@ -174,5 +176,6 @@ export default function DetailPhobosM4Page() {
 
         <ProductContactSection text={phobosm4.contact.text} suffix={phobosm4.contact.suffix} />
     </div>
+    </DetailPageGate>
   )
 }

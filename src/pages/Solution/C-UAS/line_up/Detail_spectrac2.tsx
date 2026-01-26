@@ -4,41 +4,40 @@ import { ProductContactSection } from "@/components/product-contact-section"
 import thumbnailImg from "@/assets/images/solution/C-UAS/Spectra-C2/thumbnail.webp"
 import screenshotImg1 from "@/assets/images/solution/C-UAS/Spectra-C2/hero.webp"
 import screenshotImg2 from "@/assets/images/solution/C-UAS/Spectra-C2/main2.webp"
+import { DetailPageGate } from "@/components/DetailPageGate";
 
 export default function DetailSpectraC2Page() {
   const { t } = useLocale()
   const spectrac2 = t.spectrac2
 
   return (
-    <div className="pt-16">
-      <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Title */}
+    <DetailPageGate>
+      <div className="pt-16">
+        <section className="py-24 lg:py-32">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            {/* Title */}
           <div className="mb-12 text-center">
             <h1 className="text-5xl font-semibold tracking-tight text-foreground">{spectrac2.title}</h1>
           </div>
 
           {/* Subtitle */}
           <div className="mb-8 text-center">
-            <p className="text-s font-semibold uppercase tracking-wider text-muted-foreground">{spectrac2.subtitle}</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{spectrac2.subtitle}</p>
           </div>
         </div>
 
-        <div className="mx-auto max-w-10xl">
-          {/* Hero Image */}
-          <div className="w-full mb-12 relative group overflow-hidden">
-            <img
-              src={screenshotImg1}
-              alt={spectrac2.title}
-              className="w-full h-auto object-cover"
-            />
-          </div>
+        {/* Full-width Hero Image */}
+        <div className="w-full mb-12 relative group overflow-hidden">
+          <img
+            src={screenshotImg1}
+            alt={spectrac2.title}
+            className="w-full h-auto object-cover"
+          />
         </div>
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Tagline */}
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-5xl lg:text-3xl font-medium text-foreground leading-relaxed">
+            <p className="text-2xl lg:text-4xl font-medium text-foreground leading-relaxed">
               {spectrac2.tagline}
             </p>
           </div>
@@ -186,5 +185,6 @@ export default function DetailSpectraC2Page() {
 
       <ProductContactSection text={spectrac2.contact.text} suffix={spectrac2.contact.suffix} variant="default" />
     </div>
+    </DetailPageGate>
   )
 }

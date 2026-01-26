@@ -1,9 +1,12 @@
 import categoryMesImg from "@/assets/images/mes-bg.png"
 import mesImg from "@/assets/images/mes.png"
 import { ProductContactSection } from "@/components/product-contact-section"
-export default function DetailEwsPage() {
+import { DetailPageGate } from "@/components/DetailPageGate";
+
+export default function DetailMesPage() {
   return (
-    <div className="pt-16">
+    <DetailPageGate>
+      <div className="pt-16">
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* 제목 */}
@@ -13,24 +16,23 @@ export default function DetailEwsPage() {
 
             {/* 소제목 */}
             <div className="mb-8 text-center">
-              <p className="text-s font-semibold uppercase tracking-wider text-muted-foreground">Drone detection and tracking system</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Drone Detection and Tracking System</p>
             </div>
-            </div>
-            <div className="mx-auto max-w-10xl ">
-            {/* width 100% 사진 */}
-            <div className="w-full mb-12">
-              <img
-                src={categoryMesImg}
-                alt="Product Lineup"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            </div>
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            {/* 한 줄짜리 큰 설명 */}
+          </div>
+
+          {/* Full-width Hero Image */}
+          <div className="w-full mb-12">
+            <img
+              src={categoryMesImg}
+              alt="eBT-MES"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-5xl lg:text-3xl font-medium text-foreground leading-relaxed">
-              Integrated platform completely blocks all drone threats
+              <p className="text-2xl lg:text-4xl font-medium text-foreground leading-relaxed">
+                Integrated Platform That Completely Blocks All Drone Threats
               </p>
             </div>
           </div>
@@ -173,5 +175,6 @@ From multicopter to multicopter, even in complex urban radio environments and op
 
         <ProductContactSection text="To learn more about GoldenBat-EWS and how it can benefit your organization, please contact us at" />
     </div>
+    </DetailPageGate>
   )
 }
