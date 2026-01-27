@@ -192,7 +192,7 @@ export default function DetailCpxPage() {
           </div>
         </section>
 
-        <ProductContactSection text={cpx.contact.text} suffix={cpx.contact.suffix} />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

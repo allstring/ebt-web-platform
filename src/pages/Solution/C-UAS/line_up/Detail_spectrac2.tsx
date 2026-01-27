@@ -183,7 +183,7 @@ export default function DetailSpectraC2Page() {
         </div>
       </section>
 
-      <ProductContactSection text={spectrac2.contact.text} suffix={spectrac2.contact.suffix} variant="default" />
+      <ProductContactSection variant="default" />
     </div>
     </DetailPageGate>
   )

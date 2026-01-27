@@ -312,7 +312,7 @@ export default function DetailNcmPage() {
           </div>
         </section>
 
-        <ProductContactSection text={ncm.contact.text} suffix={ncm.contact.suffix} />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

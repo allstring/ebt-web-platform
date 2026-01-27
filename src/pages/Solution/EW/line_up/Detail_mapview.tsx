@@ -109,7 +109,7 @@ export default function DetailMapViewPage() {
           </div>
         </section>
 
-        <ProductContactSection text={mapview.contact.text} suffix={mapview.contact.suffix} />
+        <ProductContactSection />
       </div>
     </DetailPageGate>
   )

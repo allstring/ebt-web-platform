@@ -173,7 +173,7 @@ From multicopter to multicopter, even in complex urban radio environments and op
           </div>
         </section>
 
-        <ProductContactSection text="To learn more about GoldenBat-EWS and how it can benefit your organization, please contact us at" />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

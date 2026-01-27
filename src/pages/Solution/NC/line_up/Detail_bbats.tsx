@@ -310,7 +310,7 @@ Determining the presence of a wide range of biological substances by measuring f
             </div>
           </div>
         </section>
-        <ProductContactSection text="To learn more about BIOBATS and how it can benefit your organization, please contact us at" />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

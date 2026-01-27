@@ -102,7 +102,7 @@ export default function CounterUASPage() {
         </div>
       </section>
 
-      <ProductContactSection text="To learn more about our Counter-UAS solutions, please contact us at" />
+      <ProductContactSection />
     </div>
   )
 }

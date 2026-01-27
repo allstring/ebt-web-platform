@@ -229,7 +229,7 @@ export default function DetailEwsPage() {
           </div>
         </section>
 
-        <ProductContactSection text={ews.contact.text} suffix={ews.contact.suffix} />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

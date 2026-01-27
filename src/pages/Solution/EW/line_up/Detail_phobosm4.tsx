@@ -174,7 +174,7 @@ export default function DetailPhobosM4Page() {
           </div>
         </section>
 
-        <ProductContactSection text={phobosm4.contact.text} suffix={phobosm4.contact.suffix} />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

@@ -249,7 +249,7 @@ export default function DetailRanidxPage() {
           </div>
         </section>
 
-        <ProductContactSection text={ranidx.contact.text} suffix={ranidx.contact.suffix} />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

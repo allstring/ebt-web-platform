@@ -173,7 +173,7 @@ export default function DetailDeceivePage() {
           </div>
         </section>
 
-        <ProductContactSection text={deceive.contact.text} suffix={deceive.contact.suffix} />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )
