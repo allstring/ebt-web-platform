@@ -94,9 +94,7 @@ export function Navigation() {
   const [mobileSolutionExpanded, setMobileSolutionExpanded] = useState(false)
   const [focusedDropdownIndex, setFocusedDropdownIndex] = useState(-1)
   const solutionDropdownRef = useRef<HTMLDivElement>(null)
-  const solutionButtonRef = useRef<HTMLButtonElement>(null)
   const dropdownItemsRef = useRef<(HTMLAnchorElement | null)[]>([])
-  const solutionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const { locale: currentLocale, setLocale, t } = useLocale()
 
@@ -160,20 +158,6 @@ export function Navigation() {
     setLocaleMenuOpen(false)
   }
 
-  const handleSolutionMouseEnter = () => {
-    if (solutionTimeoutRef.current) {
-      clearTimeout(solutionTimeoutRef.current)
-      solutionTimeoutRef.current = null
-    }
-    setSolutionDropdownOpen(true)
-  }
-
-  const handleSolutionMouseLeave = () => {
-    solutionTimeoutRef.current = setTimeout(() => {
-      setSolutionDropdownOpen(false)
-    }, 150)
-  }
-
   const handleSolutionItemClick = () => {
     setSolutionDropdownOpen(false)
     setFocusedDropdownIndex(-1)
@@ -197,7 +181,6 @@ export function Navigation() {
         e.preventDefault()
         setSolutionDropdownOpen(false)
         setFocusedDropdownIndex(-1)
-        solutionButtonRef.current?.focus()
         break
       case "ArrowDown":
         e.preventDefault()
@@ -275,26 +258,19 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden flex-1 items-center justify-center lg:flex lg:gap-x-10">
+          <div className="text-md hidden flex-1 items-center justify-center lg:flex lg:gap-x-10">
             {navItems.map((item) => (
               item.key === "solution" ? (
                 <div
                   key={item.key}
                   ref={solutionDropdownRef}
                   className="relative"
-                  onMouseEnter={handleSolutionMouseEnter}
-                  onMouseLeave={handleSolutionMouseLeave}
                   onKeyDown={handleSolutionKeyDown}
                 >
-                  <button
-                    ref={solutionButtonRef}
-                    type="button"
+                  <div
                     onClick={() => setSolutionDropdownOpen(!solutionDropdownOpen)}
-                    aria-expanded={solutionDropdownOpen}
-                    aria-haspopup="menu"
-                    aria-controls="solution-dropdown-menu"
                     className={cn(
-                      "text-lg font-semibold transition-colors hover:text-foreground inline-flex items-center gap-1",
+                      "text-lg font-semibold transition-colors hover:text-foreground inline-flex items-center gap-1 cursor-pointer select-none",
                       pathname.startsWith("/solution")
                         ? "text-foreground"
                         : "text-foreground/70"
@@ -305,16 +281,21 @@ export function Navigation() {
                       "h-4 w-4 transition-transform duration-200",
                       solutionDropdownOpen && "rotate-180"
                     )} />
-                  </button>
+                  </div>
 
                   {/* Solution Dropdown */}
                   {solutionDropdownOpen && (
-                    <div
-                      id="solution-dropdown-menu"
-                      role="menu"
-                      aria-label={t.nav.solution}
-                      className="absolute top-full left-1/2 -translate-x-1/2 pt-4"
-                    >
+                    <>
+                      <div
+                        className="fixed inset-0 z-40"
+                        onClick={() => setSolutionDropdownOpen(false)}
+                      />
+                      <div
+                        id="solution-dropdown-menu"
+                        role="menu"
+                        aria-label={t.nav.solution}
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-50"
+                      >
                       <div className="bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-xl p-6 min-w-[600px]">
                         {/* View All Link */}
                         <Link
@@ -386,6 +367,7 @@ export function Navigation() {
                         </div>
                       </div>
                     </div>
+                    </>
                   )}
                 </div>
               ) : (
