@@ -22,6 +22,9 @@ export const detailPageGate = {
     redirectMessage: "원래 왔던 페이지로 돌아갑니다."
   },
   contact: {
-    or: "또는"
+    or: "또는",
+    title: "상세 정보 문의",
+    email: "이메일",
+    phone: "전화"
   }
 };

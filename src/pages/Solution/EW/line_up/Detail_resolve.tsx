@@ -129,7 +129,7 @@ export default function DetailResolvePage() {
           </div>
         </section>
 
-        <ProductContactSection text={resolve.contact.text} suffix={resolve.contact.suffix} />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

@@ -254,7 +254,7 @@ export default function NCDefensePage() {
         </div>
       </section>
 
-      <ProductContactSection text="To learn more about our NC Defense solutions, please contact us at" />
+      <ProductContactSection />
     </div>
   )
 }

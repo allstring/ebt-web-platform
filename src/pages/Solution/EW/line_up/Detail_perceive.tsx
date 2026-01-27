@@ -151,7 +151,7 @@ export default function DetailPerceivePage() {
           </div>
         </section>
 
-        <ProductContactSection text={perceive.contact.text} suffix={perceive.contact.suffix} />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

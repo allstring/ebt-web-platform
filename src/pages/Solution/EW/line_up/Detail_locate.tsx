@@ -136,7 +136,7 @@ export default function DetailLocatePage() {
         </section>
 
 
-        <ProductContactSection text="To learn more about LOCATE-T and how it can benefit your organization, please contact us at" />
+        <ProductContactSection />
     </div>
     </DetailPageGate>
   )

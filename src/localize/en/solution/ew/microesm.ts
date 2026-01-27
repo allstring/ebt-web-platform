@@ -4,16 +4,16 @@ export const microesm = {
   tagline: "Tactical Intelligence. Deployed Anywhere.",
 
   highlights: {
+    type: "RESM",
     weight: "< 2 kg",
     frequency: "2.0 – 18.0 GHz",
     coverage: "360°",
-    pulses: "200,000 pulses/sec",
   },
 
   overview: {
     title: "Product Overview",
     description:
-      "MicroESM is an ultra-compact, fully automatic radar ESM system designed to overcome the limitations of conventional RESM systems that relied on large platforms. Weighing less than 2 kg, MicroESM passively detects and identifies radar signals across the 2–18 GHz band with full 360° coverage. The system can be deployed on soldier-portable configurations, fixed coastal surveillance sites, UAVs, and ground or maritime vehicles.",
+      "MicroESM is an ultra-compact, fully automatic radar ESM system designed to overcome the limitations of conventional RESM systems that relied on large platforms.\nWeighing less than 2 kg, MicroESM passively detects and identifies radar signals across the 2–18 GHz band with full 360° coverage.\nThe system can be deployed on soldier-portable configurations, fixed coastal surveillance sites, UAVs, and ground or maritime vehicles.",
     configurationsTitle: "Available in Two Configurations",
     configurations: [
       {
@@ -39,13 +39,13 @@ export const microesm = {
       {
         title: "Wideband Radar Detection",
         description:
-          "Wideband frequency coverage from 2.0 to 18.0 GHz with 360° azimuth coverage using four antennas and bearing accuracy of 7° rms.",
+          "Wideband frequency coverage from 2.0 to 18.0 GHz with 360° azimuth coverage using four antennas and bearing accuracy of 7° RMS.",
         icon: "radar",
       },
       {
         title: "Advanced Signal Processing",
         description:
-          "Processes up to 200,000 pulses per second with simultaneous tracking of over 100 emitters and a 200 mode-line emitter library, expandable as required.",
+          "Processes up to 200,000 pulses per second with simultaneous tracking of over 100 emitters and a scalable defense Mode Library.",
         icon: "cpu",
       },
       {
@@ -65,12 +65,6 @@ export const microesm = {
         description:
           "Passive radar interception only with no active emissions, ensuring covert operation and a low heat signature.",
         icon: "eyeOff",
-      },
-      {
-        title: "Ruggedized Design",
-        description:
-          "IP68 environmental protection with shock and vibration testing, designed for reliable operation in harsh environments.",
-        icon: "shield",
       },
     ],
   },
@@ -109,7 +103,7 @@ export const microesm = {
         items: [
           { label: "Frequency Range", value: "2.0 – 18.0 GHz" },
           { label: "Detection Method", value: "Passive Detection & Auto Identification" },
-          { label: "Bearing Accuracy", value: "7° rms" },
+          { label: "Bearing Accuracy", value: "7° RMS" },
           { label: "Azimuth Coverage", value: "360° (4 antennas)" },
           { label: "Sensitivity", value: "-55 dBm (bearing) / -70 dBm (CW)" },
           { label: "Pulse Processing", value: "Up to 200,000 pulses/sec" },
@@ -207,8 +201,14 @@ export const microesm = {
   },
 
   contact: {
-    text: "To learn more about PERCEIVE MR® and how it can benefit your organization, please contact us at",
+    text: "To learn more about MicroESM and how it can benefit your organization, please contact us at",
     suffix: ".",
+  },
+
+  disclaimer: {
+    manufacturer: "MicroESM is manufactured by ESROE Limited, UK.",
+    reseller: "EBT Co., Ltd. is an authorized reseller providing sales and technical support in South Korea.",
+    specs: "All specifications are subject to the manufacturer's official documentation.",
   },
 } as const
 

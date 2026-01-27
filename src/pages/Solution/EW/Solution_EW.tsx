@@ -199,7 +199,7 @@ export default function ElectronicWarfarePage() {
           </div>
         </section>
 
-        <ProductContactSection text="To learn more about our Electronic Warfare solutions, please contact us at" />
+        <ProductContactSection />
     </div>
   )
 }

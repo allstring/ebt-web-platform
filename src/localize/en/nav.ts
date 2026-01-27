@@ -3,7 +3,7 @@ export const nav = {
   about: "About Us",
   solution: "Solution",
   rnd: "R&D with Technology",
-  contact: "Contact & Career",
+  contact: "Contact",
   selectLanguage: "Select language",
   switchToDark: "Switch to dark mode",
   switchToLight: "Switch to light mode",

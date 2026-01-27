@@ -22,6 +22,9 @@ export const detailPageGate = {
     redirectMessage: "Returning to the previous page."
   },
   contact: {
-    or: "or"
+    or: "or",
+    title: "Contact Us for Details",
+    email: "Email",
+    phone: "Phone"
   }
 };
