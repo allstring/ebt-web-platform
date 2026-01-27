@@ -24,8 +24,12 @@ html:lang(ko) body {
 
 html:lang(ko) h1,
 html:lang(ko) h2 {
+  
   line-height: 1.25;
 }
+
+
+
 
 /* Theme Variables - Dark (Default)
    ========================================================================== */
@@ -64,6 +68,7 @@ html:lang(ko) h2 {
   --sidebar-accent-foreground: oklch(0.95 0 0);
   --sidebar-border: oklch(0.28 0.01 250);
   --sidebar-ring: oklch(0.65 0.12 200);
+
 }
 
 /* Theme Variables - Light
@@ -103,7 +108,10 @@ html:lang(ko) h2 {
   --sidebar-accent-foreground: oklch(0.18 0 260);
   --sidebar-border: oklch(0.9 0 0);
   --sidebar-ring: oklch(0.72 0.12 200);
+
+
 }
+
 
 /* Tailwind Theme Configuration
    ========================================================================== */
@@ -111,6 +119,8 @@ html:lang(ko) h2 {
 @theme inline {
   --font-sans: "Inter", "Geist", "Geist Fallback", system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
+  --font-size-lg: 17px;
+  --font-size-lg--line-height: 1.5;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -159,9 +169,12 @@ html:lang(ko) h2 {
   html {
     font-size: 17px; /* 기본 16px에서 살짝 키움 */
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+}
+
+/* Body styles outside of @layer to override Mantine */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 /* Theme Transition
