@@ -4,16 +4,16 @@ export const microesm = {
   tagline: "신속 전개 가능한 휴대형 전술 정보 시스템",
 
   highlights: {
+    type: "RESM",
     weight: "< 2kg",
     frequency: "2-18 GHz",
     coverage: "360°",
-    pulses: "200,000/초",
   },
 
   overview: {
     title: "제품 개요",
     description:
-      "MicroESM은 기존 대형 플랫폼 기반 RESM 시스템의 한계를 극복하기 위해 개발된 초소형 레이더 전자지원 시스템입니다. 2kg 미만의 초경량 시스템으로 2-18 GHz 대역의 레이더 신호를 360° 전방위로 수동 탐지 및 식별합니다. 개인 휴대형 구성, 고정식 해안 감시, 무인기(UAV), 무인수상정(USV), 지상/해상 및 차량 등 다양한 플랫폼에 배치 가능합니다.",
+      "MicroESM은 기존 대형 플랫폼 기반 RESM 시스템의 한계를 극복하기 위해 개발된 초소형 레이더 전자지원 시스템입니다.\n2kg 미만의 초경량 시스템으로 2-18 GHz 대역의 레이더 신호를 360° 전방위로 수동 탐지 및 식별합니다.\n개인 휴대형 구성, 고정식 해안 감시, 무인기(UAV), 무인수상정(USV), 지상/해상 및 차량 등 다양한 플랫폼에 배치 가능합니다.",
     configurationsTitle: "두 가지 구성",
     configurations: [
       { name: "MicroESM 1t", description: "태블릿 기반 인터페이스" },
@@ -31,12 +31,12 @@ export const microesm = {
       },
       {
         title: "광대역 레이더 탐지",
-        description: "주파수 대역 2.0-18.0 GHz, 360° 방위각 커버리지 (안테나 4개), 방위각 정확도 7° rms",
+        description: "주파수 대역 2.0-18.0 GHz, 360° 방위각 커버리지 (안테나 4개), 방위각 정확도 7° RMS",
         icon: "radar",
       },
       {
         title: "고급 신호처리",
-        description: "초당 최대 200,000 펄스 처리, 100개 이상 방사체 동시 추적, 200개 모드 라인 라이브러리 (확장 가능)",
+        description: "초당 최대 200,000 펄스 처리, 100개 이상 방사체 동시 추적, 확장 가능한 방산 모드 라이브러리",
         icon: "cpu",
       },
       {
@@ -54,11 +54,7 @@ export const microesm = {
         description: "수동 레이더 탐지만 수행, 능동 방사 없음, 낮은 열 신호로 은밀한 작전 수행",
         icon: "eyeOff",
       },
-      {
-        title: "견고한 설계",
-        description: "IP68 환경 보호 등급, 충격 및 진동 테스트 완료, 가혹한 환경을 위한 설계",
-        icon: "shield",
-      },
+
     ],
   },
 
@@ -96,7 +92,7 @@ export const microesm = {
         items: [
           { label: "주파수 범위", value: "2.0 - 18.0 GHz" },
           { label: "탐지 방식", value: "수동 탐지 및 자동 식별" },
-          { label: "방위각 정확도", value: "7° rms" },
+          { label: "방위각 정확도", value: "7° RMS" },
           { label: "방위각 커버리지", value: "360° (안테나 4개)" },
           { label: "감도", value: "-55 dBm (방위각) / -70 dBm (CW)" },
           { label: "펄스 처리", value: "초당 최대 200,000 펄스" },
@@ -194,8 +190,14 @@ export const microesm = {
   },
 
   contact: {
-    text: "PERCEIVE MR®에 대해 더 알아보고 조직에 어떤 이점이 있는지 확인하시려면",
+    text: "MicroESM에 대해 더 알아보고 조직에 어떤 이점이 있는지 확인하시려면",
     suffix: "로 문의해 주세요.",
+  },
+
+  disclaimer: {
+    manufacturer: "본 제품은 ESROE Limited(영국)가 제조하며,",
+    reseller: "EBT는 한국 내 공식 리셀러로서 판매 및 기술 지원을 제공합니다.",
+    specs: "제품 사양 및 성능은 제조사의 공식 문서를 기준으로 합니다.",
   },
 } as const
 
