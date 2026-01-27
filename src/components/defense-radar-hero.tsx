@@ -258,7 +258,7 @@ export default function DefenseRadarHero({ targets, strings, title, titleAccent,
   const activeTarget = hoveredId ? (normalizedTargets.find((t) => t.id === hoveredId) ?? null) : (normalizedTargets[activeIndex] ?? null)
 
   return (
-    <section ref={sectionRef} className={`relative min-h-[100svh] w-full bg-slate-950 light:bg-background flex items-center justify-center overflow-hidden py-16 sm:py-20 lg:py-0 ${className}`}>
+    <section ref={sectionRef} className={`relative min-h-[100svh] w-full bg-slate-950 light:bg-background flex items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-28 lg:pb-12 ${className}`}>
       {videoSrc && (
         <div className="absolute inset-0 z-0 light:opacity-15 opacity-25">
           <video autoPlay loop muted playsInline className="w-full h-full object-cover">
