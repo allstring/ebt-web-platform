@@ -8,9 +8,6 @@ import { Link } from "react-router-dom"
 import Radio from "lucide-react/dist/esm/icons/radio"
 import Plane from "lucide-react/dist/esm/icons/plane"
 import FlaskConical from "lucide-react/dist/esm/icons/flask-conical"
-import Layers from "lucide-react/dist/esm/icons/layers"
-import Settings from "lucide-react/dist/esm/icons/settings"
-import BadgeCheck from "lucide-react/dist/esm/icons/badge-check"
 import ArrowRight from "lucide-react/dist/esm/icons/arrow-right"
 import Mail from "lucide-react/dist/esm/icons/mail"
 import Phone from "lucide-react/dist/esm/icons/phone"
@@ -33,7 +30,6 @@ import capabilityBgImg from "@/assets/images/about/capability-bg.webp"
 // Constants
 // ============================================================================
 
-const VALUE_PROP_ICONS = [Layers, Settings, BadgeCheck] as const
 const CAPABILITY_ICONS = [Radio, Plane, FlaskConical] as const
 
 // ============================================================================
@@ -116,76 +112,63 @@ function HeroSection() {
 }
 
 // ============================================================================
-// Value Proposition Card
+// Value Proposition Item (미니멀 리스트 스타일)
 // ============================================================================
 
-interface ValuePropCardProps {
+interface ValuePropItemProps {
   title: string
   description: string
   index: number
 }
 
-function ValuePropCard({ title, description, index }: ValuePropCardProps) {
-  const Icon = VALUE_PROP_ICONS[index]
-
+function ValuePropItem({ title, description, index }: ValuePropItemProps) {
   return (
-    <div className="value-card group relative p-6 md:p-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl transition-all duration-500 hover:bg-card hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1">
-      {/* 호버 그라데이션 */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-      <div className="relative">
-        {/* Icon & Number */}
-        <div className="flex items-start justify-between mb-6">
-          <div className="p-3 bg-accent/10 rounded-xl group-hover:bg-accent/20 transition-colors duration-300">
-            <Icon className="w-6 h-6 text-accent" />
-          </div>
-          <span className="text-5xl font-extralight text-muted-foreground/20 group-hover:text-accent/30 transition-colors duration-300">
+    <div className="value-item group relative py-8 md:py-10 border-b border-border/50 last:border-b-0 transition-all duration-300 hover:bg-accent/[0.02]">
+      <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
+        {/* Number */}
+        <div className="flex-shrink-0">
+          <span className="text-5xl md:text-6xl lg:text-7xl font-extralight text-muted-foreground/30 group-hover:text-accent transition-colors duration-500 tabular-nums">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
 
         {/* Content */}
-        <h3 className="text-lg md:text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
-          {title}
-        </h3>
-        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-          {description}
-        </p>
+        <div className="flex-1 pt-1 md:pt-3">
+          <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            {description}
+          </p>
+        </div>
 
-        {/* Hover Line */}
-        <div className="mt-6 h-0.5 w-0 bg-gradient-to-r from-accent to-accent/50 group-hover:w-16 transition-all duration-500" />
+        {/* Hover Indicator */}
+        <div className="hidden md:flex items-center self-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="w-8 h-[2px] bg-accent" />
+        </div>
       </div>
     </div>
   )
 }
 
 // ============================================================================
-// Value Propositions Section
+// Value Propositions Section (미니멀 리스트 레이아웃)
 // ============================================================================
 
 function ValuePropsSection() {
   const { t } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
-  const headerRef = useRef<HTMLDivElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(headerRef, sectionRef, { y: 40 })
-  useStaggerAnimation(cardsRef, ".value-card", { y: 15, stagger: 0.1, duration: 0.05 })
+  useStaggerAnimation(listRef, ".value-item", { y: 15, stagger: 0.15, duration: 0.3 })
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header */}
-        <div ref={headerRef} className="max-w-2xl mb-16">
-          {/* <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
-            {t.about.valueProps.title}
-          </h2> */}
-        </div>
-
-        {/* Cards Grid */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+        {/* Value Items List */}
+        <div ref={listRef} className="border-t border-border/50">
           {t.about.valueProps.items.map((item, index) => (
-            <ValuePropCard
+            <ValuePropItem
               key={item.title}
               title={item.title}
               description={item.description}
@@ -199,8 +182,10 @@ function ValuePropsSection() {
 }
 
 // ============================================================================
-// Capability Card
+// Capability Card (기존 카드 스타일 + 링크)
 // ============================================================================
+
+const CAPABILITY_LINKS = ["/solution/ew", "/solution/c-uas", "/solution/nc"] as const
 
 interface CapabilityCardProps {
   title: string
@@ -210,13 +195,12 @@ interface CapabilityCardProps {
 
 function CapabilityCard({ title, description, index }: CapabilityCardProps) {
   const Icon = CAPABILITY_ICONS[index]
-  const cardRef = useRef<HTMLDivElement>(null)
+  const link = CAPABILITY_LINKS[index]
 
-  useFadeIn(cardRef, cardRef, { y: 15, duration: 0.05 })
   return (
-    <div
-      ref={cardRef}
-      className="group relative p-8 md:p-10 bg-card/60 backdrop-blur-sm border border-border rounded-2xl transition-all duration-500 hover:bg-card/80 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10"
+    <Link
+      to={link}
+      className="capability-card group relative block p-8 md:p-10 bg-card/60 backdrop-blur-sm border border-border rounded-2xl transition-all duration-500 hover:bg-card/80 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10"
     >
       {/* 배경 글로우 */}
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -236,14 +220,17 @@ function CapabilityCard({ title, description, index }: CapabilityCardProps) {
         <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-base text-muted-foreground leading-relaxed">
+        <p className="text-base text-muted-foreground leading-relaxed mb-6">
           {description}
         </p>
 
-        {/* Accent Line */}
-        <div className="mt-8 h-1 w-0 bg-gradient-to-r from-accent via-accent/70 to-accent/30 group-hover:w-24 transition-all duration-700" />
+        {/* Arrow Link Indicator */}
+        <div className="flex items-center gap-2 text-muted-foreground/50 group-hover:text-accent transition-all duration-300">
+          <span className="text-sm font-medium">자세히 보기</span>
+          <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
@@ -255,8 +242,10 @@ function CapabilitiesSection() {
   const { t } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(headerRef, sectionRef, { y: 10 })
+  useFadeIn(headerRef, sectionRef, { y: 30 })
+  useStaggerAnimation(cardsRef, ".capability-card", { y: 20, stagger: 0.12, duration: 0.2 })
 
   return (
     <section
@@ -282,7 +271,7 @@ function CapabilitiesSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {t.about.capabilities.items.map((item, index) => (
             <CapabilityCard
               key={item.title}
