@@ -14,7 +14,6 @@ const CONTACT_INFO = {
 
 export function Footer() {
   const { t } = useLocale()
-  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="border-t border-border bg-card">
@@ -60,7 +59,7 @@ export function Footer() {
         {/* 저작권 섹션 */}
         <div className="pt-6 border-t border-border">
           <p className="text-xs text-muted-foreground">
-            {t.footer.copyright} © {currentYear} {t.footer.companyName}. {t.footer.allRightsReserved}
+            {t.footer.copyright}
           </p>
         </div>
       </div>
