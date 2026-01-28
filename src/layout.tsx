@@ -2,7 +2,6 @@ import { useEffect } from "react"
 
 import "@/styles/global.css"
 import { BackToTopButton } from "@/components/back-to-top-button"
-import { AccessGate } from "@/components/access-gate"
 import { getLocale } from "@/lib/i18n"
 
 // Preload critical images
@@ -43,9 +42,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [])
 
   return (
-    <AccessGate>
+    <>
       <main>{children}</main>
       <BackToTopButton />
-    </AccessGate>
+    </>
   )
 }
