@@ -68,7 +68,7 @@ function HeroSection() {
       <div className="absolute top-1/4 -right-1/4 w-1/2 h-1/2 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -left-1/4 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-24 lg:pt-32 lg:pb-32">
         <div className="max-w-4xl mx-auto text-center">
           {/* Section Label - 회사 소개 (크게) */}
           <h2
@@ -170,16 +170,16 @@ function ValuePropsSection() {
   const cardsRef = useRef<HTMLDivElement>(null)
 
   useFadeIn(headerRef, sectionRef, { y: 40 })
-  useStaggerAnimation(cardsRef, ".value-card", { y: 50, stagger: 0.15 })
+  useStaggerAnimation(cardsRef, ".value-card", { y: 15, stagger: 0.1, duration: 0.05 })
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div ref={headerRef} className="max-w-2xl mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
+          {/* <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
             {t.about.valueProps.title}
-          </h2>
+          </h2> */}
         </div>
 
         {/* Cards Grid */}
@@ -212,8 +212,7 @@ function CapabilityCard({ title, description, index }: CapabilityCardProps) {
   const Icon = CAPABILITY_ICONS[index]
   const cardRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(cardRef, cardRef, { y: 30 })
-
+  useFadeIn(cardRef, cardRef, { y: 15, duration: 0.05 })
   return (
     <div
       ref={cardRef}
