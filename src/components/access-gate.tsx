@@ -110,91 +110,93 @@ export function AccessGate({ children }: AccessGateProps) {
   // 로딩 중
   if (showBanner === null) {
     return (
-      <>
-        <div className="fixed inset-0 z-[9999] bg-neutral-950" />
-      </>
+      <div className="fixed inset-0 z-[9999] bg-background" />
     )
   }
 
   return (
     <>
-      {/* 쿠키 배너 (Navigation 아래) */}
+      {/* 쿠키 배너 (전체 화면 오버레이) */}
       {showBanner && (
-        <div className="fixed inset-0 top-16 z-[9999] flex items-center justify-center bg-neutral-950/95 backdrop-blur-sm overflow-y-auto py-8">
-          <div className="w-full max-w-lg mx-4 rounded-2xl border border-neutral-800 bg-neutral-900 shadow-2xl overflow-hidden">
+        <div
+          className="fixed inset-0 z-[9999] flex justify-center items-start pt-[112px] pb-8 bg-background/80 backdrop-blur-sm transition-opacity duration-300 animate-fade-in overflow-y-auto"
+        >
+          <div className="w-full max-w-md mx-4 rounded-2xl border bg-card shadow-2xl overflow-hidden animate-slide-up">
             {/* 헤더 */}
             <div className="p-6 pb-4">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10c0-.733-.08-1.448-.232-2.136a1 1 0 00-1.396-.706c-.63.294-1.348.342-2.022.137a3.5 3.5 0 01-2.145-2.145c-.205-.674-.157-1.392.137-2.022a1 1 0 00-.706-1.396A10.053 10.053 0 0012 2zm-1.5 5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm-3 5a1 1 0 110 2 1 1 0 010-2zm6.5.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm-5 3.5a1 1 0 110 2 1 1 0 010-2z"/>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10c0-.733-.08-1.448-.232-2.136a1 1 0 00-1.396-.706c-.63.294-1.348.342-2.022.137a3.5 3.5 0 01-2.145-2.145c-.205-.674-.157-1.392.137-2.022a1 1 0 00-.706-1.396A10.053 10.053 0 0012 2zm-1.5 5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm-3 5a1 1 0 110 2 1 1 0 010-2zm6.5.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm-5 3.5a1 1 0 110 2 1 1 0 010-2z" />
                   </svg>
                 </div>
-                <h2 className="text-lg font-semibold text-white">{text.title}</h2>
+                <h2 className="text-xl font-semibold text-card-foreground">{text.title}</h2>
               </div>
-              <p className="text-sm text-neutral-300 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {text.description}
               </p>
             </div>
 
             {/* 쿠키 종류 설명 */}
-            <div className="px-6 pb-4">
+            <div className="px-6 pb-5">
               <div className="space-y-3">
                 {/* 필수 쿠키 */}
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-neutral-800/50">
+                <div className="flex items-start gap-4 p-3.5 rounded-xl bg-muted/50">
                   <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-white">{text.details.essential.title}</h3>
-                    <p className="text-xs text-neutral-400 mt-0.5">{text.details.essential.desc}</p>
+                    <h3 className="text-sm font-medium text-foreground">{text.details.essential.title}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{text.details.essential.desc}</p>
                   </div>
                 </div>
 
                 {/* 분석 쿠키 */}
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-neutral-800/50">
+                <div className="flex items-start gap-4 p-3.5 rounded-xl bg-muted/50">
                   <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-white">{text.details.analytics.title}</h3>
-                    <p className="text-xs text-neutral-400 mt-0.5">{text.details.analytics.desc}</p>
+                    <h3 className="text-sm font-medium text-foreground">{text.details.analytics.title}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{text.details.analytics.desc}</p>
                   </div>
                 </div>
 
                 {/* 보안 쿠키 */}
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-neutral-800/50">
+                <div className="flex items-start gap-4 p-3.5 rounded-xl bg-muted/50">
                   <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-white">{text.details.security.title}</h3>
-                    <p className="text-xs text-neutral-400 mt-0.5">{text.details.security.desc}</p>
+                    <h3 className="text-sm font-medium text-foreground">{text.details.security.title}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{text.details.security.desc}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* 푸터 */}
-            <div className="px-6 pb-6">
-              <p className="text-xs text-neutral-500 mb-4">{text.learnMore}</p>
-              <div className="flex gap-3">
+            <div className="p-6 bg-muted/30">
+              <p className="text-xs text-muted-foreground/80 mb-4 text-center">{text.learnMore}</p>
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   variant="outline"
+                  size="lg"
                   onClick={() => handleClose("declined")}
-                  className="flex-1 py-2.5 border-neutral-700 text-neutral-300 hover:bg-neutral-800 hover:text-white"
+                  className="flex-1"
                 >
                   {text.buttons.decline}
                 </Button>
                 <Button
+                  size="lg"
                   onClick={() => handleClose("accepted")}
-                  className="flex-1 py-2.5 bg-accent hover:bg-accent/90 text-white font-medium"
+                  className="flex-1"
                 >
                   {text.buttons.accept}
                 </Button>
@@ -204,7 +206,8 @@ export function AccessGate({ children }: AccessGateProps) {
         </div>
       )}
 
-      {children}
+      {/* 동의 전에는 콘텐츠를 렌더링하지 않음 (개발자 도구 우회 방지) */}
+      {!showBanner && children}
     </>
   )
 }

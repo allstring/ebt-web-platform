@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom"
 
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { AccessGate } from "@/components/access-gate"
 
 export default function App() {
   return (
@@ -19,14 +20,16 @@ export default function App() {
         Skip to main content
       </a>
 
+      {/* Navigation은 항상 보임 */}
       <Navigation />
 
-      {/* 페이지 콘텐츠 */}
-      <main id="main-content" className="flex-1" tabIndex={-1}>
-        <Outlet />
-      </main>
-
-      <Footer />
+      {/* 동의 전에는 콘텐츠 숨김 */}
+      <AccessGate>
+        <main id="main-content" className="flex-1" tabIndex={-1}>
+          <Outlet />
+        </main>
+        <Footer />
+      </AccessGate>
     </div>
   )
 }
