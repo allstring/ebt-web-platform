@@ -1,5 +1,5 @@
 export const footer = {
-  companyName: "EBT Corporation",
+  companyName: "이비티(주)",
   headquarters: "본사",
   headquartersAddress: "경기도 성남시 수정구 창업로 54, 504호",
   rndCenter: "R&D 센터",
@@ -7,8 +7,7 @@ export const footer = {
   phone: "전화",
   fax: "팩스",
   email: "이메일",
-  copyright: "저작권",
-  allRightsReserved: "All rights reserved.",
+  copyright: "© 2026–Present EBT Co., Ltd. All rights reserved.",
 } as const
 
 export type FooterStrings = typeof footer

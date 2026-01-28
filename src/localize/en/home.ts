@@ -26,17 +26,18 @@ export const home = {
           "Advanced signal processing and spectrum management systems for complex operational environments.",
       },
       {
-        label: "NC",
-        title: "NC (Chemical Warfare)",
-        description:
-          "Advanced detection, identification, and monitoring systems for chemical agents in contested and hazardous environments.",
-      },
-      {
         label: "C-UAS",
-        title: "C-UAS (Counter-UAS)",
+        title: "Counter-UAS",
         description:
           "Early detection, identification, and neutralization of unmanned aerial threats to protect critical assets and personnel.",
       },
+      {
+        label: "NC",
+        title: "NC Detection",
+        description:
+          "Advanced detection, identification, and monitoring systems for chemical agents in contested and hazardous environments.",
+      },
+
     ],
   },
 

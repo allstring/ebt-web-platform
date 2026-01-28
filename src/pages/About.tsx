@@ -92,11 +92,13 @@ function HeroSection() {
             <span className="text-accent">{t.about.hero.titleAccent}</span>
           </h1>
 
-          {/* Description - 한 줄로 합침 */}
+          {/* Description */}
           <div ref={descRef} className="mt-8 md:mt-10 max-w-3xl mx-auto">
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              {t.about.hero.description}{" "}
-              <span className="text-foreground/80 font-medium">{t.about.hero.subtitle}</span>
+            <p className="whitespace-pre-line text-lg md:text-xl text-muted-foreground leading-relaxed">
+              {t.about.hero.description}
+            </p>
+            <p className="text-lg md:text-xl text-foreground/80 font-medium leading-relaxed mt-4">
+              {t.about.hero.subtitle}
             </p>
           </div>
 
@@ -137,7 +139,7 @@ function ValuePropItem({ title, description, index }: ValuePropItemProps) {
           <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
             {title}
           </h3>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-[44rem]">
             {description}
           </p>
         </div>
