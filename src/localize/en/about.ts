@@ -6,7 +6,7 @@ export const about = {
     title: "Making the Invisible",
     titleAccent: "Visible",
     description:
-      "Hostile RF emissions. Unmanned aerial threats. Chemical and radiological hazards. The deadliest threats on the battlefield are the ones you can't see.",
+      "Hostile RF emissions, Unmanned aerial threats, Chemical and radiological hazards. \n The deadliest threats on the battlefield are the ones you can't see.",
     subtitle:
       "EBT Co., Ltd. builds systems that detect them, identify them, and neutralize them.",
   },
@@ -19,12 +19,12 @@ export const about = {
       {
         title: "From Components to Complete Systems",
         description:
-          "We provide individual sensors or complete integrated solutions—whatever the mission requires. A standalone detector. A multi-sensor network. Full C2 integration. We adapt our scope to match your operational needs.",
+          "We provide individual sensors or complete integrated solutions - whatever the mission requires. A standalone detector. A multi - sensor network. Full C2 integration. We adapt our scope to match your operational needs.",
       },
       {
         title: "Environment-Driven Design",
         description:
-          "Same technology. Different system. We configure solutions from military operations to civilian security—each environment gets what it needs.",
+          "Same technology. Different system. We configure solutions from military operations to civilian security - each environment gets what it needs.",
       },
       {
         title: "Proven Track Record",
