@@ -1,78 +1,110 @@
 export const about = {
+  // Hero Section
   hero: {
-    sectionLabel: "About EBT",
-    title1: "Your Trusted Partner in",
-    title2: "Advanced Defense Technologies",
-    description1:
-      "At EBT Co., Ltd., we pride ourselves on being at the forefront of technology and innovation in the fields of electronic warfare, biological warfare, and chemical warfare defense. Our mission is to provide cutting-edge solutions that empower our clients to safeguard their people and assets from emerging threats in an ever-evolving world.",
-    description2:
-      "From government agencies and critical infrastructure operators to commercial businesses and individuals, we offer a diverse range of products and services tailored to meet your specific requirements and operational environments.",
+    sectionLabel: "Company Overview",
+    tagline: "Evolve Battlefield Technologies",
+    title: "Making the Invisible",
+    titleAccent: "Visible",
+    description:
+      "Hostile RF emissions. Unmanned aerial threats. Chemical and radiological hazards. The deadliest threats on the battlefield are the ones you can't see.",
+    subtitle:
+      "EBT Co., Ltd. builds systems that detect them, identify them, and neutralize them.",
   },
 
-  whyChoose: {
-    sectionLabel: "Why Choose EBT",
-    title: "Empowering Innovations",
-    description:
-      "We are dedicated to pushing the boundaries of technological advancement. Our team of experts is constantly developing innovative solutions that give you the upper hand in the face of evolving threats.",
-    cards: [
+  // Value Propositions Section
+  valueProps: {
+    sectionLabel: "Why EBT",
+    title: "What Sets Us Apart",
+    items: [
       {
-        title: "Comprehensive Solutions",
+        title: "From Components to Complete Systems",
         description:
-          "We understand that every client has unique needs. We offer a diverse range of products and services tailored to your specific requirements across government, critical infrastructure, and commercial domains.",
+          "We provide individual sensors or complete integrated solutions—whatever the mission requires. A standalone detector. A multi-sensor network. Full C2 integration. We adapt our scope to match your operational needs.",
       },
       {
-        title: "Proven Excellence",
+        title: "Environment-Driven Design",
         description:
-          "With a strong track record of success, we have a history of developing and delivering cutting-edge technologies that exceed expectations, building long-term trust with our partners.",
+          "Same technology. Different system. We configure solutions from military operations to civilian security—each environment gets what it needs.",
+      },
+      {
+        title: "Proven Track Record",
+        description:
+          "We've successfully delivered advanced systems to military and government clients. Our technology performs in real operational environments, and those results have built strong partnerships based on trust and consistent performance.",
       },
     ],
   },
 
-  vision: {
-    sectionLabel: "Vision",
-    title: "Creating a world where people can live and work safely and confidently",
-    description:
-      "EBT's vision is to create a world where people can live and work safely and confidently, free from the fear of environmental and biological threats. We focus on delivering technologies and systems that continuously monitor, detect, and respond to invisible risks in the air and environment around us.",
-  },
-
-  mission: {
-    sectionLabel: "Mission",
-    title: "Protecting people's health and safety",
-    description:
-      "EBT's mission is to protect people's health and safety. We strive to safeguard people from air pollution, viral infections, and other harmful environmental factors. Based on these core technologies, we provide solutions across various fields, including indoor air quality improvement, virus infection prevention, and protection from other hazardous conditions.",
-  },
-
+  // Core Capabilities Section
   capabilities: {
     sectionLabel: "Core Capabilities",
-    title: "What We Deliver",
-    description:
-      "We design, integrate, and support mission-ready solutions across electronic warfare, CBRN, and counter-UAS domains. Our focus is on turning complex sensing and decision workflows into clear, reliable capabilities in the field.",
+    title: "We operate in three domains",
     items: [
       {
         title: "Electronic Warfare",
-        description: "Systems for sensing, direction finding, and jamming across complex RF environments.",
+        description:
+          "We intercept and analyze electromagnetic signatures from adversary communications, radars, and unmanned systems. We locate signals and neutralize them with jamming.",
       },
       {
         title: "Counter-UAS",
-        description: "Detection, classification, and defeat of emerging drone threats in real time.",
+        description:
+          "We detect and classify UAS threats in real time, distinguish hostile platforms from authorized traffic, and enable rapid response.",
       },
       {
-        title: "CBRN Monitoring",
-        description: "Early warning and continuous monitoring for chemical and biological hazards.",
-      },
-      {
-        title: "Systems Integration",
-        description: "End-to-end integration with existing platforms, sensors, and C2 networks.",
-      },
-      {
-        title: "Training & Support",
-        description: "Deployment support, operator training, and lifecycle services in the field.",
-      },
-      {
-        title: "Data & Analytics",
-        description: "Tools that turn sensor data into actionable insight for better decisions.",
+        title: "NC Detection",
+        description:
+          "We deliver early warning for chemical agents and radiological materials. Our systems protect naval vessels, submarines, forward units, and critical facilities.",
       },
     ],
+  },
+
+  // System Integration Section
+  systemSection: {
+    sectionLabel: "End-to-End",
+    title: "From Detection to Action",
+    description:
+      "A sensor detects a threat. Then what? Data must be analyzed, correlated with other sources, and fed into command systems. Response must be immediate and coordinated.",
+    highlight: "We engineer that complete chain.",
+    stepLabels: ["Sensor selection", "Data fusion", "C2 integration", "Operator training"],
+    conclusion: "End-to-end operational capability.",
+    steps: [
+      {
+        title: "Sensor Selection",
+        description: "Choose the right sensors for the mission",
+      },
+      {
+        title: "Data Fusion",
+        description: "Correlate data from multiple sources",
+      },
+      {
+        title: "C2 Integration",
+        description: "Feed into command and control systems",
+      },
+      {
+        title: "Operator Training",
+        description: "Ensure effective system operation",
+      },
+    ],
+  },
+
+  // Scalability Section
+  scalability: {
+    sectionLabel: "Our Approach",
+    title: "Rapid. Proven. Scalable.",
+    description:
+      "Threats don't wait. New drones appear. Protocols change. Unknown compounds emerge.",
+    keyword: "We keep pace.",
+    subtitle:
+      "Military-proven technology adapts to civilian security needs.\n Same technical core, different operational context. We reconfigure systems to fit your specific environment.",
+  },
+
+  // Contact CTA Section
+  contact: {
+    sectionLabel: "Get in Touch",
+    title: "Need a custom solution?",
+    description: "Contact us to start the conversation.",
+    email: "info@ebtech.kr",
+    phone: "+82 31 721 6380",
+    cta: "Contact Us",
   },
 } as const
 
