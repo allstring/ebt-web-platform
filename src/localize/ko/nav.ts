@@ -23,7 +23,7 @@ export const nav = {
       },
     },
     nc: {
-      title: "NC 방어",
+      title: "화학/방사능 탐지",
       items: {
         chemproX: "CHEMPRO-X",
         ncMonitoring: "NC Monitoring System",
@@ -31,7 +31,7 @@ export const nav = {
       },
     },
     cuas: {
-      title: "대드론 방어",
+      title: "대드론",
       items: {
         ebtPes: "eBT-PES",
         spectraC2: "Spectra-C2",

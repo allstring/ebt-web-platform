@@ -23,7 +23,7 @@ export const nav = {
       },
     },
     nc: {
-      title: "NC Defense",
+      title: "NC Detection",
       items: {
         chemproX: "CHEMPRO-X",
         ncMonitoring: "NC Monitoring System",

@@ -13,7 +13,7 @@ export const solution = {
   },
   nuclearChemical: {
     label: "NC",
-    title: "Nuclear Chemical",
+    title: "NC Detection",
     summary:
       "Detection, identification, and monitoring systems for chemical agents in hazardous operational environments.",
   },
@@ -28,7 +28,7 @@ export const solution = {
   ncPage: {
     header: {
       label: "Solution",
-      title: "NC Defense",
+      title: "NC Detection",
       description: "Comprehensive nuclear and chemical threat detection with integrated monitoring systems for rapid identification, alerting, and coordinated response.",
     },
     architecture: {
@@ -144,7 +144,7 @@ export const solution = {
   cuasPage: {
     header: {
       label: "Solution",
-      title: "Counter-UAS Defense",
+      title: "Counter-UAS",
       description: "Comprehensive counter-drone solutions for detection, tracking, identification, and neutralization of unmanned aerial threats.",
     },
     products: {

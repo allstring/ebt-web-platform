@@ -13,13 +13,13 @@ export const solution = {
   },
   nuclearChemical: {
     label: "NC",
-    title: "화학전 대응",
+    title: "화학/방사능 탐지",
     summary:
       "고위험 작전 환경 내 화학 작용제를 실시간으로 탐지하고 식별하며 모니터링하는 첨단 시스템입니다.",
   },
   counterUAS: {
     label: "C-UAS",
-    title: "대드론전 대응",
+    title: "대드론",
     summary:
       "무인 항공기 위협을 조기에 탐지하고, 식별 및 무력화하여 핵심 자산과 인원을 보호합니다.",
   },
@@ -28,7 +28,7 @@ export const solution = {
   ncPage: {
     header: {
       label: "솔루션",
-      title: "NC 방어",
+      title: "화학/방사능 탐지",
       description: "핵 및 화학 위협에 대한 종합적인 탐지 시스템으로, 신속한 식별, 경보 및 대응을 위한 통합 모니터링 솔루션을 제공합니다.",
     },
     architecture: {
@@ -144,7 +144,7 @@ export const solution = {
   cuasPage: {
     header: {
       label: "솔루션",
-      title: "대드론 방어",
+      title: "대드론",
       description: "무인 항공기 위협에 대한 탐지, 추적, 식별 및 무력화를 위한 종합 대드론 솔루션.",
     },
     products: {
