@@ -1,5 +1,7 @@
 import { useLocale } from "@/lib/i18n"
-import logo_footer from "@/assets/images/footer/EBT-logo--gray.png"
+import { useState, useEffect } from "react"
+import LogoLight from "@/assets/images/navigation/EBT-logo.svg?react"
+import LogoDark from "@/assets/images/navigation/EBT-logo--dark.svg?react"
 // ============================================================================
 // Footer Component
 // 사이트 하단 푸터 영역 - 회사 정보 및 저작권 표시
@@ -14,18 +16,33 @@ const CONTACT_INFO = {
 
 export function Footer() {
   const { t } = useLocale()
+  const [isLight, setIsLight] = useState(
+    () => document.documentElement.classList.contains("light")
+  )
 
+  // 테마 변경 감지
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsLight(document.documentElement.classList.contains("light"))
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    })
+    return () => observer.disconnect()
+  }, [])
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto max-w-5xl px-6 py-4 lg:px-8">
         {/* 회사 정보 섹션 */}
         <div className="space-y-1 text-sm text-muted-foreground leading-relaxed my-4">
           {/* 로고 - hover 시 부드러운 확대 효과 */}
-          <img
-            src={logo_footer}
-            alt="EBTech"
-            className="h-10 transition-transform duration-300 hover:scale-105"
-          />
+          {isLight ? (
+              <LogoDark className="h-6 w-auto object-contain" />
+            ) : (
+              <LogoLight className="h-6 w-auto object-contain" />
+            )}
+            <span className="sr-only">EBTech</span>
 
           {/* 회사명 */}
           <span className="block text-lg font-semibold tracking-tight text-foreground">
