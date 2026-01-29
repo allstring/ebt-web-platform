@@ -8,7 +8,7 @@ import ScrollToTop from "@/lib/ScrollToTop"
 import Layout from "./layout"
 import AppRoutes from "./routes"
 import { Analytics } from "@vercel/analytics/react"
-
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -20,6 +20,7 @@ createRoot(document.getElementById("root")!).render(
         </BrowserRouter>
       </Layout>
       <Analytics />
+      <SpeedInsights/>
     </LocaleProvider>
   </StrictMode>
 )
