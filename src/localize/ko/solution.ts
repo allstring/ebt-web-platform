@@ -105,7 +105,7 @@ export const solution = {
       ebtPes: "휴대용 RF 스캐너",
       perceive: "통합 광대역 센서",
       resolve: "전술 전자지원 시스템",
-      microEsm: "소형 전자지원 측정 시스템",
+      microGoldenBat: "소형 전자지원 측정 시스템",
       phobosM4: "다중 채널 전자지원 시스템",
       deceive: "전자 기만 시스템",
       mapview: "전자전 통합 소프트웨어",

@@ -23,28 +23,28 @@ import {
   Radio,
   Compass,
 } from "lucide-react"
-import microesmHeroImg from "@/assets/images/solution/EW/MicroESM/hero2.webp"
+import microGoldenBatHeroImg from "@/assets/images/solution/EW/Micro-GoldenBat/hero2.webp"
 // 새 hero 이미지 (디버깅용)
-// import heroImg1 from "@/assets/images/solution/EW/MicroESM/her1.png"
-// import heroImg2 from "@/assets/images/solution/EW/MicroESM/her2.png"
-import tabletConfigImg from "@/assets/images/solution/EW/MicroESM/tablet.webp"
-import laptopConfigImg from "@/assets/images/solution/EW/MicroESM/laptop.webp"
-import laptopConfigImg2 from "@/assets/images/solution/EW/MicroESM/laptop2.webp"
-import laptopConfigImg3 from "@/assets/images/solution/EW/MicroESM/laptop3.webp"
+// import heroImg1 from "@/assets/images/solution/EW/Micro-GoldenBat/her1.png"
+// import heroImg2 from "@/assets/images/solution/EW/Micro-GoldenBat/her2.png"
+import tabletConfigImg from "@/assets/images/solution/EW/Micro-GoldenBat/tablet.webp"
+import laptopConfigImg from "@/assets/images/solution/EW/Micro-GoldenBat/laptop.webp"
+import laptopConfigImg2 from "@/assets/images/solution/EW/Micro-GoldenBat/laptop2.webp"
+import laptopConfigImg3 from "@/assets/images/solution/EW/Micro-GoldenBat/laptop3.webp"
 
 // 디버깅용 laptop 이미지 배열 (나중에 삭제 가능)
 const laptopImages = [laptopConfigImg, laptopConfigImg2, laptopConfigImg3]
 // Use case images
-import tactical1 from "@/assets/images/solution/EW/MicroESM/tactical1.webp"
-import costal1 from "@/assets/images/solution/EW/MicroESM/costal1.webp"
-import costal2 from "@/assets/images/solution/EW/MicroESM/costal2.webp"
-import uav1 from "@/assets/images/solution/EW/MicroESM/uav1.webp"
-import uav2 from "@/assets/images/solution/EW/MicroESM/uav2.webp"
-import uav3 from "@/assets/images/solution/EW/MicroESM/uav3.webp"
-import uav4 from "@/assets/images/solution/EW/MicroESM/uav4.webp"
-import uav5 from "@/assets/images/solution/EW/MicroESM/uav5.webp"
-import network1 from "@/assets/images/solution/EW/MicroESM/network1.webp"
-import network2 from "@/assets/images/solution/EW/MicroESM/network2.webp"
+import tactical1 from "@/assets/images/solution/EW/Micro-GoldenBat/tactical1.webp"
+import costal1 from "@/assets/images/solution/EW/Micro-GoldenBat/costal1.webp"
+import costal2 from "@/assets/images/solution/EW/Micro-GoldenBat/costal2.webp"
+import uav1 from "@/assets/images/solution/EW/Micro-GoldenBat/uav1.webp"
+import uav2 from "@/assets/images/solution/EW/Micro-GoldenBat/uav2.webp"
+import uav3 from "@/assets/images/solution/EW/Micro-GoldenBat/uav3.webp"
+import uav4 from "@/assets/images/solution/EW/Micro-GoldenBat/uav4.webp"
+import uav5 from "@/assets/images/solution/EW/Micro-GoldenBat/uav5.webp"
+import network1 from "@/assets/images/solution/EW/Micro-GoldenBat/network1.webp"
+import network2 from "@/assets/images/solution/EW/Micro-GoldenBat/network2.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
 import { DetailPageGate } from "@/components/DetailPageGate"
@@ -359,9 +359,9 @@ const useCaseImages: Record<number, string[]> = {
   3: [network1, network2], // Network - 2 images
 }
 
-export default function DetailMicroESMPage() {
+export default function DetailMicroGoldenBatPage() {
   const { t } = useLocale()
-  const microesm = t.microesm
+  const microGoldenBat = t.microGoldenBat
 
   // Tabs state
   const [activeTab, setActiveTab] = useState<"tablet" | "laptop">("tablet")
@@ -400,27 +400,27 @@ export default function DetailMicroESMPage() {
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex flex-col items-center gap-4 mb-8">
               <h1 className="text-center text-4xl md:text-5xl font-semibold text-foreground">
-                {microesm.title}
+                {microGoldenBat.title}
               </h1>
               <div className="flex items-center gap-2 justify-center flex-wrap">
                 <Badge size="lg" variant="light" color="indigo" leftSection={<Radar size={14} />}>
-                  {microesm.highlights.type}
+                  {microGoldenBat.highlights.type}
                 </Badge>
                 <Badge size="lg" variant="light" color="blue" leftSection={<Feather size={14} />}>
-                  {microesm.highlights.weight}
+                  {microGoldenBat.highlights.weight}
                 </Badge>
                 <Badge size="lg" variant="light" color="cyan" leftSection={<Radio size={14} />}>
-                  {microesm.highlights.frequency}
+                  {microGoldenBat.highlights.frequency}
                 </Badge>
                 <Badge size="lg" variant="light" color="teal" leftSection={<Compass size={14} />}>
-                  {microesm.highlights.coverage}
+                  {microGoldenBat.highlights.coverage}
                 </Badge>
               </div>
             </div>
           </div>
           <div className="max-w-4xl mx-auto px-4">
             <p className="text-center text-2xl md:text-3xl font-medium text-foreground leading-relaxed">
-              {microesm.tagline}
+              {microGoldenBat.tagline}
             </p>
           </div>
           <div className="max-w-4xl mx-auto px-4 pt-10 md:pt-16 pb-0">
@@ -428,8 +428,8 @@ export default function DetailMicroESMPage() {
               <div className="rounded-xl overflow-hidden p-1">
                 <div className="rounded-lg overflow-hidden">
                   <img
-                    src={microesmHeroImg}
-                    alt={microesm.title}
+                    src={microGoldenBatHeroImg}
+                    alt={microGoldenBat.title}
                     className="w-full h-auto object-contain"
                   />
                 </div>
@@ -442,12 +442,12 @@ export default function DetailMicroESMPage() {
               <div className="flex items-end justify-center gap-0">
                 <img
                   src={heroImg1}
-                  alt={microesm.title}
+                  alt={microGoldenBat.title}
                   className="h-auto max-h-[400px] md:max-h-[800px] object-contain origin-bottom"
                 />
                 <img
                   src={heroImg2}
-                  alt={microesm.title}
+                  alt={microGoldenBat.title}
                   className="h-auto max-h-[380px] md:max-h-[760px] object-contain -ml-[60px] md:ml-0"
                 />
               </div>
@@ -464,17 +464,17 @@ export default function DetailMicroESMPage() {
             <div className="rounded-lg border border-border p-6 md:p-8">
               <div className="flex flex-col gap-4">
                 <h2 className="text-2xl md:text-3xl font-semibold">
-                  {microesm.overview.title}
+                  {microGoldenBat.overview.title}
                 </h2>
                 <p className="whitespace-pre-line text-md text-muted-foreground leading-relaxed">
-                  {microesm.overview.description}
+                  {microGoldenBat.overview.description}
                 </p>
                 <div className="mt-4">
                   <p className="font-semibold mb-2">
-                    {microesm.overview.configurationsTitle}:
+                    {microGoldenBat.overview.configurationsTitle}:
                   </p>
                   <div className="flex items-center gap-3 flex-wrap">
-                    {microesm.overview.configurations.map((config, index) => (
+                    {microGoldenBat.overview.configurations.map((config, index) => (
                       <button
                         key={index}
                         onClick={() => scrollToConfig(index === 0 ? "tablet" : "laptop")}
@@ -506,10 +506,10 @@ export default function DetailMicroESMPage() {
         <section className="py-16 md:py-20 bg-card border-t border-border">
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8">
-              {microesm.features.title}
+              {microGoldenBat.features.title}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {microesm.features.items.map((feature, index) => {
+              {microGoldenBat.features.items.map((feature, index) => {
                 const IconComponent = featureIcons[feature.icon] || Shield
                 return (
                   <div
@@ -536,7 +536,7 @@ export default function DetailMicroESMPage() {
         <section ref={configSectionRef} className="py-16 md:py-20 border-t border-border scroll-mt-20">
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8">
-              {microesm.configurations.title}
+              {microGoldenBat.configurations.title}
             </h2>
 
             {/* Custom Tabs */}
@@ -547,24 +547,24 @@ export default function DetailMicroESMPage() {
                   className={cn(
                     "flex-1 flex items-center justify-center gap-2 px-4 py-3 text-base font-medium transition-colors",
                     activeTab === "tablet"
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-blue-600 text-white light:bg-blue-500"
                       : "bg-card hover:bg-muted text-foreground"
                   )}
                 >
                   <Tablet size={18} />
-                  {microesm.configurations.tablet.name}
+                  {microGoldenBat.configurations.tablet.name}
                 </button>
                 <button
                   onClick={() => setActiveTab("laptop")}
                   className={cn(
                     "flex-1 flex items-center justify-center gap-2 px-4 py-3 text-base font-medium transition-colors border-l border-border",
                     activeTab === "laptop"
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-purple-600 text-white light:bg-purple-500"
                       : "bg-card hover:bg-muted text-foreground"
                   )}
                 >
                   <Laptop size={18} />
-                  {microesm.configurations.laptop.name}
+                  {microGoldenBat.configurations.laptop.name}
                 </button>
               </div>
             </div>
@@ -577,7 +577,7 @@ export default function DetailMicroESMPage() {
                   <div className="flex items-center justify-center lg:w-1/2 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
                     <img
                       src={tabletConfigImg}
-                      alt={microesm.configurations.tablet.name}
+                      alt={microGoldenBat.configurations.tablet.name}
                       className="max-w-full max-h-[300px] object-contain"
                     />
                   </div>
@@ -588,14 +588,14 @@ export default function DetailMicroESMPage() {
                         <Tablet size={28} />
                       </ThemeIcon>
                       <div>
-                        <h3 className="text-xl font-semibold">{microesm.configurations.tablet.name}</h3>
-                        <p className="text-muted-foreground">{microesm.configurations.tablet.subtitle}</p>
+                        <h3 className="text-xl font-semibold">{microGoldenBat.configurations.tablet.name}</h3>
+                        <p className="text-muted-foreground">{microGoldenBat.configurations.tablet.subtitle}</p>
                       </div>
                     </div>
                     <div>
-                      <p className="font-semibold mb-3">{microesm.configurations.tablet.bestFor}:</p>
+                      <p className="font-semibold mb-3">{microGoldenBat.configurations.tablet.bestFor}:</p>
                       <ul className="space-y-2">
-                        {microesm.configurations.tablet.items.map((item, idx) => (
+                        {microGoldenBat.configurations.tablet.items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-3">
                             <ThemeIcon size={20} radius="xl" color="blue">
                               <Check size={12} />
@@ -621,7 +621,7 @@ export default function DetailMicroESMPage() {
                   >
                     <img
                       src={laptopImages[laptopImgIndex]}
-                      alt={microesm.configurations.laptop.name}
+                      alt={microGoldenBat.configurations.laptop.name}
                       className="max-w-full max-h-[300px] object-contain"
                     />
                   </div>
@@ -644,14 +644,14 @@ export default function DetailMicroESMPage() {
                         <Laptop size={28} />
                       </ThemeIcon>
                       <div>
-                        <h3 className="text-xl font-semibold">{microesm.configurations.laptop.name}</h3>
-                        <p className="text-muted-foreground">{microesm.configurations.laptop.subtitle}</p>
+                        <h3 className="text-xl font-semibold">{microGoldenBat.configurations.laptop.name}</h3>
+                        <p className="text-muted-foreground">{microGoldenBat.configurations.laptop.subtitle}</p>
                       </div>
                     </div>
                     <div>
-                      <p className="font-semibold mb-3">{microesm.configurations.laptop.bestFor}:</p>
+                      <p className="font-semibold mb-3">{microGoldenBat.configurations.laptop.bestFor}:</p>
                       <ul className="space-y-2">
-                        {microesm.configurations.laptop.items.map((item, idx) => (
+                        {microGoldenBat.configurations.laptop.items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-3">
                             <ThemeIcon size={20} radius="xl" color="grape">
                               <Check size={12} />
@@ -672,14 +672,14 @@ export default function DetailMicroESMPage() {
         <section className="py-16 md:py-20 bg-card border-t border-border">
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8">
-              {microesm.specs.title}
+              {microGoldenBat.specs.title}
             </h2>
 
             <div className="flex flex-col gap-8">
               {/* Performance Specs */}
               <div className="rounded-lg border border-border p-6">
                 <h3 className="text-xl font-semibold mb-6">
-                  {microesm.specs.categories.performance.title}
+                  {microGoldenBat.specs.categories.performance.title}
                 </h3>
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse">
@@ -690,7 +690,7 @@ export default function DetailMicroESMPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {microesm.specs.categories.performance.items.map((item, index) => (
+                      {microGoldenBat.specs.categories.performance.items.map((item, index) => (
                         <tr key={index} className="odd:bg-muted/50 hover:bg-muted/70 transition-colors">
                           <td className="border border-border p-3 font-medium">{item.label}</td>
                           <td className="border border-border p-3">{item.value}</td>
@@ -704,13 +704,13 @@ export default function DetailMicroESMPage() {
               {/* Physical Specs Comparison */}
               <div className="rounded-lg border border-border p-6">
                 <h3 className="text-xl font-semibold mb-6">
-                  {microesm.specs.categories.physical.title}
+                  {microGoldenBat.specs.categories.physical.title}
                 </h3>
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-muted">
-                        {microesm.specs.categories.physical.headers.map((header, index) => (
+                        {microGoldenBat.specs.categories.physical.headers.map((header, index) => (
                           <th
                             key={index}
                             className={cn(
@@ -724,7 +724,7 @@ export default function DetailMicroESMPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {microesm.specs.categories.physical.items.map((item, index) => (
+                      {microGoldenBat.specs.categories.physical.items.map((item, index) => (
                         <tr key={index} className="odd:bg-muted/50 hover:bg-muted/70 transition-colors">
                           <td className="border border-border p-3 font-medium">{item.label}</td>
                           <td className="border border-border p-3 text-center">{item.tablet}</td>
@@ -743,12 +743,12 @@ export default function DetailMicroESMPage() {
         <section className="py-16 md:py-20 border-t border-border">
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8">
-              {microesm.useCases.title}
+              {microGoldenBat.useCases.title}
             </h2>
 
             {/* Custom Accordion */}
             <div className="flex flex-col gap-3">
-              {microesm.useCases.items.map((useCase, index) => {
+              {microGoldenBat.useCases.items.map((useCase, index) => {
                 const IconComponent = useCaseIcons[useCase.icon] || Users
                 const accordionId = `usecase-${index}`
                 const isOpen = openAccordions.includes(accordionId)
@@ -837,13 +837,13 @@ export default function DetailMicroESMPage() {
         </section>
 
         {/* Disclaimer Section */}
-        {"disclaimer" in microesm && (
+        {"disclaimer" in microGoldenBat && (
           <section className="py-8 border-t border-border">
             <div className="max-w-4xl mx-auto px-4">
               <div className="text-center text-sm text-muted-foreground space-y-1">
-                <p>{(microesm as any).disclaimer.manufacturer}</p>
-                <p>{(microesm as any).disclaimer.reseller}</p>
-                <p className="text-xs mt-2">{(microesm as any).disclaimer.specs}</p>
+                <p>{(microGoldenBat as any).disclaimer.manufacturer}</p>
+                <p>{(microGoldenBat as any).disclaimer.reseller}</p>
+                <p className="text-xs mt-2">{(microGoldenBat as any).disclaimer.specs}</p>
               </div>
             </div>
           </section>

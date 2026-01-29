@@ -49,7 +49,7 @@ import { ews as ewsEn } from "@/localize/en/solution/ew/ews"
 import { resolve as resolveEn } from "@/localize/en/solution/ew/resolve"
 import { perceive as perceiveEn } from "@/localize/en/solution/ew/perceive"
 import { deceive as deceiveEn } from "@/localize/en/solution/ew/deceive"
-import { microesm as microesmEn } from "@/localize/en/solution/ew/microesm"
+import { microGoldenBat as microGoldenBatEn } from "@/localize/en/solution/ew/microgoldenbat"
 import { phobosm4 as phobosm4En } from "@/localize/en/solution/ew/phobosm4"
 import { spectrac2 as spectrac2En } from "@/localize/en/solution/cuas/spectrac2"
 import { mapview as mapviewEn } from "@/localize/en/solution/ew/mapview"
@@ -72,7 +72,7 @@ import { ews as ewsKo } from "@/localize/ko/solution/ew/ews"
 import { resolve as resolveKo } from "@/localize/ko/solution/ew/resolve"
 import { perceive as perceiveKo } from "@/localize/ko/solution/ew/perceive"
 import { deceive as deceiveKo } from "@/localize/ko/solution/ew/deceive"
-import { microesm as microesmKo } from "@/localize/ko/solution/ew/microesm"
+import { microGoldenBat as microGoldenBatKo } from "@/localize/ko/solution/ew/microgoldenbat"
 import { phobosm4 as phobosm4Ko } from "@/localize/ko/solution/ew/phobosm4"
 import { spectrac2 as spectrac2Ko } from "@/localize/ko/solution/cuas/spectrac2"
 import { mapview as mapviewKo } from "@/localize/ko/solution/ew/mapview"
@@ -122,7 +122,7 @@ const RESOURCES = {
     resolve: resolveEn,
     perceive: perceiveEn,
     deceive: deceiveEn,
-    microesm: microesmEn,
+    microGoldenBat: microGoldenBatEn,
     phobosm4: phobosm4En,
     spectrac2: spectrac2En,
     mapview: mapviewEn,
@@ -147,7 +147,7 @@ const RESOURCES = {
     resolve: resolveKo,
     perceive: perceiveKo,
     deceive: deceiveKo,
-    microesm: microesmKo,
+    microGoldenBat: microGoldenBatKo,
     phobosm4: phobosm4Ko,
     spectrac2: spectrac2Ko,
     mapview: mapviewKo,

@@ -1,5 +1,5 @@
-export const microesm = {
-  title: "MicroESM",
+export const microGoldenBat = {
+  title: "Micro-GoldenBat",
   subtitle: "ULTRA-COMPACT TACTICAL RADAR ELECTRONIC SUPPORT SYSTEM",
   tagline: "Tactical Intelligence. Deployed Anywhere.",
 
@@ -13,15 +13,15 @@ export const microesm = {
   overview: {
     title: "Product Overview",
     description:
-      "MicroESM is an ultra-compact, fully automatic radar ESM system designed to overcome the limitations of conventional RESM systems that relied on large platforms.\nWeighing less than 2 kg, MicroESM passively detects and identifies radar signals across the 2–18 GHz band with full 360° coverage.\nThe system can be deployed on soldier-portable configurations, fixed coastal surveillance sites, UAVs, and ground or maritime vehicles.",
+      "Micro-GoldenBat is an ultra-compact, fully automatic radar ESM system designed to overcome the limitations of conventional RESM systems that relied on large platforms.\nWeighing less than 2 kg, Micro-GoldenBat passively detects and identifies radar signals across the 2–18 GHz band with full 360° coverage.\nThe system can be deployed on soldier-portable configurations, fixed coastal surveillance sites, UAVs, and ground or maritime vehicles.",
     configurationsTitle: "Available in Two Configurations",
     configurations: [
       {
-        name: "MicroESM 1t",
+        name: "Micro-GoldenBat 1t",
         description: "Tablet-based interface",
       },
       {
-        name: "MicroESM 1l",
+        name: "Micro-GoldenBat 1l",
         description: "Laptop-based interface",
       },
     ],
@@ -72,7 +72,7 @@ export const microesm = {
   configurations: {
     title: "Configurations",
     tablet: {
-      name: "MicroESM 1t",
+      name: "Micro-GoldenBat 1t",
       subtitle: "Tablet-Based",
       bestFor: "Best For",
       items: [
@@ -83,7 +83,7 @@ export const microesm = {
       ],
     },
     laptop: {
-      name: "MicroESM 1l",
+      name: "Micro-GoldenBat 1l",
       subtitle: "Laptop-Based",
       bestFor: "Best For",
       items: [
@@ -114,7 +114,7 @@ export const microesm = {
       },
       physical: {
         title: "Physical Specifications",
-        headers: ["Parameter", "MicroESM 1t", "MicroESM 1l"],
+        headers: ["Parameter", "Micro-GoldenBat 1t", "Micro-GoldenBat 1l"],
         items: [
           { label: "Main Unit", tablet: "< 2 kg", laptop: "< 2 kg" },
           { label: "Display", tablet: "1 kg (tablet)", laptop: "~1.5 kg (laptop)" },
@@ -201,15 +201,15 @@ export const microesm = {
   },
 
   contact: {
-    text: "To learn more about MicroESM and how it can benefit your organization, please contact us at",
+    text: "To learn more about Micro-GoldenBat and how it can benefit your organization, please contact us at",
     suffix: ".",
   },
 
   disclaimer: {
-    manufacturer: "MicroESM is manufactured by ESROE Limited, UK.",
+    manufacturer: "Micro-GoldenBat is manufactured by ESROE Limited, UK.",
     reseller: "EBT Co., Ltd. is an authorized reseller providing sales and technical support in South Korea.",
     specs: "All specifications are subject to the manufacturer's official documentation.",
   },
 } as const
 
-export type MicroesmStrings = typeof microesm
+export type MicroGoldenBatStrings = typeof microGoldenBat

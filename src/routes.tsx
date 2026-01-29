@@ -43,7 +43,7 @@ const Detail_PERCEIVE = lazy(() => import("./pages/Solution/EW/line_up/Detail_pe
 const Detail_RESOLVE = lazy(() => import("./pages/Solution/EW/line_up/Detail_resolve"))
 const Detail_LOCATE = lazy(() => import("./pages/Solution/EW/line_up/Detail_locate"))
 const Detail_DECEIVE = lazy(() => import("./pages/Solution/EW/line_up/Detail_deceive"))
-const Detail_MICROESM = lazy(() => import("./pages/Solution/EW/line_up/Detail_microesm"))
+const Detail_MICROGOLDENBAT = lazy(() => import("./pages/Solution/EW/line_up/Detail_microgoldenbat"))
 const Detail_PHOBOSM4 = lazy(() => import("./pages/Solution/EW/line_up/Detail_phobosm4"))
 const Detail_MAPVIEW = lazy(() => import("./pages/Solution/EW/line_up/Detail_mapview"))
 
@@ -82,7 +82,7 @@ export default function AppRoutes() {
           <Route path="solution/ew/RESOLVE" element={<Detail_RESOLVE />} />
           <Route path="solution/ew/LOCATE-T" element={<Detail_LOCATE />} />
           <Route path="solution/ew/DECEIVE" element={<Detail_DECEIVE />} />
-          <Route path="solution/ew/MicroESM" element={<Detail_MICROESM />} />
+          <Route path="solution/ew/Micro-GoldenBat" element={<Detail_MICROGOLDENBAT />} />
           <Route path="solution/ew/PHOBOS-M4" element={<Detail_PHOBOSM4 />} />
           <Route path="solution/ew/MAPVIEW" element={<Detail_MAPVIEW />} />
 
