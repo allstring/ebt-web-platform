@@ -25,8 +25,8 @@ import {
 } from "lucide-react"
 import microesmHeroImg from "@/assets/images/solution/EW/MicroESM/hero2.webp"
 // 새 hero 이미지 (디버깅용)
-import heroImg1 from "@/assets/images/solution/EW/MicroESM/her1.png"
-import heroImg2 from "@/assets/images/solution/EW/MicroESM/her2.png"
+// import heroImg1 from "@/assets/images/solution/EW/MicroESM/her1.png"
+// import heroImg2 from "@/assets/images/solution/EW/MicroESM/her2.png"
 import tabletConfigImg from "@/assets/images/solution/EW/MicroESM/tablet.webp"
 import laptopConfigImg from "@/assets/images/solution/EW/MicroESM/laptop.webp"
 import laptopConfigImg2 from "@/assets/images/solution/EW/MicroESM/laptop2.webp"
