@@ -15,7 +15,7 @@ import categoryEwsImg from "@/assets/images/solution/EW/GoldenBat-EWS/thumbnail_
 import categoryPerceiveImg from "@/assets/images/solution/EW/PERCEIVE/thumbnail.webp"
 import categoryResolveImg from "@/assets/images/solution/EW/RESOLVE/thumbnail.webp"
 import categoryDeceiveImg from "@/assets/images/solution/EW/DECEIVE/thumbnail.webp"
-import categryMicroESMImg from "@/assets/images/solution/EW/MicroESM/thumbnail.webp"
+import categryMicroGoldenBatImg from "@/assets/images/solution/EW/Micro-GoldenBat/thumbnail.webp"
 import categoryPhobosM4Img from "@/assets/images/solution/EW/PHOBOS M4/thumbnail.webp"
 import categoryMapViewImg from "@/assets/images/solution/EW/MAPVIEW/thumbnail.webp"
 // const environments = [
@@ -52,10 +52,10 @@ export default function ElectronicWarfarePage() {
       href: "RESOLVE",
     },
     {
-      title: "MicroESM",
-      subtitle: ewPage.products.microEsm,
-      imageSrc: categryMicroESMImg,
-      href: "MicroESM",
+      title: "Micro-GoldenBat",
+      subtitle: ewPage.products.microGoldenBat,
+      imageSrc: categryMicroGoldenBatImg,
+      href: "Micro-GoldenBat",
     },
     {
       title: "PHOBOS M4",

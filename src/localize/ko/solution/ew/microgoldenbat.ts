@@ -1,5 +1,5 @@
-export const microesm = {
-  title: "MicroESM",
+export const microGoldenBat = {
+  title: "Micro-GoldenBat",
   subtitle: "초소형 전술 레이더 전자지원 시스템",
   tagline: "신속 전개 가능한 휴대형 전술 정보 시스템",
 
@@ -13,11 +13,11 @@ export const microesm = {
   overview: {
     title: "제품 개요",
     description:
-      "MicroESM은 기존 대형 플랫폼 기반 RESM 시스템의 한계를 극복하기 위해 개발된 초소형 레이더 전자지원 시스템입니다.\n2kg 미만의 초경량 시스템으로 2-18 GHz 대역의 레이더 신호를 360° 전방위로 수동 탐지 및 식별합니다.\n개인 휴대형 구성, 고정식 해안 감시, 무인기(UAV), 무인수상정(USV), 지상/해상 및 차량 등 다양한 플랫폼에 배치 가능합니다.",
+      "Micro-GoldenBat은 기존 대형 플랫폼 기반 RESM 시스템의 한계를 극복하기 위해 개발된 초소형 레이더 전자지원 시스템입니다.\n2kg 미만의 초경량 시스템으로 2-18 GHz 대역의 레이더 신호를 360° 전방위로 수동 탐지 및 식별합니다.\n개인 휴대형 구성, 고정식 해안 감시, 무인기(UAV), 무인수상정(USV), 지상/해상 및 차량 등 다양한 플랫폼에 배치 가능합니다.",
     configurationsTitle: "두 가지 구성",
     configurations: [
-      { name: "MicroESM 1t", description: "태블릿 기반 인터페이스" },
-      { name: "MicroESM 1l", description: "노트북 기반 인터페이스" },
+      { name: "Micro-GoldenBat 1t", description: "태블릿 기반 인터페이스" },
+      { name: "Micro-GoldenBat 1l", description: "노트북 기반 인터페이스" },
     ],
   },
 
@@ -61,7 +61,7 @@ export const microesm = {
   configurations: {
     title: "구성",
     tablet: {
-      name: "MicroESM 1t",
+      name: "Micro-GoldenBat 1t",
       subtitle: "태블릿 기반",
       bestFor: "최적 용도",
       items: [
@@ -72,7 +72,7 @@ export const microesm = {
       ],
     },
     laptop: {
-      name: "MicroESM 1l",
+      name: "Micro-GoldenBat 1l",
       subtitle: "노트북 기반",
       bestFor: "최적 용도",
       items: [
@@ -103,7 +103,7 @@ export const microesm = {
       },
       physical: {
         title: "물리적 사양",
-        headers: ["항목", "MicroESM 1t", "MicroESM 1l"],
+        headers: ["항목", "Micro-GoldenBat 1t", "Micro-GoldenBat 1l"],
         items: [
           { label: "본체", tablet: "2kg 미만", laptop: "2kg 미만" },
           { label: "디스플레이", tablet: "1kg (태블릿)", laptop: "약 1.5kg (노트북)" },
@@ -190,7 +190,7 @@ export const microesm = {
   },
 
   contact: {
-    text: "MicroESM에 대해 더 알아보고 조직에 어떤 이점이 있는지 확인하시려면",
+    text: "Micro-GoldenBat에 대해 더 알아보고 조직에 어떤 이점이 있는지 확인하시려면",
     suffix: "로 문의해 주세요.",
   },
 
@@ -201,4 +201,4 @@ export const microesm = {
   },
 } as const
 
-export type MicroesmStrings = typeof microesm
+export type MicroGoldenBatStrings = typeof microGoldenBat

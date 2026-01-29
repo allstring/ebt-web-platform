@@ -27,7 +27,7 @@ const solutionCategories = [
       { key: "goldenBatEws" as const, href: "/solution/ew/GoldenBat-EWS" },
       { key: "perceive" as const, href: "/solution/ew/PERCEIVE" },
       { key: "resolve" as const, href: "/solution/ew/RESOLVE" },
-      { key: "microEsm" as const, href: "/solution/ew/MicroESM" },
+      { key: "microGoldenBat" as const, href: "/solution/ew/Micro-GoldenBat" },
       { key: "phobosM4" as const, href: "/solution/ew/PHOBOS-M4" },
       { key: "deceive" as const, href: "/solution/ew/DECEIVE" },
       { key: "mapview" as const, href: "/solution/ew/MAPVIEW" },

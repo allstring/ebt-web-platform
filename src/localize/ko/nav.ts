@@ -16,7 +16,7 @@ export const nav = {
         goldenBatEws: "GoldenBat-EWS",
         perceive: "PERCEIVE",
         resolve: "RESOLVE",
-        microEsm: "MicroESM",
+        microGoldenBat: "Micro-GoldenBat",
         phobosM4: "PHOBOS M4",
         deceive: "DECEIVE",
         mapview: "MAPVIEW",

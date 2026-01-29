@@ -105,7 +105,7 @@ export const solution = {
       ebtPes: "Portable RF Scanner",
       perceive: "Integrated Wideband Sensor",
       resolve: "Tactical Electronic Support System",
-      microEsm: "Compact Electronic Support Measures",
+      microGoldenBat: "Compact Electronic Support Measures",
       phobosM4: "Multi-Channel Electronic Support System",
       deceive: "Electronic Deception System",
       mapview: "EW Integration Software",
