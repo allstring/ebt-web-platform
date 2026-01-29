@@ -28,7 +28,7 @@ import microGoldenBatHeroImg from "@/assets/images/solution/EW/Micro-GoldenBat/h
 // import heroImg1 from "@/assets/images/solution/EW/Micro-GoldenBat/her1.png"
 // import heroImg2 from "@/assets/images/solution/EW/Micro-GoldenBat/her2.png"
 import tabletConfigImg from "@/assets/images/solution/EW/Micro-GoldenBat/tablet.webp"
-import laptopConfigImg from "@/assets/images/solution/EW/Micro-GoldenBat/laptop.png"
+import laptopConfigImg from "@/assets/images/solution/EW/Micro-GoldenBat/laptop.webp"
 // import laptopConfigImg2 from "@/assets/images/solution/EW/Micro-GoldenBat/laptop2.webp"
 // import laptopConfigImg3 from "@/assets/images/solution/EW/Micro-GoldenBat/laptop3.webp"
 
