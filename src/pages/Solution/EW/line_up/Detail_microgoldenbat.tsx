@@ -547,7 +547,7 @@ export default function DetailMicroGoldenBatPage() {
                   className={cn(
                     "flex-1 flex items-center justify-center gap-2 px-4 py-3 text-base font-medium transition-colors",
                     activeTab === "tablet"
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-blue-600 text-white light:bg-blue-500"
                       : "bg-card hover:bg-muted text-foreground"
                   )}
                 >
@@ -559,7 +559,7 @@ export default function DetailMicroGoldenBatPage() {
                   className={cn(
                     "flex-1 flex items-center justify-center gap-2 px-4 py-3 text-base font-medium transition-colors border-l border-border",
                     activeTab === "laptop"
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-purple-600 text-white light:bg-purple-500"
                       : "bg-card hover:bg-muted text-foreground"
                   )}
                 >
