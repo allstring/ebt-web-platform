@@ -24,7 +24,16 @@ import {
   Compass,
 } from "lucide-react"
 import microesmHeroImg from "@/assets/images/solution/EW/MicroESM/hero2.webp"
+// 새 hero 이미지 (디버깅용)
+import heroImg1 from "@/assets/images/solution/EW/MicroESM/her1.png"
+import heroImg2 from "@/assets/images/solution/EW/MicroESM/her2.png"
 import tabletConfigImg from "@/assets/images/solution/EW/MicroESM/tablet.webp"
+import laptopConfigImg from "@/assets/images/solution/EW/MicroESM/laptop.webp"
+import laptopConfigImg2 from "@/assets/images/solution/EW/MicroESM/laptop2.webp"
+import laptopConfigImg3 from "@/assets/images/solution/EW/MicroESM/laptop3.webp"
+
+// 디버깅용 laptop 이미지 배열 (나중에 삭제 가능)
+const laptopImages = [laptopConfigImg, laptopConfigImg2, laptopConfigImg3]
 // Use case images
 import tactical1 from "@/assets/images/solution/EW/MicroESM/tactical1.webp"
 import costal1 from "@/assets/images/solution/EW/MicroESM/costal1.webp"
@@ -357,6 +366,9 @@ export default function DetailMicroESMPage() {
   // Tabs state
   const [activeTab, setActiveTab] = useState<"tablet" | "laptop">("tablet")
 
+  // 디버깅용 laptop 이미지 인덱스 (나중에 삭제 가능)
+  const [laptopImgIndex, setLaptopImgIndex] = useState(0)
+
   // Accordion state
   const [openAccordions, setOpenAccordions] = useState<string[]>([])
 
@@ -384,7 +396,7 @@ export default function DetailMicroESMPage() {
     <DetailPageGate>
       <div className="pt-16">
         {/* Hero Section */}
-        <section className="py-24 lg:py-32">
+        <section className="pt-24 lg:pt-32">
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex flex-col items-center gap-4 mb-8">
               <h1 className="text-center text-4xl md:text-5xl font-semibold text-foreground">
@@ -411,16 +423,37 @@ export default function DetailMicroESMPage() {
               {microesm.tagline}
             </p>
           </div>
-          <div className="max-w-4xl mx-auto px-4 py-10 md:py-16">
-            <div className="rounded-xl overflow-hidden  p-1">
-              <div className="rounded-lg overflow-hidden">
+          <div className="max-w-4xl mx-auto px-4 pt-10 md:pt-16 pb-0">
+            <div className="relative">
+              <div className="rounded-xl overflow-hidden p-1">
+                <div className="rounded-lg overflow-hidden">
+                  <img
+                    src={microesmHeroImg}
+                    alt={microesm.title}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
+              {/* 아래쪽 그라데이션 페이드 */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+            </div>
+            {/* 새 hero 이미지 - 좌우 배치 (디버깅용) - 주석 처리
+            <div className="relative -mt-8 md:-mt-30">
+              <div className="flex items-end justify-center gap-0">
                 <img
-                  src={microesmHeroImg}
+                  src={heroImg1}
                   alt={microesm.title}
-                  className="w-full h-auto object-contain"
+                  className="h-auto max-h-[400px] md:max-h-[800px] object-contain origin-bottom"
+                />
+                <img
+                  src={heroImg2}
+                  alt={microesm.title}
+                  className="h-auto max-h-[380px] md:max-h-[760px] object-contain -ml-[60px] md:ml-0"
                 />
               </div>
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
             </div>
+            */}
           </div>
 
         </section>
@@ -580,7 +613,19 @@ export default function DetailMicroESMPage() {
             {activeTab === "laptop" && (
               <div className="rounded-lg border border-border overflow-hidden">
                 <div className="flex flex-col lg:flex-row">
-                  {/* Placeholder Section for Laptop - visible on both mobile and desktop */}
+                  {/* Image Section for Laptop - 클릭하면 다음 이미지 (디버깅용) */}
+                  <div
+                    className="flex lg:w-1/2 items-center justify-center bg-gradient-to-br from-purple-500/10 to-violet-500/10 order-first min-h-[300px] lg:order-last cursor-pointer select-none"
+                    onClick={() => setLaptopImgIndex((prev) => (prev + 1) % laptopImages.length)}
+                    title="클릭하면 다음 이미지"
+                  >
+                    <img
+                      src={laptopImages[laptopImgIndex]}
+                      alt={microesm.configurations.laptop.name}
+                      className="max-w-full max-h-[300px] object-contain"
+                    />
+                  </div>
+                  {/* Placeholder Section for Laptop - 기존 코드 (주석 처리)
                   <div className="flex lg:w-1/2 items-center justify-center bg-gradient-to-br from-purple-500/10 to-violet-500/10 order-first min-h-[300px] lg:order-last">
                     <div className="text-center">
                       <ThemeIcon size={64} radius="xl" variant="light" color="grape" className="mx-auto mb-3 lg:hidden">
@@ -591,6 +636,7 @@ export default function DetailMicroESMPage() {
                       </ThemeIcon>
                     </div>
                   </div>
+                  */}
                   {/* Content Section */}
                   <div className="p-8 flex flex-col justify-center lg:w-1/2">
                     <div className="flex items-center gap-4 mb-6">
