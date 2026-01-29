@@ -45,6 +45,7 @@ import uav4 from "@/assets/images/solution/EW/Micro-GoldenBat/uav4.webp"
 import uav5 from "@/assets/images/solution/EW/Micro-GoldenBat/uav5.webp"
 import network1 from "@/assets/images/solution/EW/Micro-GoldenBat/network1.webp"
 import network2 from "@/assets/images/solution/EW/Micro-GoldenBat/network2.webp"
+import network3 from "@/assets/images/solution/EW/Micro-GoldenBat/network3.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
 import { DetailPageGate } from "@/components/DetailPageGate"
@@ -356,7 +357,7 @@ const useCaseImages: Record<number, string[]> = {
   0: [tactical1], // Tactical - 1 image
   1: [costal1, costal2], // Coastal - 2 images
   2: [uav1, uav2, uav3, uav4, uav5], // UAV - 5 images
-  3: [network1, network2], // Network - 2 images
+  3: [network1, network2, network3], // Network - 2 images
 }
 
 export default function DetailMicroGoldenBatPage() {
