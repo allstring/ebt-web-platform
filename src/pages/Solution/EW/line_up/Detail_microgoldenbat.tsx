@@ -28,12 +28,12 @@ import microGoldenBatHeroImg from "@/assets/images/solution/EW/Micro-GoldenBat/h
 // import heroImg1 from "@/assets/images/solution/EW/Micro-GoldenBat/her1.png"
 // import heroImg2 from "@/assets/images/solution/EW/Micro-GoldenBat/her2.png"
 import tabletConfigImg from "@/assets/images/solution/EW/Micro-GoldenBat/tablet.webp"
-import laptopConfigImg from "@/assets/images/solution/EW/Micro-GoldenBat/laptop.webp"
-import laptopConfigImg2 from "@/assets/images/solution/EW/Micro-GoldenBat/laptop2.webp"
-import laptopConfigImg3 from "@/assets/images/solution/EW/Micro-GoldenBat/laptop3.webp"
+import laptopConfigImg from "@/assets/images/solution/EW/Micro-GoldenBat/laptop.png"
+// import laptopConfigImg2 from "@/assets/images/solution/EW/Micro-GoldenBat/laptop2.webp"
+// import laptopConfigImg3 from "@/assets/images/solution/EW/Micro-GoldenBat/laptop3.webp"
 
 // 디버깅용 laptop 이미지 배열 (나중에 삭제 가능)
-const laptopImages = [laptopConfigImg, laptopConfigImg2, laptopConfigImg3]
+// const laptopImages = [laptopConfigImg, laptopConfigImg2, laptopConfigImg3]
 // Use case images
 import tactical1 from "@/assets/images/solution/EW/Micro-GoldenBat/tactical1.webp"
 import costal1 from "@/assets/images/solution/EW/Micro-GoldenBat/costal1.webp"
@@ -367,7 +367,7 @@ export default function DetailMicroGoldenBatPage() {
   const [activeTab, setActiveTab] = useState<"tablet" | "laptop">("tablet")
 
   // 디버깅용 laptop 이미지 인덱스 (나중에 삭제 가능)
-  const [laptopImgIndex, setLaptopImgIndex] = useState(0)
+  // const [laptopImgIndex, setLaptopImgIndex] = useState(0)
 
   // Accordion state
   const [openAccordions, setOpenAccordions] = useState<string[]>([])
@@ -613,14 +613,10 @@ export default function DetailMicroGoldenBatPage() {
             {activeTab === "laptop" && (
               <div className="rounded-lg border border-border overflow-hidden">
                 <div className="flex flex-col lg:flex-row">
-                  {/* Image Section for Laptop - 클릭하면 다음 이미지 (디버깅용) */}
-                  <div
-                    className="flex lg:w-1/2 items-center justify-center bg-gradient-to-br from-purple-500/10 to-violet-500/10 order-first min-h-[300px] lg:order-last cursor-pointer select-none"
-                    onClick={() => setLaptopImgIndex((prev) => (prev + 1) % laptopImages.length)}
-                    title="클릭하면 다음 이미지"
-                  >
+                  {/* Image Section for Laptop */}
+                  <div className="flex lg:w-1/2 items-center justify-center bg-gradient-to-br from-purple-500/10 to-violet-500/10 order-first min-h-[300px] lg:order-last">
                     <img
-                      src={laptopImages[laptopImgIndex]}
+                      src={laptopConfigImg}
                       alt={microGoldenBat.configurations.laptop.name}
                       className="max-w-full max-h-[300px] object-contain"
                     />
