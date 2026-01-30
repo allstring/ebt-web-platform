@@ -116,17 +116,17 @@ export default function DetailMicroGoldenBatPage() {
               <h1 className="text-center text-4xl md:text-5xl font-semibold text-foreground">
                 {microGoldenBat.title}
               </h1>
-              <div className="flex items-center gap-2 justify-center flex-wrap">
-                <Badge size="lg" variant="light" color="indigo" leftSection={<Radar size={14} />}>
+              <div className="grid grid-cols-2 place-items-center sm:flex sm:flex-wrap sm:justify-center gap-2">
+                <Badge size="md" className="sm:text-sm" variant="light" color="indigo" leftSection={<Radar size={14} />}>
                   {microGoldenBat.highlights.type}
                 </Badge>
-                <Badge size="lg" variant="light" color="blue" leftSection={<Feather size={14} />}>
+                <Badge size="md" className="sm:text-sm" variant="light" color="blue" leftSection={<Feather size={14} />}>
                   {microGoldenBat.highlights.weight}
                 </Badge>
-                <Badge size="lg" variant="light" color="cyan" leftSection={<Radio size={14} />}>
+                <Badge size="md" className="sm:text-sm" variant="light" color="cyan" leftSection={<Radio size={14} />}>
                   {microGoldenBat.highlights.frequency}
                 </Badge>
-                <Badge size="lg" variant="light" color="teal" leftSection={<Compass size={14} />}>
+                <Badge size="md" className="sm:text-sm" variant="light" color="teal" leftSection={<Compass size={14} />}>
                   {microGoldenBat.highlights.coverage}
                 </Badge>
               </div>
