@@ -15,7 +15,7 @@ export const solution = {
     label: "NC",
     title: "화학/방사능 탐지",
     summary:
-      "위협 드론을 탐지, 식별하고 즉각 대응 체계를 구축합니다.",
+      "화학작용제와 방사능 물질을 조기에 탐지, 식별하여 대응할 수 있게 합니다.",
   },
   counterUAS: {
     label: "C-UAS",
@@ -29,7 +29,7 @@ export const solution = {
     header: {
       label: "솔루션",
       title: "화학/방사능 탐지",
-      description: "핵 및 화학 위협에 대한 종합적인 탐지 시스템으로, 신속한 식별, 경보 및 대응을 위한 통합 모니터링 솔루션을 제공합니다.",
+      description: "화학작용제와 방사능 물질을 조기에 탐지, 식별하여 대응할 수 있게 합니다.",
     },
     architecture: {
       label: "시스템 구성",
@@ -82,7 +82,7 @@ export const solution = {
     header: {
       label: "솔루션",
       title: "전자기전",
-      description: "적대적 환경에서 탐지, 보호 및 대응을 위한 포괄적인 전자기 스펙트럼 작전.",
+      description: "적 통신, 레이더, 드론 신호를 수집하고 출처를 찾아 무력화합니다.",
     },
     categories: {
       es: {
@@ -105,7 +105,7 @@ export const solution = {
       ebtPes: "휴대용 RF 스캐너",
       perceive: "통합 광대역 센서",
       resolve: "전술 전자지원 시스템",
-      microGoldenBat: "소형 전자지원 측정 시스템",
+      microGoldenBat: "초소형 RESM 시스템",
       phobosM4: "다중 채널 전자지원 시스템",
       deceive: "전자 기만 시스템",
       mapview: "전자전 통합 소프트웨어",
@@ -145,7 +145,7 @@ export const solution = {
     header: {
       label: "솔루션",
       title: "대드론",
-      description: "무인 항공기 위협에 대한 탐지, 추적, 식별 및 무력화를 위한 종합 대드론 솔루션.",
+      description: "위협 드론을 탐지, 식별하고 즉각 대응 체계를 구축합니다.",
     },
     products: {
       label: "제품 라인업",
