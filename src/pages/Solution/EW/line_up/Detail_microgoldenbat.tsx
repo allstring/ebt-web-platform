@@ -1,28 +1,22 @@
-import { useState, useRef, useCallback, useEffect } from "react"
+import { useState, useRef } from "react"
 import "@/styles/global.css"
-import useEmblaCarousel from "embla-carousel-react"
-import {
-  Feather,
-  Radar,
-  Cpu,
-  Battery,
-  Database,
-  EyeOff,
-  Shield,
-  Users,
-  Anchor,
-  Plane,
-  Network,
-  Tablet,
-  Laptop,
-  Check,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  X,
-  Radio,
-  Compass,
-} from "lucide-react"
+import Feather from "lucide-react/dist/esm/icons/feather"
+import Radar from "lucide-react/dist/esm/icons/radar"
+import Cpu from "lucide-react/dist/esm/icons/cpu"
+import Battery from "lucide-react/dist/esm/icons/battery"
+import Database from "lucide-react/dist/esm/icons/database"
+import EyeOff from "lucide-react/dist/esm/icons/eye-off"
+import Shield from "lucide-react/dist/esm/icons/shield"
+import Users from "lucide-react/dist/esm/icons/users"
+import Anchor from "lucide-react/dist/esm/icons/anchor"
+import Plane from "lucide-react/dist/esm/icons/plane"
+import Network from "lucide-react/dist/esm/icons/network"
+import Tablet from "lucide-react/dist/esm/icons/tablet"
+import Laptop from "lucide-react/dist/esm/icons/laptop"
+import Check from "lucide-react/dist/esm/icons/check"
+import ChevronDown from "lucide-react/dist/esm/icons/chevron-down"
+import Radio from "lucide-react/dist/esm/icons/radio"
+import Compass from "lucide-react/dist/esm/icons/compass"
 import microGoldenBatHeroImg from "@/assets/images/solution/EW/Micro-GoldenBat/hero2.webp"
 // 새 hero 이미지 (디버깅용)
 // import heroImg1 from "@/assets/images/solution/EW/Micro-GoldenBat/her1.png"
@@ -49,6 +43,9 @@ import network3 from "@/assets/images/solution/EW/Micro-GoldenBat/network3.webp"
 import { useLocale } from "@/lib/i18n"
 import { ProductContactSection } from "@/components/product-contact-section"
 import { DetailPageGate } from "@/components/DetailPageGate"
+import { Badge } from "@/components/ui/badge"
+import { ThemeIcon } from "@/components/ui/theme-icon"
+import { ImageCarousel } from "@/components/image-carousel"
 import { cn } from "@/lib/utils"
 
 const featureIcons: Record<string, React.ElementType> = {
@@ -66,290 +63,6 @@ const useCaseIcons: Record<string, React.ElementType> = {
   anchor: Anchor,
   plane: Plane,
   network: Network,
-}
-
-// Badge 컴포넌트
-function Badge({
-  children,
-  color = "blue",
-  variant = "light",
-  size = "md",
-  leftSection,
-  className,
-}: {
-  children: React.ReactNode
-  color?: "blue" | "indigo" | "cyan" | "teal" | "grape" | "orange"
-  variant?: "light" | "outline"
-  size?: "md" | "lg" | "xl"
-  leftSection?: React.ReactNode
-  className?: string
-}) {
-  const colorClasses = {
-    blue: variant === "light"
-      ? "bg-blue-900/30 text-blue-300 light:bg-blue-100 light:text-blue-700"
-      : "border-blue-500 text-blue-500",
-    indigo: variant === "light"
-      ? "bg-indigo-900/30 text-indigo-300 light:bg-indigo-100 light:text-indigo-700"
-      : "border-indigo-500 text-indigo-500",
-    cyan: variant === "light"
-      ? "bg-cyan-900/30 text-cyan-300 light:bg-cyan-100 light:text-cyan-700"
-      : "border-cyan-500 text-cyan-500",
-    teal: variant === "light"
-      ? "bg-teal-900/30 text-teal-300 light:bg-teal-100 light:text-teal-700"
-      : "border-teal-500 text-teal-500",
-    grape: variant === "light"
-      ? "bg-purple-900/30 text-purple-300 light:bg-purple-100 light:text-purple-700"
-      : "border-purple-500 text-purple-500",
-    orange: variant === "light"
-      ? "bg-orange-900/30 text-orange-300 light:bg-orange-100 light:text-orange-700"
-      : "border-orange-500 text-orange-500",
-  }
-
-  const sizeClasses = {
-    md: "px-2.5 py-0.5 text-xs",
-    lg: "px-3 py-1 text-sm",
-    xl: "px-4 py-1.5 text-sm",
-  }
-
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full font-medium",
-        variant === "outline" && "border bg-transparent",
-        colorClasses[color],
-        sizeClasses[size],
-        className
-      )}
-    >
-      {leftSection}
-      {children}
-    </span>
-  )
-}
-
-// ThemeIcon 컴포넌트
-function ThemeIcon({
-  children,
-  size = 40,
-  color = "blue",
-  variant = "light",
-  radius = "md",
-  gradient,
-  className,
-}: {
-  children: React.ReactNode
-  size?: number
-  color?: "blue" | "teal" | "grape" | "orange"
-  variant?: "light" | "gradient"
-  radius?: "md" | "xl"
-  gradient?: { from: string; to: string }
-  className?: string
-}) {
-  const colorClasses = {
-    blue: "bg-blue-900/30 text-blue-400 light:bg-blue-100 light:text-blue-600",
-    teal: "bg-teal-900/30 text-teal-400 light:bg-teal-100 light:text-teal-600",
-    grape: "bg-purple-900/30 text-purple-400 light:bg-purple-100 light:text-purple-600",
-    orange: "bg-orange-900/30 text-orange-400 light:bg-orange-100 light:text-orange-600",
-  }
-
-  const radiusClasses = {
-    md: "rounded-md",
-    xl: "rounded-full",
-  }
-
-  const gradientStyles = gradient
-    ? {
-        background: `linear-gradient(135deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%)`,
-        "--tw-gradient-from": gradient.from === "blue" ? "#3b82f6" : gradient.from === "grape" ? "#a855f7" : gradient.from,
-        "--tw-gradient-to": gradient.to === "cyan" ? "#06b6d4" : gradient.to === "violet" ? "#8b5cf6" : gradient.to,
-      } as React.CSSProperties
-    : undefined
-
-  return (
-    <div
-      className={cn(
-        "inline-flex items-center justify-center shrink-0",
-        radiusClasses[radius],
-        variant === "light" && colorClasses[color],
-        variant === "gradient" && "text-white",
-        className
-      )}
-      style={{
-        width: size,
-        height: size,
-        ...gradientStyles,
-      }}
-    >
-      {children}
-    </div>
-  )
-}
-
-// Image Carousel with Lightbox
-function ImageCarousel({ images }: { images: string[] }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [lightboxOpen, setLightboxOpen] = useState(false)
-  const [lightboxIndex, setLightboxIndex] = useState(0)
-
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
-  const scrollTo = useCallback((index: number) => emblaApi?.scrollTo(index), [emblaApi])
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [emblaApi])
-
-  useEffect(() => {
-    if (!emblaApi) return
-    onSelect()
-    emblaApi.on("select", onSelect)
-    return () => { emblaApi.off("select", onSelect) }
-  }, [emblaApi, onSelect])
-
-  const openLightbox = (index: number) => {
-    setLightboxIndex(index)
-    setLightboxOpen(true)
-  }
-
-  const closeLightbox = () => setLightboxOpen(false)
-
-  const lightboxPrev = () => setLightboxIndex((prev) => (prev - 1 + images.length) % images.length)
-  const lightboxNext = () => setLightboxIndex((prev) => (prev + 1) % images.length)
-
-  // Handle keyboard events for lightbox
-  useEffect(() => {
-    if (!lightboxOpen) return
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeLightbox()
-      if (e.key === "ArrowLeft") lightboxPrev()
-      if (e.key === "ArrowRight") lightboxNext()
-    }
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [lightboxOpen, images.length])
-
-  if (images.length === 0) return null
-
-  return (
-    <>
-      {/* Carousel - Compact side layout */}
-      <div>
-        <div className="relative rounded-lg border border-border overflow-hidden bg-muted/20" ref={emblaRef}>
-          <div className="flex">
-            {images.map((img, index) => (
-              <div
-                key={index}
-                className="flex-[0_0_100%] min-w-0 cursor-pointer group"
-                onClick={() => openLightbox(index)}
-              >
-                <div className="h-[160px] flex items-center justify-center overflow-hidden p-2">
-                  <img
-                    src={img}
-                    alt={`Image ${index + 1}`}
-                    className="max-w-full max-h-full object-contain rounded transition-transform group-hover:scale-105"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none"
-                      const placeholder = document.createElement("div")
-                      placeholder.className = "text-muted-foreground flex flex-col items-center gap-2"
-                      placeholder.innerHTML = `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><span class="text-xs">Image ${index + 1}</span>`
-                      e.currentTarget.parentElement?.appendChild(placeholder)
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Navigation */}
-        {images.length > 1 && (
-          <div className="flex items-center justify-center gap-3 mt-2">
-            <button
-              onClick={scrollPrev}
-              className="p-1 rounded-full bg-muted hover:bg-muted/80 transition-colors"
-              aria-label="Previous"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <div className="flex gap-1">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollTo(index)}
-                  className={cn(
-                    "w-1.5 h-1.5 rounded-full transition-colors",
-                    index === selectedIndex ? "bg-primary" : "bg-muted-foreground/30"
-                  )}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-            <button
-              onClick={scrollNext}
-              className="p-1 rounded-full bg-muted hover:bg-muted/80 transition-colors"
-              aria-label="Next"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* Lightbox */}
-      {lightboxOpen && (
-        <div
-          className="fixed inset-0 z-[10001] bg-black/90 flex items-center justify-center"
-          onClick={closeLightbox}
-        >
-          <button
-            onClick={closeLightbox}
-            className="absolute top-4 right-4 p-2 text-white/80 hover:text-white transition-colors z-10"
-            aria-label="Close"
-          >
-            <X size={28} />
-          </button>
-
-          {/* Image container with padding for navigation */}
-          <div className="flex items-center justify-center w-full h-full px-16 md:px-20">
-            {images.length > 1 && (
-              <button
-                onClick={(e) => { e.stopPropagation(); lightboxPrev() }}
-                className="absolute left-2 md:left-4 p-2 md:p-3 text-white/80 hover:text-white transition-colors z-10"
-                aria-label="Previous"
-              >
-                <ChevronLeft size={32} />
-              </button>
-            )}
-
-            <img
-              src={images[lightboxIndex]}
-              alt={`Image ${lightboxIndex + 1}`}
-              className="max-w-full max-h-[85vh] object-contain"
-              onClick={(e) => e.stopPropagation()}
-            />
-
-            {images.length > 1 && (
-              <button
-                onClick={(e) => { e.stopPropagation(); lightboxNext() }}
-                className="absolute right-2 md:right-4 p-2 md:p-3 text-white/80 hover:text-white transition-colors z-10"
-                aria-label="Next"
-              >
-                <ChevronRight size={32} />
-              </button>
-            )}
-          </div>
-
-          {images.length > 1 && (
-            <div className="absolute bottom-4 text-white/80 text-sm">
-              {lightboxIndex + 1} / {images.length}
-            </div>
-          )}
-        </div>
-      )}
-    </>
-  )
 }
 
 // Use case images configuration
@@ -579,6 +292,7 @@ export default function DetailMicroGoldenBatPage() {
                     <img
                       src={tabletConfigImg}
                       alt={microGoldenBat.configurations.tablet.name}
+                      loading="lazy"
                       className="max-w-full max-h-[300px] object-contain"
                     />
                   </div>
@@ -619,6 +333,7 @@ export default function DetailMicroGoldenBatPage() {
                     <img
                       src={laptopConfigImg}
                       alt={microGoldenBat.configurations.laptop.name}
+                      loading="lazy"
                       className="max-w-full max-h-[300px] object-contain"
                     />
                   </div>
@@ -756,6 +471,9 @@ export default function DetailMicroGoldenBatPage() {
                   <div key={index} className="rounded-lg border border-border overflow-hidden">
                     <button
                       onClick={() => toggleAccordion(accordionId)}
+                      aria-expanded={isOpen}
+                      aria-controls={`panel-${accordionId}`}
+                      id={`button-${accordionId}`}
                       className="w-full flex items-center gap-4 p-4 text-left hover:bg-muted/50 transition-colors"
                     >
                       <ThemeIcon size={40} radius="xl" variant="light" color={color}>
@@ -771,10 +489,14 @@ export default function DetailMicroGoldenBatPage() {
                           "text-muted-foreground transition-transform duration-200",
                           isOpen && "rotate-180"
                         )}
+                        aria-hidden="true"
                       />
                     </button>
 
                     <div
+                      id={`panel-${accordionId}`}
+                      role="region"
+                      aria-labelledby={`button-${accordionId}`}
                       className={cn(
                         "grid transition-all duration-200 ease-in-out",
                         isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
@@ -819,7 +541,10 @@ export default function DetailMicroGoldenBatPage() {
                             {/* Image Gallery - Right */}
                             {useCaseImages[index] && useCaseImages[index].length > 0 && (
                               <div className="lg:w-[280px] lg:shrink-0 order-first lg:order-last">
-                                <ImageCarousel images={useCaseImages[index]} />
+                                <ImageCarousel
+                                  images={useCaseImages[index]}
+                                  altPrefix={`${microGoldenBat.title} - ${useCase.title}`}
+                                />
                               </div>
                             )}
                           </div>
