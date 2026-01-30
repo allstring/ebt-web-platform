@@ -1,5 +1,5 @@
 import { useLocale } from "@/lib/i18n"
-import { useState, useEffect } from "react"
+import { useTheme } from "@/hooks/use-theme"
 import LogoLight from "@/assets/images/navigation/EBT-logo.svg?react"
 import LogoDark from "@/assets/images/navigation/EBT-logo--dark.svg?react"
 // ============================================================================
@@ -16,21 +16,7 @@ const CONTACT_INFO = {
 
 export function Footer() {
   const { t } = useLocale()
-  const [isLight, setIsLight] = useState(
-    () => document.documentElement.classList.contains("light")
-  )
-
-  // 테마 변경 감지
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsLight(document.documentElement.classList.contains("light"))
-    })
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    })
-    return () => observer.disconnect()
-  }, [])
+  const { isLight } = useTheme()
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto max-w-5xl px-6 py-4 lg:px-8">
