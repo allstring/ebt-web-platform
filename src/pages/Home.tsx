@@ -82,7 +82,7 @@ function HeroSection() {
             <EbtLogoDark className="h-16 w-auto mb-8 text-white" />
           )}
         </div> */}
-        <h1 className="text-4xl xs:text-5xl sm:text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-none">
+        <h1 className="text-4xl xs:text-6xl sm:text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-none">
           <TitleLine text={t.home.mainTitle.line1} />
           <TitleLine text={t.home.mainTitle.line2} />
           <TitleLine text={t.home.mainTitle.line3} />
