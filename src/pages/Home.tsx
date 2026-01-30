@@ -2,7 +2,7 @@ import { useRef, useLayoutEffect } from "react";
 import { useLocale } from "@/lib/i18n";
 import { useTheme } from "@/hooks/use-theme";
 import { gsap } from "@/lib/gsap";
-import EbtLogo from "@/assets/images/navigation/EBT-logo.svg?react";
+import EbtLogo from "@/assets/images/home/EBT-logo.svg?react";
 import EbtLogoDark from "@/assets/images/home/EBT-logo--dark.svg?react";
 import Check from "lucide-react/dist/esm/icons/check";
 import heroVideo from "@/assets/videos/home/hero-video.webm";
