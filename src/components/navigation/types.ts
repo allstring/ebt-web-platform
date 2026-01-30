@@ -71,6 +71,6 @@ export const navItems: NavItem[] = [
   { key: "home", href: "/" },
   { key: "about", href: "/about" },
   { key: "solution", href: "/solution" },
-  { key: "rnd", href: "/rnd" },
+  // { key: "rnd", href: "/rnd" },
   { key: "contact", href: "/contact" },
 ]
