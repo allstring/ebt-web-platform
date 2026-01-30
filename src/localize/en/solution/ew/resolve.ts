@@ -1,5 +1,5 @@
 export const resolve = {
-  title: "RESOLVE",
+  title: "Resolve",
   subtitle: "TACTICAL ELECTRONIC SUPPORT SYSTEM",
   tagline: "For direction finding and interception",
 

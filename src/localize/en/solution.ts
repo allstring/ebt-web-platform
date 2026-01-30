@@ -1,6 +1,6 @@
 export const solution = {
   label: "Solution",
-  title: "Problem-driven defense systems",
+  title: "SOLUTIONS",
   description:
     "Each solution addresses specific operational challenges with integrated hardware and software designed for real-world deployment.",
   learnMore: "Learn more",
@@ -9,19 +9,19 @@ export const solution = {
     label: "EW",
     title: "Electronic Warfare",
     summary:
-      "Signal processing and spectrum management for complex electromagnetic environments.",
+      "We intercept adversary communications, radars, and drone signals. We locate sources and deploy jamming.",
   },
   nuclearChemical: {
     label: "NC",
     title: "NC Detection",
     summary:
-      "Detection, identification, and monitoring systems for chemical agents in hazardous operational environments.",
+      "We detect and classify chemical agents and radiological materials early, enabling rapid response.",
   },
   counterUAS: {
     label: "C-UAS",
     title: "Counter-UAS",
     summary:
-      "Early detection, identification, and neutralization of unmanned aerial threats to protect critical assets and personnel.",
+      "We detect and classify hostile drones, enabling immediate countermeasures.",
   },
 
   // NC Page

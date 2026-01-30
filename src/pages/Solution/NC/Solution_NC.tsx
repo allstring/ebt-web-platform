@@ -158,7 +158,7 @@ export default function NCDefensePage() {
   const nc = t.solution.ncPage
 
   const cwProducts = [{
-    title: "CHEMPRO-X",
+    title: "ChemPro-X",
     subtitle: nc.products.chemproX,
     imageSrc: categoryCpxImg,
     href: "CHEMPRO-X",

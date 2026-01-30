@@ -61,6 +61,7 @@ export default function DetailPerceivePage() {
               <img
                 src={eseaRecImg}
                 alt={perceive.title}
+                loading="lazy"
                 className="w-full h-auto object-cover rounded-lg"
               />
             </div>

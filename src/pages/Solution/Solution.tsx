@@ -99,21 +99,21 @@ function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="pt-24 pb-18 overflow-hidden">
+    <section ref={sectionRef} className="pt-24 pb-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div ref={contentRef} className="max-w-3xl relative">
           {/* 왼쪽 악센트 라인 */}
           <div className="hero-accent-line absolute -left-4 lg:-left-8 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/80 via-primary/40 to-transparent" />
 
-          <p className="hero-animate text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          {/* <p className="hero-animate text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {t.solution.label}
-          </p>
+          </p> */}
           <h1 className="hero-animate mt-2 text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
             {t.solution.title}
           </h1>
-          <p className="hero-animate mt-6 text-lg text-muted-foreground leading-relaxed">
+          {/* <p className="hero-animate mt-6 text-lg text-muted-foreground leading-relaxed">
             {t.solution.description}
-          </p>
+          </p> */}
 
           {/* 하단 장식 요소 */}
           {/* <div className="hero-animate mt-10 flex items-center gap-3">

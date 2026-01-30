@@ -1,11 +1,11 @@
 export const cpx = {
-  title: "CHEMPRO X",
+  title: "ChemPro-X",
   subtitle: "HANDHELD CHEMICAL DETECTOR",
   tagline: "XPAND YOUR SAFETY",
 
   whatIs: {
-    title: "WHAT IS CHEMPRO X?",
-    description: "ChemProX belongs to a new generation of chemical detectors, so, it allows for full situational awareness during field operations. It features a built-in simulation training mode and an embedded chemical database with operational instructions. As a result, ChemProX enables any team to detect and classify CWA's and TIC's.",
+    title: "WHAT IS CHEMPRO-X?",
+    description: "ChemPro-X belongs to a new generation of chemical detectors, so, it allows for full situational awareness during field operations. It features a built-in simulation training mode and an embedded chemical database with operational instructions. As a result, ChemPro-X enables any team to detect and classify CWA's and TIC's.",
   },
 
   benefits: {
@@ -68,7 +68,7 @@ export const cpx = {
 
   application: {
     title: "Application",
-    description: "ChemProX is a versatile chemical detector therefore, it can be used both as a handheld equipment, or as stand-off component, as part of a field deployable network. ChemProX chemical detection performance is proven to be effective many different applications. For example, in single use (when the device is used as a conventional chemical detector), group use, perimeter monitoring network use, unmanned ground and air vehicles use, among others.",
+    description: "ChemPro-X is a versatile chemical detector therefore, it can be used both as a handheld equipment, or as stand-off component, as part of a field deployable network. ChemPro-X chemical detection performance is proven to be effective many different applications. For example, in single use (when the device is used as a conventional chemical detector), group use, perimeter monitoring network use, unmanned ground and air vehicles use, among others.",
     items: [
       "First Responders",
       "Military",

@@ -1,5 +1,5 @@
 export const ncm = {
-  title: "NC MONITORING SYSTEM",
+  title: "Nc Monitoring System",
   subtitle: "탐지 시스템 호환 화학 탐지기",
   tagline: "ONE DETECTOR TO BIND THEM ALL",
 
