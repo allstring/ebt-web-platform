@@ -2,6 +2,15 @@ import { useEffect, type RefObject } from "react"
 import { gsap } from "@/lib/gsap"
 
 // ============================================================================
+// Reduced Motion Check
+// ============================================================================
+
+function prefersReducedMotion(): boolean {
+  if (typeof window === "undefined") return false
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+}
+
+// ============================================================================
 // 타입 정의
 // ============================================================================
 
@@ -64,6 +73,12 @@ export function useFadeIn(
   useEffect(() => {
     if (!ref.current) return
 
+    // Skip animation if user prefers reduced motion
+    if (prefersReducedMotion()) {
+      gsap.set(ref.current, { opacity: 1, y: 0 })
+      return
+    }
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ref.current,
@@ -108,6 +123,12 @@ export function useSlideIn(
 
   useEffect(() => {
     if (!ref.current) return
+
+    // Skip animation if user prefers reduced motion
+    if (prefersReducedMotion()) {
+      gsap.set(ref.current, { opacity: 1, x: 0, y: 0 })
+      return
+    }
 
     const fromVars: gsap.TweenVars = { opacity: 0 }
     const toVars: gsap.TweenVars = { opacity: 1, duration, delay, ease }
@@ -170,6 +191,12 @@ export function useStaggerAnimation(
   useEffect(() => {
     if (!containerRef.current) return
 
+    // Skip animation if user prefers reduced motion
+    if (prefersReducedMotion()) {
+      gsap.set(selector, { opacity: 1, y: 0, x: 0, scale: 1 })
+      return
+    }
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         selector,
@@ -207,6 +234,9 @@ export function useParallax(
   useEffect(() => {
     if (!ref.current) return
 
+    // Skip parallax if user prefers reduced motion
+    if (prefersReducedMotion()) return
+
     const ctx = gsap.context(() => {
       gsap.to(ref.current, {
         yPercent: speed * 100,
@@ -241,6 +271,15 @@ export function useHeroAnimation(
 ) {
   useEffect(() => {
     if (!containerRef.current) return
+
+    // Skip animation if user prefers reduced motion
+    if (prefersReducedMotion()) {
+      if (refs.label?.current) gsap.set(refs.label.current, { opacity: 1, y: 0 })
+      if (refs.title?.current) gsap.set(refs.title.current, { opacity: 1, y: 0 })
+      if (refs.description?.current) gsap.set(refs.description.current, { opacity: 1, y: 0 })
+      if (refs.extra?.current) gsap.set(refs.extra.current, { opacity: 1, y: 0 })
+      return
+    }
 
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({ defaults: { ease: "power3.out" } })
@@ -306,6 +345,13 @@ export function useDualSlideIn(
 
   useEffect(() => {
     if (!containerRef.current) return
+
+    // Skip animation if user prefers reduced motion
+    if (prefersReducedMotion()) {
+      if (leftRef.current) gsap.set(leftRef.current, { opacity: 1, x: 0 })
+      if (rightRef.current) gsap.set(rightRef.current, { opacity: 1, x: 0 })
+      return
+    }
 
     const ctx = gsap.context(() => {
       if (leftRef.current) {
