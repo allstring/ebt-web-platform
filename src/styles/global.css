@@ -35,6 +35,7 @@ html:lang(ko) h2 {
    ========================================================================== */
 
 :root {
+  color-scheme: dark;
   --background: oklch(0.13 0.01 250);
   --foreground: oklch(0.95 0 0);
   --card: oklch(0.16 0.01 250);
@@ -75,6 +76,7 @@ html:lang(ko) h2 {
    ========================================================================== */
 
 .light {
+  color-scheme: light;
   --background: oklch(0.985 0 0);
   --foreground: oklch(0.2 0.03 250);
   --card: oklch(0.97 0 0);
@@ -185,9 +187,64 @@ body {
   .theme-transition *,
   .theme-transition *::before,
   .theme-transition *::after {
-    transition-property: color, background-color, border-color, fill, stroke, filter;
-    transition-duration: 200ms;
-    transition-timing-function: ease-out;
+    transition-property: color, background-color, border-color, fill, stroke, filter, opacity;
+    transition-duration: 350ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* View Transitions API support for theme toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth cross-fade for view transitions */
+::view-transition-old(root) {
+  animation-name: theme-fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: theme-fade-in;
+}
+
+@keyframes theme-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Theme toggle button icon animation */
+.theme-toggle-icon {
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 200ms ease-out;
+}
+
+.theme-toggle-icon-enter {
+  animation: theme-icon-spin-in 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes theme-icon-spin-in {
+  from {
+    transform: rotate(-90deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
   }
 }
 
@@ -272,4 +329,28 @@ body {
 
 .animate-slide-down {
   animation: slide-down 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-fade-in,
+  .animate-fade-in-delay-1,
+  .animate-fade-in-delay-2,
+  .animate-slide-up,
+  .animate-slide-down {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
