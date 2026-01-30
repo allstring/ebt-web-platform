@@ -1,11 +1,11 @@
 export const cpx = {
-  title: "CHEMPRO X",
+  title: "ChemPro-X",
   subtitle: "휴대용 화학 탐지기",
   tagline: "XPAND YOUR SAFETY",
 
   whatIs: {
     title: "CHEMPRO X란?",
-    description: "ChemProX는 차세대 화학 탐지기로, 현장 작전 중 완벽한 상황 인식을 가능하게 합니다. 내장된 시뮬레이션 훈련 모드와 작전 지침이 포함된 화학물질 데이터베이스를 탑재하여, 어떤 팀이든 CWA(화학무기작용제) 및 TIC(독성산업화학물질)를 탐지하고 분류할 수 있습니다.",
+    description: "ChemPro-X는 차세대 화학 탐지기로, 현장 작전 중 완벽한 상황 인식을 가능하게 합니다. 내장된 시뮬레이션 훈련 모드와 작전 지침이 포함된 화학물질 데이터베이스를 탑재하여, 어떤 팀이든 CWA(화학무기작용제) 및 TIC(독성산업화학물질)를 탐지하고 분류할 수 있습니다.",
   },
 
   benefits: {

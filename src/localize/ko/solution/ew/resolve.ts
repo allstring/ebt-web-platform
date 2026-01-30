@@ -1,5 +1,5 @@
 export const resolve = {
-  title: "RESOLVE",
+  title: "Resolve",
   subtitle: "전술 전자지원 시스템",
   tagline: "방향 탐지 및 감청을 위한 솔루션",
 

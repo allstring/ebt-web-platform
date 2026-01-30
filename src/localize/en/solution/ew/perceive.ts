@@ -1,5 +1,5 @@
 export const perceive = {
-  title: "PERCEIVE Multi-Role (MR)®",
+  title: "Perceive Multi-Role (MR)®",
   subtitle: "THE NEXT GENERATION IN INTEGRATED WIDEBAND SENSOR",
   tagline: "The next generation in integrated wideband sensor",
 

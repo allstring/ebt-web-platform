@@ -40,13 +40,13 @@ export default function ElectronicWarfarePage() {
       classified: true
     },
     {
-      title: "PERCEIVE",
+      title: "Perceive",
       subtitle: ewPage.products.perceive,
       imageSrc: categoryPerceiveImg,
       href: "PERCEIVE",
     },
     {
-      title: "RESOLVE",
+      title: "Resolve",
       subtitle: ewPage.products.resolve,
       imageSrc: categoryResolveImg,
       href: "RESOLVE",
@@ -58,7 +58,7 @@ export default function ElectronicWarfarePage() {
       href: "Micro-GoldenBat",
     },
     {
-      title: "PHOBOS M4",
+      title: "Phobos M4",
       subtitle: ewPage.products.phobosM4,
       imageSrc: categoryPhobosM4Img,
       href: "PHOBOS-M4",
@@ -68,7 +68,7 @@ export default function ElectronicWarfarePage() {
   // EA (Electronic Attack) Products
   const eaProducts = [
     {
-      title: "DECEIVE",
+      title: "Deceive",
       subtitle: ewPage.products.deceive,
       imageSrc: categoryDeceiveImg,
       href: "DECEIVE",
@@ -78,7 +78,7 @@ export default function ElectronicWarfarePage() {
   // Integration & Software Products
   const integrationProducts = [
     {
-      title: "MAPVIEW(수정예정)",
+      title: "MapView(수정예정)",
       subtitle: ewPage.products.mapview,
       imageSrc: categoryMapViewImg,
       href: "MAPVIEW",
