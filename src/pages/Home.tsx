@@ -2,7 +2,7 @@ import { useRef, useLayoutEffect } from "react";
 import { useLocale } from "@/lib/i18n";
 import { useTheme } from "@/hooks/use-theme";
 import { gsap } from "@/lib/gsap";
-import EbtLogo from "@/assets/images/navigation/EBT-logo.svg?react";
+import EbtLogo from "@/assets/images/home/EBT-logo.svg?react";
 import EbtLogoDark from "@/assets/images/home/EBT-logo--dark.svg?react";
 import Check from "lucide-react/dist/esm/icons/check";
 import heroVideo from "@/assets/videos/home/hero-video.webm";
@@ -75,14 +75,14 @@ function HeroSection() {
       </div>
 
       <div className="relative z-10 px-4 flex flex-col items-center">
-        <div className="logo-reveal">
+        {/* <div className="logo-reveal">
           {isLight ? (
             <EbtLogo className="h-16 w-auto mb-8 text-foreground" />
           ) : (
             <EbtLogoDark className="h-16 w-auto mb-8 text-white" />
           )}
-        </div>
-        <h1 className="text-5xl sm:text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-none">
+        </div> */}
+        <h1 className="text-4xl xs:text-5xl sm:text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-none">
           <TitleLine text={t.home.mainTitle.line1} />
           <TitleLine text={t.home.mainTitle.line2} />
           <TitleLine text={t.home.mainTitle.line3} />
@@ -134,9 +134,9 @@ function ContentSection() {
       <div className="max-w-4xl mx-auto px-6 space-y-20">
         <div className="content-reveal text-center">
           {isLight ? (
-            <EbtLogo className="h-20 w-auto mx-auto text-foreground" />
+            <EbtLogo className="h-12 sm:h-16 lg:h-20 w-auto mx-auto text-foreground" />
           ) : (
-            <EbtLogoDark className="h-20 w-auto mx-auto text-foreground" />
+            <EbtLogoDark className="h-12 sm:h-16 lg:h-20 w-auto mx-auto text-foreground" />
           )}
         </div>
 

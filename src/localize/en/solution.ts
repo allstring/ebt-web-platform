@@ -29,7 +29,7 @@ export const solution = {
     header: {
       label: "Solution",
       title: "NC Detection",
-      description: "Comprehensive nuclear and chemical threat detection with integrated monitoring systems for rapid identification, alerting, and coordinated response.",
+      description: "We detect and classify chemical agents and radiological materials early, enabling rapid response.",
     },
     architecture: {
       label: "System Architecture",
@@ -82,7 +82,7 @@ export const solution = {
     header: {
       label: "Solution",
       title: "Electronic Warfare",
-      description: "Comprehensive electromagnetic spectrum operations for detection, protection, and response in contested environments.",
+      description: "We intercept adversary communications, radars, and drone signals. We locate sources and deploy jamming.",
     },
     categories: {
       es: {
@@ -105,7 +105,7 @@ export const solution = {
       ebtPes: "Portable RF Scanner",
       perceive: "Integrated Wideband Sensor",
       resolve: "Tactical Electronic Support System",
-      microGoldenBat: "Compact Electronic Support Measures",
+      microGoldenBat: "Low-SWaP RESM System",
       phobosM4: "Multi-Channel Electronic Support System",
       deceive: "Electronic Deception System",
       mapview: "EW Integration Software",
@@ -145,7 +145,7 @@ export const solution = {
     header: {
       label: "Solution",
       title: "Counter-UAS",
-      description: "Comprehensive counter-drone solutions for detection, tracking, identification, and neutralization of unmanned aerial threats.",
+      description: "We detect and classify hostile drones, enabling immediate countermeasures.",
     },
     products: {
       label: "Product Lineup",
