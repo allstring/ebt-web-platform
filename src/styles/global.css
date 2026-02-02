@@ -358,3 +358,7 @@ body {
 .bg-grid-pattern {
   background-image: url('data:image/svg+xml,<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><g fill="%23ffffff" fill-opacity="0.03" fill-rule="evenodd"><path d="M0 50L50 0H25L0 25M50 50V25L25 50"/></g></svg>');
 }
+.last-snap-section {
+  min-height: calc(100vh - var(--footer-height, 0px));
+}
+

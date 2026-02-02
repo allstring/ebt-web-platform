@@ -4,9 +4,10 @@
 // ============================================================================
 
 import { useRef } from "react"
-import MapPin from "lucide-react/dist/esm/icons/map-pin";
-import Phone from "lucide-react/dist/esm/icons/phone";
-import Mail from "lucide-react/dist/esm/icons/mail";
+import ChevronRight from "lucide-react/dist/esm/icons/chevron-right"
+import MapPin from "lucide-react/dist/esm/icons/map-pin"
+import Phone from "lucide-react/dist/esm/icons/phone"
+import Mail from "lucide-react/dist/esm/icons/mail"
 
 import { useLocale } from "@/lib/i18n"
 import {
@@ -21,7 +22,7 @@ import icoPdf from "@/assets/images/contact/ico_pdf.png"
 import icoWord from "@/assets/images/contact/ico_word.png"
 
 // ============================================================================
-// 상수 정의
+// Constants
 // ============================================================================
 
 /** 입사지원서 파일 목록 (career.docs 순서와 매칭) */
@@ -32,26 +33,31 @@ const APPLICATION_DOC_FILES = [
 ] as const
 
 // ============================================================================
-// Hero Section - 페이지 헤더
+// Hero & Location Section - 페이지 헤더 + 회사 위치 및 연락처
 // ============================================================================
 
-function HeroSection() {
-  const { t } = useLocale()
+function HeroLocationSection() {
+  const { t, locale } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const labelRef = useRef<HTMLParagraphElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLParagraphElement>(null)
+  const infoRef = useRef<HTMLDivElement>(null)
+  const mapRef = useRef<HTMLDivElement>(null)
 
-  useHeroAnimation(sectionRef, {
-    label: labelRef,
-    title: titleRef,
-    description: descRef,
-  })
+  useHeroAnimation(
+    sectionRef,
+    { label: labelRef, title: titleRef, description: descRef },
+    { key: locale }
+  )
+  useFadeIn(infoRef, sectionRef, { y: 30, delay: 0.3, key: locale })
+  useFadeIn(mapRef, sectionRef, { y: 30, delay: 0.4, key: locale })
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32">
+    <section ref={sectionRef} className="snap-section min-h-screen flex flex-col justify-center py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="max-w-3xl">
+        {/* Hero */}
+        <div className="max-w-3xl mb-16">
           <p
             ref={labelRef}
             className="text-xs font-semibold uppercase tracking-wider text-accent"
@@ -69,41 +75,6 @@ function HeroSection() {
             className="mt-6 text-lg text-muted-foreground leading-relaxed"
           >
             {t.contact.hero.description}
-          </p>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ============================================================================
-// Location Section - 회사 위치 및 연락처
-// ============================================================================
-
-function LocationSection() {
-  const { t } = useLocale()
-  const sectionRef = useRef<HTMLElement>(null)
-  const headerRef = useRef<HTMLDivElement>(null)
-  const infoRef = useRef<HTMLDivElement>(null)
-  const mapRef = useRef<HTMLDivElement>(null)
-
-  useFadeIn(headerRef, headerRef, { y: 30 })
-  useFadeIn(infoRef, infoRef, { y: 30, delay: 0.1 })
-  useFadeIn(mapRef, mapRef, { y: 30, delay: 0.2 })
-
-  return (
-    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* 섹션 헤더 */}
-        <div ref={headerRef} className="max-w-2xl mb-12">
-          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-            {t.contact.location.sectionLabel}
-          </p>
-          <h2 className="mt-3 text-3xl lg:text-4xl font-semibold tracking-tight text-foreground">
-            {t.contact.location.title}
-          </h2>
-          <p className="mt-4 text-muted-foreground leading-relaxed">
-            {t.contact.location.description}
           </p>
         </div>
 
@@ -128,6 +99,12 @@ function LocationSection() {
             referrerPolicy="no-referrer-when-downgrade"
             className="w-full map-iframe"
           />
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="mt-12 flex items-center gap-2 text-muted-foreground animate-pulse">
+          <span className="text-xs uppercase tracking-wider">Scroll</span>
+          <ChevronRight className="w-4 h-4 rotate-90" />
         </div>
       </div>
     </section>
@@ -220,7 +197,7 @@ function ApplicationDocCard({
     <a
       href={href}
       download
-      className="doc-card group flex flex-col gap-4 rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5"
+      className="doc-card group relative flex flex-col gap-4 rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5"
     >
       {/* 호버 시 배경 그라데이션 */}
       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
@@ -248,16 +225,16 @@ function ApplicationDocCard({
 // ============================================================================
 
 function CareerSection() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const docsRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(headerRef, headerRef, { y: 30 })
-  useStaggerAnimation(docsRef, ".doc-card", { y: 30, stagger: 0.1 })
+  useFadeIn(headerRef, sectionRef, { y: 30, key: locale })
+  useStaggerAnimation(docsRef, ".doc-card", { y: 30, stagger: 0.1, key: locale })
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-card border-t border-border">
+    <section ref={sectionRef} className="snap-section min-h-screen flex flex-col justify-center py-24 lg:py-32 bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* 섹션 헤더 */}
         <div ref={headerRef} className="max-w-2xl mb-12">
@@ -318,10 +295,9 @@ function CareerSection() {
 
 export default function ContactPage() {
   return (
-    <div className="pt-16">
-      <HeroSection />
-      <LocationSection />
+    <>
+      <HeroLocationSection />
       <CareerSection />
-    </div>
+    </>
   )
 }
