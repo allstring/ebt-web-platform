@@ -18,6 +18,8 @@ export function useScrollSnap(
 
   // 현재 화면에 가장 많이 보이는 섹션의 인덱스를 계산
   const getCurrentVisibleIndex = useCallback((sections: HTMLElement[]): number => {
+    if (typeof window === "undefined") return 0
+
     const viewportHeight = window.innerHeight
     const viewportCenter = window.scrollY + viewportHeight / 2
 
@@ -112,11 +114,73 @@ export function useScrollSnap(
       }, 100)
     }
 
-    window.addEventListener("wheel", onWheel, { passive: false })
+    // 터치 이벤트 핸들러 (모바일 지원)
+    let touchStartY = 0
+    const SWIPE_THRESHOLD = 50
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY
+    }
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (isScrolling.current) return
+
+      const touchEndY = e.changedTouches[0].clientY
+      const diff = touchStartY - touchEndY
+
+      // 스와이프 거리가 임계값 이상일 때만 처리
+      if (Math.abs(diff) < SWIPE_THRESHOLD) return
+
+      const actualIndex = getCurrentVisibleIndex(sections)
+      currentIndex.current = actualIndex
+
+      const scrollDirection = diff > 0 ? 1 : -1
+      let nextIndex = actualIndex
+
+      if (scrollDirection > 0) {
+        nextIndex = Math.min(actualIndex + 1, sections.length - 1)
+      } else {
+        nextIndex = Math.max(actualIndex - 1, 0)
+      }
+
+      if (actualIndex !== nextIndex) {
+        currentIndex.current = nextIndex
+        const targetSection = sections[nextIndex]
+
+        if (targetSection) {
+          isScrolling.current = true
+
+          targetSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          })
+
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current)
+          }
+
+          timeoutRef.current = setTimeout(() => {
+            isScrolling.current = false
+            currentIndex.current = getCurrentVisibleIndex(sections)
+          }, 800)
+        }
+      }
+    }
+
+    // document.documentElement에 바인딩하여 passive 강제 해제
+    // window 레벨 이벤트는 일부 브라우저에서 passive가 기본값으로 강제됨
+    const target = document.documentElement
+
+    // 명시적으로 passive: false를 설정하여 preventDefault() 동작 보장
+    target.addEventListener("wheel", onWheel, { passive: false, capture: true })
+    target.addEventListener("touchstart", onTouchStart, { passive: true })
+    target.addEventListener("touchend", onTouchEnd, { passive: true })
     window.addEventListener("scroll", onScroll, { passive: true })
 
     return () => {
-      window.removeEventListener("wheel", onWheel)
+      target.removeEventListener("wheel", onWheel, { capture: true })
+      target.removeEventListener("touchstart", onTouchStart)
+      target.removeEventListener("touchend", onTouchEnd)
       window.removeEventListener("scroll", onScroll)
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current)
