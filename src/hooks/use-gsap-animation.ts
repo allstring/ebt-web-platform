@@ -22,15 +22,21 @@ interface BaseAnimationOptions {
   ease?: string
   start?: string
   toggleActions?: string
+  /** Key to trigger re-animation (e.g., locale for language change) */
+  key?: unknown
 }
 
 interface FadeInOptions extends BaseAnimationOptions {
   y?: number
+  /** Key to trigger re-animation (e.g., locale for language change) */
+  key?: unknown
 }
 
 interface SlideInOptions extends BaseAnimationOptions {
   direction?: AnimationDirection
   distance?: number
+  /** Key to trigger re-animation (e.g., locale for language change) */
+  key?: unknown
 }
 
 interface StaggerOptions extends BaseAnimationOptions {
@@ -38,6 +44,8 @@ interface StaggerOptions extends BaseAnimationOptions {
   y?: number
   x?: number
   scale?: number
+  /** Key to trigger re-animation (e.g., locale for language change) */
+  key?: unknown
 }
 
 // ============================================================================
@@ -68,6 +76,7 @@ export function useFadeIn(
     start = DEFAULTS.start,
     toggleActions = DEFAULTS.toggleActions,
     y = 40,
+    key,
   } = options
 
   useEffect(() => {
@@ -99,7 +108,7 @@ export function useFadeIn(
     }, ref)
 
     return () => ctx.revert()
-  }, [ref, triggerRef, duration, delay, ease, start, toggleActions, y])
+  }, [ref, triggerRef, duration, delay, ease, start, toggleActions, y, key])
 }
 
 // ============================================================================
@@ -119,6 +128,7 @@ export function useSlideIn(
     toggleActions = DEFAULTS.toggleActions,
     direction = "left",
     distance = 60,
+    key,
   } = options
 
   useEffect(() => {
@@ -164,7 +174,7 @@ export function useSlideIn(
     }, ref)
 
     return () => ctx.revert()
-  }, [ref, triggerRef, duration, delay, ease, start, toggleActions, direction, distance])
+  }, [ref, triggerRef, duration, delay, ease, start, toggleActions, direction, distance, key])
 }
 
 // ============================================================================
@@ -186,6 +196,7 @@ export function useStaggerAnimation(
     y = 50,
     x = 0,
     scale = 1,
+    key,
   } = options
 
   useEffect(() => {
@@ -220,7 +231,7 @@ export function useStaggerAnimation(
     }, containerRef)
 
     return () => ctx.revert()
-  }, [containerRef, selector, duration, delay, ease, start, toggleActions, stagger, y, x, scale])
+  }, [containerRef, selector, duration, delay, ease, start, toggleActions, stagger, y, x, scale, key])
 }
 
 // ============================================================================
@@ -265,10 +276,18 @@ interface HeroAnimationRefs {
   extra?: RefObject<HTMLElement | null>
 }
 
+interface HeroAnimationOptions {
+  /** Key to trigger re-animation (e.g., locale for language change) */
+  key?: unknown
+}
+
 export function useHeroAnimation(
   containerRef: RefObject<HTMLElement | null>,
-  refs: HeroAnimationRefs
+  refs: HeroAnimationRefs,
+  options: HeroAnimationOptions = {}
 ) {
+  const { key } = options
+
   useEffect(() => {
     if (!containerRef.current) return
 
@@ -322,7 +341,7 @@ export function useHeroAnimation(
     }, containerRef)
 
     return () => ctx.revert()
-  }, [containerRef, refs])
+  }, [containerRef, refs, key])
 }
 
 // ============================================================================
@@ -341,6 +360,7 @@ export function useDualSlideIn(
     ease = DEFAULTS.ease,
     start = DEFAULTS.start,
     toggleActions = DEFAULTS.toggleActions,
+    key,
   } = options
 
   useEffect(() => {
@@ -394,5 +414,5 @@ export function useDualSlideIn(
     }, containerRef)
 
     return () => ctx.revert()
-  }, [containerRef, leftRef, rightRef, duration, delay, ease, start, toggleActions])
+  }, [containerRef, leftRef, rightRef, duration, delay, ease, start, toggleActions, key])
 }
