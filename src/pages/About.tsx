@@ -37,24 +37,28 @@ const CAPABILITY_ICONS = [Radio, Plane, FlaskConical] as const
 // ============================================================================
 
 function HeroSection() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const labelRef = useRef<HTMLParagraphElement>(null)
   const taglineRef = useRef<HTMLParagraphElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLDivElement>(null)
 
-  useHeroAnimation(sectionRef, {
-    label: labelRef,
-    title: titleRef,
-    description: descRef,
-    extra: taglineRef,
-  })
+  useHeroAnimation(
+    sectionRef,
+    {
+      label: labelRef,
+      title: titleRef,
+      description: descRef,
+      extra: taglineRef,
+    },
+    { key: locale }
+  )
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[90vh] flex items-center overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="snap-section relative min-h-screen flex items-center overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${heroBgImg})` }}
     >
       {/* 배경 오버레이 */}
@@ -158,14 +162,14 @@ function ValuePropItem({ title, description, index }: ValuePropItemProps) {
 // ============================================================================
 
 function ValuePropsSection() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
 
-  useStaggerAnimation(listRef, ".value-item", { y: 15, stagger: 0.15, duration: 0.3 })
+  useStaggerAnimation(listRef, ".value-item", { y: 15, stagger: 0.15, duration: 0.3, key: locale })
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border">
+    <section ref={sectionRef} className="snap-section flex min-h-screen flex-col justify-center border-t border-border py-24 lg:py-32">
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         {/* Value Items List */}
         <div ref={listRef} className="border-t border-border/50">
@@ -241,18 +245,18 @@ function CapabilityCard({ title, description, index }: CapabilityCardProps) {
 // ============================================================================
 
 function CapabilitiesSection() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(headerRef, sectionRef, { y: 30 })
-  useStaggerAnimation(cardsRef, ".capability-card", { y: 20, stagger: 0.12, duration: 0.2 })
+  useFadeIn(headerRef, sectionRef, { y: 30, key: locale })
+  useStaggerAnimation(cardsRef, ".capability-card", { y: 20, stagger: 0.12, duration: 0.2, key: locale })
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 lg:py-32 overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="snap-section relative flex min-h-screen flex-col justify-center overflow-hidden bg-cover bg-center bg-no-repeat py-24 lg:py-32"
       style={{ backgroundImage: `url(${capabilityBgImg})` }}
     >
       {/* 배경 오버레이 */}
@@ -293,17 +297,17 @@ function CapabilitiesSection() {
 // ============================================================================
 
 function SystemSection() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const stepsRef = useRef<HTMLDivElement>(null)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-  useFadeIn(headerRef, sectionRef, { y: 40 })
-  useStaggerAnimation(stepsRef, ".step-item", { y: 30, stagger: 0.12 })
+  useFadeIn(headerRef, sectionRef, { y: 40, key: locale })
+  useStaggerAnimation(stepsRef, ".step-item", { y: 30, stagger: 0.12, key: locale })
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 border-t border-border relative overflow-hidden">
+    <section ref={sectionRef} className="snap-section relative flex min-h-screen flex-col justify-center overflow-hidden border-t border-border py-24 lg:py-32">
       {/* 배경 장식 */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -415,14 +419,14 @@ function SystemSection() {
 // ============================================================================
 
 function ScalabilitySection() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useSlideIn(contentRef, sectionRef, { direction: "up", distance: 60 })
+  useSlideIn(contentRef, sectionRef, { direction: "up", distance: 60, key: locale })
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-card/30 border-t border-border relative overflow-hidden">
+    <section ref={sectionRef} className="relative w-full">
       {/* 배경 장식 */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-accent/5 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-accent/5 to-transparent pointer-events-none" />
@@ -460,14 +464,14 @@ function ScalabilitySection() {
 // ============================================================================
 
 function ContactSection() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useFadeIn(contentRef, sectionRef, { y: 40 })
+  useFadeIn(contentRef, sectionRef, { y: 40, key: locale })
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-card border-t border-border">
+    <section ref={sectionRef} className="w-full">
       <div ref={contentRef} className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="relative p-8 md:p-12 lg:p-16 rounded-3xl bg-gradient-to-br from-background via-background to-accent/5 border border-border overflow-hidden">
           {/* 배경 패턴 */}
@@ -539,13 +543,15 @@ function ContactSection() {
 
 export default function AboutPage() {
   return (
-    <div>
+    <>
       <HeroSection />
       <ValuePropsSection />
       <CapabilitiesSection />
       <SystemSection />
-      <ScalabilitySection />
-      <ContactSection />
-    </div>
+      <section className="snap-section relative flex min-h-screen flex-col items-center justify-center gap-16 overflow-hidden border-t border-border bg-card/5 py-24 lg:py-32">
+        <ScalabilitySection />
+        <ContactSection />
+      </section>
+    </>
   )
 }
