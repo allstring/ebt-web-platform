@@ -50,7 +50,7 @@ export function useScrollSnap(
       window.scrollTo({ top: targetY, behavior: "smooth" })
     }
 
-    const scheduleUnlock = (sections: HTMLElement[]) => {
+    const scheduleUnlock = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current)
       }
@@ -82,7 +82,7 @@ export function useScrollSnap(
         if (targetSection) {
           isScrolling.current = true
           scrollToSection(targetSection)
-          scheduleUnlock(sections)
+          scheduleUnlock()
         }
       }
     }
