@@ -16,6 +16,10 @@ export function useScrollSnap(
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
+    // 모바일(768px 미만)에서는 스냅 비활성화 → 네이티브 스크롤 사용
+    const mq = window.matchMedia("(max-width: 767px)")
+    if (mq.matches) return
+
     // 매 이벤트마다 섹션을 새로 쿼리 (lazy loading, 조건부 렌더링 대응)
     const getSections = (): HTMLElement[] => {
       if (!containerRef.current) return []
