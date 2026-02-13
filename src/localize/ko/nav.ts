@@ -14,10 +14,11 @@ export const nav = {
       title: "전자기전",
       items: {
         goldenBatEws: "GoldenBat-EWS",
+        microGoldenBat: "Micro-GoldenBat",
         perceive: "Perceive",
         resolve: "Resolve",
-        microGoldenBat: "Micro-GoldenBat",
-        phobosM4: "Phobos M4",
+
+        // phobosM4: "Phobos M4",
         deceive: "Deceive",
         mapview: "MapView",
       },
@@ -25,9 +26,9 @@ export const nav = {
     nc: {
       title: "화학/방사능 탐지",
       items: {
-        chemproX: "ChemPro-X",
-        ncMonitoring: "NC Monitoring System",
-        ranidX: "RanidX",
+        // chemproX: "ChemPro-X",
+        // ncMonitoring: "NC Monitoring System",
+        // ranidX: "RanidX",
       },
     },
     cuas: {
