@@ -150,9 +150,8 @@ export const solution = {
     products: {
       label: "제품 라인업",
       title: "제품 라인업",
-      ebtPesDetector: "드론 탐지 시스템",
-      ebtPesJammer: "드론 재밍 시스템",
-      spectraC2: "모바일 UAS 탐지 및 재밍 C2",
+      eBTCUAS100: "휴대용 대드론 통합 솔루션",
+      eBTCUAS200: "고정형 대드론 통합 솔루션",
     },
     capabilities: {
       label: "시스템 기능",

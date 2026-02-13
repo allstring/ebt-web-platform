@@ -30,10 +30,10 @@ export const solutionCategories: SolutionCategory[] = [
     href: "/solution/ew",
     items: [
       { key: "goldenBatEws", href: "/solution/ew/GoldenBat-EWS" },
+      { key: "microGoldenBat", href: "/solution/ew/Micro-GoldenBat" },
       { key: "perceive", href: "/solution/ew/PERCEIVE" },
       { key: "resolve", href: "/solution/ew/RESOLVE" },
-      { key: "microGoldenBat", href: "/solution/ew/Micro-GoldenBat" },
-      { key: "phobosM4", href: "/solution/ew/PHOBOS-M4" },
+      // { key: "phobosM4", href: "/solution/ew/PHOBOS-M4" },
       { key: "deceive", href: "/solution/ew/DECEIVE" },
       { key: "mapview", href: "/solution/ew/MAPVIEW" },
     ],
@@ -42,8 +42,8 @@ export const solutionCategories: SolutionCategory[] = [
     key: "cuas",
     href: "/solution/c-uas",
     items: [
-      { key: "ebtPes", href: "/solution/c-uas/eBT-PES" },
-      { key: "spectraC2", href: "/solution/c-uas/Spectra-C2" },
+      { key: "eBTCUAS100", href: "/solution/c-uas/eBT-CUAS 100" },
+      { key: "eBTCUAS200", href: "/solution/c-uas/eBT-CUAS 200" },
     ],
   },
   {

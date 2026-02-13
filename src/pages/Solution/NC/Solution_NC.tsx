@@ -6,10 +6,10 @@ import { ProductContactSection } from "@/components/product-contact-section"
 import ComingSoon from "@/components/ComingSoon"
 import { useLocale } from "@/lib/i18n"
 import { gsap } from "@/lib/gsap"
-import categoryCpxImg from "@/assets/images/solution/NC/CHEMPRO-X/thumbnail.webp"
-import categoryNcmImg from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/thumbnail.webp"
-import categoryRanidxImg from "@/assets/images/solution/NC/RanidX/thumbnail.webp"
-import ncNetworkSchemaImg from "@/assets/images/solution/NC/nc_network_schema.png"
+// import categoryCpxImg from "@/assets/images/solution/NC/CHEMPRO-X/thumbnail.webp"
+// import categoryNcmImg from "@/assets/images/solution/NC/NC-MONITORING-SYSTEM/thumbnail.webp"
+// import categoryRanidxImg from "@/assets/images/solution/NC/RanidX/thumbnail.webp"
+// import ncNetworkSchemaImg from "@/assets/images/solution/NC/nc_network_schema.png"
 
 // ============================================================================
 // 페이지 숨김 설정 - true로 변경시 "준비중" 페이지 표시
@@ -104,7 +104,7 @@ function NetworkArchitectureSection() {
           }}
         >
           <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
+{/* 
           <div className="relative overflow-hidden rounded-xl md:rounded-2xl border border-border bg-white dark:bg-white/95 shadow-lg dark:shadow-2xl dark:shadow-black/20 transition-transform duration-300 group-hover:scale-[1.01]">
             <div className="h-0.5 md:h-1 bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
 
@@ -146,7 +146,7 @@ function NetworkArchitectureSection() {
                 {nc.architecture.footer}
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
@@ -157,22 +157,28 @@ export default function NCDefensePage() {
   const { t } = useLocale()
   const nc = t.solution.ncPage
 
-  const cwProducts = [{
-    title: "ChemPro-X",
-    subtitle: nc.products.chemproX,
-    imageSrc: categoryCpxImg,
-    href: "CHEMPRO-X",
-  }, {
-    title: "NC MONITORING SYSTEM",
-    subtitle: nc.products.ncMonitoring,
-    imageSrc: categoryNcmImg,
-    href: "NC-MONITORING-SYSTEM",
-  }, {
-    title: "RanidX",
-    subtitle: nc.products.ranidx,
-    imageSrc: categoryRanidxImg,
-    href: "RanidX",
-  },
+  const cwProducts: any[] = [
+  //   {
+  //   title: "ChemPro-X",
+  //   subtitle: nc.products.chemproX,
+  //   imageSrc: categoryCpxImg,
+  //   href: "CHEMPRO-X",
+  // }, {
+  //   title: "NC MONITORING SYSTEM",
+  //   subtitle: nc.products.ncMonitoring,
+  //   imageSrc: categoryNcmImg,
+  //   href: "NC-MONITORING-SYSTEM",
+  // }, {
+  //   title: "RanidX",
+  //   subtitle: nc.products.ranidx,
+  //   imageSrc: categoryRanidxImg,
+  //   href: "RanidX",
+  // },
+
+
+
+
+  
   // {
   //   title: "BIOBATS",
   //   subtitle: nc.products.biobats,

@@ -150,9 +150,8 @@ export const solution = {
     products: {
       label: "Product Lineup",
       title: "Product Lineup",
-      ebtPesDetector: "Drone Detection System",
-      ebtPesJammer: "Drone Jamming System",
-      spectraC2: "Mobile UAS Detection & Jamming C2",
+      eBTCUAS100: "Portable Integrated Counter-UAS Solution",
+      eBTCUAS200: "Fixed-Site Integrated Counter-UAS Solution",
     },
     capabilities: {
       label: "System Capabilities",

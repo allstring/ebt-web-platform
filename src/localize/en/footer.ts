@@ -8,6 +8,10 @@ export const footer = {
   fax: "FAX",
   email: "E-Mail",
   copyright: "© 2026–Present EBT Co., Ltd. All rights reserved.",
+  phoneNumber: "+82-31-721-6375",
+  faxNumber: "+82-31-721-6376",
+  emailAddress: "info@ebtech.kr",
 } as const
+
 
 export type FooterStrings = typeof footer

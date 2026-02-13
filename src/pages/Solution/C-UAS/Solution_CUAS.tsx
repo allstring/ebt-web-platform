@@ -11,7 +11,6 @@ import { useLocale } from "@/lib/i18n"
 const HIDE_PAGE = false
 
 import categoryPesImg from "@/assets/images/solution/C-UAS/eBT-PES/thumbnail.webp"
-import spectraC2Thumbnail from "@/assets/images/solution/C-UAS/Spectra-C2/thumbnail.webp"
 
 export default function CounterUASPage() {
   const { t } = useLocale()
@@ -19,24 +18,18 @@ export default function CounterUASPage() {
 
   const cuasProducts = [
     {
-      title: "eBT-PES Detector(수정예정)",
-      subtitle: cuasPage.products.ebtPesDetector,
+      title: "eBT-CUAS 100(수정예정)",
+      subtitle: cuasPage.products.eBTCUAS100,
       imageSrc: categoryPesImg,
-      href: "eBT-PES",
+      href: "eBT-CUAS 100",
       classified: true
     },
     {
-      title: "eBT-PES Jammer(수정예정)",
-      subtitle: cuasPage.products.ebtPesJammer,
+      title: "eBT-CUAS 200(수정예정)",
+      subtitle: cuasPage.products.eBTCUAS200,
       imageSrc: categoryPesImg,
-      href: "eBT-PES",
+      href: "eBT-CUAS 200",
       classified: true,
-    },
-    {
-      title: "Spectra-C2",
-      subtitle: cuasPage.products.spectraC2,
-      imageSrc: spectraC2Thumbnail,
-      href: "Spectra-C2",
     },
   ]
 

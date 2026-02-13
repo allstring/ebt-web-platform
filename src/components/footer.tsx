@@ -9,13 +9,6 @@ import LogoDark from "@/assets/images/navigation/EBT-logo--dark.svg?react"
 // 사이트 하단 푸터 영역 - 회사 정보 및 저작권 표시
 // ============================================================================
 
-// 회사 연락처 정보 (하드코딩된 값들)
-const CONTACT_INFO = {
-  phone: "+82-31-721-6375",
-  fax: "+82-31-721-6376",
-  email: "info@ebtech.kr",
-} as const
-
 interface FooterProps {
   /** snap-section 클래스 추가 여부 (스크롤 스냅 페이지용) */
   asSnapSection?: boolean
@@ -53,18 +46,18 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(({ asSnapSection = fa
           {/* 연락처 정보 */}
           <p className="flex flex-wrap gap-x-4 gap-y-1">
             <span>
-              {t.footer.phone} : {CONTACT_INFO.phone}
+              {t.footer.phone} : {t.footer.phoneNumber}
             </span>
             <span>
-              {t.footer.fax} : {CONTACT_INFO.fax}
+              {t.footer.fax} : {t.footer.faxNumber}
             </span>
             <span>
               {t.footer.email} :{" "}
               <a
-                href={`mailto:${CONTACT_INFO.email}`}
+                href={`mailto:${t.footer.emailAddress}`}
                 className="underline-offset-2 hover:underline hover:text-foreground transition-colors duration-200"
               >
-                {CONTACT_INFO.email}
+                {t.footer.emailAddress}
               </a>
             </span>
           </p>
