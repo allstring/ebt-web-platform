@@ -74,6 +74,7 @@ export const ews = {
         title: "Tx Antenna",
         items: [
           "30MHz - 6GHz",
+          "6-18GHz(Option)",
         ],
       },
       jammingMode: {
