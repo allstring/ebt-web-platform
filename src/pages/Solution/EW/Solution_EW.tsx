@@ -16,7 +16,7 @@ import categoryPerceiveImg from "@/assets/images/solution/EW/PERCEIVE/thumbnail.
 import categoryResolveImg from "@/assets/images/solution/EW/RESOLVE/thumbnail.webp"
 import categoryDeceiveImg from "@/assets/images/solution/EW/DECEIVE/thumbnail.webp"
 import categryMicroGoldenBatImg from "@/assets/images/solution/EW/Micro-GoldenBat/thumbnail.webp"
-import categoryPhobosM4Img from "@/assets/images/solution/EW/PHOBOS M4/thumbnail.webp"
+// import categoryPhobosM4Img from "@/assets/images/solution/EW/PHOBOS M4/thumbnail.webp"
 import categoryMapViewImg from "@/assets/images/solution/EW/MAPVIEW/thumbnail.webp"
 // const environments = [
 //   "Ground-based installations",
@@ -40,6 +40,12 @@ export default function ElectronicWarfarePage() {
       classified: true
     },
     {
+      title: "Micro-GoldenBat",
+      subtitle: ewPage.products.microGoldenBat,
+      imageSrc: categryMicroGoldenBatImg,
+      href: "Micro-GoldenBat",
+    },
+    {
       title: "Perceive",
       subtitle: ewPage.products.perceive,
       imageSrc: categoryPerceiveImg,
@@ -51,18 +57,13 @@ export default function ElectronicWarfarePage() {
       imageSrc: categoryResolveImg,
       href: "RESOLVE",
     },
-    {
-      title: "Micro-GoldenBat",
-      subtitle: ewPage.products.microGoldenBat,
-      imageSrc: categryMicroGoldenBatImg,
-      href: "Micro-GoldenBat",
-    },
-    {
-      title: "Phobos M4",
-      subtitle: ewPage.products.phobosM4,
-      imageSrc: categoryPhobosM4Img,
-      href: "PHOBOS-M4",
-    },
+
+    // {
+    //   title: "Phobos M4",
+    //   subtitle: ewPage.products.phobosM4,
+    //   imageSrc: categoryPhobosM4Img,
+    //   href: "PHOBOS-M4",
+    // },
   ]
 
   // EA (Electronic Attack) Products
