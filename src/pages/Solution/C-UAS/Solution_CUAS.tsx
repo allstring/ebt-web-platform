@@ -18,19 +18,19 @@ export default function CounterUASPage() {
 
   const cuasProducts = [
     {
-      title: "eBT-CUAS 100(수정예정)",
+      title: "eBT-CUAS 100",
       subtitle: cuasPage.products.eBTCUAS100,
       // imageSrc: categoryPesImg,
       imageSrc: "/",
-      href: "eBT-CUAS 100",
+      href: "/contact",
       classified: true
     },
     {
-      title: "eBT-CUAS 200(수정예정)",
+      title: "eBT-CUAS 200",
       subtitle: cuasPage.products.eBTCUAS200,
       // imageSrc: categoryPesImg,
       imageSrc: "/",
-      href: "eBT-CUAS 200",
+      href: "/contact",
       classified: true,
     },
   ]
