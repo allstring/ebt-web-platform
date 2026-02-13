@@ -79,7 +79,7 @@ export default function ElectronicWarfarePage() {
   // Integration & Software Products
   const integrationProducts = [
     {
-      title: "MapView(수정예정)",
+      title: "MapView",
       subtitle: ewPage.products.mapview,
       imageSrc: categoryMapViewImg,
       href: "MAPVIEW",
