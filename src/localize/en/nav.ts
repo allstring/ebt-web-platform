@@ -33,8 +33,8 @@ export const nav = {
     cuas: {
       title: "Counter-UAS",
       items: {
-        ebtPes: "eBT-PES",
-        spectraC2: "Spectra-C2",
+        eBTCUAS100: "eBT-CUAS 100",
+        eBTCUAS200: "eBT-CUAS 200",
       },
     },
   },

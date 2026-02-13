@@ -42,8 +42,8 @@ export const solutionCategories: SolutionCategory[] = [
     key: "cuas",
     href: "/solution/c-uas",
     items: [
-      { key: "ebtPes", href: "/solution/c-uas/eBT-PES" },
-      { key: "spectraC2", href: "/solution/c-uas/Spectra-C2" },
+      { key: "eBTCUAS100", href: "/solution/c-uas/eBT-CUAS 100" },
+      { key: "eBTCUAS200", href: "/solution/c-uas/eBT-CUAS 200" },
     ],
   },
   {
