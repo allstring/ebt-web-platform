@@ -159,19 +159,11 @@ export const solution = {
       items: [
         {
           name: "Detection & Tracking",
-          description: "Multi-sensor detection and tracking of unmanned aerial systems across operational airspace.",
+          description: "Multi-sensor detection, tracking, and real-time threat identification & classification of UAS across the operational airspace",
         },
         {
-          name: "Identification & Classification",
-          description: "Automated threat assessment and classification with real-time alerting and confidence scoring.",
-        },
-        {
-          name: "Neutralization",
-          description: "Integrated countermeasures for drone neutralization including RF jamming and directed energy.",
-        },
-        {
-          name: "Command & Control",
-          description: "Centralized C2 interface for coordinated response and multi-site management.",
+          name: "Jamming & Countermeasures",
+          description: "Immediate threat neutralization with detection-linked automated jamming, simultaneously disrupting drone control, video, and navigation signals",
         },
       ],
     },
