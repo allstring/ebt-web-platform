@@ -74,6 +74,7 @@ export const ews = {
         title: "송신 안테나",
         items: [
           "30MHz - 6GHz",
+          "6-18GHz(옵션)",
         ],
       },
       jammingMode: {

@@ -10,7 +10,7 @@ import { useLocale } from "@/lib/i18n"
 // ============================================================================
 const HIDE_PAGE = false
 
-import categoryPesImg from "@/assets/images/solution/C-UAS/eBT-PES/thumbnail.webp"
+// import categoryPesImg from "@/assets/images/solution/C-UAS/eBT-PES/thumbnail.webp"
 
 export default function CounterUASPage() {
   const { t } = useLocale()
@@ -18,17 +18,19 @@ export default function CounterUASPage() {
 
   const cuasProducts = [
     {
-      title: "eBT-CUAS 100(수정예정)",
+      title: "eBT-CUAS 100",
       subtitle: cuasPage.products.eBTCUAS100,
-      imageSrc: categoryPesImg,
-      href: "eBT-CUAS 100",
+      // imageSrc: categoryPesImg,
+      imageSrc: "/",
+      href: "/contact",
       classified: true
     },
     {
-      title: "eBT-CUAS 200(수정예정)",
+      title: "eBT-CUAS 200",
       subtitle: cuasPage.products.eBTCUAS200,
-      imageSrc: categoryPesImg,
-      href: "eBT-CUAS 200",
+      // imageSrc: categoryPesImg,
+      imageSrc: "/",
+      href: "/contact",
       classified: true,
     },
   ]
